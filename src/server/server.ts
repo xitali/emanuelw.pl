@@ -58,7 +58,14 @@ class PortfolioServer {
     this.setupRateLimiting();
 
     // Static files
-    this.app.use(express.static('public', {
+    this.app.use(express.static('dist/public', {
+      maxAge: this.isDevelopment ? 0 : '1y',
+      etag: true,
+      lastModified: true
+    }));
+    
+    // Fallback for legacy paths
+    this.app.use('/dist/public', express.static('dist/public', {
       maxAge: this.isDevelopment ? 0 : '1y',
       etag: true,
       lastModified: true
