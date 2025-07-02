@@ -27,7 +27,7 @@ app.use(helmet({
 // CORS configuration
 app.use(cors({
   origin: process.env.NODE_ENV === 'production' 
-    ? ['https://emanuelw.vercel.app', 'https://emanuelw-pl.vercel.app']
+    ? ['https://emanuelw.vercel.app', 'https://emanuelw-pl.vercel.app', 'https://emanuelw.pl', 'https://www.emanuelw.pl']
     : ['http://localhost:3000', 'http://localhost:8000'],
   credentials: true
 }));

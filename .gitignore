@@ -59,7 +59,8 @@ coverage/
 
 # Build directories
 build/
-dist/
+# dist/ - commented out for Vercel deployment
+# dist/
 
 # Backup files
 *.bak
@@ -90,3 +91,4 @@ mail_config.php
 # Composer (if using PHP packages)
 vendor/
 composer.lock
+.vercel
