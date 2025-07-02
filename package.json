@@ -7,7 +7,7 @@
     "start": "node dist/server/server.js",
     "dev": "concurrently \"tsc -w\" \"nodemon dist/server/server.js\" \"npm run dev:css\"",
     "build": "npm run build:css && tsc && tsc-alias && cp index.html dist/public/ && cp dist/public/styles.css styles.css && xcopy src\\images dist\\public\\images /E /I /Y",
-    "vercel-build": "npm run build:css && copyfiles -u 2 dist/public/styles.css public && copyfiles -u 2 dist/public/index.html public && copyfiles -u 2 src/images/* public/images && copyfiles -u 2 src/static/* public",
+    "vercel-build": "npm run build:css && cpy dist/public/styles.css public && cpy dist/public/index.html public && cpy 'src/images/*' public/images && cpy 'src/static/*' public",
     "build:client": "webpack --mode production",
     "dev:client": "webpack --mode development --watch",
     "build:css": "npx tailwindcss -i ./src/styles/input.css -o ./dist/public/styles.css --minify",
@@ -36,7 +36,7 @@
     "@typescript-eslint/parser": "^8.0.0",
     "autoprefixer": "^10.4.20",
     "concurrently": "^9.0.0",
-    "copyfiles": "^2.4.1",
+    "cpy-cli": "^5.0.0",
     "eslint": "^9.9.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
@@ -51,7 +51,7 @@
     "webpack-cli": "^5.1.4"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": "20.x"
   },
   "keywords": [
     "portfolio",
