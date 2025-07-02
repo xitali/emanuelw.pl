@@ -1,0 +1,77 @@
+{
+    "name": "Emanuel Włoch - Programista Full-Stack",
+    "short_name": "Emanuel Włoch",
+    "description": "Profesjonalne usługi programistyczne - tworzenie stron internetowych, aplikacji webowych i mobilnych",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#111111",
+    "theme_color": "#6366f1",
+    "orientation": "portrait-primary",
+    "scope": "/",
+    "lang": "pl",
+    "dir": "ltr",
+    "categories": ["business", "productivity", "technology"],
+    "icons": [
+        {
+            "src": "favicon.svg",
+            "sizes": "any",
+            "type": "image/svg+xml",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "favicon-16x16.png",
+            "sizes": "16x16",
+            "type": "image/png"
+        },
+        {
+            "src": "favicon-32x32.png",
+            "sizes": "32x32",
+            "type": "image/png"
+        },
+        {
+            "src": "apple-touch-icon.png",
+            "sizes": "180x180",
+            "type": "image/png"
+        }
+    ],
+    "screenshots": [
+        {
+            "src": "screenshot-wide.png",
+            "sizes": "1280x720",
+            "type": "image/png",
+            "form_factor": "wide"
+        },
+        {
+            "src": "screenshot-narrow.png",
+            "sizes": "720x1280",
+            "type": "image/png",
+            "form_factor": "narrow"
+        }
+    ],
+    "shortcuts": [
+        {
+            "name": "Kontakt",
+            "short_name": "Kontakt",
+            "description": "Skontaktuj się ze mną",
+            "url": "/#contact",
+            "icons": [
+                {
+                    "src": "favicon.svg",
+                    "sizes": "any"
+                }
+            ]
+        },
+        {
+            "name": "Projekty",
+            "short_name": "Projekty",
+            "description": "Zobacz moje projekty",
+            "url": "/#projects",
+            "icons": [
+                {
+                    "src": "favicon.svg",
+                    "sizes": "any"
+                }
+            ]
+        }
+    ]
+}
