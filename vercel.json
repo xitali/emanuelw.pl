@@ -1,5 +1,4 @@
 {
-  "_comment": "vercel.json",
   "version": 2,
   "functions": {
     "api/contact.js": {
