@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emanuel Włoch - Programista Full-Stack</title>
+    <meta name="description" content="Profesjonalne usługi programistyczne - tworzenie stron internetowych, aplikacji webowych i mobilnych. Specjalizacja w React, Node.js, Python i .NET.">
+    <meta name="keywords" content="strony internetowe, aplikacje desktopowe, web developer, HTML, CSS, JavaScript, React, Vue.js, Node.js, Python, PHP, responsywny design, SEO, Emanuel Włoch">
+    <meta name="author" content="Emanuel Włoch">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="pl">
+    <meta name="geo.region" content="PL">
+    <meta name="geo.placename" content="Polska">
+    <meta name="geo.position" content="52.2297;21.0122">
+    <meta name="ICBM" content="52.2297, 21.0122">
+    
+    <!-- Additional SEO Meta Tags -->
+    <meta name="theme-color" content="#6366f1">
+    <meta name="msapplication-TileColor" content="#6366f1">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://emanuelw.pl/">
+    <meta property="og:title" content="Emanuel Włoch - Programista Full-Stack">
+    <meta property="og:description" content="Profesjonalne usługi programistyczne - tworzenie stron internetowych, aplikacji webowych i mobilnych. Specjalizacja w React, Node.js, Python i .NET.">
+    <meta property="og:image" content="https://emanuelw.pl/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="pl_PL">
+    <meta property="og:site_name" content="Emanuel Włoch - Programista">
+    <meta property="article:author" content="Emanuel Włoch">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://emanuelw.pl/">
+    <meta property="twitter:title" content="Emanuel Włoch - Web Developer & Desktop Apps">
+    <meta property="twitter:description" content="Profesjonalne strony internetowe i aplikacje desktopowe. Nowoczesne rozwiązania webowe z czystym kodem.">
+    <meta property="twitter:image" content="https://emanuelw.pl/twitter-image.jpg">
+    <meta name="twitter:creator" content="@emanuelwloch">
+    <meta name="twitter:site" content="@emanuelwloch">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://emanuelw.pl/">
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Additional Performance Optimizations -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    
+    <!-- Favicon and App Icons -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Additional SEO and Performance -->
+    <meta name="google-site-verification" content="your-google-verification-code">
+    <meta name="msvalidate.01" content="your-bing-verification-code">
+    <meta name="p:domain_verify" content="your-pinterest-verification-code">
+    
+    <!-- SEO Files -->
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    <link rel="robots" href="/robots.txt">
+    
+    <!-- Additional Performance and SEO -->
+    <meta name="referrer" content="origin-when-cross-origin">
+    <meta name="color-scheme" content="dark light">
+    <meta name="supported-color-schemes" content="dark light">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-text">Emanuel Włoch</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Start</a></li>
+                <li><a href="#about" class="nav-link">O mnie</a></li>
+                <li><a href="#services" class="nav-link">Usługi</a></li>
+                <li><a href="#projects" class="nav-link">Projekty</a></li>
+                <li><a href="#pricing" class="nav-link">Cennik</a></li>
+                <li><a href="#contact" class="nav-link">Kontakt</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Cześć, jestem <span class="highlight">Emanuel</span>
+                </h1>
+                <p class="hero-subtitle">Programista Full-Stack</p>
+                <p class="hero-description">
+                    Tworzę nowoczesne strony internetowe i aplikacje desktopowe z czystym kodem i dbałością o szczegóły.
+                </p>
+                <div class="hero-skills">
+                    <span class="skill-tag">HTML5</span>
+                    <span class="skill-tag">CSS3</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">TypeScript</span>
+                    <span class="skill-tag">React</span>
+                    <span class="skill-tag">Vue.js</span>
+                    <span class="skill-tag">Angular</span>
+                    <span class="skill-tag">Node.js</span>
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">PHP</span>
+                    <span class="skill-tag">C#</span>
+                    <span class="skill-tag">C++</span>
+                    <span class="skill-tag">MySQL</span>
+                    <span class="skill-tag">MongoDB</span>
+                    <span class="skill-tag">AWS</span>
+                    <span class="skill-tag">Docker</span>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <span class="stat-number">5+</span>
+                        <span class="stat-label">Lat doświadczenia</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">Clean Code</span>
+                        <span class="stat-label">& Innovation</span>
+                    </div>
+                </div>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary">Skontaktuj się</a>
+                    <a href="#projects" class="btn btn-secondary">Zobacz projekty</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="hero-avatar">
+                    <div class="avatar-circle"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">O mnie</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Jestem pasjonatem programowania z ponad 5-letnim doświadczeniem w tworzeniu nowoczesnych rozwiązań webowych i aplikacji desktopowych.</p>
+                    <p>Specjalizuję się w technologiach front-end i back-end, zawsze dbając o jakość kodu, wydajność i user experience.</p>
+                </div>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>Frontend</h3>
+                        <div class="skills">
+                            <span class="skill">HTML5 & CSS3</span>
+                            <span class="skill">JavaScript ES6+</span>
+                            <span class="skill">TypeScript</span>
+                            <span class="skill">React</span>
+                            <span class="skill">Vue.js</span>
+                            <span class="skill">Angular</span>
+                            <span class="skill">Sass/SCSS</span>
+                            <span class="skill">Bootstrap</span>
+                            <span class="skill">Tailwind CSS</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Backend</h3>
+                        <div class="skills">
+                            <span class="skill">Node.js</span>
+                            <span class="skill">Express.js</span>
+                            <span class="skill">Python</span>
+                            <span class="skill">Django</span>
+                            <span class="skill">PHP</span>
+                            <span class="skill">Laravel</span>
+                            <span class="skill">C#</span>
+                            <span class="skill">.NET Core</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Desktop Apps</h3>
+                        <div class="skills">
+                            <span class="skill">C++</span>
+                            <span class="skill">C#</span>
+                            <span class="skill">WPF</span>
+                            <span class="skill">Qt</span>
+                            <span class="skill">Python</span>
+                            <span class="skill">Tkinter</span>
+                            <span class="skill">Electron</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Bazy danych</h3>
+                        <div class="skills">
+                            <span class="skill">MySQL</span>
+                            <span class="skill">PostgreSQL</span>
+                            <span class="skill">MongoDB</span>
+                            <span class="skill">SQLite</span>
+                            <span class="skill">Redis</span>
+                            <span class="skill">Firebase</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>DevOps & Tools</h3>
+                        <div class="skills">
+                            <span class="skill">Git</span>
+                            <span class="skill">GitHub</span>
+                            <span class="skill">AWS</span>
+                            <span class="skill">Azure</span>
+                            <span class="skill">Docker</span>
+                            <span class="skill">CI/CD</span>
+                            <span class="skill">Webpack</span>
+                            <span class="skill">Vite</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>SEO & Performance</h3>
+                        <div class="skills">
+                            <span class="skill">Google Analytics</span>
+                            <span class="skill">Search Console</span>
+                            <span class="skill">PageSpeed</span>
+                            <span class="skill">Core Web Vitals</span>
+                            <span class="skill">Schema.org</span>
+                            <span class="skill">Open Graph</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title">Usługi</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">🌐</div>
+                    <h3>Strony internetowe</h3>
+                    <p>Responsywne strony internetowe z nowoczesnym designem i optymalizacją SEO.</p>
+                    <ul>
+                        <li>Responsywny design</li>
+                        <li>Optymalizacja SEO</li>
+                        <li>Szybkie ładowanie</li>
+                        <li>Cross-browser compatibility</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">⚡</div>
+                    <h3>Aplikacje webowe</h3>
+                    <p>Zaawansowane aplikacje webowe z nowoczesnych technologiach.</p>
+                    <ul>
+                        <li>SPA (Single Page Applications)</li>
+                        <li>Progressive Web Apps</li>
+                        <li>API Integration</li>
+                        <li>Real-time features</li>
+                    </ul>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">💻</div>
+                    <h3>Aplikacje desktopowe</h3>
+                    <p>Wydajne aplikacje desktopowe na Windows, macOS i Linux.</p>
+                    <ul>
+                        <li>Cross-platform development</li>
+                        <li>Native performance</li>
+                        <li>Modern UI/UX</li>
+                        <li>Database integration</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">Projekty</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-placeholder">🚀</div>
+                    </div>
+                    <div class="project-content">
+                        <h3>E-commerce Platform</h3>
+                        <p>Kompleksowa platforma e-commerce z panelem administracyjnym, systemem płatności i zarządzaniem produktami.</p>
+                        <div class="project-tech">
+                            <span>React</span>
+                            <span>Node.js</span>
+                            <span>MongoDB</span>
+                            <span>Stripe</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn btn-small">Demo</a>
+                            <a href="#" class="btn btn-small btn-secondary">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-placeholder">📱</div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Task Management App</h3>
+                        <p>Aplikacja do zarządzania zadaniami z funkcjami współpracy zespołowej, kalendarzem i powiadomieniami.</p>
+                        <div class="project-tech">
+                            <span>Vue.js</span>
+                            <span>Express.js</span>
+                            <span>PostgreSQL</span>
+                            <span>Socket.io</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn btn-small">Demo</a>
+                            <a href="#" class="btn btn-small btn-secondary">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-placeholder">🎨</div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Portfolio CMS</h3>
+                        <p>System zarządzania treścią dla portfolio artystów z galerią, blogiem i systemem kontaktowym.</p>
+                        <div class="project-tech">
+                            <span>Angular</span>
+                            <span>C#</span>
+                            <span>.NET Core</span>
+                            <span>SQL Server</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn btn-small">Demo</a>
+                            <a href="#" class="btn btn-small btn-secondary">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <h2 class="section-title">Cennik</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Strona wizytówka</h3>
+                    <div class="price">
+                        <span class="currency">od</span>
+                        <span class="amount">1500</span>
+                        <span class="currency">zł</span>
+                    </div>
+                    <ul class="features">
+                        <li>Responsywny design</li>
+                        <li>Do 5 podstron</li>
+                        <li>Podstawowe SEO</li>
+                        <li>Formularz kontaktowy</li>
+                        <li>Hosting na 1 rok</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-outline">Wybierz</a>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="popular-badge">Popularne</div>
+                    <h3>Strona firmowa</h3>
+                    <div class="price">
+                        <span class="currency">od</span>
+                        <span class="amount">3500</span>
+                        <span class="currency">zł</span>
+                    </div>
+                    <ul class="features">
+                        <li>Zaawansowany design</li>
+                        <li>Do 15 podstron</li>
+                        <li>Zaawansowane SEO</li>
+                        <li>Panel administracyjny</li>
+                        <li>Integracje zewnętrzne</li>
+                        <li>Hosting na 1 rok</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary">Wybierz</a>
+                </div>
+                <div class="pricing-card">
+                    <h3>Aplikacja webowa</h3>
+                    <div class="price">
+                        <span class="currency">od</span>
+                        <span class="amount">8000</span>
+                        <span class="currency">zł</span>
+                    </div>
+                    <ul class="features">
+                        <li>Custom funkcjonalności</li>
+                        <li>Baza danych</li>
+                        <li>Panel użytkownika</li>
+                        <li>API Integration</li>
+                        <li>Wsparcie techniczne</li>
+                        <li>Hosting na 1 rok</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-outline">Wybierz</a>
+                </div>
+            </div>
+            <div class="pricing-note">
+                <p class="response-time">
+                    ⚡ <strong>Szybka realizacja</strong> - większość projektów w 2-4 tygodnie
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Kontakt</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Skontaktuj się ze mną</h3>
+                    <p>Masz projekt do realizacji? Napisz do mnie, omówimy szczegóły i znajdziemy najlepsze rozwiązanie.</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <span class="contact-icon">📧</span>
+                            <div>
+                                <strong>Email</strong>
+                                <p>emanuel.wloch@icloud.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">📱</span>
+                            <div>
+                                <strong>Telefon</strong>
+                                <p>+48 725 403 682</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">⏰</span>
+                            <div>
+                                <strong>Dostępność</strong>
+                                <p>Pon-Pt: 9:00-18:00</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Imię i nazwisko</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Temat</label>
+                            <input type="text" id="subject" name="subject" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Wiadomość</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Wyślij wiadomość</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Emanuel Włoch</h3>
+                    <p>Programista Full-Stack specjalizujący się w nowoczesnych rozwiązaniach webowych i aplikacjach desktopowych.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Usługi</h4>
+                    <ul>
+                        <li><a href="#services">Strony internetowe</a></li>
+                        <li><a href="#services">Aplikacje webowe</a></li>
+                        <li><a href="#services">Aplikacje desktopowe</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Kontakt</h4>
+                    <ul>
+                        <li>emanuel.wloch@icloud.com</li>
+                        <li>+48 725 403 682</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Emanuel Włoch. Wszystkie prawa zastrzeżone.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }));
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Contact form handling
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                subject: formData.get('subject'),
+                message: formData.get('message')
+            };
+            
+            // Simple validation
+            if (!data.name || !data.email || !data.subject || !data.message) {
+                showMessage('Wszystkie pola są wymagane.', 'error');
+                return;
+            }
+            
+            if (!data.email.includes('@')) {
+                showMessage('Nieprawidłowy adres email.', 'error');
+                return;
+            }
+            
+            // Show loading state
+            submitBtn.textContent = 'Wysyłanie...';
+            submitBtn.disabled = true;
+            
+            try {
+                const response = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok && result.success) {
+                    showMessage('Dziękuję za wiadomość! Odpowiem najszybciej jak to możliwe.', 'success');
+                    this.reset();
+                } else {
+                    showMessage(result.error || 'Wystąpił błąd podczas wysyłania wiadomości.', 'error');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showMessage('Wystąpił błąd podczas wysyłania wiadomości. Spróbuj ponownie później.', 'error');
+            } finally {
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+        
+        // Function to show messages
+        function showMessage(message, type) {
+            // Remove existing messages
+            const existingMessages = document.querySelectorAll('.form-message');
+            existingMessages.forEach(msg => msg.remove());
+            
+            // Create new message
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `form-message ${type === 'success' ? 'success-message' : 'error-message'}`;
+            messageDiv.innerHTML = `<p>${message}</p>`;
+            
+            // Insert before form
+            const form = document.getElementById('contactForm');
+            form.parentNode.insertBefore(messageDiv, form);
+            
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                messageDiv.remove();
+            }, 5000);
+        }
+
+        // Add scroll effect to navigation
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+{
+  "functions": {
+    "api/contact.php": {
+      "runtime": "vercel-php@0.6.0"
+    }
+  },
+  "routes": [
+    {
+      "src": "/api/contact",
+      "dest": "/api/contact.php"
+    },
+    {
+      "src": "/(.*\\.(css|js|svg|png|jpg|jpeg|gif|ico|woff|woff2|ttf|eot))$",
+      "dest": "/$1"
+    },
+    {
+      "src": "/",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ],
+  "cleanUrls": true,
+  "trailingSlash": false
+}

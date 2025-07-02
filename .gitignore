@@ -78,3 +78,16 @@ mail_config.php
 *.db
 *.sqlite
 *.sqlite3
+
+# Vercel
+.vercel
+.vercel/*
+
+# Environment variables
+.env.local
+.env.production.local
+.env.development.local
+
+# Composer (if using PHP packages)
+vendor/
+composer.lock
