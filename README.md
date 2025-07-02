@@ -1,3 +1,5 @@
+<!-- README.md -->
+
 # Emanuel Włoch - Portfolio Website
 
 ## Opis projektu

@@ -1,3 +1,5 @@
+// script.js
+
 // DOM Content Loaded
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize all functionality
