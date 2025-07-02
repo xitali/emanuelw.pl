@@ -1,5 +1,11 @@
 # Rozwiązanie problemu z Vercel
 
+## ⚠️ Błąd Runtime PHP
+
+**Problem:** Vercel wyświetla błąd "The following Serverless Functions contain an invalid 'runtime': api/contact (nodejs18.x)"
+
+**Rozwiązanie:** Zaktualizowano runtime PHP do najnowszej wersji `vercel-php@0.7.3` <mcreference link="https://github.com/vercel-community/php" index="1">1</mcreference>
+
 ## Problem
 Vercel pobierał plik PHP zamiast go wykonać, ponieważ domyślnie nie obsługuje PHP w sposób bezpośredni.
 
