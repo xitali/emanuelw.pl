@@ -1,10 +1,10 @@
-# Rozwiązanie problemu z Vercel
+# Migracja z PHP na Node.js dla Vercel
 
-## ⚠️ Błąd Runtime PHP
+## 🔄 Zmiana architektury
 
-**Problem:** Vercel wyświetla błąd "The following Serverless Functions contain an invalid 'runtime': api/contact (nodejs18.x)"
+**Problem:** Vercel miał problemy z obsługą PHP runtime, powodując błędy deployment
 
-**Rozwiązanie:** Zaktualizowano runtime PHP do najnowszej wersji `vercel-php@0.7.3` <mcreference link="https://github.com/vercel-community/php" index="1">1</mcreference>
+**Rozwiązanie:** Przeprowadzono migrację z PHP na Node.js Express.js, który jest natywnie obsługiwany przez Vercel
 
 ## Problem
 Vercel pobierał plik PHP zamiast go wykonać, ponieważ domyślnie nie obsługuje PHP w sposób bezpośredni.
