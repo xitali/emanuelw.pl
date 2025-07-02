@@ -235,7 +235,7 @@ class PortfolioServer {
   }
 
   private serveMainPage(req: Request, res: Response): void {
-    res.sendFile(path.join(process.cwd(), 'index.html'));
+    res.sendFile(path.join(process.cwd(), 'dist/public/index.html'));
   }
 
   private handleNotFound(req: Request, res: Response): void {
@@ -246,7 +246,7 @@ class PortfolioServer {
         path: req.path
       });
     } else {
-      res.sendFile(path.join(process.cwd(), 'index.html'));
+      res.sendFile(path.join(process.cwd(), 'dist/public/index.html'));
     }
   }
 

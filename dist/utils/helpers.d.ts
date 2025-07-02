@@ -1,4 +1,4 @@
-import type { ScrollPosition, ViewportSize, ElementWithAnimation, EventHandler, Nullable } from '../types';
+import type { ScrollPosition, ViewportSize, ElementWithAnimation, EventHandler, Nullable } from '@/types';
 /**
  * Throttle function to limit the rate of function execution
  */

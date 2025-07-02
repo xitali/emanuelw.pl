@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const helpers_1 = require("../utils/helpers");
+const helpers_1 = require("@/utils/helpers");
 class PortfolioApp {
     navbar = null;
     hamburger = null;

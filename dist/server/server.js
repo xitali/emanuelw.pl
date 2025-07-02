@@ -199,7 +199,7 @@ class PortfolioServer {
         });
     }
     serveMainPage(req, res) {
-        res.sendFile(path_1.default.join(process.cwd(), 'index.html'));
+        res.sendFile(path_1.default.join(process.cwd(), 'dist/public/index.html'));
     }
     handleNotFound(req, res) {
         // For SPA, serve the main page for all routes
@@ -210,7 +210,7 @@ class PortfolioServer {
             });
         }
         else {
-            res.sendFile(path_1.default.join(process.cwd(), 'index.html'));
+            res.sendFile(path_1.default.join(process.cwd(), 'dist/public/index.html'));
         }
     }
     setupErrorHandling() {

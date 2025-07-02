@@ -8,9 +8,10 @@ Profesjonalna strona portfolio programisty full-stack z funkcjonalnością PHP. 
 
 ## Technologie
 
-- **Frontend**: HTML5, CSS3, JavaScript
-- **Backend**: PHP 7.4+
-- **Styling**: Custom CSS z gradientami i animacjami
+- **Frontend**: HTML5, CSS3, TypeScript
+- **Backend**: Node.js + Express.js
+- **Styling**: Tailwind CSS
+- **Build Tools**: Webpack, TypeScript Compiler
 - **SEO**: Strukturalne dane JSON-LD, meta tagi, sitemap.xml
 - **PWA**: Web App Manifest
 
@@ -41,14 +42,19 @@ Profesjonalna strona portfolio programisty full-stack z funkcjonalnością PHP. 
 
 ```
 .
-├── index.php           # Główny plik strony z logiką PHP
-├── styles.css          # Style CSS
-├── script.js           # JavaScript (jeśli potrzebny)
-├── favicon.svg         # Ikona strony
-├── robots.txt          # Instrukcje dla robotów
-├── sitemap.xml         # Mapa strony
-├── site.webmanifest    # Manifest PWA
-├── .gitignore          # Pliki ignorowane przez Git
+├── src/
+│   ├── client/         # Kod TypeScript klienta
+│   ├── server/         # Kod serwera Express.js
+│   ├── types/          # Definicje typów TypeScript
+│   ├── utils/          # Funkcje pomocnicze
+│   ├── images/         # Obrazy źródłowe
+│   └── static/         # Pliki statyczne
+├── dist/               # Skompilowane pliki
+├── public/             # Pliki publiczne (generowane)
+├── package.json        # Zależności npm
+├── webpack.config.js   # Konfiguracja Webpack
+├── tsconfig.json       # Konfiguracja TypeScript
+├── tailwind.config.js  # Konfiguracja Tailwind CSS
 └── README.md           # Ten plik
 ```
 
@@ -75,5 +81,5 @@ Meta tagi są generowane dynamicznie przez funkcję `generateMetaTags()`.
 
 ---
 
-**Wersja**: 2.0.0 (PHP)
+**Wersja**: 3.0.0 (Node.js + TypeScript)
 **Ostatnia aktualizacja**: Styczeń 2025
