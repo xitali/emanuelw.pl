@@ -85,10 +85,10 @@
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="nav">
+    <nav class="navbar">
         <div class="nav-container">
             <div class="nav-logo">
-                <span class="logo-text">Emanuel Włoch</span>
+                <h2>Emanuel Włoch</h2>
             </div>
             <ul class="nav-menu">
                 <li><a href="#home" class="nav-link">Start</a></li>
@@ -111,48 +111,34 @@
         <div class="hero-container">
             <div class="hero-content">
                 <h1 class="hero-title">
-                    Cześć, jestem <span class="highlight">Emanuel</span>
+                    Cześć, jestem <span class="gradient-text">Emanuel</span>
                 </h1>
-                <p class="hero-subtitle">Programista Full-Stack</p>
                 <p class="hero-description">
-                    Tworzę nowoczesne strony internetowe i aplikacje desktopowe z czystym kodem i dbałością o szczegóły.
+                    Programista Full-Stack tworzący nowoczesne strony internetowe i aplikacje desktopowe z czystym kodem i dbałością o szczegóły.
                 </p>
-                <div class="hero-skills">
-                    <span class="skill-tag">HTML5</span>
-                    <span class="skill-tag">CSS3</span>
-                    <span class="skill-tag">JavaScript</span>
-                    <span class="skill-tag">TypeScript</span>
-                    <span class="skill-tag">React</span>
-                    <span class="skill-tag">Vue.js</span>
-                    <span class="skill-tag">Angular</span>
-                    <span class="skill-tag">Node.js</span>
-                    <span class="skill-tag">Python</span>
-                    <span class="skill-tag">PHP</span>
-                    <span class="skill-tag">C#</span>
-                    <span class="skill-tag">C++</span>
-                    <span class="skill-tag">MySQL</span>
-                    <span class="skill-tag">MongoDB</span>
-                    <span class="skill-tag">AWS</span>
-                    <span class="skill-tag">Docker</span>
-                </div>
-                <div class="hero-stats">
-                    <div class="stat">
-                        <span class="stat-number">5+</span>
-                        <span class="stat-label">Lat doświadczenia</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-number">Clean Code</span>
-                        <span class="stat-label">& Innovation</span>
-                    </div>
-                </div>
+
                 <div class="hero-buttons">
-                    <a href="#contact" class="btn btn-primary">Skontaktuj się</a>
+                    <a href="mailto:emanuel.wloch@icloud.com" class="btn btn-primary">Skontaktuj się</a>
                     <a href="#projects" class="btn btn-secondary">Zobacz projekty</a>
                 </div>
             </div>
             <div class="hero-image">
-                <div class="hero-avatar">
-                    <div class="avatar-circle"></div>
+                <div class="code-window">
+                    <div class="window-header">
+                        <div class="window-controls">
+                            <div class="control red"></div>
+                            <div class="control yellow"></div>
+                            <div class="control green"></div>
+                        </div>
+                    </div>
+                    <div class="code-content">
+                        <div class="code-line"><span class="keyword">const</span> <span class="variable">developer</span> = {</div>
+                        <div class="code-line">  <span class="property">name</span>: <span class="string">'Emanuel Włoch'</span>,</div>
+                        <div class="code-line">  <span class="property">skills</span>: [<span class="string">'React'</span>, <span class="string">'Node.js'</span>, <span class="string">'Python'</span>, <span class="string">'TypeScript'</span>, <span class="string">'PHP'</span>],</div>
+                        <div class="code-line">  <span class="property">passion</span>: <span class="string">'Clean Code'</span>,</div>
+                        <div class="code-line">  <span class="property">experience</span>: <span class="number">5</span> + <span class="string">' years'</span></div>
+                        <div class="code-line">};</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -198,7 +184,6 @@
                     <div class="skill-category">
                         <h3>Desktop Apps</h3>
                         <div class="skills">
-                            <span class="skill">C++</span>
                             <span class="skill">C#</span>
                             <span class="skill">WPF</span>
                             <span class="skill">Qt</span>
@@ -253,37 +238,53 @@
             <h2 class="section-title">Usługi</h2>
             <div class="services-grid">
                 <div class="service-card">
-                    <div class="service-icon">🌐</div>
+                    <div class="service-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                            <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                            <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
                     <h3>Strony internetowe</h3>
-                    <p>Responsywne strony internetowe z nowoczesnym designem i optymalizacją SEO.</p>
-                    <ul>
-                        <li>Responsywny design</li>
-                        <li>Optymalizacja SEO</li>
-                        <li>Szybkie ładowanie</li>
-                        <li>Cross-browser compatibility</li>
-                    </ul>
+                    <p>Nowoczesne, responsywne strony internetowe z profesjonalnym designem i optymalizacją SEO dla lepszej widoczności w wyszukiwarkach.</p>
+                    <div class="service-features">
+                        <span class="feature">✓ Responsywny design</span>
+                        <span class="feature">✓ Optymalizacja SEO</span>
+                        <span class="feature">✓ Szybkie ładowanie</span>
+                        <span class="feature">✓ Cross-browser compatibility</span>
+                    </div>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">⚡</div>
+                <div class="service-card featured">
+                    <div class="service-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
                     <h3>Aplikacje webowe</h3>
-                    <p>Zaawansowane aplikacje webowe z nowoczesnych technologiach.</p>
-                    <ul>
-                        <li>SPA (Single Page Applications)</li>
-                        <li>Progressive Web Apps</li>
-                        <li>API Integration</li>
-                        <li>Real-time features</li>
-                    </ul>
+                    <p>Zaawansowane aplikacje webowe z nowoczesnych technologiach, oferujące bogate funkcjonalności i doskonałe user experience.</p>
+                    <div class="service-features">
+                        <span class="feature">✓ SPA (Single Page Applications)</span>
+                        <span class="feature">✓ Progressive Web Apps</span>
+                        <span class="feature">✓ API Integration</span>
+                        <span class="feature">✓ Real-time features</span>
+                    </div>
                 </div>
                 <div class="service-card">
-                    <div class="service-icon">💻</div>
+                    <div class="service-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2" stroke="currentColor" stroke-width="2"/>
+                            <line x1="8" y1="21" x2="16" y2="21" stroke="currentColor" stroke-width="2"/>
+                            <line x1="12" y1="17" x2="12" y2="21" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                    </div>
                     <h3>Aplikacje desktopowe</h3>
-                    <p>Wydajne aplikacje desktopowe na Windows, macOS i Linux.</p>
-                    <ul>
-                        <li>Cross-platform development</li>
-                        <li>Native performance</li>
-                        <li>Modern UI/UX</li>
-                        <li>Database integration</li>
-                    </ul>
+                    <p>Wydajne aplikacje desktopowe na Windows, macOS i Linux z natywną wydajnością i nowoczesnym interfejsem użytkownika.</p>
+                    <div class="service-features">
+                        <span class="feature">✓ Cross-platform development</span>
+                        <span class="feature">✓ Native performance</span>
+                        <span class="feature">✓ Modern UI/UX</span>
+                        <span class="feature">✓ Database integration</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -296,49 +297,49 @@
             <div class="projects-grid">
                 <div class="project-card">
                     <div class="project-image">
-                        <div class="project-placeholder">🚀</div>
+                        <img src="https://via.placeholder.com/400x250/1a1a1a/ffffff?text=Bodzio+Game" alt="Bodzio Game" />
                     </div>
                     <div class="project-content">
-                        <h3>E-commerce Platform</h3>
-                        <p>Kompleksowa platforma e-commerce z panelem administracyjnym, systemem płatności i zarządzaniem produktami.</p>
+                        <h3>Bodzio - Gra Przeglądarkowa</h3>
+                        <p>Interaktywna gra przeglądarkowa z elementami przygodowymi i logicznymi. Projekt zawiera zaawansowaną mechanikę gry i responsywny interfejs użytkownika.</p>
                         <div class="project-tech">
-                            <span>React</span>
-                            <span>Node.js</span>
-                            <span>MongoDB</span>
-                            <span>Stripe</span>
+                            <span>HTML5</span>
+                            <span>CSS3</span>
+                            <span>JavaScript</span>
+                            <span>Canvas API</span>
                         </div>
                         <div class="project-links">
-                            <a href="#" class="btn btn-small">Demo</a>
-                            <a href="#" class="btn btn-small btn-secondary">GitHub</a>
+                            <a href="https://xitali.github.io/bodzio" target="_blank" class="btn btn-small">Demo</a>
+                            <a href="https://github.com/xitali/bodzio" target="_blank" class="btn btn-small btn-secondary">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card featured">
+                    <div class="project-image">
+                        <img src="https://via.placeholder.com/400x250/0f4c3a/ffffff?text=Zielona+Baza" alt="Zielona Baza" />
+                    </div>
+                    <div class="project-content">
+                        <h3>Zielona Baza - Portal Ekologiczny</h3>
+                        <p>Kompleksowy portal internetowy poświęcony ekologii i zrównoważonemu rozwojowi. Zawiera system zarządzania treścią, blog i sekcję edukacyjną.</p>
+                        <div class="project-tech">
+                            <span>WordPress</span>
+                            <span>PHP</span>
+                            <span>MySQL</span>
+                            <span>Custom Theme</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://zielona-baza.pl" target="_blank" class="btn btn-small">Demo</a>
+                            <a href="#" class="btn btn-small btn-secondary">Więcej info</a>
                         </div>
                     </div>
                 </div>
                 <div class="project-card">
                     <div class="project-image">
-                        <div class="project-placeholder">📱</div>
-                    </div>
-                    <div class="project-content">
-                        <h3>Task Management App</h3>
-                        <p>Aplikacja do zarządzania zadaniami z funkcjami współpracy zespołowej, kalendarzem i powiadomieniami.</p>
-                        <div class="project-tech">
-                            <span>Vue.js</span>
-                            <span>Express.js</span>
-                            <span>PostgreSQL</span>
-                            <span>Socket.io</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="#" class="btn btn-small">Demo</a>
-                            <a href="#" class="btn btn-small btn-secondary">GitHub</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image">
-                        <div class="project-placeholder">🎨</div>
+                        <img src="https://via.placeholder.com/400x250/2d1b69/ffffff?text=Portfolio+CMS" alt="Portfolio CMS" />
                     </div>
                     <div class="project-content">
                         <h3>Portfolio CMS</h3>
-                        <p>System zarządzania treścią dla portfolio artystów z galerią, blogiem i systemem kontaktowym.</p>
+                        <p>System zarządzania treścią dla portfolio artystów z galerią, blogiem i systemem kontaktowym. Nowoczesny interfejs administracyjny.</p>
                         <div class="project-tech">
                             <span>Angular</span>
                             <span>C#</span>
@@ -364,7 +365,7 @@
                     <h3>Strona wizytówka</h3>
                     <div class="price">
                         <span class="currency">od</span>
-                        <span class="amount">1500</span>
+                        <span class="amount">1200</span>
                         <span class="currency">zł</span>
                     </div>
                     <ul class="features">
@@ -374,14 +375,13 @@
                         <li>Formularz kontaktowy</li>
                         <li>Hosting na 1 rok</li>
                     </ul>
-                    <a href="#contact" class="btn btn-outline">Wybierz</a>
                 </div>
                 <div class="pricing-card featured">
                     <div class="popular-badge">Popularne</div>
                     <h3>Strona firmowa</h3>
                     <div class="price">
                         <span class="currency">od</span>
-                        <span class="amount">3500</span>
+                        <span class="amount">2800</span>
                         <span class="currency">zł</span>
                     </div>
                     <ul class="features">
@@ -392,13 +392,12 @@
                         <li>Integracje zewnętrzne</li>
                         <li>Hosting na 1 rok</li>
                     </ul>
-                    <a href="#contact" class="btn btn-primary">Wybierz</a>
                 </div>
                 <div class="pricing-card">
                     <h3>Aplikacja webowa</h3>
                     <div class="price">
                         <span class="currency">od</span>
-                        <span class="amount">8000</span>
+                        <span class="amount">4500</span>
                         <span class="currency">zł</span>
                     </div>
                     <ul class="features">
@@ -409,12 +408,11 @@
                         <li>Wsparcie techniczne</li>
                         <li>Hosting na 1 rok</li>
                     </ul>
-                    <a href="#contact" class="btn btn-outline">Wybierz</a>
                 </div>
             </div>
             <div class="pricing-note">
                 <p class="response-time">
-                    ⚡ <strong>Szybka realizacja</strong> - większość projektów w 2-4 tygodnie
+                    ⚡ <strong>Termin realizacji:</strong> 1-2 tygodnie
                 </p>
             </div>
         </div>
@@ -426,54 +424,37 @@
             <h2 class="section-title">Kontakt</h2>
             <div class="contact-content">
                 <div class="contact-info">
-                    <h3>Skontaktuj się ze mną</h3>
-                    <p>Masz projekt do realizacji? Napisz do mnie, omówimy szczegóły i znajdziemy najlepsze rozwiązanie.</p>
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <span class="contact-icon">📧</span>
-                            <div>
-                                <strong>Email</strong>
-                                <p>emanuel.wloch@icloud.com</p>
-                            </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
                         </div>
-                        <div class="contact-item">
-                            <span class="contact-icon">📱</span>
-                            <div>
-                                <strong>Telefon</strong>
-                                <p>+48 725 403 682</p>
-                            </div>
+                        <div class="contact-details">
+                            <h3>Email</h3>
+                            <a href="mailto:emanuel.wloch@icloud.com">emanuel.wloch@icloud.com</a>
                         </div>
-                        <div class="contact-item">
-                            <span class="contact-icon">⏰</span>
-                            <div>
-                                <strong>Dostępność</strong>
-                                <p>Pon-Pt: 9:00-18:00</p>
-                            </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M22 16.92V19.92C22 20.52 21.39 21 20.92 21C9.35 21 0 11.65 0 0.08C0 -0.39 0.48 -1 1.08 -1H4.08C4.68 -1 5.08 -0.39 5.08 0.08C5.08 2.08 5.42 3.99 6.06 5.79C6.22 6.18 6.09 6.65 5.74 6.9L4.03 8.62C5.7 12.29 8.71 15.3 12.38 16.97L14.1 15.26C14.35 14.91 14.82 14.78 15.21 14.94C17.01 15.58 18.92 15.92 20.92 15.92C21.39 15.92 22 16.32 22 16.92Z" fill="currentColor"/>
+                            </svg>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Telefon</h3>
+                            <a href="tel:+48725403682">+48 725 403 682</a>
                         </div>
                     </div>
                 </div>
-                <div class="contact-form">
-                    <form id="contactForm">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="name">Imię i nazwisko</label>
-                                <input type="text" id="name" name="name" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email" id="email" name="email" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="subject">Temat</label>
-                            <input type="text" id="subject" name="subject" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Wiadomość</label>
-                            <textarea id="message" name="message" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Wyślij wiadomość</button>
-                    </form>
+                <div class="contact-cta">
+                    <h3>Gotowy na współpracę?</h3>
+                    <p>Skontaktuj się ze mną, aby omówić Twój projekt. Odpowiem w ciągu 24 godzin.</p>
+                    <div class="contact-buttons">
+                        <a href="mailto:emanuel.wloch@icloud.com" class="btn btn-primary">Napisz email</a>
+                        <a href="tel:+48725403682" class="btn btn-secondary">Zadzwoń</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -483,28 +464,65 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-section">
+                <div class="footer-brand">
                     <h3>Emanuel Włoch</h3>
-                    <p>Programista Full-Stack specjalizujący się w nowoczesnych rozwiązaniach webowych i aplikacjach desktopowych.</p>
+                    <p>Programista Full-Stack tworzący nowoczesne rozwiązania webowe i aplikacje desktopowe z pasją do czystego kodu.</p>
+                    <div class="footer-social">
+                        <a href="mailto:emanuel.wloch@icloud.com" class="social-link" title="Email">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                        <a href="tel:+48725403682" class="social-link" title="Telefon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M22 16.92V19.92C22 20.52 21.39 21 20.92 21C9.35 21 0 11.65 0 0.08C0 -0.39 0.48 -1 1.08 -1H4.08C4.68 -1 5.08 -0.39 5.08 0.08C5.08 2.08 5.42 3.99 6.06 5.79C6.22 6.18 6.09 6.65 5.74 6.9L4.03 8.62C5.7 12.29 8.71 15.3 12.38 16.97L14.1 15.26C14.35 14.91 14.82 14.78 15.21 14.94C17.01 15.58 18.92 15.92 20.92 15.92C21.39 15.92 22 16.32 22 16.92Z" fill="currentColor"/>
+                            </svg>
+                        </a>
+                        <a href="https://github.com" class="social-link" title="GitHub" target="_blank">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 19C4 20.5 4 16.5 2 16M22 16V22C22 22 18 20 15 22C12 20 8 22 8 22V16M15 16C15 16 15 14 15 12C15 10 13 8 11 8C9 8 7 10 7 12C7 14 7 16 7 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </a>
+                    </div>
                 </div>
-                <div class="footer-section">
-                    <h4>Usługi</h4>
-                    <ul>
-                        <li><a href="#services">Strony internetowe</a></li>
-                        <li><a href="#services">Aplikacje webowe</a></li>
-                        <li><a href="#services">Aplikacje desktopowe</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Kontakt</h4>
-                    <ul>
-                        <li>emanuel.wloch@icloud.com</li>
-                        <li>+48 725 403 682</li>
-                    </ul>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Nawigacja</h4>
+                        <ul>
+                            <li><a href="#home">Start</a></li>
+                            <li><a href="#about">O mnie</a></li>
+                            <li><a href="#services">Usługi</a></li>
+                            <li><a href="#projects">Projekty</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Usługi</h4>
+                        <ul>
+                            <li><a href="#services">Strony internetowe</a></li>
+                            <li><a href="#services">Aplikacje webowe</a></li>
+                            <li><a href="#services">Aplikacje desktopowe</a></li>
+                            <li><a href="#pricing">Cennik</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Kontakt</h4>
+                        <ul>
+                            <li><a href="mailto:emanuel.wloch@icloud.com">emanuel.wloch@icloud.com</a></li>
+                            <li><a href="tel:+48725403682">+48 725 403 682</a></li>
+                            <li><a href="#contact">Formularz kontaktowy</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Emanuel Włoch. Wszystkie prawa zastrzeżone.</p>
+                <div class="footer-bottom-content">
+                    <p>&copy; 2025 Emanuel Włoch. Wszystkie prawa zastrzeżone.</p>
+                    <div class="footer-bottom-links">
+                        <a href="#">Polityka prywatności</a>
+                        <a href="#">Regulamin</a>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
@@ -539,83 +557,7 @@
             });
         });
 
-        // Contact form handling
-        document.getElementById('contactForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const submitBtn = this.querySelector('button[type="submit"]');
-            const originalText = submitBtn.textContent;
-            
-            // Get form data
-            const formData = new FormData(this);
-            const data = {
-                name: formData.get('name'),
-                email: formData.get('email'),
-                subject: formData.get('subject'),
-                message: formData.get('message')
-            };
-            
-            // Simple validation
-            if (!data.name || !data.email || !data.subject || !data.message) {
-                showMessage('Wszystkie pola są wymagane.', 'error');
-                return;
-            }
-            
-            if (!data.email.includes('@')) {
-                showMessage('Nieprawidłowy adres email.', 'error');
-                return;
-            }
-            
-            // Show loading state
-            submitBtn.textContent = 'Wysyłanie...';
-            submitBtn.disabled = true;
-            
-            try {
-                const response = await fetch('/api/contact', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(data)
-                });
-                
-                const result = await response.json();
-                
-                if (response.ok && result.success) {
-                    showMessage('Dziękuję za wiadomość! Odpowiem najszybciej jak to możliwe.', 'success');
-                    this.reset();
-                } else {
-                    showMessage(result.error || 'Wystąpił błąd podczas wysyłania wiadomości.', 'error');
-                }
-            } catch (error) {
-                console.error('Error:', error);
-                showMessage('Wystąpił błąd podczas wysyłania wiadomości. Spróbuj ponownie później.', 'error');
-            } finally {
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-            }
-        });
-        
-        // Function to show messages
-        function showMessage(message, type) {
-            // Remove existing messages
-            const existingMessages = document.querySelectorAll('.form-message');
-            existingMessages.forEach(msg => msg.remove());
-            
-            // Create new message
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `form-message ${type === 'success' ? 'success-message' : 'error-message'}`;
-            messageDiv.innerHTML = `<p>${message}</p>`;
-            
-            // Insert before form
-            const form = document.getElementById('contactForm');
-            form.parentNode.insertBefore(messageDiv, form);
-            
-            // Auto remove after 5 seconds
-            setTimeout(() => {
-                messageDiv.remove();
-            }, 5000);
-        }
+
 
         // Add scroll effect to navigation
         window.addEventListener('scroll', () => {
