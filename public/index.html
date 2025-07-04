@@ -1,12 +1,15 @@
 <!-- index.html -->
 <!DOCTYPE html>
 <html lang="pl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Emanuel Włoch - Programista Full-Stack</title>
-    <meta name="description" content="Profesjonalne usługi programistyczne - tworzenie stron internetowych, aplikacji webowych i mobilnych. Specjalizacja w React, Node.js, Python i .NET.">
-    <meta name="keywords" content="strony internetowe, aplikacje desktopowe, web developer, HTML, CSS, JavaScript, React, Vue.js, Node.js, Python, PHP, responsywny design, SEO, Emanuel Włoch">
+    <meta name="description"
+        content="Profesjonalne usługi programistyczne - tworzenie stron internetowych, aplikacji webowych i mobilnych. Specjalizacja w React, Node.js, Python i .NET.">
+    <meta name="keywords"
+        content="strony internetowe, aplikacje desktopowe, web developer, HTML, CSS, JavaScript, React, Vue.js, Node.js, Python, PHP, responsywny design, SEO, Emanuel Włoch">
     <meta name="author" content="Emanuel Włoch">
     <meta name="robots" content="index, follow">
     <meta name="language" content="pl">
@@ -14,7 +17,7 @@
     <meta name="geo.placename" content="Polska">
     <meta name="geo.position" content="52.2297;21.0122">
     <meta name="ICBM" content="52.2297, 21.0122">
-    
+
     <!-- Additional SEO Meta Tags -->
     <meta name="theme-color" content="#6366f1">
     <meta name="msapplication-TileColor" content="#6366f1">
@@ -22,50 +25,52 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="format-detection" content="telephone=yes">
     <meta name="mobile-web-app-capable" content="yes">
-    
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://emanuelw.pl/">
     <meta property="og:title" content="Emanuel Włoch - Programista Full-Stack">
-    <meta property="og:description" content="Profesjonalne usługi programistyczne - tworzenie stron internetowych, aplikacji webowych i mobilnych. Specjalizacja w React, Node.js, Python i .NET.">
+    <meta property="og:description"
+        content="Profesjonalne usługi programistyczne - tworzenie stron internetowych, aplikacji webowych i mobilnych. Specjalizacja w React, Node.js, Python i .NET.">
     <meta property="og:image" content="https://emanuelw.pl/og-image.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:locale" content="pl_PL">
     <meta property="og:site_name" content="Emanuel Włoch - Programista">
     <meta property="article:author" content="Emanuel Włoch">
-    
+
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://emanuelw.pl/">
     <meta property="twitter:title" content="Emanuel Włoch - Web Developer & Desktop Apps">
-    <meta property="twitter:description" content="Profesjonalne strony internetowe i aplikacje desktopowe. Nowoczesne rozwiązania webowe z czystym kodem.">
+    <meta property="twitter:description"
+        content="Profesjonalne strony internetowe i aplikacje desktopowe. Nowoczesne rozwiązania webowe z czystym kodem.">
     <meta property="twitter:image" content="https://emanuelw.pl/twitter-image.jpg">
     <meta name="twitter:creator" content="@emanuelwloch">
     <meta name="twitter:site" content="@emanuelwloch">
-    
+
     <!-- Canonical URL -->
     <link rel="canonical" href="https://emanuelw.pl/">
-    
+
     <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
+
     <!-- Additional Performance Optimizations -->
     <link rel="dns-prefetch" href="//fonts.googleapis.com">
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    
+
     <!-- Favicon and App Icons -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
     <link rel="manifest" href="site.webmanifest">
-    
+
     <!-- Stylesheets -->
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <!-- Mobile Menu Styles -->
     <style>
         /* Mobile menu styles */
@@ -74,7 +79,7 @@
                 display: flex !important;
             }
         }
-        
+
         @media (max-width: 767px) {
             #nav-menu {
                 position: fixed;
@@ -92,7 +97,7 @@
                 z-index: 40;
                 display: none !important;
             }
-            
+
             #nav-menu.active {
                 display: flex !important;
                 flex-direction: column;
@@ -100,11 +105,11 @@
                 opacity: 1;
                 visibility: visible;
             }
-            
+
             #nav-menu li {
                 margin: 0.5rem 0;
             }
-            
+
             #nav-menu a {
                 display: block;
                 padding: 0.75rem 1rem;
@@ -113,53 +118,57 @@
                 border-radius: 0.5rem;
                 transition: all 0.2s ease;
             }
-            
+
             #nav-menu a:hover {
                 background: rgba(99, 102, 241, 0.1);
                 color: #a5b4fc;
             }
         }
-        
+
         /* Hamburger animation */
         #hamburger span {
             transition: all 0.3s ease;
         }
-        
+
         #hamburger.active span:nth-child(1) {
             transform: rotate(45deg) translate(5px, 5px);
         }
-        
+
         #hamburger.active span:nth-child(2) {
             opacity: 0;
         }
-        
+
         #hamburger.active span:nth-child(3) {
             transform: rotate(-45deg) translate(7px, -6px);
         }
     </style>
-    
+
     <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-WM36VJ52');</script>
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-WM36VJ52');</script>
     <!-- End Google Tag Manager -->
-    
+
     <!-- Google Search Console Verification -->
     <meta name="google-site-verification" content="your-google-verification-code">
     <meta name="msvalidate.01" content="your-bing-verification-code">
     <meta name="p:domain_verify" content="your-pinterest-verification-code">
-    
+
     <!-- Core Web Vitals & Performance -->
     <link rel="preload" href="styles.css" as="style">
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+        as="style">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    
+
     <!-- SEO Files -->
     <link rel="sitemap" type="application/xml" href="/sitemap.xml">
     <link rel="robots" href="/robots.txt">
-    
+
     <!-- Schema.org Structured Data -->
     <script type="application/ld+json">
     {
@@ -198,7 +207,7 @@
         }
     }
     </script>
-    
+
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -217,7 +226,7 @@
         }
     }
     </script>
-    
+
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -271,44 +280,60 @@
         }
     }
     </script>
-    
+
     <!-- Additional Performance and SEO -->
     <meta name="referrer" content="origin-when-cross-origin">
     <meta name="color-scheme" content="dark light">
     <meta name="supported-color-schemes" content="dark light">
     <link rel="alternate" href="https://emanuelw.pl/" hreflang="pl">
-    
+
     <!-- PageSpeed Insights & Core Web Vitals Optimization -->
     <link rel="preconnect" href="https://www.google-analytics.com">
     <link rel="dns-prefetch" href="//www.google-analytics.com">
     <meta name="format-detection" content="telephone=no">
     <meta name="apple-mobile-web-app-title" content="Emanuel Włoch">
     <meta name="application-name" content="Emanuel Włoch">
-    
+
     <!-- Critical Resource Hints -->
     <link rel="prefetch" href="#about">
     <link rel="prefetch" href="#services">
     <link rel="prefetch" href="#projects">
     <link rel="prefetch" href="#contact">
-    
+
     <!-- Performance Optimization -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"></noscript>
-    
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+        as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+    </noscript>
+
     <!-- Critical CSS Inlining Hint -->
     <style>
         /* Critical above-the-fold CSS */
-        body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
-        .hero-section { min-height: 100vh; display: flex; align-items: center; justify-content: center; }
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
     </style>
 </head>
+
 <body>
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WM36VJ52"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WM36VJ52" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     <!-- Navigation -->
-    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 bg-gray-900/95 backdrop-blur-custom border-b border-gray-800 transition-all duration-300">
+    <nav id="navbar"
+        class="fixed top-0 left-0 right-0 z-50 bg-gray-900/95 backdrop-blur-custom border-b border-gray-800 transition-all duration-300">
         <div class="container-custom">
             <div class="flex items-center justify-between h-16">
                 <div class="flex-shrink-0">
@@ -340,7 +365,8 @@
                         Cześć, jestem <span class="text-gradient">Emanuel</span>
                     </h1>
                     <p class="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed">
-                        Programista Full-Stack tworzący nowoczesne strony internetowe i aplikacje desktopowe z czystym kodem i dbałością o szczegóły.
+                        Programista Full-Stack tworzący nowoczesne strony internetowe i aplikacje desktopowe z czystym
+                        kodem i dbałością o szczegóły.
                     </p>
 
                     <div class="flex flex-col sm:flex-row gap-4">
@@ -356,11 +382,21 @@
                             <div class="w-3 h-3 bg-green-500 rounded-full"></div>
                         </div>
                         <div class="p-6 font-mono text-sm">
-                            <div class="text-gray-300"><span class="text-purple-400">const</span> <span class="text-blue-400">developer</span> = {</div>
-                            <div class="text-gray-300 ml-4"><span class="text-green-400">name</span>: <span class="text-yellow-400">'Emanuel Włoch'</span>,</div>
-                            <div class="text-gray-300 ml-4"><span class="text-green-400">skills</span>: [<span class="text-yellow-400">'React'</span>, <span class="text-yellow-400">'Node.js'</span>, <span class="text-yellow-400">'Python'</span>, <span class="text-yellow-400">'TypeScript'</span>, <span class="text-yellow-400">'PHP'</span>],</div>
-                            <div class="text-gray-300 ml-4"><span class="text-green-400">passion</span>: <span class="text-yellow-400">'Clean Code'</span>,</div>
-                            <div class="text-gray-300 ml-4"><span class="text-green-400">experience</span>: <span class="text-orange-400">5</span> + <span class="text-yellow-400">' years'</span></div>
+                            <div class="text-gray-300"><span class="text-purple-400">const</span> <span
+                                    class="text-blue-400">developer</span> = {</div>
+                            <div class="text-gray-300 ml-4"><span class="text-green-400">name</span>: <span
+                                    class="text-yellow-400">'Emanuel Włoch'</span>,</div>
+                            <div class="text-gray-300 ml-4"><span class="text-green-400">skills</span>: [<span
+                                    class="text-yellow-400">'React'</span>, <span
+                                    class="text-yellow-400">'Node.js'</span>, <span
+                                    class="text-yellow-400">'Python'</span>, <span
+                                    class="text-yellow-400">'TypeScript'</span>, <span
+                                    class="text-yellow-400">'PHP'</span>],</div>
+                            <div class="text-gray-300 ml-4"><span class="text-green-400">passion</span>: <span
+                                    class="text-yellow-400">'Clean Code'</span>,</div>
+                            <div class="text-gray-300 ml-4"><span class="text-green-400">experience</span>: <span
+                                    class="text-orange-400">5</span> + <span class="text-yellow-400">' years'</span>
+                            </div>
                             <div class="text-gray-300">};</div>
                         </div>
                     </div>
@@ -375,15 +411,19 @@
             <h2 class="text-4xl md:text-5xl font-bold text-center mb-12 text-gradient">O mnie</h2>
             <div class="flex flex-col gap-16">
                 <div class="text-center space-y-6">
-                    <p class="text-lg text-gray-300 leading-relaxed max-w-4xl mx-auto">Jestem pasjonatem programowania z ponad 5-letnim doświadczeniem w tworzeniu nowoczesnych rozwiązań webowych i aplikacji desktopowych.</p>
-                    <p class="text-lg text-gray-300 leading-relaxed max-w-4xl mx-auto">Specjalizuję się w technologiach front-end i back-end, zawsze dbając o jakość kodu, wydajność i user experience.</p>
+                    <p class="text-lg text-gray-300 leading-relaxed max-w-4xl mx-auto">Jestem pasjonatem programowania z
+                        ponad 5-letnim doświadczeniem w tworzeniu nowoczesnych rozwiązań webowych i aplikacji
+                        desktopowych.</p>
+                    <p class="text-lg text-gray-300 leading-relaxed max-w-4xl mx-auto">Specjalizuję się w technologiach
+                        front-end i back-end, zawsze dbając o jakość kodu, wydajność i user experience.</p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <div class="card p-6 hover:transform hover:-translate-y-2 transition-all duration-300">
                         <h3 class="text-xl font-semibold text-indigo-400 mb-4">Frontend</h3>
                         <div class="flex flex-wrap gap-2">
                             <span class="px-3 py-1 bg-gray-700 text-gray-300 rounded-full text-sm">HTML5 & CSS3</span>
-                            <span class="px-3 py-1 bg-gray-700 text-gray-300 rounded-full text-sm">JavaScript ES6+</span>
+                            <span class="px-3 py-1 bg-gray-700 text-gray-300 rounded-full text-sm">JavaScript
+                                ES6+</span>
                             <span class="px-3 py-1 bg-gray-700 text-gray-300 rounded-full text-sm">TypeScript</span>
                             <span class="px-3 py-1 bg-gray-700 text-gray-300 rounded-full text-sm">React</span>
                             <span class="px-3 py-1 bg-gray-700 text-gray-300 rounded-full text-sm">Vue.js</span>
@@ -444,10 +484,12 @@
                     <div class="card p-6 hover:transform hover:-translate-y-2 transition-all duration-300">
                         <h3 class="text-xl font-semibold text-indigo-400 mb-4">SEO & Performance</h3>
                         <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-gray-700 text-gray-300 rounded-full text-sm">Google Analytics</span>
+                            <span class="px-3 py-1 bg-gray-700 text-gray-300 rounded-full text-sm">Google
+                                Analytics</span>
                             <span class="px-3 py-1 bg-gray-700 text-gray-300 rounded-full text-sm">Search Console</span>
                             <span class="px-3 py-1 bg-gray-700 text-gray-300 rounded-full text-sm">PageSpeed</span>
-                            <span class="px-3 py-1 bg-gray-700 text-gray-300 rounded-full text-sm">Core Web Vitals</span>
+                            <span class="px-3 py-1 bg-gray-700 text-gray-300 rounded-full text-sm">Core Web
+                                Vitals</span>
                             <span class="px-3 py-1 bg-gray-700 text-gray-300 rounded-full text-sm">Schema.org</span>
                             <span class="px-3 py-1 bg-gray-700 text-gray-300 rounded-full text-sm">Open Graph</span>
                         </div>
@@ -458,116 +500,153 @@
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="section-padding bg-gradient-to-br from-slate-950 via-gray-950 to-zinc-950 relative overflow-hidden">
+    <section id="services"
+        class="section-padding bg-gradient-to-br from-slate-950 via-gray-950 to-zinc-950 relative overflow-hidden">
         <div class="container-custom relative z-10">
             <h2 class="text-4xl md:text-5xl font-bold text-center mb-16 text-gradient">Usługi</h2>
             <div class="grid lg:grid-cols-3 gap-8">
-                <div class="card p-8 text-center relative overflow-hidden group hover:transform hover:-translate-y-3 hover:scale-105 transition-all duration-500">
-                    <div class="absolute inset-0 bg-gradient-to-br from-indigo-500/8 via-purple-500/8 to-pink-500/6 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    <div class="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300 relative z-10">
-                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-white">
-                            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-                            <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-                            <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                <div
+                    class="card p-8 text-center relative overflow-hidden group hover:transform hover:-translate-y-3 hover:scale-105 transition-all duration-500">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-br from-indigo-500/8 via-purple-500/8 to-pink-500/6 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    </div>
+                    <div
+                        class="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300 relative z-10">
+                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            class="text-white">
+                            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2"
+                                stroke-linejoin="round" />
+                            <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2"
+                                stroke-linejoin="round" />
+                            <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2"
+                                stroke-linejoin="round" />
                         </svg>
                     </div>
                     <h3 class="text-2xl font-bold text-white mb-4 relative z-10">Strony internetowe</h3>
-                    <p class="text-gray-300 mb-6 leading-relaxed relative z-10">Nowoczesne, responsywne strony internetowe z profesjonalnym designem i optymalizacją SEO dla lepszej widoczności w wyszukiwarkach.</p>
+                    <p class="text-gray-300 mb-6 leading-relaxed relative z-10">Nowoczesne, responsywne strony
+                        internetowe z profesjonalnym designem i optymalizacją SEO dla lepszej widoczności w
+                        wyszukiwarkach.</p>
                     <div class="space-y-3 text-left relative z-10">
                         <div class="flex items-center gap-3 text-gray-300">
-                            <div class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                            <div
+                                class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
                                 <span class="text-white text-xs font-bold">✓</span>
                             </div>
                             <span>Responsywny design</span>
                         </div>
                         <div class="flex items-center gap-3 text-gray-300">
-                            <div class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                            <div
+                                class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
                                 <span class="text-white text-xs font-bold">✓</span>
                             </div>
                             <span>Optymalizacja SEO</span>
                         </div>
                         <div class="flex items-center gap-3 text-gray-300">
-                            <div class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                            <div
+                                class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
                                 <span class="text-white text-xs font-bold">✓</span>
                             </div>
                             <span>Szybkie ładowanie</span>
                         </div>
                         <div class="flex items-center gap-3 text-gray-300">
-                            <div class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                            <div
+                                class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
                                 <span class="text-white text-xs font-bold">✓</span>
                             </div>
                             <span>Cross-browser compatibility</span>
                         </div>
                     </div>
                 </div>
-                <div class="card p-8 text-center relative overflow-hidden group hover:transform hover:-translate-y-3 hover:scale-105 transition-all duration-500 border-2 border-indigo-500/50 bg-gradient-to-br from-indigo-500/10 via-purple-500/8 to-pink-500/6">
-                    <div class="absolute inset-0 bg-gradient-to-br from-indigo-500/15 via-purple-500/15 to-pink-500/10 opacity-40 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    <div class="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300 relative z-10">
-                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-white">
-                            <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                <div
+                    class="card p-8 text-center relative overflow-hidden group hover:transform hover:-translate-y-3 hover:scale-105 transition-all duration-500 border-2 border-indigo-500/50 bg-gradient-to-br from-indigo-500/10 via-purple-500/8 to-pink-500/6">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-br from-indigo-500/15 via-purple-500/15 to-pink-500/10 opacity-40 group-hover:opacity-100 transition-opacity duration-500">
+                    </div>
+                    <div
+                        class="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300 relative z-10">
+                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            class="text-white">
+                            <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="currentColor" stroke-width="2"
+                                stroke-linejoin="round" />
                         </svg>
                     </div>
                     <h3 class="text-2xl font-bold text-white mb-4 relative z-10">Aplikacje webowe</h3>
-                    <p class="text-gray-300 mb-6 leading-relaxed relative z-10">Zaawansowane aplikacje webowe z nowoczesnych technologiach, oferujące bogate funkcjonalności i doskonałe user experience.</p>
+                    <p class="text-gray-300 mb-6 leading-relaxed relative z-10">Zaawansowane aplikacje webowe z
+                        nowoczesnych technologiach, oferujące bogate funkcjonalności i doskonałe user experience.</p>
                     <div class="space-y-3 text-left relative z-10">
                         <div class="flex items-center gap-3 text-gray-300">
-                            <div class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                            <div
+                                class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
                                 <span class="text-white text-xs font-bold">✓</span>
                             </div>
                             <span>SPA (Single Page Applications)</span>
                         </div>
                         <div class="flex items-center gap-3 text-gray-300">
-                            <div class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                            <div
+                                class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
                                 <span class="text-white text-xs font-bold">✓</span>
                             </div>
                             <span>Progressive Web Apps</span>
                         </div>
                         <div class="flex items-center gap-3 text-gray-300">
-                            <div class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                            <div
+                                class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
                                 <span class="text-white text-xs font-bold">✓</span>
                             </div>
                             <span>API Integration</span>
                         </div>
                         <div class="flex items-center gap-3 text-gray-300">
-                            <div class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                            <div
+                                class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
                                 <span class="text-white text-xs font-bold">✓</span>
                             </div>
                             <span>Real-time features</span>
                         </div>
                     </div>
                 </div>
-                <div class="card p-8 text-center relative overflow-hidden group hover:transform hover:-translate-y-3 hover:scale-105 transition-all duration-500">
-                    <div class="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-green-500/8 to-teal-500/6 opacity-40 group-hover:opacity-100 transition-opacity duration-500"></div>
-                    <div class="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-emerald-500 to-green-600 rounded-2xl flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300 relative z-10">
-                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-white">
-                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2" stroke="currentColor" stroke-width="2"/>
-                            <line x1="8" y1="21" x2="16" y2="21" stroke="currentColor" stroke-width="2"/>
-                            <line x1="12" y1="17" x2="12" y2="21" stroke="currentColor" stroke-width="2"/>
+                <div
+                    class="card p-8 text-center relative overflow-hidden group hover:transform hover:-translate-y-3 hover:scale-105 transition-all duration-500">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-green-500/8 to-teal-500/6 opacity-40 group-hover:opacity-100 transition-opacity duration-500">
+                    </div>
+                    <div
+                        class="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-emerald-500 to-green-600 rounded-2xl flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300 relative z-10">
+                        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                            class="text-white">
+                            <rect x="2" y="3" width="20" height="14" rx="2" ry="2" stroke="currentColor"
+                                stroke-width="2" />
+                            <line x1="8" y1="21" x2="16" y2="21" stroke="currentColor" stroke-width="2" />
+                            <line x1="12" y1="17" x2="12" y2="21" stroke="currentColor" stroke-width="2" />
                         </svg>
                     </div>
                     <h3 class="text-2xl font-bold text-white mb-4 relative z-10">Aplikacje desktopowe</h3>
-                    <p class="text-gray-300 mb-6 leading-relaxed relative z-10">Wydajne aplikacje desktopowe na Windows, macOS i Linux z natywną wydajnością i nowoczesnym interfejsem użytkownika.</p>
+                    <p class="text-gray-300 mb-6 leading-relaxed relative z-10">Wydajne aplikacje desktopowe na Windows,
+                        macOS i Linux z natywną wydajnością i nowoczesnym interfejsem użytkownika.</p>
                     <div class="space-y-3 text-left relative z-10">
                         <div class="flex items-center gap-3 text-gray-300">
-                            <div class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                            <div
+                                class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
                                 <span class="text-white text-xs font-bold">✓</span>
                             </div>
                             <span>Cross-platform development</span>
                         </div>
                         <div class="flex items-center gap-3 text-gray-300">
-                            <div class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                            <div
+                                class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
                                 <span class="text-white text-xs font-bold">✓</span>
                             </div>
                             <span>Native performance</span>
                         </div>
                         <div class="flex items-center gap-3 text-gray-300">
-                            <div class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                            <div
+                                class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
                                 <span class="text-white text-xs font-bold">✓</span>
                             </div>
                             <span>Modern UI/UX</span>
                         </div>
                         <div class="flex items-center gap-3 text-gray-300">
-                            <div class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                            <div
+                                class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
                                 <span class="text-white text-xs font-bold">✓</span>
                             </div>
                             <span>Database integration</span>
@@ -580,57 +659,106 @@
 
     <!-- Projects Section -->
     <section id="projects" class="section-padding gradient-bg-dark relative overflow-hidden">
-            <div class="container mx-auto px-6 relative z-10">
-                <h2 class="text-4xl md:text-5xl font-bold text-center text-white mb-16">
-                    <span class="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">Moje Projekty</span>
-                </h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-gray-800/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-700/50 hover:border-blue-500/50 transition-all duration-500 group hover:transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-blue-500/20">
+        <div class="container mx-auto px-6 relative z-10">
+            <h2 class="text-4xl md:text-5xl font-bold text-center text-white mb-16">
+                <span
+                    class="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">Moje
+                    Projekty</span>
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div
+                    class="bg-gray-800/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-700/50 hover:border-blue-500/50 transition-all duration-500 group hover:transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-blue-500/20">
                     <div class="relative overflow-hidden">
-                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200'%3E%3Crect width='100%25' height='100%25' fill='%23374151'/%3E%3C/svg%3E" data-src="images/project1.jpg" alt="Bodzio - Firma Budowlana" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy" />
-                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200'%3E%3Crect width='100%25' height='100%25' fill='%23374151'/%3E%3C/svg%3E"
+                            data-src="images/project1.jpg" alt="Bodzio - Firma Budowlana"
+                            class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+                            loading="lazy" />
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        </div>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors duration-300">Bodzio - Firma Budowlana</h3>
-                        <p class="text-gray-300 mb-4 leading-relaxed">Profesjonalna wizytówka firmy budowlanej z galerią zakończonych projektów, prezentacją kadry oraz szczegółowym procesem realizacji. Zawiera nowoczesny design, system zarządzania treścią i zoptymalizowaną wydajność.</p>
+                        <h3
+                            class="text-xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors duration-300">
+                            Bodzio - Firma Budowlana</h3>
+                        <p class="text-gray-300 mb-4 leading-relaxed">Profesjonalna wizytówka firmy budowlanej z galerią
+                            zakończonych projektów, prezentacją kadry oraz szczegółowym procesem realizacji. Zawiera
+                            nowoczesny design, system zarządzania treścią i zoptymalizowaną wydajność.</p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 bg-orange-500/20 text-orange-300 rounded-full text-sm border border-orange-500/30">HTML5</span>
-                            <span class="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm border border-blue-500/30">Tailwind CSS</span>
-                            <span class="px-3 py-1 bg-yellow-500/20 text-yellow-300 rounded-full text-sm border border-yellow-500/30">JavaScript</span>
-                            <span class="px-3 py-1 bg-green-500/20 text-green-300 rounded-full text-sm border border-green-500/30">CMS Integration</span>
+                            <span
+                                class="px-3 py-1 bg-orange-500/20 text-orange-300 rounded-full text-sm border border-orange-500/30">HTML5</span>
+                            <span
+                                class="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm border border-blue-500/30">Tailwind
+                                CSS</span>
+                            <span
+                                class="px-3 py-1 bg-yellow-500/20 text-yellow-300 rounded-full text-sm border border-yellow-500/30">JavaScript</span>
+                            <span
+                                class="px-3 py-1 bg-green-500/20 text-green-300 rounded-full text-sm border border-green-500/30">CMS
+                                Integration</span>
                         </div>
                         <div class="flex gap-3">
-                            <a href="https://xitali.github.io/bodzio" target="_blank" class="flex-1 bg-gradient-to-r from-blue-500 to-purple-600 text-white py-2 px-4 rounded-lg text-center font-medium hover:from-blue-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105">Demo</a>
-                            <a href="https://github.com/xitali/bodzio" target="_blank" class="flex-1 border border-gray-600 text-gray-300 py-2 px-4 rounded-lg text-center font-medium hover:border-gray-500 hover:text-white transition-all duration-300 transform hover:scale-105">GitHub</a>
+                            <a href="https://xitali.github.io/bodzio" target="_blank"
+                                class="flex-1 bg-gradient-to-r from-blue-500 to-purple-600 text-white py-2 px-4 rounded-lg text-center font-medium hover:from-blue-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105">Demo</a>
+                            <a href="https://github.com/xitali/bodzio" target="_blank"
+                                class="flex-1 border border-gray-600 text-gray-300 py-2 px-4 rounded-lg text-center font-medium hover:border-gray-500 hover:text-white transition-all duration-300 transform hover:scale-105">GitHub</a>
                         </div>
                     </div>
                 </div>
-                <div class="bg-gray-800/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-700/50 hover:border-green-500/50 transition-all duration-500 group hover:transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-green-500/20 relative">
+                <div
+                    class="bg-gray-800/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-700/50 hover:border-green-500/50 transition-all duration-500 group hover:transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-green-500/20 relative">
                     <div class="relative overflow-hidden">
-                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200'%3E%3Crect width='100%25' height='100%25' fill='%23374151'/%3E%3C/svg%3E" data-src="images/project2.jpg" alt="Zielona Baza - Restauracja Wegańska" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy" />
-                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200'%3E%3Crect width='100%25' height='100%25' fill='%23374151'/%3E%3C/svg%3E"
+                            data-src="images/project2.jpg" alt="Zielona Baza - Restauracja Wegańska"
+                            class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+                            loading="lazy" />
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        </div>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-green-400 transition-colors duration-300">Zielona Baza - Restauracja Wegańska</h3>
-                        <p class="text-gray-300 mb-4 leading-relaxed">Zaawansowana platforma restauracyjna z panelem administratora, interaktywną mapą Google Maps, systemem opinii klientów, galerią zdjęć oraz wyszukiwarką dań w czasie rzeczywistym. Zoptymalizowana pod kątem wydajności i SEO.</p>
+                        <h3
+                            class="text-xl font-bold text-white mb-3 group-hover:text-green-400 transition-colors duration-300">
+                            Zielona Baza - Restauracja Wegańska</h3>
+                        <p class="text-gray-300 mb-4 leading-relaxed">Zaawansowana platforma restauracyjna z panelem
+                            administratora, interaktywną mapą Google Maps, systemem opinii klientów, galerią zdjęć oraz
+                            wyszukiwarką dań w czasie rzeczywistym. Zoptymalizowana pod kątem wydajności i SEO.</p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm border border-blue-500/30">WordPress</span>
-                            <span class="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm border border-purple-500/30">PHP</span>
-                            <span class="px-3 py-1 bg-cyan-500/20 text-cyan-300 rounded-full text-sm border border-cyan-500/30">Google Maps API</span>
-                            <span class="px-3 py-1 bg-green-500/20 text-green-300 rounded-full text-sm border border-green-500/30">Real-time Search</span>
+                            <span
+                                class="px-3 py-1 bg-blue-500/20 text-blue-300 rounded-full text-sm border border-blue-500/30">WordPress</span>
+                            <span
+                                class="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm border border-purple-500/30">PHP</span>
+                            <span
+                                class="px-3 py-1 bg-cyan-500/20 text-cyan-300 rounded-full text-sm border border-cyan-500/30">Google
+                                Maps API</span>
+                            <span
+                                class="px-3 py-1 bg-green-500/20 text-green-300 rounded-full text-sm border border-green-500/30">Real-time
+                                Search</span>
                         </div>
                         <div class="flex gap-3">
-                            <a href="https://zielona-baza.pl" target="_blank" class="flex-1 bg-gradient-to-r from-green-500 to-emerald-600 text-white py-2 px-4 rounded-lg text-center font-medium hover:from-green-600 hover:to-emerald-700 transition-all duration-300 transform hover:scale-105">Demo</a>
-                            <a href="#contact" class="flex-1 border border-gray-600 text-gray-300 py-2 px-4 rounded-lg text-center font-medium hover:border-gray-500 hover:text-white transition-all duration-300 transform hover:scale-105">Więcej info</a>
+                            <a href="https://zielona-baza.pl" target="_blank"
+                                class="flex-1 bg-gradient-to-r from-green-500 to-emerald-600 text-white py-2 px-4 rounded-lg text-center font-medium hover:from-green-600 hover:to-emerald-700 transition-all duration-300 transform hover:scale-105">Demo</a>
+                            <a href="#contact"
+                                class="flex-1 border border-gray-600 text-gray-300 py-2 px-4 rounded-lg text-center font-medium hover:border-gray-500 hover:text-white transition-all duration-300 transform hover:scale-105">Więcej
+                                info</a>
                         </div>
                     </div>
                 </div>
-                <div class="bg-gray-800/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-700/50 hover:border-purple-500/50 transition-all duration-500 group hover:transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-purple-500/20 relative">
-                    <div class="absolute top-4 right-4 bg-gradient-to-r from-purple-500 to-pink-600 text-white px-3 py-1 rounded-full text-sm font-medium z-10">Dostępne</div>
+                <div
+                    class="bg-gray-800/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-700/50 hover:border-purple-500/50 transition-all duration-500 group hover:transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-purple-500/20 relative">
+                    <div
+                        class="absolute top-4 right-4 bg-gradient-to-r from-purple-500 to-pink-600 text-white px-3 py-1 rounded-full text-sm font-medium z-10">
+                        Dostępne</div>
                     <div class="relative overflow-hidden">
-                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200'%3E%3Crect width='100%25' height='100%25' fill='%23374151'/%3E%3C/svg%3E" data-src="images/project3.jpg" alt="Twój Projekt Może Być Tutaj" class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy" />
-                        <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        <div class="absolute inset-0 bg-gradient-to-br from-purple-500/20 via-pink-500/10 to-transparent"></div>
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='200'%3E%3Crect width='100%25' height='100%25' fill='%23374151'/%3E%3C/svg%3E"
+                            data-src="images/project3.jpg" alt="Twój Projekt Może Być Tutaj"
+                            class="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+                            loading="lazy" />
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        </div>
+                        <div
+                            class="absolute inset-0 bg-gradient-to-br from-purple-500/20 via-pink-500/10 to-transparent">
+                        </div>
                         <div class="absolute inset-0 flex items-center justify-center">
                             <div class="text-center text-white p-6">
                                 <h4 class="text-2xl font-bold mb-2">Twój Projekt</h4>
@@ -639,17 +767,30 @@
                         </div>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-xl font-bold text-white mb-3 group-hover:text-purple-400 transition-colors duration-300">Twój Projekt Może Być Tutaj</h3>
-                        <p class="text-gray-300 mb-4 leading-relaxed">To miejsce jest zarezerwowane dla Twojego projektu! Skontaktuj się ze mną, aby omówić współpracę i możliwości realizacji Twoich pomysłów w nowoczesnych technologiach.</p>
+                        <h3
+                            class="text-xl font-bold text-white mb-3 group-hover:text-purple-400 transition-colors duration-300">
+                            Twój Projekt Może Być Tutaj</h3>
+                        <p class="text-gray-300 mb-4 leading-relaxed">To miejsce jest zarezerwowane dla Twojego
+                            projektu! Skontaktuj się ze mną, aby omówić współpracę i możliwości realizacji Twoich
+                            pomysłów w nowoczesnych technologiach.</p>
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span class="px-3 py-1 bg-cyan-500/20 text-cyan-300 rounded-full text-sm border border-cyan-500/30">React</span>
-                            <span class="px-3 py-1 bg-green-500/20 text-green-300 rounded-full text-sm border border-green-500/30">Node.js</span>
-                            <span class="px-3 py-1 bg-emerald-500/20 text-emerald-300 rounded-full text-sm border border-emerald-500/30">MongoDB</span>
-                            <span class="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm border border-purple-500/30">Custom Design</span>
+                            <span
+                                class="px-3 py-1 bg-cyan-500/20 text-cyan-300 rounded-full text-sm border border-cyan-500/30">React</span>
+                            <span
+                                class="px-3 py-1 bg-green-500/20 text-green-300 rounded-full text-sm border border-green-500/30">Node.js</span>
+                            <span
+                                class="px-3 py-1 bg-emerald-500/20 text-emerald-300 rounded-full text-sm border border-emerald-500/30">MongoDB</span>
+                            <span
+                                class="px-3 py-1 bg-purple-500/20 text-purple-300 rounded-full text-sm border border-purple-500/30">Custom
+                                Design</span>
                         </div>
                         <div class="flex gap-3">
-                            <a href="#contact" class="flex-1 bg-gradient-to-r from-purple-500 to-pink-600 text-white py-2 px-4 rounded-lg text-center font-medium hover:from-purple-600 hover:to-pink-700 transition-all duration-300 transform hover:scale-105">Skontaktuj się</a>
-                            <a href="#contact" class="flex-1 border border-gray-600 text-gray-300 py-2 px-4 rounded-lg text-center font-medium hover:border-gray-500 hover:text-white transition-all duration-300 transform hover:scale-105">Dowiedz się więcej</a>
+                            <a href="#contact"
+                                class="flex-1 bg-gradient-to-r from-purple-500 to-pink-600 text-white py-2 px-4 rounded-lg text-center font-medium hover:from-purple-600 hover:to-pink-700 transition-all duration-300 transform hover:scale-105">Skontaktuj
+                                się</a>
+                            <a href="#contact"
+                                class="flex-1 border border-gray-600 text-gray-300 py-2 px-4 rounded-lg text-center font-medium hover:border-gray-500 hover:text-white transition-all duration-300 transform hover:scale-105">Dowiedz
+                                się więcej</a>
                         </div>
                     </div>
                 </div>
@@ -658,133 +799,166 @@
     </section>
 
     <!-- Pricing Section -->
-    <section id="pricing" class="section-padding bg-gradient-to-br from-slate-950 via-gray-950 to-zinc-950 relative overflow-hidden">
-            <div class="container mx-auto px-6 relative z-10">
-                <h2 class="text-4xl md:text-5xl font-bold text-center text-white mb-16">
-                    <span class="bg-gradient-to-r from-green-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">Cennik</span>
-                </h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50 hover:border-blue-500/50 transition-all duration-500 group hover:transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-blue-500/20">
-                    <h3 class="text-2xl font-bold text-white mb-4 group-hover:text-blue-400 transition-colors duration-300">Strona wizytówka</h3>
+    <section id="pricing"
+        class="section-padding bg-gradient-to-br from-slate-950 via-gray-950 to-zinc-950 relative overflow-hidden">
+        <div class="container mx-auto px-6 relative z-10">
+            <h2 class="text-4xl md:text-5xl font-bold text-center text-white mb-16">
+                <span
+                    class="bg-gradient-to-r from-green-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">Cennik</span>
+            </h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div
+                    class="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50 hover:border-blue-500/50 transition-all duration-500 group hover:transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-blue-500/20">
+                    <h3
+                        class="text-2xl font-bold text-white mb-4 group-hover:text-blue-400 transition-colors duration-300">
+                        Strona wizytówka</h3>
                     <div class="text-4xl font-bold text-blue-400 mb-6">
-                        <span class="bg-gradient-to-r from-blue-400 to-cyan-500 bg-clip-text text-transparent">od 1200 zł</span>
+                        <span class="bg-gradient-to-r from-blue-400 to-cyan-500 bg-clip-text text-transparent">od 1200
+                            zł</span>
                     </div>
                     <ul class="space-y-3">
                         <li class="flex items-center gap-3 text-gray-300">
-                            <div class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                            <div
+                                class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
                                 <span class="text-white text-xs font-bold">✓</span>
                             </div>
                             <span>Responsywny design</span>
                         </li>
                         <li class="flex items-center gap-3 text-gray-300">
-                            <div class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                            <div
+                                class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
                                 <span class="text-white text-xs font-bold">✓</span>
                             </div>
                             <span>Do 5 podstron</span>
                         </li>
                         <li class="flex items-center gap-3 text-gray-300">
-                            <div class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                            <div
+                                class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
                                 <span class="text-white text-xs font-bold">✓</span>
                             </div>
                             <span>Podstawowe SEO</span>
                         </li>
                         <li class="flex items-center gap-3 text-gray-300">
-                            <div class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                            <div
+                                class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
                                 <span class="text-white text-xs font-bold">✓</span>
                             </div>
                             <span>Formularz kontaktowy</span>
                         </li>
                         <li class="flex items-center gap-3 text-gray-300">
-                            <div class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                            <div
+                                class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
                                 <span class="text-white text-xs font-bold">✓</span>
                             </div>
                             <span>Hosting na 1 rok</span>
                         </li>
                     </ul>
                 </div>
-                <div class="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border-2 border-purple-500/50 hover:border-purple-400/70 transition-all duration-500 group hover:transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-purple-500/30 relative">
-                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-purple-500 to-pink-600 text-white px-6 py-2 rounded-full text-sm font-bold shadow-lg">Popularne</div>
-                    <h3 class="text-2xl font-bold text-white mb-4 group-hover:text-purple-400 transition-colors duration-300 mt-4">Strona firmowa</h3>
+                <div
+                    class="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border-2 border-purple-500/50 hover:border-purple-400/70 transition-all duration-500 group hover:transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-purple-500/30 relative">
+                    <div
+                        class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-purple-500 to-pink-600 text-white px-6 py-2 rounded-full text-sm font-bold shadow-lg">
+                        Popularne</div>
+                    <h3
+                        class="text-2xl font-bold text-white mb-4 group-hover:text-purple-400 transition-colors duration-300 mt-4">
+                        Strona firmowa</h3>
                     <div class="text-4xl font-bold text-purple-400 mb-6">
-                        <span class="bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">od 2800 zł</span>
+                        <span class="bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">od 2800
+                            zł</span>
                     </div>
                     <ul class="space-y-3">
                         <li class="flex items-center gap-3 text-gray-300">
-                            <div class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                            <div
+                                class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
                                 <span class="text-white text-xs font-bold">✓</span>
                             </div>
                             <span>Zaawansowany design</span>
                         </li>
                         <li class="flex items-center gap-3 text-gray-300">
-                            <div class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                            <div
+                                class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
                                 <span class="text-white text-xs font-bold">✓</span>
                             </div>
                             <span>Do 15 podstron</span>
                         </li>
                         <li class="flex items-center gap-3 text-gray-300">
-                            <div class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                            <div
+                                class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
                                 <span class="text-white text-xs font-bold">✓</span>
                             </div>
                             <span>Zaawansowane SEO</span>
                         </li>
                         <li class="flex items-center gap-3 text-gray-300">
-                            <div class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                            <div
+                                class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
                                 <span class="text-white text-xs font-bold">✓</span>
                             </div>
                             <span>Panel administracyjny</span>
                         </li>
                         <li class="flex items-center gap-3 text-gray-300">
-                            <div class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                            <div
+                                class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
                                 <span class="text-white text-xs font-bold">✓</span>
                             </div>
                             <span>Integracje zewnętrzne</span>
                         </li>
                         <li class="flex items-center gap-3 text-gray-300">
-                            <div class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                            <div
+                                class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
                                 <span class="text-white text-xs font-bold">✓</span>
                             </div>
                             <span>Hosting na 1 rok</span>
                         </li>
                     </ul>
                 </div>
-                <div class="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50 hover:border-green-500/50 transition-all duration-500 group hover:transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-green-500/20">
-                    <h3 class="text-2xl font-bold text-white mb-4 group-hover:text-green-400 transition-colors duration-300">Aplikacja webowa</h3>
+                <div
+                    class="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50 hover:border-green-500/50 transition-all duration-500 group hover:transform hover:-translate-y-2 hover:shadow-2xl hover:shadow-green-500/20">
+                    <h3
+                        class="text-2xl font-bold text-white mb-4 group-hover:text-green-400 transition-colors duration-300">
+                        Aplikacja webowa</h3>
                     <div class="text-4xl font-bold text-green-400 mb-6">
-                        <span class="bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent">od 4500 zł</span>
+                        <span class="bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent">od
+                            4500 zł</span>
                     </div>
                     <ul class="space-y-3">
                         <li class="flex items-center gap-3 text-gray-300">
-                            <div class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                            <div
+                                class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
                                 <span class="text-white text-xs font-bold">✓</span>
                             </div>
                             <span>Custom funkcjonalności</span>
                         </li>
                         <li class="flex items-center gap-3 text-gray-300">
-                            <div class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                            <div
+                                class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
                                 <span class="text-white text-xs font-bold">✓</span>
                             </div>
                             <span>Baza danych</span>
                         </li>
                         <li class="flex items-center gap-3 text-gray-300">
-                            <div class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                            <div
+                                class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
                                 <span class="text-white text-xs font-bold">✓</span>
                             </div>
                             <span>Panel użytkownika</span>
                         </li>
                         <li class="flex items-center gap-3 text-gray-300">
-                            <div class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                            <div
+                                class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
                                 <span class="text-white text-xs font-bold">✓</span>
                             </div>
                             <span>API Integration</span>
                         </li>
                         <li class="flex items-center gap-3 text-gray-300">
-                            <div class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                            <div
+                                class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
                                 <span class="text-white text-xs font-bold">✓</span>
                             </div>
                             <span>Wsparcie techniczne</span>
                         </li>
                         <li class="flex items-center gap-3 text-gray-300">
-                            <div class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+                            <div
+                                class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
                                 <span class="text-white text-xs font-bold">✓</span>
                             </div>
                             <span>Hosting na 1 rok</span>
@@ -793,7 +967,8 @@
                 </div>
             </div>
             <div class="text-center mt-12">
-                <p class="text-lg text-gray-300 bg-gray-800/30 backdrop-blur-sm rounded-xl px-6 py-4 border border-gray-700/50 inline-flex items-center gap-3">
+                <p
+                    class="text-lg text-gray-300 bg-gray-800/30 backdrop-blur-sm rounded-xl px-6 py-4 border border-gray-700/50 inline-flex items-center gap-3">
                     <span class="text-2xl">⚡</span>
                     <span><strong class="text-yellow-400">Termin realizacji:</strong> 1-2 tygodnie</span>
                 </p>
@@ -805,49 +980,72 @@
     <section id="contact" class="section-padding gradient-bg-dark relative overflow-hidden">
         <div class="container mx-auto px-6 relative z-10">
             <h2 class="text-4xl md:text-5xl font-bold text-center text-white mb-16">
-                <span class="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">Kontakt</span>
+                <span
+                    class="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">Kontakt</span>
             </h2>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div class="space-y-16">
                     <div class="group">
                         <div class="flex items-center gap-6">
-                            <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-2xl flex items-center justify-center shadow-xl shadow-blue-500/30 group-hover:scale-110 group-hover:shadow-blue-500/50 transition-all duration-500 flex-shrink-0">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-white">
-                                    <rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    <path d="m22 7-10 5L2 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <div
+                                class="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-2xl flex items-center justify-center shadow-xl shadow-blue-500/30 group-hover:scale-110 group-hover:shadow-blue-500/50 transition-all duration-500 flex-shrink-0">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" class="text-white">
+                                    <rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                                    <path d="m22 7-10 5L2 7" stroke="currentColor" stroke-width="2"
+                                        stroke-linecap="round" stroke-linejoin="round" />
                                 </svg>
                             </div>
                             <div>
-                                <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors duration-300">Email</h3>
-                                <a href="mailto:emanuel.wloch@icloud.com" class="text-xl text-gray-300 hover:text-cyan-400 transition-all duration-300 font-medium tracking-wide">emanuel.wloch@icloud.com</a>
+                                <h3
+                                    class="text-2xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors duration-300">
+                                    Email</h3>
+                                <a href="mailto:emanuel.wloch@icloud.com"
+                                    class="text-xl text-gray-300 hover:text-cyan-400 transition-all duration-300 font-medium tracking-wide">emanuel.wloch@icloud.com</a>
                                 <p class="text-sm text-gray-400 mt-1">Odpowiem w ciągu 24 godzin</p>
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="group">
                         <div class="flex items-center gap-6">
-                            <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center shadow-xl shadow-green-500/30 group-hover:scale-110 group-hover:shadow-green-500/50 transition-all duration-500 flex-shrink-0">
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-white">
-                                    <path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <div
+                                class="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center shadow-xl shadow-green-500/30 group-hover:scale-110 group-hover:shadow-green-500/50 transition-all duration-500 flex-shrink-0">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" class="text-white">
+                                    <path
+                                        d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
                                 </svg>
                             </div>
                             <div>
-                                <h3 class="text-2xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors duration-300">Telefon</h3>
-                                <a href="tel:+48725403682" class="text-xl text-gray-300 hover:text-emerald-400 transition-all duration-300 font-medium tracking-wide">+48 725 403 682</a>
+                                <h3
+                                    class="text-2xl font-bold text-white mb-2 group-hover:text-emerald-400 transition-colors duration-300">
+                                    Telefon</h3>
+                                <a href="tel:+48725403682"
+                                    class="text-xl text-gray-300 hover:text-emerald-400 transition-all duration-300 font-medium tracking-wide">+48
+                                    725 403 682</a>
                                 <p class="text-sm text-gray-400 mt-1">Dostępny w godzinach 9:00-18:00</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="bg-gradient-to-br from-gray-800/80 to-gray-900/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-700/50 text-center">
+                <div
+                    class="bg-gradient-to-br from-gray-800/80 to-gray-900/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-700/50 text-center">
                     <h3 class="text-3xl font-bold text-white mb-4">
-                        <span class="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Gotowy na współpracę?</span>
+                        <span class="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Gotowy na
+                            współpracę?</span>
                     </h3>
-                    <p class="text-gray-300 text-lg mb-8 leading-relaxed">Skontaktuj się ze mną, aby omówić Twój projekt. Odpowiem w ciągu 24 godzin.</p>
+                    <p class="text-gray-300 text-lg mb-8 leading-relaxed">Skontaktuj się ze mną, aby omówić Twój
+                        projekt. Odpowiem w ciągu 24 godzin.</p>
                     <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                        <a href="mailto:emanuel.wloch@icloud.com" class="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-8 py-4 rounded-2xl font-semibold text-lg hover:from-blue-700 hover:to-cyan-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-blue-500/25">Napisz email</a>
-                        <a href="tel:+48725403682" class="inline-flex items-center justify-center gap-3 bg-gray-700/50 border border-gray-600 text-white px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-gray-600/50 hover:border-gray-500 transform hover:scale-105 transition-all duration-300 shadow-lg">Zadzwoń</a>
+                        <a href="mailto:emanuel.wloch@icloud.com"
+                            class="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-8 py-4 rounded-2xl font-semibold text-lg hover:from-blue-700 hover:to-cyan-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-blue-500/25">Napisz
+                            email</a>
+                        <a href="tel:+48725403682"
+                            class="inline-flex items-center justify-center gap-3 bg-gray-700/50 border border-gray-600 text-white px-8 py-4 rounded-2xl font-semibold text-lg hover:bg-gray-600/50 hover:border-gray-500 transform hover:scale-105 transition-all duration-300 shadow-lg">Zadzwoń</a>
                     </div>
                 </div>
             </div>
@@ -856,29 +1054,49 @@
 
     <!-- Footer -->
     <footer class="bg-gray-900/95 backdrop-blur-custom border-t border-gray-800 relative overflow-hidden">
-        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-gray-800/30 via-transparent to-transparent pointer-events-none"></div>
+        <div
+            class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-gray-800/30 via-transparent to-transparent pointer-events-none">
+        </div>
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-1 lg:grid-cols-4 gap-8 py-16">
                 <div class="lg:col-span-2">
                     <h3 class="text-2xl font-bold text-white mb-4">
-                        <span class="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Emanuel Włoch</span>
+                        <span class="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">Emanuel
+                            Włoch</span>
                     </h3>
-                    <p class="text-gray-400 mb-6 leading-relaxed">Programista Full-Stack tworzący nowoczesne rozwiązania webowe i aplikacje desktopowe z pasją do czystego kodu.</p>
+                    <p class="text-gray-400 mb-6 leading-relaxed">Programista Full-Stack tworzący nowoczesne rozwiązania
+                        webowe i aplikacje desktopowe z pasją do czystego kodu.</p>
                     <div class="flex gap-4">
-                        <a href="mailto:emanuel.wloch@icloud.com" class="w-12 h-12 bg-gray-800 hover:bg-blue-600 rounded-xl flex items-center justify-center text-gray-400 hover:text-white transition-all duration-300 transform hover:scale-110" title="Email">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                <polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <a href="mailto:emanuel.wloch@icloud.com"
+                            class="w-12 h-12 bg-gray-800 hover:bg-blue-600 rounded-xl flex items-center justify-center text-gray-400 hover:text-white transition-all duration-300 transform hover:scale-110"
+                            title="Email">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                                <polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
                         </a>
-                        <a href="tel:+48725403682" class="w-12 h-12 bg-gray-800 hover:bg-green-600 rounded-xl flex items-center justify-center text-gray-400 hover:text-white transition-all duration-300 transform hover:scale-110" title="Telefon">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M22 16.92V19.92C22 20.52 21.39 21 20.92 21C9.35 21 0 11.65 0 0.08C0 -0.39 0.48 -1 1.08 -1H4.08C4.68 -1 5.08 -0.39 5.08 0.08C5.08 2.08 5.42 3.99 6.06 5.79C6.22 6.18 6.09 6.65 5.74 6.9L4.03 8.62C5.7 12.29 8.71 15.3 12.38 16.97L14.1 15.26C14.35 14.91 14.82 14.78 15.21 14.94C17.01 15.58 18.92 15.92 20.92 15.92C21.39 15.92 22 16.32 22 16.92Z" fill="currentColor"/>
+                        <a href="tel:+48725403682"
+                            class="w-12 h-12 bg-gray-800 hover:bg-green-600 rounded-xl flex items-center justify-center text-gray-400 hover:text-white transition-all duration-300 transform hover:scale-110"
+                            title="Telefon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M22 16.92V19.92C22 20.52 21.39 21 20.92 21C9.35 21 0 11.65 0 0.08C0 -0.39 0.48 -1 1.08 -1H4.08C4.68 -1 5.08 -0.39 5.08 0.08C5.08 2.08 5.42 3.99 6.06 5.79C6.22 6.18 6.09 6.65 5.74 6.9L4.03 8.62C5.7 12.29 8.71 15.3 12.38 16.97L14.1 15.26C14.35 14.91 14.82 14.78 15.21 14.94C17.01 15.58 18.92 15.92 20.92 15.92C21.39 15.92 22 16.32 22 16.92Z"
+                                    fill="currentColor" />
                             </svg>
                         </a>
-                        <a href="https://github.com/xitali" class="w-12 h-12 bg-gray-800 hover:bg-purple-600 rounded-xl flex items-center justify-center text-gray-400 hover:text-white transition-all duration-300 transform hover:scale-110" title="GitHub" target="_blank">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 0C5.374 0 0 5.373 0 12 0 17.302 3.438 21.8 8.207 23.387c.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+                        <a href="https://github.com/xitali"
+                            class="w-12 h-12 bg-gray-800 hover:bg-purple-600 rounded-xl flex items-center justify-center text-gray-400 hover:text-white transition-all duration-300 transform hover:scale-110"
+                            title="GitHub" target="_blank">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M12 0C5.374 0 0 5.373 0 12 0 17.302 3.438 21.8 8.207 23.387c.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
                             </svg>
                         </a>
                     </div>
@@ -886,17 +1104,26 @@
                 <div>
                     <h4 class="text-lg font-semibold text-white mb-4">Nawigacja</h4>
                     <ul class="space-y-2">
-                        <li><a href="#home" class="text-gray-400 hover:text-cyan-400 transition-colors duration-300">Start</a></li>
-                        <li><a href="#about" class="text-gray-400 hover:text-cyan-400 transition-colors duration-300">O mnie</a></li>
-                        <li><a href="#services" class="text-gray-400 hover:text-cyan-400 transition-colors duration-300">Usługi</a></li>
-                        <li><a href="#projects" class="text-gray-400 hover:text-cyan-400 transition-colors duration-300">Projekty</a></li>
+                        <li><a href="#home"
+                                class="text-gray-400 hover:text-cyan-400 transition-colors duration-300">Start</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-cyan-400 transition-colors duration-300">O
+                                mnie</a></li>
+                        <li><a href="#services"
+                                class="text-gray-400 hover:text-cyan-400 transition-colors duration-300">Usługi</a></li>
+                        <li><a href="#projects"
+                                class="text-gray-400 hover:text-cyan-400 transition-colors duration-300">Projekty</a>
+                        </li>
                     </ul>
                 </div>
                 <div>
                     <h4 class="text-lg font-semibold text-white mb-4">Kontakt</h4>
                     <ul class="space-y-2">
-                        <li><a href="mailto:emanuel.wloch@icloud.com" class="text-gray-400 hover:text-cyan-400 transition-colors duration-300">emanuel.wloch@icloud.com</a></li>
-                        <li><a href="tel:+48725403682" class="text-gray-400 hover:text-cyan-400 transition-colors duration-300">+48 725 403 682</a></li>
+                        <li><a href="mailto:emanuel.wloch@icloud.com"
+                                class="text-gray-400 hover:text-cyan-400 transition-colors duration-300">emanuel.wloch@icloud.com</a>
+                        </li>
+                        <li><a href="tel:+48725403682"
+                                class="text-gray-400 hover:text-cyan-400 transition-colors duration-300">+48 725 403
+                                682</a></li>
                     </ul>
                 </div>
             </div>
@@ -904,8 +1131,11 @@
                 <div class="flex flex-col md:flex-row justify-between items-center gap-4">
                     <p class="text-gray-400">&copy; 2025 Emanuel Włoch. Wszystkie prawa zastrzeżone.</p>
                     <div class="flex gap-6">
-                        <a href="#" id="openPrivacyModal" class="text-gray-400 hover:text-cyan-400 transition-colors duration-300">Polityka prywatności</a>
-                        <a href="#" id="openTermsModal" class="text-gray-400 hover:text-cyan-400 transition-colors duration-300">Regulamin</a>
+                        <a href="#" id="openPrivacyModal"
+                            class="text-gray-400 hover:text-cyan-400 transition-colors duration-300">Polityka
+                            prywatności</a>
+                        <a href="#" id="openTermsModal"
+                            class="text-gray-400 hover:text-cyan-400 transition-colors duration-300">Regulamin</a>
                     </div>
                 </div>
             </div>
@@ -913,7 +1143,8 @@
     </footer>
 
     <!-- Modal dla Polityki Prywatności -->
-    <div id="privacyModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
+    <div id="privacyModal"
+        class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
         <div class="bg-white rounded-lg max-w-4xl max-h-[90vh] overflow-y-auto">
             <div class="p-6">
                 <div class="flex justify-between items-center mb-4">
@@ -922,8 +1153,9 @@
                 </div>
                 <div class="prose max-w-none">
                     <h3 class="text-lg font-semibold mb-3">1. Administrator danych</h3>
-                    <p class="mb-4">Administratorem Twoich danych osobowych jest Emanuel Włoch, prowadzący działalność gospodarczą pod nazwą "Emanuel Włoch - Usługi Programistyczne".</p>
-                    
+                    <p class="mb-4">Administratorem Twoich danych osobowych jest Emanuel Włoch, prowadzący działalność
+                        gospodarczą pod nazwą "Emanuel Włoch - Usługi Programistyczne".</p>
+
                     <h3 class="text-lg font-semibold mb-3">2. Zakres zbieranych danych</h3>
                     <p class="mb-4">Zbieramy następujące dane osobowe:</p>
                     <ul class="list-disc pl-6 mb-4">
@@ -932,7 +1164,7 @@
                         <li>Numer telefonu (opcjonalnie)</li>
                         <li>Treść wiadomości</li>
                     </ul>
-                    
+
                     <h3 class="text-lg font-semibold mb-3">3. Cel przetwarzania danych</h3>
                     <p class="mb-4">Twoje dane osobowe przetwarzamy w celu:</p>
                     <ul class="list-disc pl-6 mb-4">
@@ -941,7 +1173,7 @@
                         <li>Realizacji umowy o świadczenie usług</li>
                         <li>Prowadzenia korespondencji biznesowej</li>
                     </ul>
-                    
+
                     <h3 class="text-lg font-semibold mb-3">4. Podstawa prawna</h3>
                     <p class="mb-4">Przetwarzanie danych odbywa się na podstawie:</p>
                     <ul class="list-disc pl-6 mb-4">
@@ -949,7 +1181,7 @@
                         <li>Art. 6 ust. 1 lit. b RODO (wykonanie umowy)</li>
                         <li>Art. 6 ust. 1 lit. f RODO (prawnie uzasadniony interes)</li>
                     </ul>
-                    
+
                     <h3 class="text-lg font-semibold mb-3">5. Twoje prawa</h3>
                     <p class="mb-4">Masz prawo do:</p>
                     <ul class="list-disc pl-6 mb-4">
@@ -961,9 +1193,11 @@
                         <li>Wniesienia sprzeciwu</li>
                         <li>Cofnięcia zgody</li>
                     </ul>
-                    
+
                     <h3 class="text-lg font-semibold mb-3">6. Kontakt</h3>
-                    <p class="mb-4">W sprawach dotyczących ochrony danych osobowych możesz skontaktować się ze mną pod adresem: <a href="mailto:kontakt@emanuelw.pl" class="text-indigo-600 hover:text-indigo-800">kontakt@emanuelw.pl</a></p>
+                    <p class="mb-4">W sprawach dotyczących ochrony danych osobowych możesz skontaktować się ze mną pod
+                        adresem: <a href="mailto:kontakt@emanuelw.pl"
+                            class="text-indigo-600 hover:text-indigo-800">kontakt@emanuelw.pl</a></p>
                 </div>
             </div>
         </div>
@@ -979,8 +1213,9 @@
                 </div>
                 <div class="prose max-w-none">
                     <h3 class="text-lg font-semibold mb-3">§1. Postanowienia ogólne</h3>
-                    <p class="mb-4">Niniejszy regulamin określa zasady świadczenia usług programistycznych przez Emanuel Włoch.</p>
-                    
+                    <p class="mb-4">Niniejszy regulamin określa zasady świadczenia usług programistycznych przez Emanuel
+                        Włoch.</p>
+
                     <h3 class="text-lg font-semibold mb-3">§2. Zakres usług</h3>
                     <p class="mb-4">Oferowane usługi obejmują:</p>
                     <ul class="list-disc pl-6 mb-4">
@@ -990,7 +1225,7 @@
                         <li>Konsultacje techniczne</li>
                         <li>Wsparcie techniczne</li>
                     </ul>
-                    
+
                     <h3 class="text-lg font-semibold mb-3">§3. Proces realizacji</h3>
                     <p class="mb-4">Realizacja projektu przebiega w następujących etapach:</p>
                     <ol class="list-decimal pl-6 mb-4">
@@ -1001,7 +1236,7 @@
                         <li>Wdrożenie i przekazanie projektu</li>
                         <li>Wpłata pozostałej części wynagrodzenia</li>
                     </ol>
-                    
+
                     <h3 class="text-lg font-semibold mb-3">§4. Płatności</h3>
                     <p class="mb-4">Warunki płatności:</p>
                     <ul class="list-disc pl-6 mb-4">
@@ -1010,22 +1245,27 @@
                         <li>Termin płatności: 14 dni od daty wystawienia faktury</li>
                         <li>Możliwość płatności przelewem lub BLIK</li>
                     </ul>
-                    
+
                     <h3 class="text-lg font-semibold mb-3">§5. Prawa autorskie</h3>
-                    <p class="mb-4">Prawa autorskie do wykonanego kodu przechodzą na Klienta po pełnej zapłacie wynagrodzenia. Zastrzegam sobie prawo do wykorzystania ogólnych rozwiązań technicznych w przyszłych projektach.</p>
-                    
+                    <p class="mb-4">Prawa autorskie do wykonanego kodu przechodzą na Klienta po pełnej zapłacie
+                        wynagrodzenia. Zastrzegam sobie prawo do wykorzystania ogólnych rozwiązań technicznych w
+                        przyszłych projektach.</p>
+
                     <h3 class="text-lg font-semibold mb-3">§6. Gwarancja i wsparcie</h3>
-                    <p class="mb-4">Udzielam 3-miesięcznej gwarancji na wykonane prace oraz oferuję płatne wsparcie techniczne po zakończeniu projektu.</p>
-                    
+                    <p class="mb-4">Udzielam 3-miesięcznej gwarancji na wykonane prace oraz oferuję płatne wsparcie
+                        techniczne po zakończeniu projektu.</p>
+
                     <h3 class="text-lg font-semibold mb-3">§7. Kontakt</h3>
-                    <p class="mb-4">Wszelkie pytania dotyczące regulaminu można kierować na adres: <a href="mailto:kontakt@emanuelw.pl" class="text-indigo-600 hover:text-indigo-800">kontakt@emanuelw.pl</a></p>
+                    <p class="mb-4">Wszelkie pytania dotyczące regulaminu można kierować na adres: <a
+                            href="mailto:kontakt@emanuelw.pl"
+                            class="text-indigo-600 hover:text-indigo-800">kontakt@emanuelw.pl</a></p>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Mobile menu toggle
             const hamburger = document.querySelector('#hamburger');
             const navMenu = document.querySelector('#nav-menu');
@@ -1134,14 +1374,14 @@
                     }
                 });
             } else {
-                console.error('Modal elements not found:', { 
-                    privacyModal, termsModal, openPrivacyBtn, openTermsBtn, closePrivacyBtn, closeTermsBtn 
+                console.error('Modal elements not found:', {
+                    privacyModal, termsModal, openPrivacyBtn, openTermsBtn, closePrivacyBtn, closeTermsBtn
                 });
             }
-            
+
             // Lazy loading for images
             const lazyImages = document.querySelectorAll('img[data-src]');
-            
+
             if ('IntersectionObserver' in window) {
                 const imageObserver = new IntersectionObserver((entries) => {
                     entries.forEach((entry) => {
@@ -1160,7 +1400,7 @@
                     rootMargin: '50px 0px',
                     threshold: 0.01
                 });
-                
+
                 lazyImages.forEach(img => imageObserver.observe(img));
             } else {
                 // Fallback for browsers without IntersectionObserver
@@ -1176,4 +1416,5 @@
         });
     </script>
 </body>
+
 </html>
