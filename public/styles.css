@@ -2666,6 +2666,20 @@ html {
 
 /* Mobile menu animation */
 
+#hamburger {
+  z-index: 60;
+  position: relative;
+  pointer-events: auto;
+  cursor: pointer;
+  padding: 8px;
+  min-width: 40px;
+  min-height: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 #hamburger.active span:nth-child(1) {
   transform: rotate(45deg) translate(5px, 5px);
 }
