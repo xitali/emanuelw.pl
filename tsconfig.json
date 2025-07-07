@@ -1,45 +1,49 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "module": "commonjs",
+    "module": "ESNext",
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "outDir": "./dist",
-    "rootDir": "./src",
+    "rootDir": ".",
     "strict": true,
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
-    "declaration": true,
-    "declarationMap": true,
+    "allowJs": true,
+    "checkJs": false,
+    "declaration": false,
     "sourceMap": true,
     "removeComments": false,
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "strictNullChecks": true,
     "strictFunctionTypes": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "noUncheckedIndexedAccess": true,
-    "noImplicitOverride": true,
-    "allowUnusedLabels": false,
-    "allowUnreachableCode": false,
-    "exactOptionalPropertyTypes": true,
     "moduleResolution": "node",
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"],
-      "@/types/*": ["src/types/*"],
-      "@/utils/*": ["src/utils/*"]
-    }
+      "@/public/*": ["public/*"],
+      "@/styles/*": ["src/styles/*"]
+    },
+    "typeRoots": ["node_modules/@types"]
   },
   "include": [
     "src/**/*",
-    "api/**/*"
+    "public/**/*.js",
+    "*.js",
+    "tailwind.config.js",
+    "postcss.config.js",
+    "webpack.config.js"
   ],
   "exclude": [
     "node_modules",
     "dist",
     "**/*.test.ts",
-    "**/*.spec.ts"
+    "**/*.test.js",
+    "**/*.spec.ts",
+    "**/*.spec.js"
   ]
 }
