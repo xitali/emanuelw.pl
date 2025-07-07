@@ -126,6 +126,21 @@ html {
   transform: rotate(-45deg) translate(7px, -6px);
 }
 
+/* Mobile menu slide animation */
+#nav-menu.active {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Mobile menu overlay */
+.mobile-menu-overlay {
+  @apply fixed inset-0 bg-black/50 z-30 opacity-0 pointer-events-none transition-opacity duration-300;
+}
+
+.mobile-menu-overlay.active {
+  @apply opacity-100 pointer-events-auto;
+}
+
 /* Hero section enhancements */
 .hero-content {
   @apply relative z-10;
