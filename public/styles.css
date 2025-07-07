@@ -2680,6 +2680,12 @@ html {
   align-items: center;
 }
 
+@media (min-width: 1024px) {
+  #hamburger {
+    display: none !important;
+  }
+}
+
 #hamburger.active span:nth-child(1) {
   transform: rotate(45deg) translate(5px, 5px);
 }
