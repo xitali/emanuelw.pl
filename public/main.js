@@ -14,17 +14,41 @@ document.addEventListener('DOMContentLoaded', function() {
     const hamburger = document.querySelector('#hamburger');
     const navMenu = document.querySelector('#nav-menu');
     
+    // Create mobile menu overlay
+    const overlay = document.createElement('div');
+    overlay.className = 'mobile-menu-overlay';
+    document.body.appendChild(overlay);
+    
     console.log('Hamburger elements:', { hamburger, navMenu });
 
     if (hamburger && navMenu) {
         console.log('Hamburger menu elements found, adding event listeners');
+        
+        function toggleMobileMenu() {
+            const isActive = hamburger.classList.contains('active');
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            overlay.classList.toggle('active');
+            document.body.style.overflow = isActive ? 'auto' : 'hidden';
+        }
+        
+        function closeMobileMenu() {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
         hamburger.addEventListener('click', (e) => {
             e.preventDefault();
             console.log('Hamburger clicked');
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-            console.log('Hamburger active:', hamburger.classList.contains('active'));
-            console.log('Nav menu active:', navMenu.classList.contains('active'));
+            toggleMobileMenu();
+        });
+        
+        // Close menu when clicking overlay
+        overlay.addEventListener('click', () => {
+            console.log('Overlay clicked, closing menu');
+            closeMobileMenu();
         });
 
         // Close mobile menu when clicking on a link
@@ -33,9 +57,16 @@ document.addEventListener('DOMContentLoaded', function() {
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 console.log('Nav link clicked, closing menu');
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
+                closeMobileMenu();
             });
+        });
+        
+        // Close menu with Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+                console.log('Escape pressed, closing menu');
+                closeMobileMenu();
+            }
         });
     } else {
         console.error('Hamburger menu elements not found:', { hamburger, navMenu });

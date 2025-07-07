@@ -239,7 +239,8 @@
                 <div class="flex-shrink-0">
                     <h2 class="text-xl font-bold text-gradient">Emanuel Włoch</h2>
                 </div>
-                <ul id="nav-menu" class="hidden md:flex space-x-8">
+                <!-- Desktop Menu -->
+                <ul class="hidden md:flex space-x-8">
                     <li><a href="#home" class="navbar-link">Start</a></li>
                     <li><a href="#about" class="navbar-link">O mnie</a></li>
                     <li><a href="#services" class="navbar-link">Usługi</a></li>
@@ -247,6 +248,18 @@
                     <li><a href="#pricing" class="navbar-link">Cennik</a></li>
                     <li><a href="#contact" class="navbar-link">Kontakt</a></li>
                 </ul>
+                
+                <!-- Mobile Menu -->
+                <div id="nav-menu" class="md:hidden fixed top-16 left-0 right-0 bg-gray-900/98 backdrop-blur-sm border-b border-gray-800 transform -translate-y-full opacity-0 transition-all duration-300 ease-in-out z-40">
+                    <ul class="flex flex-col py-4">
+                        <li><a href="#home" class="navbar-link block px-6 py-3 text-lg hover:bg-gray-800/50 transition-colors duration-200">Start</a></li>
+                        <li><a href="#about" class="navbar-link block px-6 py-3 text-lg hover:bg-gray-800/50 transition-colors duration-200">O mnie</a></li>
+                        <li><a href="#services" class="navbar-link block px-6 py-3 text-lg hover:bg-gray-800/50 transition-colors duration-200">Usługi</a></li>
+                        <li><a href="#projects" class="navbar-link block px-6 py-3 text-lg hover:bg-gray-800/50 transition-colors duration-200">Projekty</a></li>
+                        <li><a href="#pricing" class="navbar-link block px-6 py-3 text-lg hover:bg-gray-800/50 transition-colors duration-200">Cennik</a></li>
+                        <li><a href="#contact" class="navbar-link block px-6 py-3 text-lg hover:bg-gray-800/50 transition-colors duration-200">Kontakt</a></li>
+                    </ul>
+                </div>
                 <div id="hamburger" class="md:hidden flex flex-col justify-center items-center w-8 h-8 cursor-pointer">
                     <span class="block w-6 h-0.5 bg-white transition-all duration-300"></span>
                     <span class="block w-6 h-0.5 bg-white mt-1 transition-all duration-300"></span>
