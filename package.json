@@ -7,7 +7,7 @@
     "start": "node dist/server/server.js",
     "dev": "concurrently \"tsc -w\" \"nodemon dist/server/server.js\" \"npm run dev:css\"",
     "build": "npm run build:css && tsc && tsc-alias && cpy index.html dist/public/ && cpy styles.css dist/public/ && cpy main.js dist/public/ && cpy 'src/images/*' dist/public/images",
-    "vercel-build": "npm run build:css && cpy dist/public/styles.css public && cpy dist/public/index.html public && cpy main.js public && cpy 'src/images/*' public/images && cpy 'src/static/*' public",
+    "vercel-build": "npm run build:css",
     "build:client": "webpack --mode production",
     "dev:client": "webpack --mode development --watch",
     "build:css": "npx tailwindcss -i ./src/styles/input.css -o ./dist/public/styles.css --minify",

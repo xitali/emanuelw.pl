@@ -1,25 +1,27 @@
-# robots.txt
 User-agent: *
 Allow: /
 
+# Sitemap
 Sitemap: https://emanuelw.pl/sitemap.xml
 
-# Specific rules for search engines
-User-agent: Googlebot
-Allow: /
-
-User-agent: Bingbot
-Allow: /
-
-# Disallow admin areas (if any)
+# Disallow crawling of admin areas (if any)
 Disallow: /admin/
-Disallow: /api/
+Disallow: /private/
+Disallow: /.git/
+Disallow: /node_modules/
 
-# Allow specific files
+# Allow crawling of important pages
+Allow: /
 Allow: /index.html
-Allow: /favicon.svg
-Allow: /site.webmanifest
-Allow: /sitemap.xml
+Allow: /*.css
+Allow: /*.js
+Allow: /*.jpg
+Allow: /*.png
+Allow: /*.svg
+Allow: /*.webp
 
-# Crawl-delay for polite crawling
+# Crawl-delay (optional, helps with server load)
 Crawl-delay: 1
+
+# Host directive
+Host: https://emanuelw.pl
