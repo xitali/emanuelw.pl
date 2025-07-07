@@ -2698,6 +2698,9 @@ html {
   transform: translateY(-100%);
   opacity: 0;
   transition: all 0.3s ease-in-out;
+  background: rgba(17, 24, 39, 0.95);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(75, 85, 99, 0.3);
 }
 
 #nav-menu.active {
