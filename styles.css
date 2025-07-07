@@ -1,0 +1,100 @@
+/* Mobile menu styles */
+@media (min-width: 768px) {
+    #nav-menu {
+        display: flex;
+    }
+}
+
+@media (max-width: 767px) {
+    #nav-menu {
+        position: fixed;
+        top: 64px;
+        left: 0;
+        right: 0;
+        background: rgba(17, 24, 39, 0.98);
+        backdrop-filter: blur(10px);
+        border-top: 1px solid rgba(75, 85, 99, 0.3);
+        padding: 1rem;
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 40;
+        display: none;
+    }
+    
+    #nav-menu.active {
+        display: flex !important;
+        flex-direction: column;
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    #nav-menu li {
+        margin: 0.5rem 0;
+    }
+    
+    #nav-menu a {
+        display: block;
+        padding: 0.75rem 1rem;
+        color: #e5e7eb;
+        text-decoration: none;
+        border-radius: 0.5rem;
+        transition: all 0.2s ease;
+    }
+    
+    #nav-menu a:hover {
+        background: rgba(99, 102, 241, 0.1);
+        color: #a5b4fc;
+    }
+}
+
+/* Hamburger animation */
+#hamburger span {
+    transition: all 0.3s ease;
+}
+
+#hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+#hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+#hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* Navbar scrolled effect */
+#navbar.scrolled {
+    background: rgba(17, 24, 39, 0.98);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Modal styles */
+.modal-backdrop {
+    backdrop-filter: blur(4px);
+}
+
+.modal-content {
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+/* Critical above-the-fold CSS */
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.hero-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
