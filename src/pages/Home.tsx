@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowDown, Github, ExternalLink } from 'lucide-react';
+import { ArrowDown, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
@@ -269,16 +269,6 @@ const Home: React.FC = () => {
                             Zobacz szczegóły
                           </Button>
                         </Link>
-                        {project.repository_url && (
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            icon={Github}
-                            onClick={() => window.open(project.repository_url, '_blank')}
-                          >
-                            Code
-                          </Button>
-                        )}
                         {project.project_url && (
                           <Button
                             variant="ghost"
