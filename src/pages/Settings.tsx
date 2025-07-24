@@ -25,22 +25,18 @@ interface SettingsFormData {
   emailjsPublicKey: string;
 }
 
-interface PasswordFormData {
-  currentPassword: string;
-  newPassword: string;
-  confirmPassword: string;
-}
+
 
 
 
 const Settings: React.FC = () => {
   const navigate = useNavigate();
-  const { isAuthenticated, changePassword } = useAuthStore();
+  const { isAuthenticated } = useAuthStore();
   const { loading, fetchSettings, updateSetting } = useSiteSettingsStore();
   const personalInfo = usePersonalInfo();
   const socialLinks = useSocialLinks();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isChangingPassword, setIsChangingPassword] = useState(false);
+
   const [dataLoaded, setDataLoaded] = useState(false);
   const [formInitialized, setFormInitialized] = useState(false);
   const [formData, setFormData] = useState<SettingsFormData>({
@@ -60,12 +56,7 @@ const Settings: React.FC = () => {
     emailjsPublicKey: '',
   });
   const [errors, setErrors] = useState<Partial<SettingsFormData>>({});
-  const [passwordData, setPasswordData] = useState<PasswordFormData>({
-    currentPassword: '',
-    newPassword: '',
-    confirmPassword: ''
-  });
-  const [passwordErrors, setPasswordErrors] = useState<Partial<PasswordFormData>>({});
+
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -111,15 +102,7 @@ const Settings: React.FC = () => {
     }
   };
   
-  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setPasswordData(prev => ({ ...prev, [name]: value }));
-    
-    // Clear error when user starts typing
-    if (passwordErrors[name as keyof PasswordFormData]) {
-      setPasswordErrors(prev => ({ ...prev, [name]: undefined }));
-    }
-  };
+
 
   const validateForm = (): boolean => {
     const newErrors: Partial<SettingsFormData> = {};
@@ -171,53 +154,7 @@ const Settings: React.FC = () => {
     }
   };
   
-  const validatePasswordForm = (): boolean => {
-    const newErrors: Partial<PasswordFormData> = {};
-    
-    if (!passwordData.currentPassword.trim()) {
-      newErrors.currentPassword = 'Aktualne hasło jest wymagane';
-    }
-    
-    if (!passwordData.newPassword.trim()) {
-      newErrors.newPassword = 'Nowe hasło jest wymagane';
-    } else if (passwordData.newPassword.length < 6) {
-      newErrors.newPassword = 'Hasło musi mieć co najmniej 6 znaków';
-    }
-    
-    if (!passwordData.confirmPassword.trim()) {
-      newErrors.confirmPassword = 'Potwierdzenie hasła jest wymagane';
-    } else if (passwordData.newPassword !== passwordData.confirmPassword) {
-      newErrors.confirmPassword = 'Hasła nie są identyczne';
-    }
-    
-    setPasswordErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-  
-  const handlePasswordSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (!validatePasswordForm()) {
-      return;
-    }
-    
-    setIsChangingPassword(true);
-    
-    try {
-      await changePassword(passwordData.currentPassword, passwordData.newPassword);
-      toast.success('Hasło zostało zmienione!');
-      setPasswordData({
-        currentPassword: '',
-        newPassword: '',
-        confirmPassword: ''
-      });
-    } catch (error) {
-      const errorMessage = error instanceof Error ? error.message : 'Wystąpił błąd podczas zmiany hasła';
-      toast.error(errorMessage);
-    } finally {
-      setIsChangingPassword(false);
-    }
-  };
+
 
   if (!isAuthenticated) {
     return null;
@@ -495,79 +432,7 @@ const Settings: React.FC = () => {
               </div>
             </Card>
 
-            {/* Password Change Section */}
-            <Card className="p-6">
-              <div className="flex items-center gap-3 mb-6">
-                <Lock className="w-5 h-5 text-primary" />
-                <h2 className="text-xl font-semibold dark:text-white light:text-gray-900">Zmiana hasła</h2>
-              </div>
-              
-              <form onSubmit={handlePasswordSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  <div>
-                    <label className="block text-sm font-medium dark:text-gray-300 light:text-gray-700 mb-2">
-                      Aktualne hasło *
-                    </label>
-                    <input
-                      name="currentPassword"
-                      type="password"
-                      value={passwordData.currentPassword}
-                      onChange={handlePasswordChange}
-                      className="w-full px-4 py-3 dark:bg-white/5 light:bg-white dark:border-white/10 light:border-gray-300 border rounded-lg dark:text-white light:text-gray-900 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
-                      placeholder="Wprowadź aktualne hasło"
-                    />
-                    {passwordErrors.currentPassword && (
-                      <p className="mt-1 text-sm text-red-400">{passwordErrors.currentPassword}</p>
-                    )}
-                  </div>
-                  
-                  <div>
-                    <label className="block text-sm font-medium dark:text-gray-300 light:text-gray-700 mb-2">
-                      Nowe hasło *
-                    </label>
-                    <input
-                      name="newPassword"
-                      type="password"
-                      value={passwordData.newPassword}
-                      onChange={handlePasswordChange}
-                      className="w-full px-4 py-3 dark:bg-white/5 light:bg-white dark:border-white/10 light:border-gray-300 border rounded-lg dark:text-white light:text-gray-900 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
-                      placeholder="Wprowadź nowe hasło"
-                    />
-                    {passwordErrors.newPassword && (
-                      <p className="mt-1 text-sm text-red-400">{passwordErrors.newPassword}</p>
-                    )}
-                  </div>
-                  
-                  <div>
-                    <label className="block text-sm font-medium dark:text-gray-300 light:text-gray-700 mb-2">
-                      Potwierdź hasło *
-                    </label>
-                    <input
-                      name="confirmPassword"
-                      type="password"
-                      value={passwordData.confirmPassword}
-                      onChange={handlePasswordChange}
-                      className="w-full px-4 py-3 dark:bg-white/5 light:bg-white dark:border-white/10 light:border-gray-300 border rounded-lg dark:text-white light:text-gray-900 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
-                      placeholder="Potwierdź nowe hasło"
-                    />
-                    {passwordErrors.confirmPassword && (
-                      <p className="mt-1 text-sm text-red-400">{passwordErrors.confirmPassword}</p>
-                    )}
-                  </div>
-                </div>
-                
-                <div className="flex justify-end">
-                  <Button
-                    type="submit"
-                    variant="secondary"
-                    icon={Lock}
-                    disabled={isChangingPassword}
-                  >
-                    {isChangingPassword ? 'Zmienianie...' : 'Zmień hasło'}
-                  </Button>
-                </div>
-              </form>
-            </Card>
+
 
             {/* Submit Button */}
             <div className="flex justify-end gap-4">

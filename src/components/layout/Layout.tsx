@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './Header';
 import Footer from './Footer';
+import { usePageTracking } from '../../hooks/usePageTracking';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -8,6 +9,9 @@ interface LayoutProps {
 }
 
 const Layout: React.FC<LayoutProps> = ({ children, showFooter = true }) => {
+  // Automatyczne śledzenie odwiedzin
+  usePageTracking();
+  
   return (
     <div className="min-h-screen bg-background text-slate-100 light:text-gray-900">
       <Header />
