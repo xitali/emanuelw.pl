@@ -51,8 +51,13 @@ const Header: React.FC = () => {
       <nav className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="text-2xl font-bold text-white light:text-gray-900">
-            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+          <Link to="/" className="flex items-center gap-3 group">
+            <img 
+              src="/logo-ew.svg" 
+              alt="Emanuel Włoch Logo" 
+              className="w-10 h-10 transition-transform duration-300 group-hover:scale-110"
+            />
+            <span className="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent hidden sm:block">
               Emanuel Włoch
             </span>
           </Link>
