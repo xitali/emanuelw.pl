@@ -29,7 +29,7 @@ const Button: React.FC<ButtonProps> = ({
   const baseClasses = 'inline-flex items-center justify-center font-medium rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50';
   
   const variantClasses = {
-    primary: 'bg-gradient-to-r from-primary to-secondary text-white hover:shadow-lg hover:scale-105',
+    primary: 'bg-gradient-to-r from-primary to-secondary text-white hover:shadow-lg',
     secondary: 'bg-secondary text-white hover:bg-secondary/90',
     outline: 'border border-primary text-primary hover:bg-primary hover:text-white dark:border-primary dark:text-primary light:border-primary light:text-primary light:hover:text-white',
     ghost: 'text-primary hover:bg-primary/10 dark:text-primary dark:hover:bg-primary/10 light:text-primary light:hover:bg-primary/10',
