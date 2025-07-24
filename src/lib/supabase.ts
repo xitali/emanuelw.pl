@@ -6,18 +6,34 @@ const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
 const supabaseServiceKey = '***REMOVED_JWT_TOKEN***';
 
-// Create Supabase client for public operations
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+// Create single Supabase client for public operations
+export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
+  auth: {
+    persistSession: false,
+    autoRefreshToken: false
+  }
+});
 
-// Create Supabase client for authenticated operations (admin)
-export const supabaseAdmin = createClient(supabaseUrl, supabaseServiceKey);
+// Create admin client only when needed to avoid multiple GoTrueClient instances
+let _supabaseAdmin: ReturnType<typeof createClient> | null = null;
+const getSupabaseAdmin = () => {
+  if (!_supabaseAdmin) {
+    _supabaseAdmin = createClient(supabaseUrl, supabaseServiceKey, {
+      auth: {
+        persistSession: false,
+        autoRefreshToken: false
+      }
+    });
+  }
+  return _supabaseAdmin;
+};
 
 // Function to get authenticated Supabase client
 export const getAuthenticatedSupabase = () => {
   const token = localStorage.getItem('auth_token');
   if (token) {
     // For authenticated admin operations, use service role client
-    return supabaseAdmin;
+    return getSupabaseAdmin();
   }
   return supabase;
 };

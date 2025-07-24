@@ -14,7 +14,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
 import { useAuthStore } from '../store/authStore';
-import { toast } from 'sonner';
+import { toast } from 'react-hot-toast';
 import { db } from '../lib/supabase';
 
 interface Service {
@@ -211,7 +211,7 @@ const ServiceManagement: React.FC = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="bg-white/5 border-b border-white/10 backdrop-blur-sm">
+      <header className="bg-white/5 dark:bg-white/5 light:bg-white border-b border-white/10 dark:border-white/10 light:border-gray-200 backdrop-blur-sm">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
@@ -221,8 +221,8 @@ const ServiceManagement: React.FC = () => {
                 </Button>
               </Link>
               <div>
-                <h1 className="text-2xl font-bold text-white">Zarządzanie usługami</h1>
-                <p className="text-gray-400">Dodawaj, edytuj i zarządzaj swoimi usługami</p>
+                <h1 className="text-2xl font-bold text-white dark:text-white light:text-gray-900">Zarządzanie usługami</h1>
+                <p className="text-gray-400 dark:text-gray-400 light:text-gray-600">Dodawaj, edytuj i zarządzaj swoimi usługami</p>
               </div>
             </div>
             <Button 
@@ -246,16 +246,16 @@ const ServiceManagement: React.FC = () => {
         >
           <Card className="p-6">
             <div className="relative max-w-md">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-400 light:text-gray-500 w-4 h-4" />
               <input
                 type="text"
                 placeholder="Szukaj usług..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
+                className="w-full pl-10 pr-4 py-2 bg-white/5 dark:bg-white/5 light:bg-white border border-white/10 dark:border-white/10 light:border-gray-300 rounded-lg text-white dark:text-white light:text-gray-900 placeholder-gray-400 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
               />
             </div>
-            <div className="mt-4 flex items-center gap-4 text-sm text-gray-400">
+            <div className="mt-4 flex items-center gap-4 text-sm text-gray-400 dark:text-gray-400 light:text-gray-600">
               <span>Znaleziono: {filteredServices.length} usług</span>
               <span>•</span>
               <span>Aktywne: {filteredServices.filter(s => s.active).length}</span>
@@ -271,115 +271,115 @@ const ServiceManagement: React.FC = () => {
             className="mb-8"
           >
             <Card className="p-6">
-              <h3 className="text-lg font-semibold text-white mb-4">
+              <h3 className="text-lg font-semibold text-white dark:text-white light:text-gray-900 mb-4">
                 {editingService ? 'Edytuj usługę' : 'Dodaj nową usługę'}
               </h3>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                    <label className="block text-sm font-medium text-gray-300 dark:text-gray-300 light:text-gray-700 mb-2">
                       Tytuł *
                     </label>
                     <input
                       type="text"
                       value={formData.title}
                       onChange={(e) => setFormData(prev => ({ ...prev, title: e.target.value }))}
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
+                      className="w-full px-4 py-3 bg-white/5 dark:bg-white/5 light:bg-white border border-white/10 dark:border-white/10 light:border-gray-300 rounded-lg text-white dark:text-white light:text-gray-900 placeholder-gray-400 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
                       placeholder="Nazwa usługi"
                       required
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                    <label className="block text-sm font-medium text-gray-300 dark:text-gray-300 light:text-gray-700 mb-2">
                       Ikona
                     </label>
                     <input
                       type="text"
                       value={formData.icon}
                       onChange={(e) => setFormData(prev => ({ ...prev, icon: e.target.value }))}
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
+                      className="w-full px-4 py-3 bg-white/5 dark:bg-white/5 light:bg-white border border-white/10 dark:border-white/10 light:border-gray-300 rounded-lg text-white dark:text-white light:text-gray-900 placeholder-gray-400 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
                       placeholder="Nazwa ikony Lucide (np. Code)"
                     />
                   </div>
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-gray-300 dark:text-gray-300 light:text-gray-700 mb-2">
                     Krótki opis
                   </label>
                   <input
                     type="text"
                     value={formData.short_description}
                     onChange={(e) => setFormData(prev => ({ ...prev, short_description: e.target.value }))}
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
+                    className="w-full px-4 py-3 bg-white/5 dark:bg-white/5 light:bg-white border border-white/10 dark:border-white/10 light:border-gray-300 rounded-lg text-white dark:text-white light:text-gray-900 placeholder-gray-400 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
                     placeholder="Krótki opis usługi"
                   />
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-gray-300 dark:text-gray-300 light:text-gray-700 mb-2">
                     Opis *
                   </label>
                   <textarea
                     value={formData.description}
                     onChange={(e) => setFormData(prev => ({ ...prev, description: e.target.value }))}
                     rows={4}
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 resize-none"
+                    className="w-full px-4 py-3 bg-white/5 dark:bg-white/5 light:bg-white border border-white/10 dark:border-white/10 light:border-gray-300 rounded-lg text-white dark:text-white light:text-gray-900 placeholder-gray-400 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 resize-none"
                     placeholder="Szczegółowy opis usługi"
                     required
                   />
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-gray-300 dark:text-gray-300 light:text-gray-700 mb-2">
                     Funkcje (jedna na linię)
                   </label>
                   <textarea
                     value={formData.features}
                     onChange={(e) => setFormData(prev => ({ ...prev, features: e.target.value }))}
                     rows={4}
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 resize-none"
+                    className="w-full px-4 py-3 bg-white/5 dark:bg-white/5 light:bg-white border border-white/10 dark:border-white/10 light:border-gray-300 rounded-lg text-white dark:text-white light:text-gray-900 placeholder-gray-400 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 resize-none"
                     placeholder="Responsywny design\nOptymalizacja SEO\nIntegracja z API"
                   />
                 </div>
                 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                    <label className="block text-sm font-medium text-gray-300 dark:text-gray-300 light:text-gray-700 mb-2">
                       Cena od
                     </label>
                     <input
                       type="number"
                       value={formData.price_from}
                       onChange={(e) => setFormData(prev => ({ ...prev, price_from: e.target.value }))}
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
+                      className="w-full px-4 py-3 bg-white/5 dark:bg-white/5 light:bg-white border border-white/10 dark:border-white/10 light:border-gray-300 rounded-lg text-white dark:text-white light:text-gray-900 placeholder-gray-400 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
                       placeholder="1000"
                       min="0"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                    <label className="block text-sm font-medium text-gray-300 dark:text-gray-300 light:text-gray-700 mb-2">
                       Waluta
                     </label>
                     <select
                       value={formData.price_currency}
                       onChange={(e) => setFormData(prev => ({ ...prev, price_currency: e.target.value }))}
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
+                      className="w-full px-4 py-3 bg-white/5 dark:bg-white/5 light:bg-white border border-white/10 dark:border-white/10 light:border-gray-300 rounded-lg text-white dark:text-white light:text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
                     >
-                      <option value="PLN" className="bg-gray-800">PLN</option>
-                      <option value="EUR" className="bg-gray-800">EUR</option>
-                      <option value="USD" className="bg-gray-800">USD</option>
+                      <option value="PLN" className="bg-gray-800 dark:bg-gray-800 light:bg-white">PLN</option>
+                      <option value="EUR" className="bg-gray-800 dark:bg-gray-800 light:bg-white">EUR</option>
+                      <option value="USD" className="bg-gray-800 dark:bg-gray-800 light:bg-white">USD</option>
                     </select>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                    <label className="block text-sm font-medium text-gray-300 dark:text-gray-300 light:text-gray-700 mb-2">
                       Kolejność
                     </label>
                     <input
                       type="number"
                       value={formData.order_index}
                       onChange={(e) => setFormData(prev => ({ ...prev, order_index: e.target.value }))}
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
+                      className="w-full px-4 py-3 bg-white/5 dark:bg-white/5 light:bg-white border border-white/10 dark:border-white/10 light:border-gray-300 rounded-lg text-white dark:text-white light:text-gray-900 placeholder-gray-400 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
                       placeholder="0"
                       min="0"
                     />
@@ -394,7 +394,7 @@ const ServiceManagement: React.FC = () => {
                       onChange={(e) => setFormData(prev => ({ ...prev, active: e.target.checked }))}
                       className="w-4 h-4 text-primary bg-white/5 border-white/10 rounded focus:ring-primary/50 focus:ring-2"
                     />
-                    <span className="text-white">Usługa aktywna</span>
+                    <span className="text-white dark:text-white light:text-gray-900">Usługa aktywna</span>
                   </label>
                 </div>
                 
@@ -422,7 +422,7 @@ const ServiceManagement: React.FC = () => {
         {/* Services List */}
         {loading ? (
           <div className="flex items-center justify-center py-12">
-            <div className="text-white">Ładowanie usług...</div>
+            <div className="text-white dark:text-white light:text-gray-900">Ładowanie usług...</div>
           </div>
         ) : filteredServices.length === 0 ? (
           <motion.div
@@ -431,7 +431,7 @@ const ServiceManagement: React.FC = () => {
             className="text-center py-12"
           >
             <Card className="p-12">
-              <div className="text-gray-400 mb-4">
+              <div className="text-gray-400 dark:text-gray-400 light:text-gray-600 mb-4">
                 {searchTerm 
                   ? 'Nie znaleziono usług spełniających kryteria'
                   : 'Brak usług'

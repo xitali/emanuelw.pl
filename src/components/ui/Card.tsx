@@ -19,7 +19,7 @@ const Card: React.FC<CardProps> = ({
   onClick,
 }) => {
   const baseClasses = 'rounded-xl overflow-hidden transition-all duration-300';
-  const glassClasses = glass || variant === 'glass' ? 'glass' : 'bg-white/5 border border-white/10';
+  const glassClasses = glass || variant === 'glass' ? 'glass' : 'card-bg';
   const hoverClasses = hover ? 'hover:shadow-2xl hover:scale-105' : '';
   const clickableClasses = onClick ? 'cursor-pointer' : '';
   

@@ -12,7 +12,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
 import { useAuthStore } from '../store/authStore';
-import { toast } from 'sonner';
+import { toast } from 'react-hot-toast';
 import { db } from '../lib/supabase';
 
 interface AdminUser {
@@ -111,7 +111,7 @@ const UserManagement: React.FC = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="bg-white/5 border-b border-white/10 backdrop-blur-sm">
+      <header className="dark:bg-white/5 light:bg-gray-100 dark:border-white/10 light:border-gray-200 border-b backdrop-blur-sm">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
@@ -121,8 +121,8 @@ const UserManagement: React.FC = () => {
                 </Button>
               </Link>
               <div>
-                <h1 className="text-2xl font-bold text-white">Zarządzanie użytkownikami</h1>
-                <p className="text-gray-400">Dodawaj, edytuj i zarządzaj użytkownikami administratora</p>
+                <h1 className="text-2xl font-bold dark:text-white light:text-gray-900">Zarządzanie użytkownikami</h1>
+                <p className="dark:text-gray-400 light:text-gray-600">Dodawaj, edytuj i zarządzaj użytkownikami administratora</p>
               </div>
             </div>
             <Button 
@@ -152,10 +152,10 @@ const UserManagement: React.FC = () => {
                 placeholder="Szukaj użytkowników..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
+                className="w-full pl-10 pr-4 py-2 dark:bg-white/5 light:bg-white dark:border-white/10 light:border-gray-300 border rounded-lg dark:text-white light:text-gray-900 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
               />
             </div>
-            <div className="mt-4 text-sm text-gray-400">
+            <div className="mt-4 text-sm dark:text-gray-400 light:text-gray-600">
               Znaleziono: {filteredUsers.length} użytkowników
             </div>
           </Card>
@@ -169,31 +169,31 @@ const UserManagement: React.FC = () => {
             className="mb-8"
           >
             <Card className="p-6">
-              <h3 className="text-lg font-semibold text-white mb-4">Dodaj nowego użytkownika</h3>
+              <h3 className="text-lg font-semibold dark:text-white light:text-gray-900 mb-4">Dodaj nowego użytkownika</h3>
               <form onSubmit={handleAddUser} className="space-y-4">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                    <label className="block text-sm font-medium dark:text-gray-300 light:text-gray-700 mb-2">
                       Email *
                     </label>
                     <input
                       type="email"
                       value={newUser.email}
                       onChange={(e) => setNewUser(prev => ({ ...prev, email: e.target.value }))}
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
+                      className="w-full px-4 py-3 dark:bg-white/5 light:bg-white dark:border-white/10 light:border-gray-300 border rounded-lg dark:text-white light:text-gray-900 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
                       placeholder="email@example.com"
                       required
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                    <label className="block text-sm font-medium dark:text-gray-300 light:text-gray-700 mb-2">
                       Hasło *
                     </label>
                     <input
                       type="password"
                       value={newUser.password}
                       onChange={(e) => setNewUser(prev => ({ ...prev, password: e.target.value }))}
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
+                      className="w-full px-4 py-3 dark:bg-white/5 light:bg-white dark:border-white/10 light:border-gray-300 border rounded-lg dark:text-white light:text-gray-900 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
                       placeholder="Wprowadź hasło"
                       required
                     />
@@ -226,7 +226,7 @@ const UserManagement: React.FC = () => {
         {/* Users List */}
         {loading ? (
           <div className="flex items-center justify-center py-12">
-            <div className="text-white">Ładowanie użytkowników...</div>
+            <div className="dark:text-white light:text-gray-900">Ładowanie użytkowników...</div>
           </div>
         ) : filteredUsers.length === 0 ? (
           <motion.div
@@ -235,7 +235,7 @@ const UserManagement: React.FC = () => {
             className="text-center py-12"
           >
             <Card className="p-12">
-              <div className="text-gray-400 mb-4">
+              <div className="dark:text-gray-400 light:text-gray-600 mb-4">
                 {searchTerm 
                   ? 'Nie znaleziono użytkowników spełniających kryteria'
                   : 'Brak użytkowników'
@@ -271,8 +271,8 @@ const UserManagement: React.FC = () => {
                         <User className="w-6 h-6 text-primary" />
                       </div>
                       <div>
-                        <h3 className="text-lg font-semibold text-white">{user.email}</h3>
-                        <p className="text-sm text-gray-400">
+                        <h3 className="text-lg font-semibold dark:text-white light:text-gray-900">{user.email}</h3>
+                        <p className="text-sm dark:text-gray-400 light:text-gray-600">
                           Utworzony: {new Date(user.created_at).toLocaleDateString('pl-PL')}
                         </p>
                       </div>

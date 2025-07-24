@@ -62,10 +62,10 @@ const Portfolio: React.FC = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h1 className="text-4xl md:text-6xl font-bold mb-6">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 text-white light:text-gray-900">
             Moje <span className="text-primary">Portfolio</span>
           </h1>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-400 light:text-gray-600 max-w-3xl mx-auto">
             Kolekcja projektów, które stworzyłem używając najnowszych technologii
           </p>
         </motion.div>
@@ -80,13 +80,13 @@ const Portfolio: React.FC = () => {
           <div className="flex flex-col lg:flex-row gap-6 items-center justify-between">
             {/* Search */}
             <div className="relative w-full lg:w-96">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 light:text-gray-500 w-5 h-5" />
               <input
                 type="text"
                 placeholder="Szukaj projektów..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
+                className="w-full pl-10 pr-4 py-3 bg-input border-custom rounded-lg text-white light:text-gray-900 placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
               />
             </div>
             
@@ -99,7 +99,7 @@ const Portfolio: React.FC = () => {
                   className={`px-4 py-2 rounded-lg font-medium transition-all duration-300 ${
                     selectedCategory === category.value
                       ? 'bg-primary text-white'
-                      : 'bg-white/5 text-gray-400 hover:bg-white/10 hover:text-white'
+                      : 'card-bg text-gray-400 light:text-gray-600 hover:bg-white/10 light:hover:bg-gray-200 hover:text-white light:hover:text-gray-900'
                   }`}
                 >
                   {category.label}
@@ -121,8 +121,8 @@ const Portfolio: React.FC = () => {
             className="text-center py-20"
           >
             <div className="text-6xl mb-4">🔍</div>
-            <h3 className="text-2xl font-semibold mb-2 text-white">Brak projektów</h3>
-            <p className="text-gray-400">Nie znaleziono projektów spełniających kryteria wyszukiwania.</p>
+            <h3 className="text-2xl font-semibold mb-2 text-white light:text-gray-900">Brak projektów</h3>
+            <p className="text-gray-400 light:text-gray-600">Nie znaleziono projektów spełniających kryteria wyszukiwania.</p>
           </motion.div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -173,7 +173,7 @@ const Portfolio: React.FC = () => {
                   <div className="p-6">
                     <div className="flex items-start justify-between mb-2">
                       <div>
-                        <h3 className="text-xl font-semibold text-white mb-1">{project.title}</h3>
+                        <h3 className="text-xl font-semibold text-white light:text-gray-900 mb-1">{project.title}</h3>
                         {project.project_type && (
                           <span className="text-sm text-primary font-medium">{project.project_type}</span>
                         )}
@@ -194,7 +194,7 @@ const Portfolio: React.FC = () => {
                       </div>
                     </div>
                     
-                    <p className="text-gray-400 mb-4 line-clamp-3">
+                    <p className="text-gray-400 light:text-gray-600 mb-4 line-clamp-3">
                       {project.short_description}
                     </p>
                     
@@ -219,7 +219,7 @@ const Portfolio: React.FC = () => {
                             </span>
                           ))}
                           {(project.frontend_technologies.length + (project.backend_technologies?.length || 0)) > 5 && (
-                            <span className="px-2 py-1 bg-gray-600 text-gray-300 text-sm rounded">
+                            <span className="px-2 py-1 bg-gray-600 light:bg-gray-200 text-gray-300 light:text-gray-700 text-sm rounded">
                               +{(project.frontend_technologies.length + (project.backend_technologies?.length || 0)) - 5}
                             </span>
                           )}
@@ -235,7 +235,7 @@ const Portfolio: React.FC = () => {
                             </span>
                           ))}
                           {project.technologies && project.technologies.length > 3 && (
-                            <span className="px-2 py-1 bg-gray-600 text-gray-300 text-sm rounded">
+                            <span className="px-2 py-1 bg-gray-600 light:bg-gray-200 text-gray-300 light:text-gray-700 text-sm rounded">
                               +{project.technologies.length - 3}
                             </span>
                           )}
@@ -322,24 +322,24 @@ const Portfolio: React.FC = () => {
                   </span>
                 )}
                 {selectedProject.completion_date && (
-                  <span className="text-sm text-gray-400 flex items-center gap-1">
+                  <span className="text-sm text-gray-400 light:text-gray-600 flex items-center gap-1">
                     <Calendar className="w-4 h-4" />
                     {new Date(selectedProject.completion_date).toLocaleDateString('pl-PL')}
                   </span>
                 )}
               </div>
               
-              <p className="text-gray-300 text-lg leading-relaxed mb-6">
+              <p className="text-gray-300 light:text-gray-700 text-lg leading-relaxed mb-6">
                 {selectedProject.detailed_description || selectedProject.short_description}
               </p>
               
               {/* Key Features */}
               {selectedProject.key_features && selectedProject.key_features.length > 0 && (
                 <div className="mb-6">
-                  <h4 className="text-lg font-semibold text-white mb-3">Kluczowe funkcje:</h4>
+                  <h4 className="text-lg font-semibold text-white light:text-gray-900 mb-3">Kluczowe funkcje:</h4>
                   <ul className="space-y-2">
                     {selectedProject.key_features.map((feature, index) => (
-                      <li key={index} className="text-gray-300 flex items-start gap-2">
+                      <li key={index} className="text-gray-300 light:text-gray-700 flex items-start gap-2">
                         <span className="text-primary mt-1">•</span>
                         {feature}
                       </li>
@@ -350,11 +350,11 @@ const Portfolio: React.FC = () => {
               
               {/* Technologies */}
               <div className="mb-6">
-                <h4 className="text-lg font-semibold text-white mb-3">Stack technologiczny:</h4>
+                <h4 className="text-lg font-semibold text-white light:text-gray-900 mb-3">Stack technologiczny:</h4>
                 <div className="space-y-3">
                   {selectedProject.frontend_technologies && selectedProject.frontend_technologies.length > 0 && (
                     <div>
-                      <span className="text-sm text-gray-400 mb-2 block">Frontend:</span>
+                      <span className="text-sm text-gray-400 light:text-gray-600 mb-2 block">Frontend:</span>
                       <div className="flex flex-wrap gap-2">
                         {selectedProject.frontend_technologies.map((tech) => (
                           <span key={tech} className="px-3 py-1 bg-primary/20 text-primary rounded-lg">
@@ -366,7 +366,7 @@ const Portfolio: React.FC = () => {
                   )}
                   {selectedProject.backend_technologies && selectedProject.backend_technologies.length > 0 && (
                     <div>
-                      <span className="text-sm text-gray-400 mb-2 block">Backend:</span>
+                      <span className="text-sm text-gray-400 light:text-gray-600 mb-2 block">Backend:</span>
                       <div className="flex flex-wrap gap-2">
                         {selectedProject.backend_technologies.map((tech) => (
                           <span key={tech} className="px-3 py-1 bg-secondary/20 text-secondary rounded-lg">

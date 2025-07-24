@@ -107,8 +107,8 @@ const Contact: React.FC = () => {
           className="text-center"
         >
           <CheckCircle className="w-20 h-20 text-green-500 mx-auto mb-6" />
-          <h2 className="text-3xl font-bold text-white mb-4">Dziękuję za wiadomość!</h2>
-          <p className="text-gray-400 mb-8">Odpowiem tak szybko, jak to możliwe.</p>
+          <h2 className="text-3xl font-bold text-white dark:text-white light:text-gray-900 mb-4">Dziękuję za wiadomość!</h2>
+          <p className="text-gray-400 dark:text-gray-400 light:text-gray-600 mb-8">Odpowiem tak szybko, jak to możliwe.</p>
           <Button
             variant="primary"
             onClick={() => setIsSubmitted(false)}
@@ -133,7 +133,7 @@ const Contact: React.FC = () => {
           <h1 className="text-4xl md:text-6xl font-bold mb-6">
             Skontaktuj się <span className="text-primary">ze mną</span>
           </h1>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-400 dark:text-gray-400 light:text-gray-600 max-w-3xl mx-auto">
             Masz projekt do zrealizowania? Chcesz porozmawiać o współpracy? Napisz do mnie!
           </p>
         </motion.div>
@@ -147,8 +147,8 @@ const Contact: React.FC = () => {
             className="space-y-8"
           >
             <div>
-              <h2 className="text-3xl font-bold text-white mb-6">Informacje kontaktowe</h2>
-              <p className="text-gray-400 text-lg mb-8">
+              <h2 className="text-3xl font-bold text-white dark:text-white light:text-gray-900 mb-6">Informacje kontaktowe</h2>
+              <p className="text-gray-400 dark:text-gray-400 light:text-gray-600 text-lg mb-8">
                 Jestem otwarty na nowe możliwości i ciekawe projekty. Skontaktuj się ze mną, 
                 a omówimy szczegóły współpracy.
               </p>
@@ -168,16 +168,16 @@ const Contact: React.FC = () => {
                         <info.icon className="w-6 h-6 text-primary" />
                       </div>
                       <div>
-                        <h3 className="text-lg font-semibold text-white">{info.title}</h3>
+                        <h3 className="text-lg font-semibold text-white dark:text-white light:text-gray-900">{info.title}</h3>
                         {info.href ? (
                           <a
                             href={info.href}
-                            className="text-gray-400 hover:text-primary transition-colors"
+                            className="text-gray-400 dark:text-gray-400 light:text-gray-600 hover:text-primary transition-colors"
                           >
                             {info.value}
                           </a>
                         ) : (
-                          <p className="text-gray-400">{info.value}</p>
+                          <p className="text-gray-400 dark:text-gray-400 light:text-gray-600">{info.value}</p>
                         )}
                       </div>
                     </div>
@@ -193,7 +193,7 @@ const Contact: React.FC = () => {
               transition={{ duration: 0.5, delay: 0.6 }}
               className="pt-8"
             >
-              <h3 className="text-xl font-semibold text-white mb-4">Znajdź mnie również na:</h3>
+              <h3 className="text-xl font-semibold text-white dark:text-white light:text-gray-900 mb-4">Znajdź mnie również na:</h3>
               <div className="flex space-x-4">
                 {[
                   { name: 'GitHub', href: socialLinks.github || 'https://github.com/emanuelw' },
@@ -206,7 +206,7 @@ const Contact: React.FC = () => {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="px-4 py-2 bg-white/5 hover:bg-primary/20 text-gray-400 hover:text-primary rounded-lg transition-all duration-300"
+                    className="px-4 py-2 bg-white/5 dark:bg-white/5 light:bg-gray-100 hover:bg-primary/20 text-gray-400 dark:text-gray-400 light:text-gray-600 hover:text-primary rounded-lg transition-all duration-300"
                   >
                     {social.name}
                   </a>
@@ -222,12 +222,12 @@ const Contact: React.FC = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             <Card className="p-8">
-              <h2 className="text-2xl font-bold text-white mb-6">Wyślij wiadomość</h2>
+              <h2 className="text-2xl font-bold text-white dark:text-white light:text-gray-900 mb-6">Wyślij wiadomość</h2>
               
               <form onSubmit={handleSubmit} className="space-y-6">
                 {/* Name Field */}
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-300 dark:text-gray-300 light:text-gray-700 mb-2">
                     Imię i nazwisko *
                   </label>
                   <input
@@ -236,10 +236,10 @@ const Contact: React.FC = () => {
                     name="name"
                     value={formData.name}
                     onChange={handleInputChange}
-                    className={`w-full px-4 py-3 bg-white/5 border rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 transition-all duration-300 ${
+                    className={`w-full px-4 py-3 bg-white/5 dark:bg-white/5 light:bg-gray-50 border rounded-lg text-white dark:text-white light:text-gray-900 placeholder-gray-400 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 transition-all duration-300 ${
                       errors.name
                         ? 'border-red-500 focus:ring-red-500/50'
-                        : 'border-white/10 focus:ring-primary/50 focus:border-primary/50'
+                        : 'border-white/10 dark:border-white/10 light:border-gray-300 focus:ring-primary/50 focus:border-primary/50'
                     }`}
                     placeholder="Twoje imię i nazwisko"
                   />
@@ -250,7 +250,7 @@ const Contact: React.FC = () => {
                 
                 {/* Email Field */}
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-300 dark:text-gray-300 light:text-gray-700 mb-2">
                     Email *
                   </label>
                   <input
@@ -259,10 +259,10 @@ const Contact: React.FC = () => {
                     name="email"
                     value={formData.email}
                     onChange={handleInputChange}
-                    className={`w-full px-4 py-3 bg-white/5 border rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 transition-all duration-300 ${
+                    className={`w-full px-4 py-3 bg-white/5 dark:bg-white/5 light:bg-gray-50 border rounded-lg text-white dark:text-white light:text-gray-900 placeholder-gray-400 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 transition-all duration-300 ${
                       errors.email
                         ? 'border-red-500 focus:ring-red-500/50'
-                        : 'border-white/10 focus:ring-primary/50 focus:border-primary/50'
+                        : 'border-white/10 dark:border-white/10 light:border-gray-300 focus:ring-primary/50 focus:border-primary/50'
                     }`}
                     placeholder="twoj@email.com"
                   />
@@ -273,7 +273,7 @@ const Contact: React.FC = () => {
                 
                 {/* Subject Field */}
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-medium text-gray-300 mb-2">
+                  <label htmlFor="subject" className="block text-sm font-medium text-gray-300 dark:text-gray-300 light:text-gray-700 mb-2">
                     Temat *
                   </label>
                   <input
@@ -282,10 +282,10 @@ const Contact: React.FC = () => {
                     name="subject"
                     value={formData.subject}
                     onChange={handleInputChange}
-                    className={`w-full px-4 py-3 bg-white/5 border rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 transition-all duration-300 ${
+                    className={`w-full px-4 py-3 bg-white/5 dark:bg-white/5 light:bg-gray-50 border rounded-lg text-white dark:text-white light:text-gray-900 placeholder-gray-400 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 transition-all duration-300 ${
                       errors.subject
                         ? 'border-red-500 focus:ring-red-500/50'
-                        : 'border-white/10 focus:ring-primary/50 focus:border-primary/50'
+                        : 'border-white/10 dark:border-white/10 light:border-gray-300 focus:ring-primary/50 focus:border-primary/50'
                     }`}
                     placeholder="Temat wiadomości"
                   />
@@ -296,7 +296,7 @@ const Contact: React.FC = () => {
                 
                 {/* Message Field */}
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
+                  <label htmlFor="message" className="block text-sm font-medium text-gray-300 dark:text-gray-300 light:text-gray-700 mb-2">
                     Wiadomość *
                   </label>
                   <textarea
@@ -305,7 +305,7 @@ const Contact: React.FC = () => {
                     rows={6}
                     value={formData.message}
                     onChange={handleInputChange}
-                    className={`w-full px-4 py-3 bg-white/5 border rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 transition-all duration-300 resize-none ${
+                    className={`w-full px-4 py-3 bg-white/5 dark:bg-white/5 light:bg-gray-50 border rounded-lg text-white dark:text-white light:text-gray-900 placeholder-gray-400 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 transition-all duration-300 resize-none ${
                       errors.message
                         ? 'border-red-500 focus:ring-red-500/50'
                         : 'border-white/10 focus:ring-primary/50 focus:border-primary/50'

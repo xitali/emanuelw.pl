@@ -9,7 +9,7 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children, showFooter = true }) => {
   return (
-    <div className="min-h-screen bg-background text-text">
+    <div className="min-h-screen bg-background text-slate-100 light:text-gray-900">
       <Header />
       <main className="pt-20">
         {children}

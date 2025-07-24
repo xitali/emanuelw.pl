@@ -55,7 +55,7 @@ const Footer: React.FC = () => {
   ];
 
   return (
-    <footer className="bg-background border-t border-white/10">
+    <footer className="bg-background border-t border-white/10 light:border-gray-200">
       <div className="container mx-auto px-6 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Brand */}
@@ -70,7 +70,7 @@ const Footer: React.FC = () => {
                 Emanuel Włoch
               </span>
             </h3>
-            <p className="text-gray-400 max-w-md">
+            <p className="text-gray-400 light:text-gray-600 max-w-md">
               Tworzę nowoczesne strony internetowe i aplikacje desktopowe z czystym kodem i dbałością o szczegóły.
             </p>
             <div className="flex space-x-4">
@@ -80,7 +80,7 @@ const Footer: React.FC = () => {
                   href={link.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`p-2 text-gray-400 transition-colors rounded-lg hover:bg-white/10 ${link.color}`}
+                  className={`p-2 text-gray-400 light:text-gray-600 transition-colors rounded-lg hover:bg-white/10 light:hover:bg-gray-100 ${link.color}`}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
                 >
@@ -98,13 +98,13 @@ const Footer: React.FC = () => {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="space-y-4"
           >
-            <h4 className="text-lg font-semibold text-white">Szybkie linki</h4>
+            <h4 className="text-lg font-semibold text-white light:text-gray-900">Szybkie linki</h4>
             <ul className="space-y-2">
               {quickLinks.map((link) => (
                 <li key={link.name}>
                   <Link
                     to={link.href}
-                    className="text-gray-400 hover:text-white transition-colors"
+                    className="text-gray-400 light:text-gray-600 hover:text-white light:hover:text-gray-900 transition-colors"
                   >
                     {link.name}
                   </Link>
@@ -120,8 +120,8 @@ const Footer: React.FC = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="space-y-4"
           >
-            <h4 className="text-lg font-semibold text-white">Kontakt</h4>
-            <div className="space-y-2 text-gray-400">
+            <h4 className="text-lg font-semibold text-white light:text-gray-900">Kontakt</h4>
+            <div className="space-y-2 text-gray-400 light:text-gray-600">
               <p>Email: {personalInfo.email || 'contact@emanuelw.pl'}</p>
               <p>Telefon: {personalInfo.phone || '+48 123 456 789'}</p>
               <p>Lokalizacja: {personalInfo.address || 'Polska'}</p>
@@ -135,12 +135,12 @@ const Footer: React.FC = () => {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between"
+          className="mt-12 pt-8 border-t border-white/10 light:border-gray-200 flex flex-col md:flex-row items-center justify-between"
         >
-          <p className="text-gray-400 text-sm">
+          <p className="text-gray-400 light:text-gray-600 text-sm">
             © {new Date().getFullYear()} Emanuel Włoch. Wszystkie prawa zastrzeżone.
           </p>
-          <p className="text-gray-400 text-sm flex items-center mt-4 md:mt-0">
+          <p className="text-gray-400 light:text-gray-600 text-sm flex items-center mt-4 md:mt-0">
             Stworzone z <Heart className="w-4 h-4 mx-1 text-red-500" /> używając React & TypeScript
           </p>
         </motion.div>

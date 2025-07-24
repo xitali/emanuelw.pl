@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Toaster } from 'sonner';
+import { Toaster } from 'react-hot-toast';
 import Layout from './components/layout/Layout';
 import Home from './pages/Home';
 import About from './pages/About';
@@ -55,9 +55,10 @@ function App() {
       </Layout>
       <Toaster 
         position="top-right"
-        theme="dark"
-        richColors
-        closeButton
+        toastOptions={{
+          duration: 4000,
+          className: 'dark:bg-slate-800 dark:text-white light:bg-white light:text-gray-900 light:border light:border-gray-200',
+        }}
       />
     </Router>
   );

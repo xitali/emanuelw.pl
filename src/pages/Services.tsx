@@ -1,11 +1,9 @@
 import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Globe, Smartphone, Code, Palette, Zap, Shield, Users, Headphones, Star, CheckCircle } from 'lucide-react';
-import Card from '../components/ui/Card';
-import Button from '../components/ui/Button';
+import { Card, Button, LoadingSpinner } from '../components/ui';
 import { Link } from 'react-router-dom';
 import { useServicesStore } from '../store/servicesStore';
-import LoadingSpinner from '../components/ui/LoadingSpinner';
 
 const Services: React.FC = () => {
   const { services, loading, error, fetchActiveServices } = useServicesStore();
@@ -54,8 +52,8 @@ const Services: React.FC = () => {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
-          <h2 className="text-2xl font-bold text-white mb-4">Błąd podczas ładowania usług</h2>
-          <p className="text-gray-400 mb-6">{error}</p>
+          <h2 className="text-2xl font-bold text-white dark:text-white light:text-gray-900 mb-4">Błąd podczas ładowania usług</h2>
+          <p className="text-gray-400 dark:text-gray-400 light:text-gray-600 mb-6">{error}</p>
           <Button onClick={() => fetchActiveServices()} variant="primary">
             Spróbuj ponownie
           </Button>
@@ -106,7 +104,7 @@ const Services: React.FC = () => {
               Usługi
             </span>
           </h1>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-400 dark:text-gray-400 light:text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Oferuję kompleksowe usługi w zakresie tworzenia nowoczesnych aplikacji 
             webowych i desktopowych dostosowanych do Twoich potrzeb.
           </p>
@@ -121,7 +119,7 @@ const Services: React.FC = () => {
         >
           {services.length === 0 ? (
             <div className="col-span-full text-center py-12">
-              <p className="text-gray-400 text-lg">Brak dostępnych usług</p>
+              <p className="text-gray-400 dark:text-gray-400 light:text-gray-600 text-lg">Brak dostępnych usług</p>
             </div>
           ) : (
             services.map((service, index) => {
@@ -144,18 +142,18 @@ const Services: React.FC = () => {
                         <IconComponent className="w-6 h-6 text-white" />
                       </div>
                       <div>
-                        <h3 className="text-xl font-semibold text-white">{service.title}</h3>
+                        <h3 className="text-xl font-semibold text-white dark:text-white light:text-gray-900">{service.title}</h3>
                         <p className={`text-sm font-medium ${style.color}`}>{priceText}</p>
                       </div>
                     </div>
                     
-                    <p className="text-gray-400 mb-4">{service.short_description}</p>
-                    <p className="text-gray-300 text-sm mb-6">{service.description}</p>
+                    <p className="text-gray-400 dark:text-gray-400 light:text-gray-600 mb-4">{service.short_description}</p>
+                    <p className="text-gray-300 dark:text-gray-300 light:text-gray-700 text-sm mb-6">{service.description}</p>
                     
                     {service.features && service.features.length > 0 && (
                       <ul className="space-y-2 mb-6">
                         {service.features.map((feature, featureIndex) => (
-                          <li key={featureIndex} className="flex items-center text-sm text-gray-300">
+                          <li key={featureIndex} className="flex items-center text-sm text-gray-300 dark:text-gray-300 light:text-gray-700">
                             <div className="w-1.5 h-1.5 bg-primary rounded-full mr-3" />
                             {feature}
                           </li>
@@ -185,7 +183,7 @@ const Services: React.FC = () => {
           transition={{ duration: 0.6, delay: 0.8 }}
           className="mb-20"
         >
-          <h2 className="text-3xl font-bold text-center text-white mb-12">
+          <h2 className="text-3xl font-bold text-center text-white dark:text-white light:text-gray-900 mb-12">
             Proces współpracy
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -206,8 +204,8 @@ const Services: React.FC = () => {
                     <step.icon className="w-8 h-8 text-white" />
                   </div>
                   <div className="text-2xl font-bold text-primary mb-2">{step.step}</div>
-                  <h3 className="text-lg font-semibold text-white mb-2">{step.title}</h3>
-                  <p className="text-gray-400 text-sm">{step.description}</p>
+                  <h3 className="text-lg font-semibold text-white dark:text-white light:text-gray-900 mb-2">{step.title}</h3>
+                  <p className="text-gray-400 dark:text-gray-400 light:text-gray-600 text-sm">{step.description}</p>
                 </div>
               </motion.div>
             ))}
@@ -221,10 +219,10 @@ const Services: React.FC = () => {
           transition={{ duration: 0.6, delay: 1.2 }}
           className="text-center glass p-12 rounded-xl"
         >
-          <h2 className="text-3xl font-bold text-white mb-4">
+          <h2 className="text-3xl font-bold text-white dark:text-white light:text-gray-900 mb-4">
             Gotowy na rozpoczęcie projektu?
           </h2>
-          <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
+          <p className="text-gray-400 dark:text-gray-400 light:text-gray-600 mb-8 max-w-2xl mx-auto">
             Skontaktuj się ze mną, aby omówić szczegóły Twojego projektu. 
             Oferuję bezpłatną konsultację i wycenę.
           </p>

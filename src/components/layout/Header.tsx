@@ -51,7 +51,7 @@ const Header: React.FC = () => {
       <nav className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link to="/" className="text-2xl font-bold text-white">
+          <Link to="/" className="text-2xl font-bold text-white light:text-gray-900">
             <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
               Emanuel Włoch
             </span>
@@ -68,7 +68,7 @@ const Header: React.FC = () => {
                   className={`relative px-3 py-2 text-sm font-medium transition-colors duration-200 ${
                     isActive
                       ? 'text-primary'
-                      : 'text-gray-300 hover:text-white'
+                      : 'text-gray-300 light:text-gray-600 hover:text-white light:hover:text-gray-900'
                   }`}
                 >
                   {item.label}
@@ -86,7 +86,7 @@ const Header: React.FC = () => {
             
             {/* Admin Navigation */}
             {isAuthenticated && (
-              <div className="flex items-center space-x-6 ml-6 pl-6 border-l border-white/20">
+              <div className="flex items-center space-x-6 ml-6 pl-6 border-l border-white/20 light:border-gray-300">
                 {adminItems.map((item) => {
                   const isActive = location.pathname === item.path;
                   return (
@@ -96,7 +96,7 @@ const Header: React.FC = () => {
                       className={`relative px-3 py-2 text-sm font-medium transition-colors duration-200 ${
                         isActive
                           ? 'text-secondary'
-                          : 'text-gray-400 hover:text-white'
+                          : 'text-gray-400 light:text-gray-500 hover:text-white light:hover:text-gray-900'
                       }`}
                     >
                       {item.label}
@@ -125,12 +125,12 @@ const Header: React.FC = () => {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="md:hidden p-2 rounded-lg hover:bg-white/10 transition-colors"
+              className="md:hidden p-2 rounded-lg hover:bg-white/10 light:hover:bg-gray-100 transition-colors"
             >
               {isMobileMenuOpen ? (
-                <X className="w-6 h-6 text-white" />
+                <X className="w-6 h-6 text-white light:text-gray-900" />
               ) : (
-                <Menu className="w-6 h-6 text-white" />
+                <Menu className="w-6 h-6 text-white light:text-gray-900" />
               )}
             </button>
           </div>

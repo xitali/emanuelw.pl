@@ -72,7 +72,7 @@ const ProjectManagement: React.FC = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="bg-white/5 border-b border-white/10 backdrop-blur-sm">
+      <header className="bg-white/5 dark:bg-white/5 light:bg-white border-b border-white/10 dark:border-white/10 light:border-gray-200 backdrop-blur-sm">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
@@ -82,8 +82,8 @@ const ProjectManagement: React.FC = () => {
                 </Button>
               </Link>
               <div>
-                <h1 className="text-2xl font-bold text-white">Zarządzanie projektami</h1>
-                <p className="text-gray-400">Dodawaj, edytuj i zarządzaj swoimi projektami</p>
+                <h1 className="text-2xl font-bold text-white dark:text-white light:text-gray-900">Zarządzanie projektami</h1>
+                <p className="text-gray-400 dark:text-gray-400 light:text-gray-600">Dodawaj, edytuj i zarządzaj swoimi projektami</p>
               </div>
             </div>
             <Link to="/admin/projects/new">
@@ -108,13 +108,13 @@ const ProjectManagement: React.FC = () => {
               <div className="flex flex-col sm:flex-row gap-4 flex-1">
                 {/* Search */}
                 <div className="relative flex-1 max-w-md">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-400 light:text-gray-500 w-4 h-4" />
                   <input
                     type="text"
                     placeholder="Szukaj projektów..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-full pl-10 pr-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
+                    className="w-full pl-10 pr-4 py-2 bg-white/5 dark:bg-white/5 light:bg-white border border-white/10 dark:border-white/10 light:border-gray-300 rounded-lg text-white dark:text-white light:text-gray-900 placeholder-gray-400 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
                   />
                 </div>
 
@@ -122,10 +122,10 @@ const ProjectManagement: React.FC = () => {
                 <select
                   value={selectedCategory}
                   onChange={(e) => setSelectedCategory(e.target.value as ProjectCategory | 'all')}
-                  className="px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
+                  className="px-4 py-2 bg-white/5 dark:bg-white/5 light:bg-white border border-white/10 dark:border-white/10 light:border-gray-300 rounded-lg text-white dark:text-white light:text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
                 >
                   {categories.map(category => (
-                    <option key={category} value={category} className="bg-gray-800">
+                    <option key={category} value={category} className="bg-gray-800 dark:bg-gray-800 light:bg-white">
                       {categoryLabels[category]}
                     </option>
                   ))}
@@ -153,7 +153,7 @@ const ProjectManagement: React.FC = () => {
               </div>
             </div>
 
-            <div className="mt-4 flex items-center gap-4 text-sm text-gray-400">
+            <div className="mt-4 flex items-center gap-4 text-sm text-gray-400 dark:text-gray-400 light:text-gray-600">
               <span>Znaleziono: {filteredProjects.length} projektów</span>
               <span>•</span>
               <span>Wyróżnione: {filteredProjects.filter(p => p.featured).length}</span>
@@ -164,7 +164,7 @@ const ProjectManagement: React.FC = () => {
         {/* Projects */}
         {loading ? (
           <div className="flex items-center justify-center py-12">
-            <div className="text-white">Ładowanie projektów...</div>
+            <div className="dark:text-white light:text-gray-900">Ładowanie projektów...</div>
           </div>
         ) : filteredProjects.length === 0 ? (
           <motion.div
@@ -173,7 +173,7 @@ const ProjectManagement: React.FC = () => {
             className="text-center py-12"
           >
             <Card className="p-12">
-              <div className="text-gray-400 mb-4">
+              <div className="dark:text-gray-400 light:text-gray-600 mb-4">
                 {searchTerm || selectedCategory !== 'all' 
                   ? 'Nie znaleziono projektów spełniających kryteria'
                   : 'Brak projektów'
@@ -222,7 +222,7 @@ const ProjectManagement: React.FC = () => {
                     <div className="p-6">
                       <div className="flex items-start justify-between mb-3">
                         <div>
-                          <h3 className="text-lg font-semibold text-white mb-1">{project.title}</h3>
+                          <h3 className="text-lg font-semibold dark:text-white light:text-gray-900 mb-1">{project.title}</h3>
                           <span className="text-sm text-primary capitalize">{project.category}</span>
                         </div>
                         <button
@@ -236,7 +236,7 @@ const ProjectManagement: React.FC = () => {
                           <Star className={`w-4 h-4 ${project.featured ? 'fill-current' : ''}`} />
                         </button>
                       </div>
-                      <p className="text-gray-400 text-sm mb-4 line-clamp-2">{project.short_description}</p>
+                      <p className="dark:text-gray-400 light:text-gray-600 text-sm mb-4 line-clamp-2">{project.short_description}</p>
                       <div className="flex items-center gap-2">
                         <Link to={`/admin/projects/${project.id}/edit`}>
                           <Button variant="outline" size="sm" icon={Edit}>
@@ -274,7 +274,7 @@ const ProjectManagement: React.FC = () => {
                       <div className="flex-1">
                         <div className="flex items-start justify-between mb-2">
                           <div>
-                            <h3 className="text-lg font-semibold text-white">{project.title}</h3>
+                            <h3 className="text-lg font-semibold dark:text-white light:text-gray-900">{project.title}</h3>
                             <span className="text-sm text-primary capitalize">{project.category}</span>
                           </div>
                           <div className="flex items-center gap-2">
@@ -295,7 +295,7 @@ const ProjectManagement: React.FC = () => {
                             </button>
                           </div>
                         </div>
-                        <p className="text-gray-400 text-sm mb-3">{project.short_description}</p>
+                        <p className="dark:text-gray-400 light:text-gray-600 text-sm mb-3">{project.short_description}</p>
                         <div className="flex items-center gap-2">
                           <Link to={`/admin/projects/${project.id}/edit`}>
                             <Button variant="outline" size="sm" icon={Edit}>
