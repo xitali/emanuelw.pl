@@ -207,7 +207,7 @@ const ProjectManagement: React.FC = () => {
                   <Card className="overflow-hidden group hover:scale-105 transition-transform duration-300">
                     <div className="relative">
                       <img
-                        src={project.images[0]}
+                        src={project.images?.[0] || '/placeholder-image.jpg'}
                         alt={project.title}
                         className="w-full h-48 object-cover"
                       />
@@ -267,7 +267,7 @@ const ProjectManagement: React.FC = () => {
                   <Card className="p-6">
                     <div className="flex items-center gap-6">
                       <img
-                        src={project.images[0]}
+                        src={project.images?.[0] || '/placeholder-image.jpg'}
                         alt={project.title}
                         className="w-20 h-20 object-cover rounded-lg"
                       />
