@@ -76,7 +76,7 @@ const Login: React.FC = () => {
   return (
     <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       {/* Background Effects */}
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-secondary/10" />
+      <div className="absolute inset-0 bg-gradient-to-br dark:from-primary/10 dark:via-background dark:to-secondary/10 light:from-blue-50 light:via-white light:to-purple-50" />
       
       {/* Floating Particles */}
       <div className="absolute inset-0 overflow-hidden">
@@ -175,12 +175,7 @@ const Login: React.FC = () => {
                 )}
               </div>
 
-              {/* Database Info */}
-              <div className="bg-primary/10 border border-primary/20 rounded-lg p-4">
-                <p className="text-sm text-primary font-medium mb-1">Uwaga:</p>
-                <p className="text-xs text-gray-400 dark:text-gray-400 light:text-gray-600">Użyj danych administratora z tabeli admin_users w Supabase</p>
-                <p className="text-xs text-gray-400 dark:text-gray-400 light:text-gray-600">Hasło: admin123 (jeśli nie zmieniłeś)</p>
-              </div>
+
 
               {/* Submit Button */}
               <Button

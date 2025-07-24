@@ -6,7 +6,8 @@ import {
   Trash2, 
   ArrowLeft,
   User,
-  Shield
+  Shield,
+  Lock
 } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import Card from '../components/ui/Card';
@@ -14,6 +15,7 @@ import Button from '../components/ui/Button';
 import { useAuthStore } from '../store/authStore';
 import { toast } from 'react-hot-toast';
 import { db } from '../lib/supabase';
+import bcrypt from 'bcryptjs';
 
 interface AdminUser {
   id: string;
@@ -31,6 +33,8 @@ const UserManagement: React.FC = () => {
   const [showAddForm, setShowAddForm] = useState(false);
   const [newUser, setNewUser] = useState({ email: '', password: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [editingPassword, setEditingPassword] = useState<string | null>(null);
+  const [passwordForm, setPasswordForm] = useState({ currentPassword: '', newPassword: '', confirmPassword: '' });
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -64,9 +68,12 @@ const UserManagement: React.FC = () => {
 
     setIsSubmitting(true);
     try {
+      // Hash the password before storing
+      const hashedPassword = await bcrypt.hash(newUser.password, 10);
+      
       const { data, error } = await db.adminUsers.create({
         email: newUser.email,
-        password_hash: newUser.password // W rzeczywistej aplikacji należy zahashować hasło
+        password_hash: hashedPassword
       });
       
       if (error) throw error;
@@ -80,6 +87,69 @@ const UserManagement: React.FC = () => {
     } catch (error) {
       console.error('Error adding user:', error);
       toast.error('Błąd podczas dodawania użytkownika');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleChangePassword = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!passwordForm.currentPassword || !passwordForm.newPassword || !passwordForm.confirmPassword) {
+      toast.error('Wszystkie pola są wymagane');
+      return;
+    }
+
+    if (passwordForm.newPassword !== passwordForm.confirmPassword) {
+      toast.error('Nowe hasła nie są identyczne');
+      return;
+    }
+
+    if (passwordForm.newPassword.length < 6) {
+      toast.error('Nowe hasło musi mieć co najmniej 6 znaków');
+      return;
+    }
+
+    setIsSubmitting(true);
+    try {
+      // Find current user
+      const currentUserData = users.find(u => u.id === editingPassword);
+      if (!currentUserData) {
+        throw new Error('Nie znaleziono użytkownika');
+      }
+
+      // Verify current password
+      const isCurrentPasswordValid = await bcrypt.compare(passwordForm.currentPassword, currentUserData.password_hash);
+      if (!isCurrentPasswordValid) {
+        toast.error('Aktualne hasło jest nieprawidłowe');
+        return;
+      }
+
+      // Hash new password
+      const hashedNewPassword = await bcrypt.hash(passwordForm.newPassword, 10);
+      
+      if (!editingPassword) {
+        throw new Error('Nie wybrano użytkownika do edycji');
+      }
+      
+      const { error } = await db.adminUsers.update(editingPassword, {
+        password_hash: hashedNewPassword
+      });
+      
+      if (error) throw error;
+      
+      // Update local state
+      setUsers(prev => prev.map(user => 
+        user.id === editingPassword 
+          ? { ...user, password_hash: hashedNewPassword }
+          : user
+      ));
+      
+      setEditingPassword(null);
+      setPasswordForm({ currentPassword: '', newPassword: '', confirmPassword: '' });
+      toast.success('Hasło zostało zmienione!');
+    } catch (error) {
+      console.error('Error changing password:', error);
+      toast.error('Błąd podczas zmiany hasła');
     } finally {
       setIsSubmitting(false);
     }
@@ -223,6 +293,81 @@ const UserManagement: React.FC = () => {
           </motion.div>
         )}
 
+        {/* Change Password Form */}
+        {editingPassword && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="mb-8"
+          >
+            <Card className="p-6">
+              <h3 className="text-lg font-semibold dark:text-white light:text-gray-900 mb-4">Zmień hasło</h3>
+              <form onSubmit={handleChangePassword} className="space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium dark:text-gray-300 light:text-gray-700 mb-2">
+                      Aktualne hasło *
+                    </label>
+                    <input
+                      type="password"
+                      value={passwordForm.currentPassword}
+                      onChange={(e) => setPasswordForm(prev => ({ ...prev, currentPassword: e.target.value }))}
+                      className="w-full px-4 py-3 dark:bg-white/5 light:bg-white dark:border-white/10 light:border-gray-300 border rounded-lg dark:text-white light:text-gray-900 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
+                      placeholder="Aktualne hasło"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium dark:text-gray-300 light:text-gray-700 mb-2">
+                      Nowe hasło *
+                    </label>
+                    <input
+                      type="password"
+                      value={passwordForm.newPassword}
+                      onChange={(e) => setPasswordForm(prev => ({ ...prev, newPassword: e.target.value }))}
+                      className="w-full px-4 py-3 dark:bg-white/5 light:bg-white dark:border-white/10 light:border-gray-300 border rounded-lg dark:text-white light:text-gray-900 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
+                      placeholder="Nowe hasło"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium dark:text-gray-300 light:text-gray-700 mb-2">
+                      Potwierdź hasło *
+                    </label>
+                    <input
+                      type="password"
+                      value={passwordForm.confirmPassword}
+                      onChange={(e) => setPasswordForm(prev => ({ ...prev, confirmPassword: e.target.value }))}
+                      className="w-full px-4 py-3 dark:bg-white/5 light:bg-white dark:border-white/10 light:border-gray-300 border rounded-lg dark:text-white light:text-gray-900 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
+                      placeholder="Potwierdź hasło"
+                      required
+                    />
+                  </div>
+                </div>
+                <div className="flex justify-end gap-4">
+                  <Button 
+                    type="button" 
+                    variant="ghost"
+                    onClick={() => {
+                      setEditingPassword(null);
+                      setPasswordForm({ currentPassword: '', newPassword: '', confirmPassword: '' });
+                    }}
+                  >
+                    Anuluj
+                  </Button>
+                  <Button 
+                    type="submit" 
+                    variant="primary"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? 'Zmienianie...' : 'Zmień hasło'}
+                  </Button>
+                </div>
+              </form>
+            </Card>
+          </motion.div>
+        )}
+
         {/* Users List */}
         {loading ? (
           <div className="flex items-center justify-center py-12">
@@ -282,6 +427,15 @@ const UserManagement: React.FC = () => {
                         <Shield className="w-3 h-3" />
                         Admin
                       </span>
+                      <Button 
+                        variant="ghost" 
+                        size="sm" 
+                        icon={Lock}
+                        onClick={() => setEditingPassword(user.id)}
+                        className="text-blue-400 hover:text-blue-300"
+                      >
+                        Hasło
+                      </Button>
                       <Button 
                         variant="ghost" 
                         size="sm" 
