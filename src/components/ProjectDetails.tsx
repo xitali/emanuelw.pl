@@ -89,7 +89,7 @@ const ProjectDetails: React.FC = () => {
           <div className="flex flex-col lg:flex-row gap-8 items-start">
             <div className="flex-1">
               <div className="flex items-center gap-4 mb-4">
-                <h1 className="text-4xl md:text-5xl font-bold text-white">{project.title}</h1>
+                <h1 className="text-4xl md:text-5xl font-bold text-white dark:text-white light:text-gray-900">{project.title}</h1>
                 {project.featured && (
                   <span className="px-3 py-1 bg-accent/20 text-accent rounded-lg font-medium flex items-center gap-2">
                     <Award className="w-4 h-4" />
@@ -125,7 +125,7 @@ const ProjectDetails: React.FC = () => {
                 )}
               </div>
               
-              <p className="text-xl text-gray-300 leading-relaxed mb-8">
+              <p className="text-xl text-gray-300 dark:text-gray-300 light:text-gray-700 leading-relaxed mb-8">
                 {project.short_description}
               </p>
               
