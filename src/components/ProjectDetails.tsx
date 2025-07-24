@@ -3,7 +3,6 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { 
   ArrowLeft, 
-  Github, 
   Globe, 
   Calendar, 
   Users, 
@@ -131,15 +130,6 @@ const ProjectDetails: React.FC = () => {
               
               {/* Action Buttons */}
               <div className="flex flex-wrap gap-4">
-                {project.repository_url && (
-                  <Button
-                    variant="outline"
-                    icon={Github}
-                    onClick={() => window.open(project.repository_url, '_blank')}
-                  >
-                    Zobacz kod
-                  </Button>
-                )}
                 {project.project_url && (
                   <Button
                     variant="primary"

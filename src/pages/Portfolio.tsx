@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Search, Github, Eye, Calendar, Globe, Star } from 'lucide-react';
+import { Search, Eye, Calendar, Globe, Star } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
@@ -245,19 +245,6 @@ const Portfolio: React.FC = () => {
                     
                     {/* Action Buttons */}
                     <div className="flex gap-2">
-                      {project.repository_url && (
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          icon={Github}
-                          onClick={(e?: React.MouseEvent<HTMLButtonElement>) => {
-                            e?.stopPropagation();
-                            window.open(project.repository_url, '_blank');
-                          }}
-                        >
-                          Code
-                        </Button>
-                      )}
                       {project.project_url && (
                         <Button
                           variant="ghost"
@@ -391,15 +378,6 @@ const Portfolio: React.FC = () => {
               
               {/* Action Buttons */}
               <div className="flex gap-4">
-                {selectedProject.repository_url && (
-                  <Button
-                    variant="outline"
-                    icon={Github}
-                    onClick={() => window.open(selectedProject.repository_url, '_blank')}
-                  >
-                    Zobacz kod
-                  </Button>
-                )}
                 {selectedProject.project_url && (
                   <Button
                     variant="outline"
