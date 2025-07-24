@@ -1,0 +1,285 @@
+import React, { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import { 
+  FolderOpen, 
+  Mail, 
+  TrendingUp, 
+  Eye,
+  Plus,
+  Settings,
+  LogOut
+} from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
+import Card from '../components/ui/Card';
+import Button from '../components/ui/Button';
+import { useAuthStore } from '../store/authStore';
+import { useProjectStore } from '../store/projectStore';
+import { useContactStore } from '../store/contactStore';
+import { DashboardStats } from '../types';
+
+const Dashboard: React.FC = () => {
+  const navigate = useNavigate();
+  const { user, logout, isAuthenticated } = useAuthStore();
+  const { projects, fetchProjects } = useProjectStore();
+  const { messages, fetchMessages } = useContactStore();
+  const [stats, setStats] = useState<DashboardStats | null>(null);
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate('/admin/login');
+      return;
+    }
+
+    // Pobierz dane z bazy danych
+    fetchProjects();
+    fetchMessages();
+  }, [isAuthenticated, navigate, fetchProjects, fetchMessages]);
+
+  useEffect(() => {
+    // Oblicz statystyki po pobraniu danych
+    const unreadMessages = messages.filter(m => m.status === 'unread').length;
+    const recentProjects = projects.slice(0, 5);
+    const recentMessages = messages.slice(0, 5);
+
+    setStats({
+      totalProjects: projects.length,
+      totalMessages: messages.length,
+      unreadMessages,
+      recentProjects,
+      recentMessages,
+    });
+  }, [projects, messages]);
+
+  const handleLogout = () => {
+    logout();
+    navigate('/');
+  };
+
+  if (!isAuthenticated || !stats) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-white">Ładowanie...</div>
+      </div>
+    );
+  }
+
+  const statCards = [
+    {
+      title: 'Projekty',
+      value: stats.totalProjects,
+      icon: FolderOpen,
+      color: 'text-primary',
+      bgColor: 'from-primary/20 to-primary/5',
+      change: '+12%',
+    },
+    {
+      title: 'Wiadomości',
+      value: stats.totalMessages,
+      icon: Mail,
+      color: 'text-secondary',
+      bgColor: 'from-secondary/20 to-secondary/5',
+      change: '+8%',
+    },
+    {
+      title: 'Nieprzeczytane',
+      value: stats.unreadMessages,
+      icon: Eye,
+      color: 'text-accent',
+      bgColor: 'from-accent/20 to-accent/5',
+      change: stats.unreadMessages > 0 ? 'Nowe!' : 'Brak',
+    },
+    {
+      title: 'Odwiedziny',
+      value: '2.4k',
+      icon: TrendingUp,
+      color: 'text-green-400',
+      bgColor: 'from-green-400/20 to-green-400/5',
+      change: '+15%',
+    },
+  ];
+
+  return (
+    <div className="min-h-screen bg-background">
+      {/* Header */}
+      <header className="bg-white/5 border-b border-white/10 backdrop-blur-sm">
+        <div className="container mx-auto px-6 py-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-2xl font-bold text-white">Dashboard</h1>
+              <p className="text-gray-400">Witaj, {user?.email}</p>
+            </div>
+            <div className="flex items-center gap-4">
+              <Link to="/">
+                <Button variant="outline" size="sm">
+                  Zobacz stronę
+                </Button>
+              </Link>
+              <Link to="/admin/settings">
+                <Button variant="outline" size="sm" icon={Settings}>
+                  Ustawienia
+                </Button>
+              </Link>
+              <Button 
+                variant="outline" 
+                size="sm" 
+                icon={LogOut}
+                onClick={handleLogout}
+              >
+                Wyloguj
+              </Button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div className="container mx-auto px-6 py-8">
+        {/* Stats Grid */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8"
+        >
+          {statCards.map((stat, index) => (
+            <motion.div
+              key={stat.title}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+            >
+              <Card className={`p-6 bg-gradient-to-br ${stat.bgColor} border-white/10`}>
+                <div className="flex items-center justify-between mb-4">
+                  <stat.icon className={`w-8 h-8 ${stat.color}`} />
+                  <span className={`text-sm font-medium ${stat.color}`}>
+                    {stat.change}
+                  </span>
+                </div>
+                <div>
+                  <p className="text-2xl font-bold text-white mb-1">{stat.value}</p>
+                  <p className="text-gray-400 text-sm">{stat.title}</p>
+                </div>
+              </Card>
+            </motion.div>
+          ))}
+        </motion.div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* Recent Projects */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            <Card className="p-6">
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-xl font-semibold text-white">Najnowsze projekty</h2>
+                <Link to="/admin/projects">
+                  <Button variant="outline" size="sm" icon={Plus}>
+                    Dodaj projekt
+                  </Button>
+                </Link>
+              </div>
+              <div className="space-y-4">
+                {stats.recentProjects.length > 0 ? (
+                  stats.recentProjects.map((project) => (
+                    <div key={project.id} className="flex items-center justify-between p-3 bg-white/5 rounded-lg">
+                      <div>
+                        <h3 className="font-medium text-white">{project.title}</h3>
+                        <p className="text-sm text-gray-400">{project.category}</p>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        {project.featured && (
+                          <span className="px-2 py-1 bg-primary/20 text-primary text-xs rounded">
+                            Wyróżniony
+                          </span>
+                        )}
+                        <Link to={`/admin/projects/${project.id}/edit`}>
+                          <Button variant="ghost" size="sm">
+                            Edytuj
+                          </Button>
+                        </Link>
+                      </div>
+                    </div>
+                  ))
+                ) : (
+                  <p className="text-gray-400 text-center py-8">Brak projektów</p>
+                )}
+              </div>
+            </Card>
+          </motion.div>
+
+          {/* Recent Messages */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+          >
+            <Card className="p-6">
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-xl font-semibold text-white">Najnowsze wiadomości</h2>
+                <Link to="/admin/messages">
+                  <Button variant="outline" size="sm" icon={Mail}>
+                    Zobacz wszystkie
+                  </Button>
+                </Link>
+              </div>
+              <div className="space-y-4">
+                {stats.recentMessages.length > 0 ? (
+                  stats.recentMessages.map((message) => (
+                    <div key={message.id} className="p-3 bg-white/5 rounded-lg">
+                      <div className="flex items-center justify-between mb-2">
+                        <h3 className="font-medium text-white">{message.name}</h3>
+                        <span className={`px-2 py-1 text-xs rounded ${
+                          message.status === 'unread' 
+                            ? 'bg-accent/20 text-accent' 
+                            : 'bg-gray-600/20 text-gray-400'
+                        }`}>
+                          {message.status === 'unread' ? 'Nowa' : 'Przeczytana'}
+                        </span>
+                      </div>
+                      <p className="text-sm text-gray-400 mb-2">{message.subject}</p>
+                      <p className="text-sm text-gray-500 truncate">{message.message}</p>
+                    </div>
+                  ))
+                ) : (
+                  <p className="text-gray-400 text-center py-8">Brak wiadomości</p>
+                )}
+              </div>
+            </Card>
+          </motion.div>
+        </div>
+
+        {/* Quick Actions */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
+          className="mt-8"
+        >
+          <Card className="p-6">
+            <h2 className="text-xl font-semibold text-white mb-6">Szybkie akcje</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <Link to="/admin/projects/new">
+                <Button variant="primary" className="w-full" icon={Plus}>
+                  Dodaj nowy projekt
+                </Button>
+              </Link>
+              <Link to="/admin/messages">
+                <Button variant="outline" className="w-full" icon={Mail}>
+                  Sprawdź wiadomości
+                </Button>
+              </Link>
+              <Link to="/admin/settings">
+                <Button variant="outline" className="w-full" icon={Settings}>
+                  Ustawienia
+                </Button>
+              </Link>
+            </div>
+          </Card>
+        </motion.div>
+      </div>
+    </div>
+  );
+};
+
+export default Dashboard;

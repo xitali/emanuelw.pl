@@ -1,49 +1,7 @@
 {
-  "compilerOptions": {
-    "target": "ES2022",
-    "module": "ESNext",
-    "lib": ["ES2022", "DOM", "DOM.Iterable"],
-    "outDir": "./dist",
-    "rootDir": ".",
-    "strict": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "resolveJsonModule": true,
-    "allowJs": true,
-    "checkJs": false,
-    "declaration": false,
-    "sourceMap": true,
-    "removeComments": false,
-    "noImplicitAny": false,
-    "strictNullChecks": true,
-    "strictFunctionTypes": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "moduleResolution": "node",
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["src/*"],
-      "@/public/*": ["public/*"],
-      "@/styles/*": ["src/styles/*"]
-    },
-    "typeRoots": ["node_modules/@types"]
-  },
-  "include": [
-    "src/**/*",
-    "public/**/*.js",
-    "*.js",
-    "tailwind.config.js",
-    "postcss.config.js",
-    "webpack.config.js"
-  ],
-  "exclude": [
-    "node_modules",
-    "dist",
-    "**/*.test.ts",
-    "**/*.test.js",
-    "**/*.spec.ts",
-    "**/*.spec.js"
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
   ]
 }

@@ -1,85 +1,69 @@
-<!-- README.md -->
+# React + TypeScript + Vite
 
-# Emanuel Włoch - Portfolio Website
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Opis projektu
+Currently, two official plugins are available:
 
-Profesjonalna strona portfolio programisty full-stack z funkcjonalnością PHP. Strona zawiera sekcje: hero, o mnie, usługi, projekty, cennik i kontakt z funkcjonalnym formularzem.
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Technologie
+## Expanding the ESLint configuration
 
-- **Frontend**: HTML5, CSS3, TypeScript
-- **Backend**: Node.js + Express.js
-- **Styling**: Tailwind CSS
-- **Build Tools**: Webpack, TypeScript Compiler
-- **SEO**: Strukturalne dane JSON-LD, meta tagi, sitemap.xml
-- **PWA**: Web App Manifest
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-## Funkcjonalności
+```js
+export default tseslint.config([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
 
-### ✨ Główne funkcje
-- Responsywny design
-- Dynamiczne generowanie meta tagów
-- Funkcjonalny formularz kontaktowy z walidacją
-- Automatyczne zarządzanie rokiem w stopce
-- Zaawansowane SEO i strukturalne dane
-- Progressive Web App (PWA)
+      // Remove tseslint.configs.recommended and replace with this
+      ...tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      ...tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      ...tseslint.configs.stylisticTypeChecked,
 
-### 📧 Formularz kontaktowy
-- Walidacja po stronie serwera
-- Zabezpieczenie przed XSS
-- Komunikaty sukcesu i błędów
-- Zachowanie danych po błędzie walidacji
-
-### 🔍 Optymalizacja SEO
-- Meta tagi Open Graph i Twitter Card
-- Strukturalne dane Schema.org
-- Sitemap.xml
-- Robots.txt
-- Breadcrumbs
-
-## Struktura plików
-
-```
-.
-├── src/
-│   ├── client/         # Kod TypeScript klienta
-│   ├── server/         # Kod serwera Express.js
-│   ├── types/          # Definicje typów TypeScript
-│   ├── utils/          # Funkcje pomocnicze
-│   ├── images/         # Obrazy źródłowe
-│   └── static/         # Pliki statyczne
-├── dist/               # Skompilowane pliki
-├── public/             # Pliki publiczne (generowane)
-├── package.json        # Zależności npm
-├── webpack.config.js   # Konfiguracja Webpack
-├── tsconfig.json       # Konfiguracja TypeScript
-├── tailwind.config.js  # Konfiguracja Tailwind CSS
-└── README.md           # Ten plik
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
 ```
 
-### Meta tagi
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
-Meta tagi są generowane dynamicznie przez funkcję `generateMetaTags()`.
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
 
-## Bezpieczeństwo
-
-- Wszystkie dane wejściowe są sanityzowane przez `htmlspecialchars()`
-- Walidacja email po stronie serwera
-- Zabezpieczenie przed XSS
-- CSRF protection (można dodać token)
-
-## Licencja
-
-© 2025 Emanuel Włoch. Wszystkie prawa zastrzeżone.
-
-## Kontakt
-
-- Email: emanuel.wloch@icloud.com
-- Telefon: +48 725 403 682
-- Website: https://emanuelw.pl
-
----
-
-**Wersja**: 3.0.0 (Node.js + TypeScript)
-**Ostatnia aktualizacja**: Styczeń 2025
+export default tseslint.config([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
