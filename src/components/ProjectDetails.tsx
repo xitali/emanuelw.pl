@@ -198,8 +198,8 @@ const ProjectDetails: React.FC = () => {
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
                 <Card className="p-8">
-                  <h2 className="text-2xl font-bold text-white mb-6">O projekcie</h2>
-                  <div className="text-gray-300 leading-relaxed whitespace-pre-line">
+                  <h2 className="text-2xl font-bold text-white light:text-gray-900 mb-6">O projekcie</h2>
+                  <div className="text-gray-300 light:text-gray-700 leading-relaxed whitespace-pre-line">
                     {project.detailed_description}
                   </div>
                 </Card>
@@ -214,15 +214,15 @@ const ProjectDetails: React.FC = () => {
                 transition={{ duration: 0.8, delay: 0.3 }}
               >
                 <Card className="p-8">
-                  <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                  <h2 className="text-2xl font-bold text-white light:text-gray-900 mb-6 flex items-center gap-3">
                     <Zap className="w-6 h-6 text-primary" />
                     Kluczowe funkcje
                   </h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {project.key_features.map((feature, index) => (
-                      <div key={index} className="flex items-start gap-3 p-4 bg-white/5 rounded-lg">
+                      <div key={index} className="flex items-start gap-3 p-4 bg-white/5 light:bg-gray-100 rounded-lg">
                         <span className="text-primary mt-1">•</span>
-                        <span className="text-gray-300">{feature}</span>
+                        <span className="text-gray-300 light:text-gray-700">{feature}</span>
                       </div>
                     ))}
                   </div>
@@ -238,18 +238,18 @@ const ProjectDetails: React.FC = () => {
                 transition={{ duration: 0.8, delay: 0.4 }}
               >
                 <Card className="p-8">
-                  <h2 className="text-2xl font-bold text-white mb-6">Wyzwania i innowacje</h2>
+                  <h2 className="text-2xl font-bold text-white light:text-gray-900 mb-6">Wyzwania i innowacje</h2>
                   <div className="space-y-6">
                     {project.main_challenge && (
                       <div>
                         <h3 className="text-lg font-semibold text-primary mb-3">Główne wyzwanie:</h3>
-                        <p className="text-gray-300 leading-relaxed">{project.main_challenge}</p>
+                        <p className="text-gray-300 light:text-gray-700 leading-relaxed">{project.main_challenge}</p>
                       </div>
                     )}
                     {project.innovation && (
                       <div>
                         <h3 className="text-lg font-semibold text-secondary mb-3">Zastosowane innowacje:</h3>
-                        <p className="text-gray-300 leading-relaxed">{project.innovation}</p>
+                        <p className="text-gray-300 light:text-gray-700 leading-relaxed">{project.innovation}</p>
                       </div>
                     )}
                   </div>
@@ -265,7 +265,7 @@ const ProjectDetails: React.FC = () => {
                 transition={{ duration: 0.8, delay: 0.5 }}
               >
                 <Card className="p-8">
-                  <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                  <h2 className="text-2xl font-bold text-white light:text-gray-900 mb-6 flex items-center gap-3">
                     <BarChart3 className="w-6 h-6 text-accent" />
                     Rezultaty i metryki
                   </h2>
@@ -273,13 +273,13 @@ const ProjectDetails: React.FC = () => {
                     {project.project_result && (
                       <div>
                         <h3 className="text-lg font-semibold text-accent mb-3">Osiągnięte rezultaty:</h3>
-                        <p className="text-gray-300 leading-relaxed">{project.project_result}</p>
+                        <p className="text-gray-300 light:text-gray-700 leading-relaxed">{project.project_result}</p>
                       </div>
                     )}
                     {project.performance_metrics && (
                       <div>
                         <h3 className="text-lg font-semibold text-primary mb-3">Metryki wydajności:</h3>
-                        <p className="text-gray-300 leading-relaxed">{project.performance_metrics}</p>
+                        <p className="text-gray-300 light:text-gray-700 leading-relaxed">{project.performance_metrics}</p>
                       </div>
                     )}
                   </div>
@@ -295,11 +295,11 @@ const ProjectDetails: React.FC = () => {
                 transition={{ duration: 0.8, delay: 0.6 }}
               >
                 <Card className="p-8">
-                  <h2 className="text-2xl font-bold text-white mb-6 flex items-center gap-3">
+                  <h2 className="text-2xl font-bold text-white light:text-gray-900 mb-6 flex items-center gap-3">
                     <MessageSquare className="w-6 h-6 text-primary" />
                     Opinie użytkowników
                   </h2>
-                  <div className="text-gray-300 leading-relaxed whitespace-pre-line">
+                  <div className="text-gray-300 light:text-gray-700 leading-relaxed whitespace-pre-line">
                     {project.user_feedback}
                   </div>
                 </Card>
@@ -316,14 +316,14 @@ const ProjectDetails: React.FC = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <Card className="p-6">
-                <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-3">
+                <h3 className="text-xl font-bold text-white light:text-gray-900 mb-6 flex items-center gap-3">
                   <Code className="w-5 h-5 text-primary" />
                   Stack technologiczny
                 </h3>
                 <div className="space-y-4">
                   {project.frontend_technologies && project.frontend_technologies.length > 0 && (
                     <div>
-                      <h4 className="text-sm font-semibold text-gray-400 mb-2 flex items-center gap-2">
+                      <h4 className="text-sm font-semibold text-gray-400 light:text-gray-600 mb-2 flex items-center gap-2">
                         <Monitor className="w-4 h-4" />
                         Frontend
                       </h4>
@@ -338,7 +338,7 @@ const ProjectDetails: React.FC = () => {
                   )}
                   {project.backend_technologies && project.backend_technologies.length > 0 && (
                     <div>
-                      <h4 className="text-sm font-semibold text-gray-400 mb-2 flex items-center gap-2">
+                      <h4 className="text-sm font-semibold text-gray-400 light:text-gray-600 mb-2 flex items-center gap-2">
                         <Server className="w-4 h-4" />
                         Backend
                       </h4>
@@ -353,7 +353,7 @@ const ProjectDetails: React.FC = () => {
                   )}
                   {project.tools_and_services && project.tools_and_services.length > 0 && (
                     <div>
-                      <h4 className="text-sm font-semibold text-gray-400 mb-2 flex items-center gap-2">
+                      <h4 className="text-sm font-semibold text-gray-400 light:text-gray-600 mb-2 flex items-center gap-2">
                         <Wrench className="w-4 h-4" />
                         Narzędzia
                       </h4>
@@ -390,20 +390,20 @@ const ProjectDetails: React.FC = () => {
                 transition={{ duration: 0.8, delay: 0.3 }}
               >
                 <Card className="p-6">
-                  <h3 className="text-xl font-bold text-white mb-6 flex items-center gap-3">
+                  <h3 className="text-xl font-bold text-white light:text-gray-900 mb-6 flex items-center gap-3">
                     <Palette className="w-5 h-5 text-secondary" />
                     Design & UX
                   </h3>
                   <div className="space-y-4">
                     {project.design_style && (
                       <div>
-                        <h4 className="text-sm font-semibold text-gray-400 mb-2">Styl designu</h4>
-                        <p className="text-gray-300 text-sm">{project.design_style}</p>
+                        <h4 className="text-sm font-semibold text-gray-400 light:text-gray-600 mb-2">Styl designu</h4>
+                        <p className="text-gray-300 light:text-gray-700 text-sm">{project.design_style}</p>
                       </div>
                     )}
                     {project.color_palette && (
                       <div>
-                        <h4 className="text-sm font-semibold text-gray-400 mb-2">Paleta kolorów</h4>
+                        <h4 className="text-sm font-semibold text-gray-400 light:text-gray-600 mb-2">Paleta kolorów</h4>
                         <div className="space-y-2">
                           {project.color_palette.map((color: string, index: number) => {
                             const trimmedColor = color.trim();
@@ -416,7 +416,7 @@ const ProjectDetails: React.FC = () => {
                                     style={{ backgroundColor: hexMatch[0] }}
                                   />
                                 )}
-                                <span className="text-gray-300 text-sm">{trimmedColor}</span>
+                                <span className="text-gray-300 light:text-gray-700 text-sm">{trimmedColor}</span>
                               </div>
                             );
                           })}
@@ -425,11 +425,11 @@ const ProjectDetails: React.FC = () => {
                     )}
                     {project.target_audience && (
                       <div>
-                        <h4 className="text-sm font-semibold text-gray-400 mb-2 flex items-center gap-2">
+                        <h4 className="text-sm font-semibold text-gray-400 light:text-gray-600 mb-2 flex items-center gap-2">
                           <Users className="w-4 h-4" />
                           Grupa docelowa
                         </h4>
-                        <p className="text-gray-300 text-sm">{project.target_audience}</p>
+                        <p className="text-gray-300 light:text-gray-700 text-sm">{project.target_audience}</p>
                       </div>
                     )}
                     <div className="flex items-center gap-4 pt-2">

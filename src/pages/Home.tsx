@@ -31,12 +31,13 @@ const Home: React.FC = () => {
         particleColor="#3b82f6"
         speed={0.3}
         interactive={true}
+        className="light:opacity-30"
       />
       
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Animated Background Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-background to-secondary/20" />
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-background to-secondary/20 light:from-primary/10 light:via-gray-50 light:to-secondary/10" />
         
         <div className="relative z-10 container mx-auto px-6 text-center">
           <motion.div
@@ -44,7 +45,7 @@ const Home: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-5xl md:text-7xl font-bold mb-6">
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 text-white light:text-gray-900">
               Cześć, jestem{' '}
               <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                 Emanuel Włoch
@@ -55,7 +56,7 @@ const Home: React.FC = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.6 }}
-              className="text-xl md:text-2xl text-gray-300 mb-8 h-12"
+              className="text-xl md:text-2xl text-gray-300 light:text-gray-700 mb-8 h-12"
             >
               <TypingAnimation
                 texts={[
@@ -72,7 +73,7 @@ const Home: React.FC = () => {
               />
             </motion.div>
             
-            <p className="text-xl text-gray-400 mb-12 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-400 light:text-gray-600 mb-12 max-w-2xl mx-auto">
               Tworzę nowoczesne strony internetowe i aplikacje desktopowe z czystym kodem i dbałością o szczegóły.
             </p>
             
@@ -98,7 +99,7 @@ const Home: React.FC = () => {
             </div>
             
             <motion.button
-              className="text-white/60 hover:text-white transition-colors"
+              className="text-white/60 light:text-gray-500 hover:text-white light:hover:text-gray-900 transition-colors"
               onClick={scrollToAbout}
               animate={{ y: [0, 10, 0] }}
               transition={{ duration: 2, repeat: Infinity }}
@@ -110,18 +111,18 @@ const Home: React.FC = () => {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 bg-gradient-to-br from-slate-900 to-slate-800">
+      <section id="about" className="py-20 section-bg">
         <div className="container mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white light:text-gray-900">
               O <span className="text-primary">mnie</span>
             </h2>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+            <p className="text-xl text-gray-400 light:text-gray-600 max-w-3xl mx-auto">
               Jestem pasjonatem technologii z doświadczeniem w tworzeniu nowoczesnych aplikacji web i desktop.
             </p>
           </motion.div>
@@ -152,8 +153,8 @@ const Home: React.FC = () => {
               >
                 <Card className="p-8 text-center h-full">
                   <div className="text-4xl mb-4">{skill.icon}</div>
-                  <h3 className="text-xl font-semibold mb-4 text-white">{skill.title}</h3>
-                  <p className="text-gray-400">{skill.description}</p>
+                  <h3 className="text-xl font-semibold mb-4 text-white light:text-gray-900">{skill.title}</h3>
+                  <p className="text-gray-400 light:text-gray-600">{skill.description}</p>
                 </Card>
               </motion.div>
             ))}
@@ -171,10 +172,10 @@ const Home: React.FC = () => {
               transition={{ duration: 0.8 }}
               className="text-center mb-16"
             >
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white light:text-gray-900">
                 Wybrane <span className="text-primary">projekty</span>
               </h2>
-              <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+              <p className="text-xl text-gray-400 light:text-gray-600 max-w-3xl mx-auto">
                 Oto niektóre z moich najnowszych prac
               </p>
             </motion.div>
@@ -216,7 +217,7 @@ const Home: React.FC = () => {
                     <div className="p-6">
                       {/* Project Title & Type */}
                       <div className="flex items-center justify-between mb-2">
-                        <h3 className="text-xl font-semibold text-white">{project.title}</h3>
+                        <h3 className="text-xl font-semibold text-white dark:text-white light:text-gray-900">{project.title}</h3>
                         {project.project_type && (
                           <span className="text-xs text-primary bg-primary/10 px-2 py-1 rounded">
                             {project.project_type}
@@ -225,7 +226,7 @@ const Home: React.FC = () => {
                       </div>
                       
                       {/* Short Description */}
-                      <p className="text-gray-400 mb-4 line-clamp-2">
+                      <p className="text-gray-400 dark:text-gray-400 light:text-gray-600 mb-4 line-clamp-2">
                         {project.short_description}
                       </p>
                       
@@ -240,7 +241,7 @@ const Home: React.FC = () => {
                           </span>
                         ))}
                         {(project.frontend_technologies || project.technologies) && (project.frontend_technologies || project.technologies)!.length > 3 && (
-                          <span className="px-2 py-1 bg-gray-500/20 text-gray-400 text-sm rounded">
+                          <span className="px-2 py-1 bg-gray-500/20 text-gray-400 dark:text-gray-400 light:text-gray-600 text-sm rounded">
                             +{(project.frontend_technologies || project.technologies)!.length - 3}
                           </span>
                         )}
@@ -249,8 +250,8 @@ const Home: React.FC = () => {
                       {/* Key Features Preview */}
                       {project.key_features && project.key_features.length > 0 && (
                         <div className="mb-4">
-                          <p className="text-sm text-gray-500 mb-1">Kluczowe funkcje:</p>
-                          <p className="text-sm text-gray-400">
+                          <p className="text-sm text-gray-500 dark:text-gray-500 light:text-gray-500 mb-1">Kluczowe funkcje:</p>
+                          <p className="text-sm text-gray-400 dark:text-gray-400 light:text-gray-600">
                             {project.key_features.slice(0, 2).join(', ')}
                             {project.key_features.length > 2 && '...'}
                           </p>

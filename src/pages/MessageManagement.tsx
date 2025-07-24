@@ -102,8 +102,8 @@ const MessageManagement: React.FC = () => {
                 </Button>
               </Link>
               <div>
-                <h1 className="text-2xl font-bold text-white">Zarządzanie wiadomościami</h1>
-                <p className="text-gray-400">Przeglądaj i zarządzaj wiadomościami kontaktowymi</p>
+                <h1 className="text-2xl font-bold text-white dark:text-white light:text-gray-900">Zarządzanie wiadomościami</h1>
+                <p className="text-gray-400 dark:text-gray-400 light:text-gray-600">Przeglądaj i zarządzaj wiadomościami kontaktowymi</p>
               </div>
             </div>
           </div>
@@ -124,13 +124,13 @@ const MessageManagement: React.FC = () => {
               <Card className="p-4">
                 {/* Search */}
                 <div className="relative mb-4">
-                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-400 light:text-gray-500 w-4 h-4" />
                   <input
                     type="text"
                     placeholder="Szukaj wiadomości..."
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
-                    className="w-full pl-10 pr-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
+                    className="w-full pl-10 pr-4 py-2 bg-white/5 dark:bg-white/5 light:bg-white border border-white/10 dark:border-white/10 light:border-gray-300 rounded-lg text-white dark:text-white light:text-gray-900 placeholder-gray-400 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
                   />
                 </div>
 
@@ -143,7 +143,7 @@ const MessageManagement: React.FC = () => {
                       className={`flex items-center justify-between px-3 py-2 rounded-lg text-sm transition-colors ${
                         filter === option.value
                           ? 'bg-primary/20 text-primary'
-                          : 'text-gray-400 hover:text-white hover:bg-white/5'
+                          : 'text-gray-400 dark:text-gray-400 light:text-gray-600 hover:text-white dark:hover:text-white light:hover:text-gray-900 hover:bg-white/5 dark:hover:bg-white/5 light:hover:bg-gray-100'
                       }`}
                     >
                       <span>{option.label}</span>
@@ -168,9 +168,9 @@ const MessageManagement: React.FC = () => {
             >
               <Card className="p-4">
                 {loading ? (
-                  <div className="text-center py-8 text-gray-400">Ładowanie wiadomości...</div>
+                  <div className="text-center py-8 text-gray-400 dark:text-gray-400 light:text-gray-600">Ładowanie wiadomości...</div>
                 ) : searchedMessages.length === 0 ? (
-                  <div className="text-center py-8 text-gray-400">
+                  <div className="text-center py-8 text-gray-400 dark:text-gray-400 light:text-gray-600">
                     {searchTerm ? 'Nie znaleziono wiadomości' : 'Brak wiadomości'}
                   </div>
                 ) : (
@@ -195,12 +195,12 @@ const MessageManagement: React.FC = () => {
                               <MailOpen className="w-4 h-4 text-gray-400" />
                             )}
                             <span className={`font-medium text-sm ${
-                              message.status === 'unread' ? 'text-white' : 'text-gray-300'
+                              message.status === 'unread' ? 'text-white dark:text-white light:text-gray-900' : 'text-gray-300 dark:text-gray-300 light:text-gray-700'
                             }`}>
                               {message.name}
                             </span>
                           </div>
-                          <span className="text-xs text-gray-500">
+                          <span className="text-xs text-gray-500 dark:text-gray-500 light:text-gray-500">
                             {formatDistanceToNow(new Date(message.created_at), { 
                               addSuffix: true, 
                               locale: pl 
@@ -208,11 +208,11 @@ const MessageManagement: React.FC = () => {
                           </span>
                         </div>
                         <p className={`text-sm mb-1 ${
-                          message.status === 'unread' ? 'text-gray-300' : 'text-gray-400'
+                          message.status === 'unread' ? 'text-gray-300 dark:text-gray-300 light:text-gray-700' : 'text-gray-400 dark:text-gray-400 light:text-gray-600'
                         }`}>
                           {message.subject}
                         </p>
-                        <p className="text-xs text-gray-500 truncate">
+                        <p className="text-xs text-gray-500 dark:text-gray-500 light:text-gray-500 truncate">
                           {message.message}
                         </p>
                       </div>
@@ -235,10 +235,10 @@ const MessageManagement: React.FC = () => {
                   {/* Message Header */}
                   <div className="flex items-start justify-between mb-6 pb-4 border-b border-white/10">
                     <div>
-                      <h2 className="text-xl font-semibold text-white mb-2">
+                      <h2 className="text-xl font-semibold text-white dark:text-white light:text-gray-900 mb-2">
                         {selectedMessage.subject}
                       </h2>
-                      <div className="flex items-center gap-4 text-sm text-gray-400">
+                      <div className="flex items-center gap-4 text-sm text-gray-400 dark:text-gray-400 light:text-gray-600">
                         <div className="flex items-center gap-2">
                           <User className="w-4 h-4" />
                           <span>{selectedMessage.name}</span>
@@ -273,10 +273,10 @@ const MessageManagement: React.FC = () => {
                   <div className="mb-6">
                     <div className="flex items-center gap-2 mb-3">
                       <MessageSquare className="w-4 h-4 text-gray-400" />
-                      <span className="text-sm font-medium text-gray-300">Treść wiadomości:</span>
+                      <span className="text-sm font-medium text-gray-300 dark:text-gray-300 light:text-gray-700">Treść wiadomości:</span>
                     </div>
                     <div className="bg-white/5 rounded-lg p-4">
-                      <p className="text-gray-300 whitespace-pre-wrap leading-relaxed">
+                      <p className="text-gray-300 dark:text-gray-300 light:text-gray-700 whitespace-pre-wrap leading-relaxed">
                         {selectedMessage.message}
                       </p>
                     </div>
@@ -312,8 +312,8 @@ const MessageManagement: React.FC = () => {
               ) : (
                 <Card className="p-12 text-center">
                   <Mail className="w-16 h-16 text-gray-400 mx-auto mb-4" />
-                  <h3 className="text-lg font-medium text-white mb-2">Wybierz wiadomość</h3>
-                  <p className="text-gray-400">
+                  <h3 className="text-lg font-medium text-white dark:text-white light:text-gray-900 mb-2">Wybierz wiadomość</h3>
+                  <p className="text-gray-400 dark:text-gray-400 light:text-gray-600">
                     Kliknij na wiadomość z listy, aby wyświetlić jej szczegóły
                   </p>
                 </Card>

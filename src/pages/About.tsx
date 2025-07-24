@@ -64,7 +64,7 @@ const About: React.FC = () => {
               O mnie
             </span>
           </h1>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-400 dark:text-gray-400 light:text-gray-600 max-w-3xl mx-auto leading-relaxed">
             Jestem pasjonatem technologii z ponad 5-letnim doświadczeniem w tworzeniu 
             nowoczesnych aplikacji webowych i desktopowych.
           </p>
@@ -79,8 +79,8 @@ const About: React.FC = () => {
         >
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl font-bold text-white mb-6">Moja historia</h2>
-              <div className="space-y-4 text-gray-400">
+              <h2 className="text-3xl font-bold text-white dark:text-white light:text-gray-900 mb-6">Moja historia</h2>
+              <div className="space-y-4 text-gray-400 dark:text-gray-400 light:text-gray-600">
                 <p>
                   Rozpocząłem swoją przygodę z programowaniem w 2019 roku, fascynując się 
                   możliwościami, jakie daje kod. Od tamtej pory nieustannie rozwijam swoje 
@@ -109,10 +109,10 @@ const About: React.FC = () => {
                       className="text-center"
                     >
                       <achievement.icon className="w-8 h-8 text-primary mx-auto mb-2" />
-                      <h3 className="text-xl font-bold text-white mb-1">
+                      <h3 className="text-xl font-bold text-white dark:text-white light:text-gray-900 mb-1">
                         {achievement.title}
                       </h3>
-                      <p className="text-sm text-gray-400">
+                      <p className="text-sm text-gray-400 dark:text-gray-400 light:text-gray-600">
                         {achievement.description}
                       </p>
                     </motion.div>
@@ -130,7 +130,7 @@ const About: React.FC = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="mb-20"
         >
-          <h2 className="text-3xl font-bold text-center text-white mb-12">
+          <h2 className="text-3xl font-bold text-center text-white dark:text-white light:text-gray-900 mb-12">
             Moje umiejętności
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -143,10 +143,10 @@ const About: React.FC = () => {
               >
                 <Card variant="glass" className="h-full text-center p-6 hover:scale-105 transition-transform">
                   <skill.icon className={`w-12 h-12 ${skill.color} mx-auto mb-4`} />
-                  <h3 className="text-lg font-semibold text-white mb-2">
+                  <h3 className="text-lg font-semibold text-white dark:text-white light:text-gray-900 mb-2">
                     {skill.title}
                   </h3>
-                  <p className="text-gray-400 text-sm">
+                  <p className="text-gray-400 dark:text-gray-400 light:text-gray-600 text-sm">
                     {skill.description}
                   </p>
                 </Card>
@@ -162,25 +162,25 @@ const About: React.FC = () => {
           transition={{ duration: 0.6, delay: 0.8 }}
           className="text-center"
         >
-          <h2 className="text-3xl font-bold text-white mb-8">Moje wartości</h2>
+          <h2 className="text-3xl font-bold text-white dark:text-white light:text-gray-900 mb-8">Moje wartości</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="glass p-6 rounded-xl">
               <h3 className="text-xl font-semibold text-primary mb-4">Jakość</h3>
-              <p className="text-gray-400">
+              <p className="text-gray-400 dark:text-gray-400 light:text-gray-600">
                 Każdy projekt wykonuję z najwyższą starannością, 
                 dbając o czytelność kodu i optymalizację wydajności.
               </p>
             </div>
             <div className="glass p-6 rounded-xl">
               <h3 className="text-xl font-semibold text-secondary mb-4">Innowacyjność</h3>
-              <p className="text-gray-400">
+              <p className="text-gray-400 dark:text-gray-400 light:text-gray-600">
                 Stale poszukuję nowych rozwiązań i technologii, 
                 które mogą ulepszyć proces tworzenia aplikacji.
               </p>
             </div>
             <div className="glass p-6 rounded-xl">
               <h3 className="text-xl font-semibold text-accent mb-4">Współpraca</h3>
-              <p className="text-gray-400">
+              <p className="text-gray-400 dark:text-gray-400 light:text-gray-600">
                 Wierzę w siłę teamworku i otwartą komunikację 
                 jako klucz do sukcesu każdego projektu.
               </p>

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate, Link } from 'react-router-dom';
 import { ArrowLeft, Save, User, Mail, Database, Globe, Lock } from 'lucide-react';
-import { toast } from 'sonner';
+import { toast } from 'react-hot-toast';
 import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
 import { useAuthStore } from '../store/authStore';
@@ -226,7 +226,7 @@ const Settings: React.FC = () => {
   if (loading) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
-        <div className="text-white">Ładowanie ustawień...</div>
+        <div className="dark:text-white light:text-gray-900">Ładowanie ustawień...</div>
       </div>
     );
   }
@@ -234,7 +234,7 @@ const Settings: React.FC = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="bg-white/5 border-b border-white/10 backdrop-blur-sm">
+      <header className="dark:bg-white/5 light:bg-gray-100 dark:border-white/10 light:border-gray-200 border-b backdrop-blur-sm">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center gap-4">
             <Link to="/admin/dashboard">
@@ -243,8 +243,8 @@ const Settings: React.FC = () => {
               </Button>
             </Link>
             <div>
-              <h1 className="text-2xl font-bold text-white">Ustawienia</h1>
-              <p className="text-gray-400">Zarządzaj swoimi danymi osobowymi i konfiguracją</p>
+              <h1 className="text-2xl font-bold dark:text-white light:text-gray-900">Ustawienia</h1>
+              <p className="dark:text-gray-400 light:text-gray-600">Zarządzaj swoimi danymi osobowymi i konfiguracją</p>
             </div>
           </div>
         </div>
@@ -262,19 +262,19 @@ const Settings: React.FC = () => {
             <Card className="p-6">
               <div className="flex items-center gap-3 mb-6">
                 <User className="w-5 h-5 text-primary" />
-                <h2 className="text-xl font-semibold text-white">Dane osobowe</h2>
+                <h2 className="text-xl font-semibold dark:text-white light:text-gray-900">Dane osobowe</h2>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                  <label className="block text-sm font-medium dark:text-gray-300 light:text-gray-700 mb-2">
                     Imię *
                   </label>
                   <input
                     name="personal_first_name"
                     value={formData.personal_first_name}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
+                    className="w-full px-4 py-3 dark:bg-white/5 light:bg-white dark:border-white/10 light:border-gray-300 border rounded-lg dark:text-white light:text-gray-900 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
                     placeholder="Wprowadź imię"
                   />
                   {errors.personal_first_name && (
@@ -283,14 +283,14 @@ const Settings: React.FC = () => {
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                  <label className="block text-sm font-medium dark:text-gray-300 light:text-gray-700 mb-2">
                     Nazwisko *
                   </label>
                   <input
                     name="personal_last_name"
                     value={formData.personal_last_name}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
+                    className="w-full px-4 py-3 dark:bg-white/5 light:bg-white dark:border-white/10 light:border-gray-300 border rounded-lg dark:text-white light:text-gray-900 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
                     placeholder="Wprowadź nazwisko"
                   />
                   {errors.personal_last_name && (
@@ -299,7 +299,7 @@ const Settings: React.FC = () => {
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                  <label className="block text-sm font-medium dark:text-gray-300 light:text-gray-700 mb-2">
                     Email *
                   </label>
                   <input
@@ -307,7 +307,7 @@ const Settings: React.FC = () => {
                     value={formData.personal_email}
                     onChange={handleInputChange}
                     type="email"
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
+                    className="w-full px-4 py-3 dark:bg-white/5 light:bg-white dark:border-white/10 light:border-gray-300 border rounded-lg dark:text-white light:text-gray-900 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
                     placeholder="email@example.com"
                   />
                   {errors.personal_email && (
@@ -316,14 +316,14 @@ const Settings: React.FC = () => {
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                  <label className="block text-sm font-medium dark:text-gray-300 light:text-gray-700 mb-2">
                     Telefon *
                   </label>
                   <input
                     name="personal_phone"
                     value={formData.personal_phone}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
+                    className="w-full px-4 py-3 dark:bg-white/5 light:bg-white dark:border-white/10 light:border-gray-300 border rounded-lg dark:text-white light:text-gray-900 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
                     placeholder="+48 123 456 789"
                   />
                   {errors.personal_phone && (
@@ -333,7 +333,7 @@ const Settings: React.FC = () => {
               </div>
               
               <div className="mt-6">
-                <label className="block text-sm font-medium text-gray-300 mb-2">
+                <label className="block text-sm font-medium dark:text-gray-300 light:text-gray-700 mb-2">
                   Bio
                 </label>
                 <textarea
@@ -341,7 +341,7 @@ const Settings: React.FC = () => {
                   value={formData.personal_bio}
                   onChange={handleInputChange}
                   rows={4}
-                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 resize-none"
+                  className="w-full px-4 py-3 dark:bg-white/5 light:bg-white dark:border-white/10 light:border-gray-300 border rounded-lg dark:text-white light:text-gray-900 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 resize-none"
                   placeholder="Krótki opis o sobie..."
                 />
               </div>
@@ -351,25 +351,25 @@ const Settings: React.FC = () => {
             <Card className="p-6">
               <div className="flex items-center gap-3 mb-6">
                 <Database className="w-5 h-5 text-primary" />
-                <h2 className="text-xl font-semibold text-white">Konfiguracja bazy danych</h2>
+                <h2 className="text-xl font-semibold dark:text-white light:text-gray-900">Konfiguracja bazy danych</h2>
               </div>
               
               <div className="grid grid-cols-1 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                  <label className="block text-sm font-medium dark:text-gray-300 light:text-gray-700 mb-2">
                     Supabase URL
                   </label>
                   <input
                     name="supabaseUrl"
                     value={formData.supabaseUrl}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
+                    className="w-full px-4 py-3 dark:bg-white/5 light:bg-white dark:border-white/10 light:border-gray-300 border rounded-lg dark:text-white light:text-gray-900 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
                     placeholder="https://your-project.supabase.co"
                   />
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                  <label className="block text-sm font-medium dark:text-gray-300 light:text-gray-700 mb-2">
                     Supabase Anon Key
                   </label>
                   <input
@@ -377,7 +377,7 @@ const Settings: React.FC = () => {
                     value={formData.supabaseKey}
                     onChange={handleInputChange}
                     type="password"
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
+                    className="w-full px-4 py-3 dark:bg-white/5 light:bg-white dark:border-white/10 light:border-gray-300 border rounded-lg dark:text-white light:text-gray-900 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
                     placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
                   />
                 </div>
@@ -388,45 +388,45 @@ const Settings: React.FC = () => {
             <Card className="p-6">
               <div className="flex items-center gap-3 mb-6">
                 <Mail className="w-5 h-5 text-primary" />
-                <h2 className="text-xl font-semibold text-white">Konfiguracja EmailJS</h2>
+                <h2 className="text-xl font-semibold dark:text-white light:text-gray-900">Konfiguracja EmailJS</h2>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                  <label className="block text-sm font-medium dark:text-gray-300 light:text-gray-700 mb-2">
                     Service ID
                   </label>
                   <input
                     name="emailjsServiceId"
                     value={formData.emailjsServiceId}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
+                    className="w-full px-4 py-3 dark:bg-white/5 light:bg-white dark:border-white/10 light:border-gray-300 border rounded-lg dark:text-white light:text-gray-900 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
                     placeholder="service_xxxxxxx"
                   />
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                  <label className="block text-sm font-medium dark:text-gray-300 light:text-gray-700 mb-2">
                     Template ID
                   </label>
                   <input
                     name="emailjsTemplateId"
                     value={formData.emailjsTemplateId}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
+                    className="w-full px-4 py-3 dark:bg-white/5 light:bg-white dark:border-white/10 light:border-gray-300 border rounded-lg dark:text-white light:text-gray-900 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
                     placeholder="template_xxxxxxx"
                   />
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                  <label className="block text-sm font-medium dark:text-gray-300 light:text-gray-700 mb-2">
                     Public Key
                   </label>
                   <input
                     name="emailjsPublicKey"
                     value={formData.emailjsPublicKey}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
+                    className="w-full px-4 py-3 dark:bg-white/5 light:bg-white dark:border-white/10 light:border-gray-300 border rounded-lg dark:text-white light:text-gray-900 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
                     placeholder="user_xxxxxxxxxxxxxxx"
                   />
                 </div>
@@ -437,58 +437,58 @@ const Settings: React.FC = () => {
             <Card className="p-6">
               <div className="flex items-center gap-3 mb-6">
                 <Globe className="w-5 h-5 text-primary" />
-                <h2 className="text-xl font-semibold text-white">Linki społecznościowe</h2>
+                <h2 className="text-xl font-semibold dark:text-white light:text-gray-900">Linki społecznościowe</h2>
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                  <label className="block text-sm font-medium dark:text-gray-300 light:text-gray-700 mb-2">
                     GitHub URL
                   </label>
                   <input
                     name="social_github"
                     value={formData.social_github}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
+                    className="w-full px-4 py-3 dark:bg-white/5 light:bg-white dark:border-white/10 light:border-gray-300 border rounded-lg dark:text-white light:text-gray-900 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
                     placeholder="https://github.com/username"
                   />
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                  <label className="block text-sm font-medium dark:text-gray-300 light:text-gray-700 mb-2">
                     LinkedIn URL
                   </label>
                   <input
                     name="social_linkedin"
                     value={formData.social_linkedin}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
+                    className="w-full px-4 py-3 dark:bg-white/5 light:bg-white dark:border-white/10 light:border-gray-300 border rounded-lg dark:text-white light:text-gray-900 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
                     placeholder="https://linkedin.com/in/username"
                   />
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                  <label className="block text-sm font-medium dark:text-gray-300 light:text-gray-700 mb-2">
                     Instagram URL
                   </label>
                   <input
                     name="social_instagram"
                     value={formData.social_instagram}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
+                    className="w-full px-4 py-3 dark:bg-white/5 light:bg-white dark:border-white/10 light:border-gray-300 border rounded-lg dark:text-white light:text-gray-900 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
                     placeholder="https://instagram.com/username"
                   />
                 </div>
                 
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                  <label className="block text-sm font-medium dark:text-gray-300 light:text-gray-700 mb-2">
                     Facebook URL
                   </label>
                   <input
                     name="social_facebook"
                     value={formData.social_facebook}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
+                    className="w-full px-4 py-3 dark:bg-white/5 light:bg-white dark:border-white/10 light:border-gray-300 border rounded-lg dark:text-white light:text-gray-900 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
                     placeholder="https://facebook.com/username"
                   />
                 </div>
@@ -499,13 +499,13 @@ const Settings: React.FC = () => {
             <Card className="p-6">
               <div className="flex items-center gap-3 mb-6">
                 <Lock className="w-5 h-5 text-primary" />
-                <h2 className="text-xl font-semibold text-white">Zmiana hasła</h2>
+                <h2 className="text-xl font-semibold dark:text-white light:text-gray-900">Zmiana hasła</h2>
               </div>
               
               <form onSubmit={handlePasswordSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                    <label className="block text-sm font-medium dark:text-gray-300 light:text-gray-700 mb-2">
                       Aktualne hasło *
                     </label>
                     <input
@@ -513,7 +513,7 @@ const Settings: React.FC = () => {
                       type="password"
                       value={passwordData.currentPassword}
                       onChange={handlePasswordChange}
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
+                      className="w-full px-4 py-3 dark:bg-white/5 light:bg-white dark:border-white/10 light:border-gray-300 border rounded-lg dark:text-white light:text-gray-900 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
                       placeholder="Wprowadź aktualne hasło"
                     />
                     {passwordErrors.currentPassword && (
@@ -522,7 +522,7 @@ const Settings: React.FC = () => {
                   </div>
                   
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                    <label className="block text-sm font-medium dark:text-gray-300 light:text-gray-700 mb-2">
                       Nowe hasło *
                     </label>
                     <input
@@ -530,7 +530,7 @@ const Settings: React.FC = () => {
                       type="password"
                       value={passwordData.newPassword}
                       onChange={handlePasswordChange}
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
+                      className="w-full px-4 py-3 dark:bg-white/5 light:bg-white dark:border-white/10 light:border-gray-300 border rounded-lg dark:text-white light:text-gray-900 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
                       placeholder="Wprowadź nowe hasło"
                     />
                     {passwordErrors.newPassword && (
@@ -539,7 +539,7 @@ const Settings: React.FC = () => {
                   </div>
                   
                   <div>
-                    <label className="block text-sm font-medium text-gray-300 mb-2">
+                    <label className="block text-sm font-medium dark:text-gray-300 light:text-gray-700 mb-2">
                       Potwierdź hasło *
                     </label>
                     <input
@@ -547,7 +547,7 @@ const Settings: React.FC = () => {
                       type="password"
                       value={passwordData.confirmPassword}
                       onChange={handlePasswordChange}
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
+                      className="w-full px-4 py-3 dark:bg-white/5 light:bg-white dark:border-white/10 light:border-gray-300 border rounded-lg dark:text-white light:text-gray-900 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
                       placeholder="Potwierdź nowe hasło"
                     />
                     {passwordErrors.confirmPassword && (

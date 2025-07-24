@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { ContactMessage, ContactFormData } from '../types';
 import { db } from '../lib/supabase';
-import { toast } from 'sonner';
+import { toast } from 'react-hot-toast';
 
 interface ContactState {
   messages: ContactMessage[];

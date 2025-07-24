@@ -58,16 +58,16 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
               stiffness: 300, 
               damping: 30 
             }}
-            className="fixed top-0 right-0 h-full w-80 max-w-[90vw] bg-background/95 backdrop-blur-xl border-l border-white/10 z-50 lg:hidden"
+            className="fixed top-0 right-0 h-full w-80 max-w-[90vw] bg-background/95 backdrop-blur-xl border-l border-white/10 light:border-gray-200 z-50 lg:hidden"
           >
             {/* Header */}
-            <div className="flex items-center justify-between p-6 border-b border-white/10">
-              <h2 className="text-xl font-bold text-white">Menu</h2>
+            <div className="flex items-center justify-between p-6 border-b border-white/10 light:border-gray-200">
+              <h2 className="text-xl font-bold text-white light:text-gray-900">Menu</h2>
               <button
                 onClick={onClose}
-                className="p-2 rounded-lg hover:bg-white/10 transition-colors"
+                className="p-2 rounded-lg hover:bg-white/10 light:hover:bg-gray-100 transition-colors"
               >
-                <X className="w-6 h-6 text-white" />
+                <X className="w-6 h-6 text-white light:text-gray-900" />
               </button>
             </div>
 
@@ -76,7 +76,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
               <div className="p-6">
                 {/* Main Navigation */}
                 <div className="space-y-2 mb-8">
-                  <h3 className="text-sm font-medium text-gray-400 uppercase tracking-wider mb-4">
+                  <h3 className="text-sm font-medium text-gray-400 light:text-gray-600 uppercase tracking-wider mb-4">
                     Nawigacja
                   </h3>
                   {menuItems.map((item, index) => {
@@ -94,7 +94,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
                           className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 ${
                             isActive
                               ? 'bg-primary/20 text-primary border border-primary/30'
-                              : 'text-gray-300 hover:text-white hover:bg-white/10'
+                              : 'text-gray-300 light:text-gray-600 hover:text-white light:hover:text-gray-900 hover:bg-white/10 light:hover:bg-gray-100'
                           }`}
                         >
                           <item.icon className="w-5 h-5" />
@@ -108,7 +108,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
                 {/* Admin Navigation */}
                 {isAuthenticated && (
                   <div className="space-y-2 mb-8">
-                    <h3 className="text-sm font-medium text-gray-400 uppercase tracking-wider mb-4">
+                    <h3 className="text-sm font-medium text-gray-400 light:text-gray-600 uppercase tracking-wider mb-4">
                       Panel administratora
                     </h3>
                     {adminItems.map((item, index) => {
@@ -126,7 +126,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
                             className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 ${
                               isActive
                                 ? 'bg-secondary/20 text-secondary border border-secondary/30'
-                                : 'text-gray-300 hover:text-white hover:bg-white/10'
+                                : 'text-gray-300 light:text-gray-600 hover:text-white light:hover:text-gray-900 hover:bg-white/10 light:hover:bg-gray-100'
                             }`}
                           >
                             <item.icon className="w-5 h-5" />
@@ -139,9 +139,9 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
                 )}
 
                 {/* Theme Toggle */}
-                <div className="pt-6 border-t border-white/10">
+                <div className="pt-6 border-t border-white/10 light:border-gray-200">
                   <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium text-gray-400">Motyw</span>
+                    <span className="text-sm font-medium text-gray-400 light:text-gray-600">Motyw</span>
                     <ThemeToggle variant="switch" />
                   </div>
                 </div>
@@ -149,12 +149,12 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
             </nav>
 
             {/* Footer */}
-            <div className="p-6 border-t border-white/10">
+            <div className="p-6 border-t border-white/10 light:border-gray-200">
               <div className="text-center">
-                <p className="text-sm text-gray-400">
+                <p className="text-sm text-gray-400 light:text-gray-600">
                   © 2024 Emanuel Wójcik
                 </p>
-                <p className="text-xs text-gray-500 mt-1">
+                <p className="text-xs text-gray-500 light:text-gray-400 mt-1">
                   Wszystkie prawa zastrzeżone
                 </p>
               </div>

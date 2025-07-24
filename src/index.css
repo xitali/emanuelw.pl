@@ -4,8 +4,33 @@
 @tailwind utilities;
 
 @layer base {
+  /* Dark theme (default) */
   body {
-    @apply bg-slate-900 text-slate-100 font-sans;
+    @apply bg-slate-900 text-slate-100 font-sans transition-colors duration-300;
+  }
+  
+  /* Light theme */
+  .light body {
+    @apply bg-gray-50 text-gray-900;
+  }
+  
+  /* Root variables for better theme support */
+  :root {
+    --background: 15 23 42; /* slate-900 */
+    --surface: 30 41 59; /* slate-800 */
+    --text-primary: 248 250 252; /* slate-50 */
+    --text-secondary: 148 163 184; /* slate-400 */
+    --border: 51 65 85; /* slate-700 */
+    --input-bg: 30 41 59; /* slate-800 */
+  }
+  
+  .light {
+    --background: 248 250 252; /* gray-50 */
+    --surface: 255 255 255; /* white */
+    --text-primary: 30 41 59; /* slate-800 */
+    --text-secondary: 100 116 139; /* slate-500 */
+    --border: 229 231 235; /* gray-200 */
+    --input-bg: 255 255 255; /* white */
   }
 }
 
@@ -18,7 +43,60 @@
     @apply border border-primary text-primary px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:bg-primary hover:text-white;
   }
   
+  /* Glass effect for dark theme */
   .glass {
-    @apply bg-white/10 backdrop-blur-md border border-white/20;
+    @apply bg-white/10 backdrop-blur-md border border-white/20 transition-all duration-300;
+  }
+  
+  /* Glass effect for light theme */
+  .light .glass {
+    @apply bg-white/80 backdrop-blur-md border border-gray-200 shadow-lg;
+  }
+  
+  /* Background utilities */
+  .bg-background {
+    @apply bg-slate-900;
+  }
+  
+  .light .bg-background {
+    @apply bg-gray-50;
+  }
+  
+  .bg-surface {
+    background-color: rgb(var(--surface));
+  }
+  
+  .bg-input {
+    background-color: rgb(var(--input-bg));
+  }
+  
+  .border-custom {
+    border-color: rgb(var(--border));
+  }
+  
+  .text-primary-custom {
+    color: rgb(var(--text-primary));
+  }
+  
+  .text-secondary-custom {
+    color: rgb(var(--text-secondary));
+  }
+  
+  /* Section backgrounds */
+  .section-bg {
+    @apply bg-slate-900;
+  }
+  
+  .light .section-bg {
+    @apply bg-gray-100;
+  }
+  
+  /* Card improvements for light theme */
+  .card-bg {
+    @apply bg-white/5 border border-white/10;
+  }
+  
+  .light .card-bg {
+    @apply bg-white border-gray-200 shadow-md;
   }
 }

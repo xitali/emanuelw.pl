@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Save, X, Plus } from 'lucide-react';
-import { toast } from 'sonner';
+import { toast } from 'react-hot-toast';
 import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
 import { useAuthStore } from '../store/authStore';
@@ -266,7 +266,7 @@ const ProjectForm: React.FC = () => {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <header className="bg-white/5 border-b border-white/10 backdrop-blur-sm">
+      <header className="bg-white/5 dark:bg-white/5 light:bg-gray-100 border-b border-white/10 dark:border-white/10 light:border-gray-200 backdrop-blur-sm">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center gap-4">
             <Link to="/admin/projects">
@@ -275,10 +275,10 @@ const ProjectForm: React.FC = () => {
               </Button>
             </Link>
             <div>
-              <h1 className="text-2xl font-bold text-white">
+              <h1 className="text-2xl font-bold text-white dark:text-white light:text-gray-900">
                 {isEditing ? 'Edytuj projekt' : 'Dodaj nowy projekt'}
               </h1>
-              <p className="text-gray-400">
+              <p className="text-gray-400 dark:text-gray-400 light:text-gray-600">
                 {isEditing ? 'Zaktualizuj informacje o projekcie' : 'Wypełnij formularz aby dodać projekt'}
               </p>
             </div>
@@ -296,14 +296,14 @@ const ProjectForm: React.FC = () => {
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Title */}
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-gray-300 dark:text-gray-300 light:text-gray-700 mb-2">
                   Tytuł projektu *
                 </label>
                 <input
                   name="title"
                   value={formData.title}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
+                  className="w-full px-4 py-3 bg-white/5 dark:bg-white/5 light:bg-white border border-white/10 dark:border-white/10 light:border-gray-300 rounded-lg text-white dark:text-white light:text-gray-900 placeholder-gray-400 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
                   placeholder="Wprowadź tytuł projektu"
                 />
                 {errors.title && (
@@ -313,7 +313,7 @@ const ProjectForm: React.FC = () => {
 
               {/* Short Description */}
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-gray-300 dark:text-gray-300 light:text-gray-700 mb-2">
                   Krótki opis *
                 </label>
                 <textarea
@@ -321,7 +321,7 @@ const ProjectForm: React.FC = () => {
                   value={formData.short_description}
                   onChange={handleInputChange}
                   rows={2}
-                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 resize-none"
+                  className="w-full px-4 py-3 bg-white/5 dark:bg-white/5 light:bg-white border border-white/10 dark:border-white/10 light:border-gray-300 rounded-lg text-white dark:text-white light:text-gray-900 placeholder-gray-400 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 resize-none"
                   placeholder="1-2 zdania o głównym celu projektu"
                 />
                 {errors.short_description && (
@@ -331,7 +331,7 @@ const ProjectForm: React.FC = () => {
 
               {/* Detailed Description */}
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-gray-300 dark:text-gray-300 light:text-gray-700 mb-2">
                   Szczegółowy opis
                 </label>
                 <textarea
@@ -339,7 +339,7 @@ const ProjectForm: React.FC = () => {
                   value={formData.detailed_description}
                   onChange={handleInputChange}
                   rows={6}
-                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 resize-none"
+                  className="w-full px-4 py-3 bg-white/5 dark:bg-white/5 light:bg-white border border-white/10 dark:border-white/10 light:border-gray-300 rounded-lg text-white dark:text-white light:text-gray-900 placeholder-gray-400 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 resize-none"
                   placeholder="3-5 zdań o funkcjonalności, unikalnych cechach i wartości dla użytkowników"
                 />
               </div>
@@ -348,7 +348,7 @@ const ProjectForm: React.FC = () => {
 
               {/* Frontend Technologies */}
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-gray-300 dark:text-gray-300 light:text-gray-700 mb-2">
                   Technologie Frontend
                 </label>
                 <input
@@ -356,14 +356,14 @@ const ProjectForm: React.FC = () => {
                   name="frontend_technologies"
                   value={formData.frontend_technologies}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
+                  className="w-full px-4 py-3 bg-white/5 dark:bg-white/5 light:bg-white border border-white/10 dark:border-white/10 light:border-gray-300 rounded-lg text-white dark:text-white light:text-gray-900 placeholder-gray-400 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
                   placeholder="React, TypeScript, Tailwind CSS, Vite (oddziel przecinkami)"
                 />
               </div>
 
               {/* Backend Technologies */}
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-gray-300 dark:text-gray-300 light:text-gray-700 mb-2">
                   Technologie Backend
                 </label>
                 <input
@@ -371,14 +371,14 @@ const ProjectForm: React.FC = () => {
                   name="backend_technologies"
                   value={formData.backend_technologies}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
+                  className="w-full px-4 py-3 bg-white/5 dark:bg-white/5 light:bg-white border border-white/10 dark:border-white/10 light:border-gray-300 rounded-lg text-white dark:text-white light:text-gray-900 placeholder-gray-400 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
                   placeholder="Node.js, Express, PostgreSQL (oddziel przecinkami)"
                 />
               </div>
 
               {/* Tools and Services */}
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-gray-300 dark:text-gray-300 light:text-gray-700 mb-2">
                   Narzędzia i Usługi
                 </label>
                 <input
@@ -386,14 +386,14 @@ const ProjectForm: React.FC = () => {
                   name="tools_and_services"
                   value={formData.tools_and_services}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
+                  className="w-full px-4 py-3 bg-white/5 dark:bg-white/5 light:bg-white border border-white/10 dark:border-white/10 light:border-gray-300 rounded-lg text-white dark:text-white light:text-gray-900 placeholder-gray-400 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
                   placeholder="Stripe API, Google Maps, SendGrid (oddziel przecinkami)"
                 />
               </div>
 
               {/* Images */}
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-gray-300 dark:text-gray-300 light:text-gray-700 mb-2">
                   Zdjęcia projektu *
                 </label>
                 <div className="space-y-2">
@@ -402,7 +402,7 @@ const ProjectForm: React.FC = () => {
                       <input
                         value={url}
                         onChange={(e) => updateImageUrl(index, e.target.value)}
-                        className="flex-1 px-4 py-2 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
+                        className="flex-1 px-4 py-2 bg-white/5 dark:bg-white/5 light:bg-white border border-white/10 dark:border-white/10 light:border-gray-300 rounded-lg text-white dark:text-white light:text-gray-900 placeholder-gray-400 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
                         placeholder="URL do zdjęcia projektu"
                       />
                       {imageUrls.length > 1 && (
@@ -434,26 +434,26 @@ const ProjectForm: React.FC = () => {
               {/* URLs */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-gray-300 dark:text-gray-300 light:text-gray-700 mb-2">
                     Repository URL
                   </label>
                   <input
                     name="repository_url"
                     value={formData.repository_url}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
+                    className="w-full px-4 py-3 bg-white/5 dark:bg-white/5 light:bg-white border border-white/10 dark:border-white/10 light:border-gray-300 rounded-lg text-white dark:text-white light:text-gray-900 placeholder-gray-400 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
                     placeholder="https://github.com/username/repository"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-300 mb-2">
+                  <label className="block text-sm font-medium text-gray-300 dark:text-gray-300 light:text-gray-700 mb-2">
                     Project URL
                   </label>
                   <input
                     name="project_url"
                     value={formData.project_url}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
+                    className="w-full px-4 py-3 bg-white/5 dark:bg-white/5 light:bg-white border border-white/10 dark:border-white/10 light:border-gray-300 rounded-lg text-white dark:text-white light:text-gray-900 placeholder-gray-400 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
                     placeholder="https://example.com"
                   />
                 </div>
@@ -461,19 +461,19 @@ const ProjectForm: React.FC = () => {
 
               {/* Category */}
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-gray-300 dark:text-gray-300 light:text-gray-700 mb-2">
                   Kategoria *
                 </label>
                 <select
                   name="category"
                   value={formData.category}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
+                  className="w-full px-4 py-3 bg-white/5 dark:bg-white/5 light:bg-white border border-white/10 dark:border-white/10 light:border-gray-300 rounded-lg text-white dark:text-white light:text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
                 >
-                  <option value="web" className="bg-gray-800">Web</option>
-                  <option value="mobile" className="bg-gray-800">Mobile</option>
-                  <option value="desktop" className="bg-gray-800">Desktop</option>
-                  <option value="other" className="bg-gray-800">Inne</option>
+                  <option value="web" className="bg-gray-800 dark:bg-gray-800 light:bg-white light:text-gray-900">Web</option>
+                  <option value="mobile" className="bg-gray-800 dark:bg-gray-800 light:bg-white light:text-gray-900">Mobile</option>
+                  <option value="desktop" className="bg-gray-800 dark:bg-gray-800 light:bg-white light:text-gray-900">Desktop</option>
+                  <option value="other" className="bg-gray-800 dark:bg-gray-800 light:bg-white light:text-gray-900">Inne</option>
                 </select>
                 {errors.category && (
                   <p className="mt-1 text-sm text-red-400">{errors.category}</p>
@@ -482,7 +482,7 @@ const ProjectForm: React.FC = () => {
 
               {/* Key Features */}
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-gray-300 dark:text-gray-300 light:text-gray-700 mb-2">
                   Kluczowe funkcje
                 </label>
                 <textarea
@@ -490,14 +490,14 @@ const ProjectForm: React.FC = () => {
                   value={formData.key_features}
                   onChange={handleInputChange}
                   rows={4}
-                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 resize-none"
+                  className="w-full px-4 py-3 bg-white/5 dark:bg-white/5 light:bg-white border border-white/10 dark:border-white/10 light:border-gray-300 rounded-lg text-white dark:text-white light:text-gray-900 placeholder-gray-400 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 resize-none"
                   placeholder="System płatności online\nResponsywny design\nPanel administratora\nIntegracja z API (każda funkcja w nowej linii)"
                 />
               </div>
 
               {/* Design Style */}
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-gray-300 dark:text-gray-300 light:text-gray-700 mb-2">
                   Styl designu
                 </label>
                 <input
@@ -505,14 +505,14 @@ const ProjectForm: React.FC = () => {
                   name="design_style"
                   value={formData.design_style}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
+                  className="w-full px-4 py-3 bg-white/5 dark:bg-white/5 light:bg-white border border-white/10 dark:border-white/10 light:border-gray-300 rounded-lg text-white dark:text-white light:text-gray-900 placeholder-gray-400 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
                   placeholder="minimalistyczny, nowoczesny, kolorowy"
                 />
               </div>
 
               {/* Color Palette */}
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-gray-300 dark:text-gray-300 light:text-gray-700 mb-2">
                   Paleta kolorów
                 </label>
                 <input
@@ -520,14 +520,14 @@ const ProjectForm: React.FC = () => {
                   name="color_palette"
                   value={formData.color_palette}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
+                  className="w-full px-4 py-3 bg-white/5 dark:bg-white/5 light:bg-white border border-white/10 dark:border-white/10 light:border-gray-300 rounded-lg text-white dark:text-white light:text-gray-900 placeholder-gray-400 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
                   placeholder="#główny-kolor, #akcentowy-kolor"
                 />
               </div>
 
               {/* Target Audience */}
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-gray-300 dark:text-gray-300 light:text-gray-700 mb-2">
                   Grupa docelowa
                 </label>
                 <input
@@ -535,7 +535,7 @@ const ProjectForm: React.FC = () => {
                   name="target_audience"
                   value={formData.target_audience}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
+                  className="w-full px-4 py-3 bg-white/5 dark:bg-white/5 light:bg-white border border-white/10 dark:border-white/10 light:border-gray-300 rounded-lg text-white dark:text-white light:text-gray-900 placeholder-gray-400 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
                   placeholder="małe firmy/freelancerzy/korporacje"
                 />
               </div>
@@ -548,16 +548,16 @@ const ProjectForm: React.FC = () => {
                   name="is_responsive"
                   checked={formData.is_responsive}
                   onChange={handleInputChange}
-                  className="w-4 h-4 text-primary bg-white/5 border-white/10 rounded focus:ring-primary/50 focus:ring-2"
+                  className="w-4 h-4 text-primary bg-white/5 dark:bg-white/5 light:bg-white border-white/10 dark:border-white/10 light:border-gray-300 rounded focus:ring-primary/50 focus:ring-2"
                 />
-                <label htmlFor="is_responsive" className="text-sm font-medium text-gray-300">
+                <label htmlFor="is_responsive" className="text-sm font-medium text-gray-300 dark:text-gray-300 light:text-gray-700">
                   Responsywny design (mobile-first)
                 </label>
               </div>
 
               {/* Accessibility Features */}
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-gray-300 dark:text-gray-300 light:text-gray-700 mb-2">
                   Funkcje dostępności
                 </label>
                 <input
@@ -565,14 +565,14 @@ const ProjectForm: React.FC = () => {
                   name="accessibility_features"
                   value={formData.accessibility_features}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
+                  className="w-full px-4 py-3 bg-white/5 dark:bg-white/5 light:bg-white border border-white/10 dark:border-white/10 light:border-gray-300 rounded-lg text-white dark:text-white light:text-gray-900 placeholder-gray-400 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
                   placeholder="ARIA labels, keyboard navigation, screen reader support"
                 />
               </div>
 
               {/* Main Challenge */}
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-gray-300 dark:text-gray-300 light:text-gray-700 mb-2">
                   Główne wyzwanie
                 </label>
                 <textarea
@@ -580,14 +580,14 @@ const ProjectForm: React.FC = () => {
                   value={formData.main_challenge}
                   onChange={handleInputChange}
                   rows={3}
-                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 resize-none"
+                  className="w-full px-4 py-3 bg-white/5 dark:bg-white/5 light:bg-white border border-white/10 dark:border-white/10 light:border-gray-300 rounded-lg text-white dark:text-white light:text-gray-900 placeholder-gray-400 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 resize-none"
                   placeholder="Główne wyzwanie techniczne które zostało rozwiązane"
                 />
               </div>
 
               {/* Innovation */}
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-gray-300 dark:text-gray-300 light:text-gray-700 mb-2">
                   Innowacja
                 </label>
                 <textarea
@@ -595,14 +595,14 @@ const ProjectForm: React.FC = () => {
                   value={formData.innovation}
                   onChange={handleInputChange}
                   rows={3}
-                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 resize-none"
+                  className="w-full px-4 py-3 bg-white/5 dark:bg-white/5 light:bg-white border border-white/10 dark:border-white/10 light:border-gray-300 rounded-lg text-white dark:text-white light:text-gray-900 placeholder-gray-400 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 resize-none"
                   placeholder="Unikalne rozwiązanie zastosowane w projekcie"
                 />
               </div>
 
               {/* Project Result */}
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-gray-300 dark:text-gray-300 light:text-gray-700 mb-2">
                   Rezultat projektu
                 </label>
                 <input
@@ -610,14 +610,14 @@ const ProjectForm: React.FC = () => {
                   name="project_result"
                   value={formData.project_result}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
+                  className="w-full px-4 py-3 bg-white/5 dark:bg-white/5 light:bg-white border border-white/10 dark:border-white/10 light:border-gray-300 rounded-lg text-white dark:text-white light:text-gray-900 placeholder-gray-400 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
                   placeholder="40% wzrost konwersji, 1000+ użytkowników"
                 />
               </div>
 
               {/* Performance Metrics */}
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-gray-300 dark:text-gray-300 light:text-gray-700 mb-2">
                   Metryki wydajności
                 </label>
                 <input
@@ -625,14 +625,14 @@ const ProjectForm: React.FC = () => {
                   name="performance_metrics"
                   value={formData.performance_metrics}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
+                  className="w-full px-4 py-3 bg-white/5 dark:bg-white/5 light:bg-white border border-white/10 dark:border-white/10 light:border-gray-300 rounded-lg text-white dark:text-white light:text-gray-900 placeholder-gray-400 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
                   placeholder="Szybkość ładowania, optymalizacje (oddziel przecinkami)"
                 />
               </div>
 
               {/* Success Metrics */}
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-gray-300 dark:text-gray-300 light:text-gray-700 mb-2">
                   Metryki sukcesu
                 </label>
                 <input
@@ -640,14 +640,14 @@ const ProjectForm: React.FC = () => {
                   name="success_metrics"
                   value={formData.success_metrics}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
+                  className="w-full px-4 py-3 bg-white/5 dark:bg-white/5 light:bg-white border border-white/10 dark:border-white/10 light:border-gray-300 rounded-lg text-white dark:text-white light:text-gray-900 placeholder-gray-400 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
                   placeholder="Konkretne dane o sukcesie projektu (oddziel przecinkami)"
                 />
               </div>
 
               {/* User Feedback */}
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-gray-300 dark:text-gray-300 light:text-gray-700 mb-2">
                   Opinie użytkowników
                 </label>
                 <textarea
@@ -655,14 +655,14 @@ const ProjectForm: React.FC = () => {
                   value={formData.user_feedback}
                   onChange={handleInputChange}
                   rows={3}
-                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 resize-none"
+                  className="w-full px-4 py-3 bg-white/5 dark:bg-white/5 light:bg-white border border-white/10 dark:border-white/10 light:border-gray-300 rounded-lg text-white dark:text-white light:text-gray-900 placeholder-gray-400 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 resize-none"
                   placeholder="Pozytywne opinie i feedback od użytkowników"
                 />
               </div>
 
               {/* Technical Metrics */}
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-gray-300 dark:text-gray-300 light:text-gray-700 mb-2">
                   Metryki techniczne
                 </label>
                 <input
@@ -670,7 +670,7 @@ const ProjectForm: React.FC = () => {
                   name="technical_metrics"
                   value={formData.technical_metrics}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
+                  className="w-full px-4 py-3 bg-white/5 dark:bg-white/5 light:bg-white border border-white/10 dark:border-white/10 light:border-gray-300 rounded-lg text-white dark:text-white light:text-gray-900 placeholder-gray-400 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
                   placeholder="Lighthouse score, Core Web Vitals (oddziel przecinkami)"
                 />
               </div>
@@ -683,56 +683,56 @@ const ProjectForm: React.FC = () => {
                   name="featured"
                   checked={formData.featured}
                   onChange={handleInputChange}
-                  className="w-4 h-4 text-primary bg-white/5 border-white/10 rounded focus:ring-primary/50 focus:ring-2"
+                  className="w-4 h-4 text-primary bg-white/5 dark:bg-white/5 light:bg-white border-white/10 dark:border-white/10 light:border-gray-300 rounded focus:ring-primary/50 focus:ring-2"
                 />
-                <label htmlFor="featured" className="text-sm font-medium text-gray-300">
+                <label htmlFor="featured" className="text-sm font-medium text-gray-300 dark:text-gray-300 light:text-gray-700">
                   Wyróżniony projekt
                 </label>
               </div>
 
               {/* Project Type */}
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-gray-300 dark:text-gray-300 light:text-gray-700 mb-2">
                   Typ projektu
                 </label>
                 <select
                   name="project_type"
                   value={formData.project_type}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
+                  className="w-full px-4 py-3 bg-white/5 dark:bg-white/5 light:bg-white border border-white/10 dark:border-white/10 light:border-gray-300 rounded-lg text-white dark:text-white light:text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
                 >
-                  <option value="" className="bg-gray-800">Wybierz typ</option>
-                  <option value="e-commerce" className="bg-gray-800">E-commerce</option>
-                  <option value="landing-page" className="bg-gray-800">Landing Page</option>
-                  <option value="web-app" className="bg-gray-800">Aplikacja webowa</option>
-                  <option value="portfolio" className="bg-gray-800">Portfolio</option>
-                  <option value="blog" className="bg-gray-800">Blog</option>
-                  <option value="dashboard" className="bg-gray-800">Dashboard</option>
-                  <option value="api" className="bg-gray-800">API</option>
-                  <option value="other" className="bg-gray-800">Inne</option>
+                  <option value="" className="bg-gray-800 dark:bg-gray-800 light:bg-white light:text-gray-900">Wybierz typ</option>
+                  <option value="e-commerce" className="bg-gray-800 dark:bg-gray-800 light:bg-white light:text-gray-900">E-commerce</option>
+                  <option value="landing-page" className="bg-gray-800 dark:bg-gray-800 light:bg-white light:text-gray-900">Landing Page</option>
+                  <option value="web-app" className="bg-gray-800 dark:bg-gray-800 light:bg-white light:text-gray-900">Aplikacja webowa</option>
+                  <option value="portfolio" className="bg-gray-800 dark:bg-gray-800 light:bg-white light:text-gray-900">Portfolio</option>
+                  <option value="blog" className="bg-gray-800 dark:bg-gray-800 light:bg-white light:text-gray-900">Blog</option>
+                  <option value="dashboard" className="bg-gray-800 dark:bg-gray-800 light:bg-white light:text-gray-900">Dashboard</option>
+                  <option value="api" className="bg-gray-800 dark:bg-gray-800 light:bg-white light:text-gray-900">API</option>
+                  <option value="other" className="bg-gray-800 dark:bg-gray-800 light:bg-white light:text-gray-900">Inne</option>
                 </select>
               </div>
 
               {/* Project Status */}
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-gray-300 dark:text-gray-300 light:text-gray-700 mb-2">
                   Status projektu
                 </label>
                 <select
                   name="project_status"
                   value={formData.project_status}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
+                  className="w-full px-4 py-3 bg-white/5 dark:bg-white/5 light:bg-white border border-white/10 dark:border-white/10 light:border-gray-300 rounded-lg text-white dark:text-white light:text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
                 >
-                  <option value="active" className="bg-gray-800">Aktywny</option>
-                  <option value="in-development" className="bg-gray-800">W rozwoju</option>
-                  <option value="archived" className="bg-gray-800">Zakończony</option>
+                  <option value="active" className="bg-gray-800 dark:bg-gray-800 light:bg-white light:text-gray-900">Aktywny</option>
+                  <option value="in-development" className="bg-gray-800 dark:bg-gray-800 light:bg-white light:text-gray-900">W rozwoju</option>
+                  <option value="archived" className="bg-gray-800 dark:bg-gray-800 light:bg-white light:text-gray-900">Zakończony</option>
                 </select>
               </div>
 
               {/* Completion Date */}
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-gray-300 dark:text-gray-300 light:text-gray-700 mb-2">
                   Data ukończenia
                 </label>
                 <input
@@ -740,13 +740,13 @@ const ProjectForm: React.FC = () => {
                   name="completion_date"
                   value={formData.completion_date}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
+                  className="w-full px-4 py-3 bg-white/5 dark:bg-white/5 light:bg-white border border-white/10 dark:border-white/10 light:border-gray-300 rounded-lg text-white dark:text-white light:text-gray-900 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
                 />
               </div>
 
               {/* Hosting Platform */}
               <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
+                <label className="block text-sm font-medium text-gray-300 dark:text-gray-300 light:text-gray-700 mb-2">
                   Platforma hostingowa
                 </label>
                 <input
@@ -754,7 +754,7 @@ const ProjectForm: React.FC = () => {
                   name="hosting_platform"
                   value={formData.hosting_platform}
                   onChange={handleInputChange}
-                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
+                  className="w-full px-4 py-3 bg-white/5 dark:bg-white/5 light:bg-white border border-white/10 dark:border-white/10 light:border-gray-300 rounded-lg text-white dark:text-white light:text-gray-900 placeholder-gray-400 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
                   placeholder="Vercel + Supabase"
                 />
               </div>

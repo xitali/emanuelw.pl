@@ -107,6 +107,11 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    // Plugin for light: prefix support
+    function({ addVariant }) {
+      addVariant('light', '.light &');
+    }
+  ],
 }
 
