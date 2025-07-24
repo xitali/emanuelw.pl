@@ -253,34 +253,7 @@ const Dashboard: React.FC = () => {
           </motion.div>
         </div>
 
-        {/* Quick Actions */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          className="mt-8"
-        >
-          <Card className="p-6">
-            <h2 className="text-xl font-semibold text-white dark:text-white light:text-gray-900 mb-6">Szybkie akcje</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <Link to="/admin/projects/new">
-                <Button variant="primary" className="w-full" icon={Plus}>
-                  Dodaj nowy projekt
-                </Button>
-              </Link>
-              <Link to="/admin/messages">
-                <Button variant="outline" className="w-full" icon={Mail}>
-                  Sprawdź wiadomości
-                </Button>
-              </Link>
-              <Link to="/admin/settings">
-                <Button variant="outline" className="w-full" icon={Settings}>
-                  Ustawienia
-                </Button>
-              </Link>
-            </div>
-          </Card>
-        </motion.div>
+
 
         {/* Szczegółowe statystyki odwiedzin */}
         <div className="mt-8">
