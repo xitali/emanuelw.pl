@@ -265,6 +265,35 @@ export interface Database {
           updated_at?: string;
         };
       };
+      page_visits: {
+        Row: {
+          id: string;
+          page_path: string;
+          visitor_ip?: string;
+          user_agent?: string;
+          referrer?: string;
+          session_id?: string;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          page_path: string;
+          visitor_ip?: string;
+          user_agent?: string;
+          referrer?: string;
+          session_id?: string;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          page_path?: string;
+          visitor_ip?: string;
+          user_agent?: string;
+          referrer?: string;
+          session_id?: string;
+          created_at?: string;
+        };
+      };
     };
   };
 }
@@ -332,6 +361,20 @@ export const db = {
     updateByKey: (key: string, value: string) => 
       getAuthenticatedSupabase().from('site_settings').update({ setting_value: value, updated_at: new Date().toISOString() }).eq('setting_key', key).select().single(),
     delete: (id: string) => getAuthenticatedSupabase().from('site_settings').delete().eq('id', id),
+  },
+
+  // Page Visits
+  pageVisits: {
+    getAll: () => getAuthenticatedSupabase().from('page_visits').select('*').order('created_at', { ascending: false }),
+    getStats: () => getAuthenticatedSupabase().from('page_visits').select('page_path, created_at'),
+    getTotalCount: () => getAuthenticatedSupabase().from('page_visits').select('id', { count: 'exact', head: true }),
+    getByDateRange: (startDate: string, endDate: string) => 
+      getAuthenticatedSupabase().from('page_visits').select('*').gte('created_at', startDate).lte('created_at', endDate),
+    getPopularPages: () => 
+      getAuthenticatedSupabase().from('page_visits').select('page_path').order('created_at', { ascending: false }),
+    create: (visit: Database['public']['Tables']['page_visits']['Insert']) => 
+      supabase.from('page_visits').insert(visit).select().single(),
+    delete: (id: string) => getAuthenticatedSupabase().from('page_visits').delete().eq('id', id),
   },
 
 };

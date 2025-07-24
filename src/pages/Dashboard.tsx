@@ -15,6 +15,8 @@ import Button from '../components/ui/Button';
 import { useAuthStore } from '../store/authStore';
 import { useProjectStore } from '../store/projectStore';
 import { useContactStore } from '../store/contactStore';
+import { useVisitStats } from '../store/visitsStore';
+import VisitStats from '../components/VisitStats';
 import { DashboardStats } from '../types';
 
 const Dashboard: React.FC = () => {
@@ -22,6 +24,7 @@ const Dashboard: React.FC = () => {
   const { user, logout, isAuthenticated } = useAuthStore();
   const { projects, fetchProjects } = useProjectStore();
   const { messages, fetchMessages } = useContactStore();
+  const { stats: visitStats, fetchStats } = useVisitStats();
   const [stats, setStats] = useState<DashboardStats | null>(null);
 
   useEffect(() => {
@@ -33,7 +36,8 @@ const Dashboard: React.FC = () => {
     // Pobierz dane z bazy danych
     fetchProjects();
     fetchMessages();
-  }, [isAuthenticated, navigate, fetchProjects, fetchMessages]);
+    fetchStats();
+  }, [isAuthenticated, navigate, fetchProjects, fetchMessages, fetchStats]);
 
   useEffect(() => {
     // Oblicz statystyki po pobraniu danych
@@ -90,11 +94,11 @@ const Dashboard: React.FC = () => {
     },
     {
       title: 'Odwiedziny',
-      value: '2.4k',
+      value: visitStats ? visitStats.totalVisits.toLocaleString() : '0',
       icon: TrendingUp,
       color: 'text-green-400',
       bgColor: 'from-green-400/20 to-green-400/5',
-      change: '+15%',
+      change: visitStats ? `${visitStats.todayVisits} dzisiaj` : 'Ładowanie...',
     },
   ];
 
@@ -277,6 +281,12 @@ const Dashboard: React.FC = () => {
             </div>
           </Card>
         </motion.div>
+
+        {/* Szczegółowe statystyki odwiedzin */}
+        <div className="mt-8">
+          <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">Statystyki odwiedzin</h2>
+          <VisitStats />
+        </div>
       </div>
     </div>
   );
