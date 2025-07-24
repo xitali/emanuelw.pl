@@ -43,6 +43,10 @@
     @apply border border-primary text-primary px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:bg-primary hover:text-white;
   }
   
+  .light .btn-secondary {
+    @apply hover:text-white;
+  }
+  
   /* Glass effect for dark theme */
   .glass {
     @apply bg-white/10 backdrop-blur-md border border-white/20 transition-all duration-300;
