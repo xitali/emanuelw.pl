@@ -368,7 +368,8 @@ const ProjectDetails: React.FC = () => {
                   )}
 
                   {(!project.frontend_technologies || project.frontend_technologies.length === 0) && 
-                   (!project.backend_technologies || project.backend_technologies.length === 0) && (
+                   (!project.backend_technologies || project.backend_technologies.length === 0) && 
+                   project.technologies && project.technologies.length > 0 && (
                     <div className="flex flex-wrap gap-2">
                       {project.technologies.map((tech) => (
                         <span key={tech} className="px-2 py-1 bg-primary/20 text-primary text-sm rounded">

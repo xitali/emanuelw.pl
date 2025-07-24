@@ -192,7 +192,7 @@ const Home: React.FC = () => {
                     <div className="aspect-video bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center relative overflow-hidden">
                       {project.images && project.images.length > 0 ? (
                         <img 
-                          src={project.images[0]} 
+                          src={project.images?.[0] || '/placeholder-image.jpg'} 
                           alt={project.title}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                         />
@@ -239,9 +239,9 @@ const Home: React.FC = () => {
                             {tech}
                           </span>
                         ))}
-                        {(project.frontend_technologies || project.technologies)?.length > 3 && (
+                        {(project.frontend_technologies || project.technologies) && (project.frontend_technologies || project.technologies)!.length > 3 && (
                           <span className="px-2 py-1 bg-gray-500/20 text-gray-400 text-sm rounded">
-                            +{(project.frontend_technologies || project.technologies).length - 3}
+                            +{(project.frontend_technologies || project.technologies)!.length - 3}
                           </span>
                         )}
                       </div>

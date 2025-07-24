@@ -138,7 +138,7 @@ const Portfolio: React.FC = () => {
                   <div className="aspect-video bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center relative overflow-hidden">
                     {project.images && project.images.length > 0 ? (
                       <img 
-                        src={project.images[0]} 
+                        src={project.images?.[0] || '/placeholder-image.jpg'} 
                         alt={project.title}
                         className="w-full h-full object-cover"
                       />
@@ -226,7 +226,7 @@ const Portfolio: React.FC = () => {
                         </div>
                       ) : (
                         <div className="flex flex-wrap gap-2">
-                          {project.technologies.slice(0, 3).map((tech) => (
+                          {project.technologies?.slice(0, 3).map((tech) => (
                             <span
                               key={tech}
                               className="px-2 py-1 bg-primary/20 text-primary text-sm rounded"
@@ -234,7 +234,7 @@ const Portfolio: React.FC = () => {
                               {tech}
                             </span>
                           ))}
-                          {project.technologies.length > 3 && (
+                          {project.technologies && project.technologies.length > 3 && (
                             <span className="px-2 py-1 bg-gray-600 text-gray-300 text-sm rounded">
                               +{project.technologies.length - 3}
                             </span>
@@ -293,7 +293,7 @@ const Portfolio: React.FC = () => {
             <div className="aspect-video bg-gradient-to-br from-primary/20 to-secondary/20 rounded-lg flex items-center justify-center overflow-hidden">
               {selectedProject.images && selectedProject.images.length > 0 ? (
                 <img 
-                  src={selectedProject.images[0]} 
+                  src={selectedProject.images?.[0] || '/placeholder-image.jpg'} 
                   alt={selectedProject.title}
                   className="w-full h-full object-cover"
                 />
@@ -379,7 +379,7 @@ const Portfolio: React.FC = () => {
                   {(!selectedProject.frontend_technologies || selectedProject.frontend_technologies.length === 0) && 
                    (!selectedProject.backend_technologies || selectedProject.backend_technologies.length === 0) && (
                     <div className="flex flex-wrap gap-2">
-                      {selectedProject.technologies.map((tech) => (
+                      {selectedProject.technologies?.map((tech) => (
                         <span key={tech} className="px-3 py-1 bg-primary/20 text-primary rounded-lg">
                           {tech}
                         </span>
