@@ -1,6 +1,5 @@
 import { create } from 'zustand';
 import { db } from '../lib/supabase';
-import { toast } from 'react-hot-toast';
 
 export interface PageVisit {
   id: string;
