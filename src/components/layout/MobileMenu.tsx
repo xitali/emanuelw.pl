@@ -58,7 +58,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
               stiffness: 300, 
               damping: 30 
             }}
-            className="fixed top-0 right-0 h-full w-80 max-w-[90vw] bg-background/95 backdrop-blur-xl border-l border-white/10 light:border-gray-200 z-50 lg:hidden"
+            className="fixed top-0 right-0 h-screen w-80 max-w-[90vw] bg-gray-900 dark:bg-gray-900 light:bg-white backdrop-blur-xl border-l border-white/10 light:border-gray-200 z-50 lg:hidden flex flex-col"
           >
             {/* Header */}
             <div className="flex items-center justify-between p-6 border-b border-white/10 light:border-gray-200">
@@ -72,8 +72,8 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
             </div>
 
             {/* Navigation */}
-            <nav className="flex-1 overflow-y-auto">
-              <div className="p-6">
+            <nav className="flex-1 overflow-y-auto overscroll-contain">
+              <div className="p-6 pb-20">
                 {/* Main Navigation */}
                 <div className="space-y-2 mb-8">
                   <h3 className="text-sm font-medium text-gray-400 light:text-gray-600 uppercase tracking-wider mb-4">
@@ -149,10 +149,10 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ isOpen, onClose }) => {
             </nav>
 
             {/* Footer */}
-            <div className="p-6 border-t border-white/10 light:border-gray-200">
+            <div className="flex-shrink-0 p-6 border-t border-white/10 light:border-gray-200 bg-gray-900 dark:bg-gray-900 light:bg-white">
               <div className="text-center">
                 <p className="text-sm text-gray-400 light:text-gray-600">
-                  © 2024 Emanuel Wójcik
+                  © 2025 Emanuel Włoch
                 </p>
                 <p className="text-xs text-gray-500 light:text-gray-400 mt-1">
                   Wszystkie prawa zastrzeżone

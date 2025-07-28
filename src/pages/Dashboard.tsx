@@ -3,11 +3,12 @@ import { motion } from 'framer-motion';
 import { 
   FolderOpen, 
   Mail, 
+  Eye, 
   TrendingUp, 
-  Eye,
-  Plus,
-  Settings,
-  LogOut
+  Plus, 
+  Settings, 
+  LogOut,
+  Globe 
 } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import Card from '../components/ui/Card';
@@ -112,25 +113,50 @@ const Dashboard: React.FC = () => {
               <h1 className="text-2xl font-bold text-white dark:text-white light:text-gray-900">Dashboard</h1>
               <p className="text-gray-400 dark:text-gray-400 light:text-gray-600">Witaj, {user?.email}</p>
             </div>
-            <div className="flex items-center gap-4">
-              <Link to="/">
-                <Button variant="outline" size="sm">
-                  Zobacz stronę
+            <div className="flex items-center gap-2 md:gap-4">
+              {/* Desktop buttons */}
+              <div className="hidden md:flex items-center gap-4">
+                <Link to="/">
+                  <Button variant="outline" size="sm">
+                    Zobacz stronę
+                  </Button>
+                </Link>
+                <Link to="/admin/settings">
+                  <Button variant="outline" size="sm" icon={Settings}>
+                    Ustawienia
+                  </Button>
+                </Link>
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  icon={LogOut}
+                  onClick={handleLogout}
+                >
+                  Wyloguj
                 </Button>
-              </Link>
-              <Link to="/admin/settings">
-                <Button variant="outline" size="sm" icon={Settings}>
-                  Ustawienia
+              </div>
+              
+              {/* Mobile buttons */}
+              <div className="flex md:hidden items-center gap-2">
+                <Link to="/">
+                  <Button variant="outline" size="sm" className="px-2">
+                    <Globe className="w-4 h-4" />
+                  </Button>
+                </Link>
+                <Link to="/admin/settings">
+                  <Button variant="outline" size="sm" className="px-2">
+                    <Settings className="w-4 h-4" />
+                  </Button>
+                </Link>
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  className="px-2"
+                  onClick={handleLogout}
+                >
+                  <LogOut className="w-4 h-4" />
                 </Button>
-              </Link>
-              <Button 
-                variant="outline" 
-                size="sm" 
-                icon={LogOut}
-                onClick={handleLogout}
-              >
-                Wyloguj
-              </Button>
+              </div>
             </div>
           </div>
         </div>
