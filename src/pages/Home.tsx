@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowDown, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -9,12 +9,9 @@ import TypingAnimation from '../components/ui/TypingAnimation';
 import { useProjectStore } from '../store/projectStore';
 
 const Home: React.FC = () => {
-  const { projects, fetchFeaturedProjects } = useProjectStore();
-  const featuredProjects = projects.filter(p => p.featured).slice(0, 3);
-
-  useEffect(() => {
-    fetchFeaturedProjects();
-  }, [fetchFeaturedProjects]);
+  const { projects, featuredProjects } = useProjectStore();
+  // Prefer dedicated featuredProjects; fall back to filtering all projects
+  const featured = (featuredProjects.length > 0 ? featuredProjects : projects.filter(p => p.featured)).slice(0, 3);
 
   const scrollToAbout = () => {
     const aboutSection = document.getElementById('about');
@@ -163,7 +160,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* Featured Projects */}
-      {featuredProjects.length > 0 && (
+      {featured.length > 0 && (
         <section className="py-20">
           <div className="container mx-auto px-6">
             <motion.div
@@ -181,7 +178,7 @@ const Home: React.FC = () => {
             </motion.div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {featuredProjects.map((project, index) => (
+              {featured.map((project, index) => (
                 <motion.div
                   key={project.id}
                   initial={{ opacity: 0, y: 30 }}

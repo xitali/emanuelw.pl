@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { db } from '../lib/supabase';
+import { db } from '../lib/turso';
 
 export interface PageVisit {
   id: string;
@@ -110,16 +110,17 @@ export const useVisitsStore = create<VisitsStore>((set, get) => ({
         .sort((a, b) => b.count - a.count)
         .slice(0, 10);
 
-      // Get recent visits
-      const { data: recentVisits } = await db.pageVisits.getAll();
-
       const stats: VisitStats = {
         totalVisits: totalVisits || 0,
         todayVisits,
         weeklyVisits,
         monthlyVisits,
         popularPages,
-        recentVisits: recentVisits?.slice(0, 20) || [],
+        recentVisits: (allVisits ?? []).slice(0, 20).map(v => ({
+          id: v.id,
+          page_path: v.page_path,
+          created_at: v.created_at,
+        })),
       };
 
       set({ stats, loading: false });
