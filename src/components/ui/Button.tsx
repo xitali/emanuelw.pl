@@ -12,6 +12,8 @@ interface ButtonProps {
   onClick?: (e?: React.MouseEvent<HTMLButtonElement>) => void;
   type?: 'button' | 'submit' | 'reset';
   className?: string;
+  title?: string;
+  'aria-busy'?: boolean | 'true' | 'false';
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -25,6 +27,8 @@ const Button: React.FC<ButtonProps> = ({
   onClick,
   type = 'button',
   className = '',
+  title,
+  'aria-busy': ariaBusy,
 }) => {
   const baseClasses = 'inline-flex items-center justify-center font-medium rounded-lg transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/50';
   
@@ -51,6 +55,8 @@ const Button: React.FC<ButtonProps> = ({
       disabled={disabled || loading}
       whileHover={!disabled && !loading ? { scale: 1.02 } : {}}
       whileTap={!disabled && !loading ? { scale: 0.98 } : {}}
+      title={title}
+      aria-busy={ariaBusy}
     >
       {loading ? (
         <div className="w-5 h-5 border-2 border-current border-t-transparent rounded-full animate-spin mr-2" />
