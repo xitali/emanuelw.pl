@@ -117,7 +117,7 @@ export const useVisitsStore = create<VisitsStore>((set, get) => ({
         monthlyVisits,
         popularPages,
         recentVisits: (allVisits ?? []).slice(0, 20).map(v => ({
-          id: '',
+          id: v.id,
           page_path: v.page_path,
           created_at: v.created_at,
         })),

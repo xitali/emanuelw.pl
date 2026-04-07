@@ -746,9 +746,10 @@ export const db = {
     getStats: async () => {
       try {
         const rs = await client.execute(
-          'SELECT page_path, created_at FROM page_visits ORDER BY created_at DESC'
+          'SELECT id, page_path, created_at FROM page_visits ORDER BY created_at DESC'
         );
         return ok(rs.rows.map(r => ({
+          id: r.id as string,
           page_path: r.page_path as string,
           created_at: r.created_at as string,
         })));
@@ -819,7 +820,6 @@ export const auth = {
     }
     return {
       user: { id: user.id, email: user.email, createdAt: user.created_at },
-      token: `${user.id}_${Date.now()}`,
     };
   },
 };
