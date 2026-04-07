@@ -5,14 +5,12 @@ import { Menu, X } from 'lucide-react';
 import MobileMenu from './MobileMenu';
 import ThemeToggle from '../ui/ThemeToggle';
 import { useAuthStore } from '../../store/authStore';
-import { useThemeStore } from '../../store/themeStore';
 
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
   const { isAuthenticated } = useAuthStore();
-  const { theme } = useThemeStore();
 
   const navItems = [
     { path: '/', label: 'Strona główna' },
@@ -55,7 +53,7 @@ const Header: React.FC = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group">
             <img 
-              src={theme === 'light' ? '/emanuelw-logo.jpeg' : '/emanuelw-logo.jpeg'}
+              src="/emanuelw-logo.jpeg"
               alt="Emanuel Włoch Logo" 
               className="w-14 h-14 rounded-full object-cover transition-transform duration-300 group-hover:scale-110"
             />
