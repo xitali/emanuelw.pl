@@ -6,13 +6,18 @@
  *   - Site settings (personal info, social links)
  *   - Services
  *   - Projects
- *   - Admin user (default credentials printed to stdout)
+ *   - Admin user (credentials printed to stdout)
  *
  * Usage:
  *   node scripts/seed-turso.mjs
  *
- * Requires VITE_TURSO_DB_URL and VITE_TURSO_AUTH_TOKEN to be set
- * (reads from .env automatically via the simple dotenv loader below).
+ * Required env vars (reads from .env automatically):
+ *   VITE_TURSO_DB_URL       – libsql:// URL of the Turso database
+ *   VITE_TURSO_AUTH_TOKEN   – Turso auth token
+ *
+ * Optional env vars:
+ *   SEED_ADMIN_EMAIL        – Admin e-mail    (default: admin@emanuelw.pl)
+ *   SEED_ADMIN_PASSWORD     – Admin password  (default: randomly generated)
  */
 
 import { createClient } from '@libsql/client';
@@ -75,7 +80,10 @@ async function runSchema() {
 
 // ── Helpers ────────────────────────────────────────────────────────────────────
 
+const ALLOWED_TABLES = new Set(['site_settings', 'services', 'projects', 'admin_users', 'contact_messages', 'page_visits']);
+
 async function count(table) {
+  if (!ALLOWED_TABLES.has(table)) throw new Error(`Unknown table: ${table}`);
   const rs = await client.execute(`SELECT COUNT(*) AS n FROM ${table}`);
   return Number(rs.rows[0].n);
 }
@@ -265,7 +273,6 @@ const PROJECTS = [
     target_audience: 'Małe i średnie zespoły programistyczne',
     main_challenge: 'Wydajne renderowanie dużej liczby kart bez przeładowania strony.',
     project_result: 'Skrócenie czasu zarządzania zadaniami o 30% w pilotażowym zespole.',
-    technologies_arr: ['React', 'Node.js', 'PostgreSQL'],
     completion_date: '2024-06-01',
   },
   {
@@ -406,8 +413,16 @@ async function seedProjects() {
 
 // ── Seed: Admin User ───────────────────────────────────────────────────────────
 
-const ADMIN_EMAIL    = 'admin@emanuelw.pl';
-const ADMIN_PASSWORD = '***REMOVED_SECRET***';
+/** Generate a random password: 3 word-segments + digits + symbol */
+function generatePassword() {
+  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz';
+  const digits = '23456789';
+  let pwd = '';
+  for (let i = 0; i < 8; i++)  pwd += chars[Math.floor(Math.random() * chars.length)];
+  for (let i = 0; i < 4; i++)  pwd += digits[Math.floor(Math.random() * digits.length)];
+  pwd += '!';
+  return pwd;
+}
 
 async function seedAdmin() {
   const existing = await count('admin_users');
@@ -415,21 +430,26 @@ async function seedAdmin() {
     console.log(`⏩  admin_users already has ${existing} rows – skipping.`);
     return;
   }
+
+  const email    = process.env.SEED_ADMIN_EMAIL    || 'admin@emanuelw.pl';
+  const password = process.env.SEED_ADMIN_PASSWORD || generatePassword();
+
   console.log('👤  Seeding admin user…');
-  const hash = await bcrypt.hash(ADMIN_PASSWORD, 12);
+  const hash = await bcrypt.hash(password, 12);
   await client.execute({
     sql: 'INSERT INTO admin_users (id, email, password_hash, created_at) VALUES (?,?,?,?)',
-    args: [uuid(), ADMIN_EMAIL, hash, now()],
+    args: [uuid(), email, hash, now()],
   });
   console.log('✅  Admin user created.');
   console.log('');
   console.log('┌────────────────────────────────────────────┐');
-  console.log('│  Default admin credentials                 │');
-  console.log(`│  Email   : ${ADMIN_EMAIL.padEnd(33)}│`);
-  console.log(`│  Password: ${ADMIN_PASSWORD.padEnd(33)}│`);
-  console.log('│  ⚠️  Change the password after first login! │');
+  console.log('│  Admin credentials                         │');
+  console.log(`│  Email   : ${email.padEnd(33)}│`);
+  console.log(`│  Password: ${password.padEnd(33)}│`);
+  console.log('│  ⚠️  Save this password – it won\'t repeat!  │');
   console.log('└────────────────────────────────────────────┘');
 }
+
 
 // ── Main ───────────────────────────────────────────────────────────────────────
 
