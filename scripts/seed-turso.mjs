@@ -67,11 +67,14 @@ const schema     = readFileSync(schemaPath, 'utf-8');
 
 async function runSchema() {
   console.log('📐  Applying schema…');
-  // Split on statement boundaries; filter blank lines and comments
+  // Strip comment lines, then split on statement boundaries and filter blanks
   const statements = schema
+    .split('\n')
+    .filter(line => !line.trim().startsWith('--'))
+    .join('\n')
     .split(';')
     .map(s => s.trim())
-    .filter(s => s && !s.startsWith('--'));
+    .filter(s => s);
   for (const stmt of statements) {
     await client.execute(stmt);
   }
