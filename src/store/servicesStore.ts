@@ -1,6 +1,6 @@
 import { create } from 'zustand';
-import { db } from '../lib/supabase';
-import type { Database } from '../lib/supabase';
+import { db } from '../lib/turso';
+import type { Database } from '../lib/turso';
 
 type Service = Database['public']['Tables']['services']['Row'];
 type ServiceInsert = Database['public']['Tables']['services']['Insert'];

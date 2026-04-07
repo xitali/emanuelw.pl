@@ -15,7 +15,7 @@ import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
 import { useAuthStore } from '../store/authStore';
 import { toast } from 'react-hot-toast';
-import { db } from '../lib/supabase';
+import { db } from '../lib/turso';
 
 interface Service {
   id: string;
@@ -24,7 +24,7 @@ interface Service {
   short_description: string;
   icon: string;
   features: string[];
-  price_from: number;
+  price_from?: number;
   price_currency: string;
   active: boolean;
   order_index: number;
@@ -111,7 +111,7 @@ const ServiceManagement: React.FC = () => {
       short_description: service.short_description,
       icon: service.icon,
       features: service.features.join('\n'),
-      price_from: service.price_from.toString(),
+      price_from: (service.price_from ?? 0).toString(),
       price_currency: service.price_currency,
       active: service.active,
       order_index: service.order_index.toString()

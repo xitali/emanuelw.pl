@@ -6,7 +6,7 @@ import { toast } from 'react-hot-toast';
 import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
 import { useAuthStore } from '../store/authStore';
-import { auth } from '../lib/supabase';
+import { auth } from '../lib/turso';
 
 interface LoginFormData {
   email: string;
@@ -52,7 +52,7 @@ const Login: React.FC = () => {
       const result = await auth.login(formData.email, formData.password);
       
       // Login successful
-      login(result.user, result.token);
+      login(result.user);
       
       toast.success('Zalogowano pomyślnie!');
       navigate('/admin/dashboard');

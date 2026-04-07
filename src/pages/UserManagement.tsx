@@ -14,7 +14,7 @@ import Card from '../components/ui/Card';
 import Button from '../components/ui/Button';
 import { useAuthStore } from '../store/authStore';
 import { toast } from 'react-hot-toast';
-import { db } from '../lib/supabase';
+import { db } from '../lib/turso';
 import bcrypt from 'bcryptjs';
 
 interface AdminUser {
