@@ -216,12 +216,12 @@ const ProjectForm: React.FC = () => {
     setUploadingIndices(prev => new Set(prev).add(index));
 
     try {
-      const formData = new FormData();
-      formData.append('file', file);
-
       const response = await fetch('/api/upload-image', {
         method: 'POST',
-        body: formData,
+        headers: {
+          'Content-Type': file.type,
+        },
+        body: file,
       });
 
       const data = await response.json();
@@ -464,7 +464,7 @@ const ProjectForm: React.FC = () => {
                           <div className="w-12 h-12 flex-shrink-0 rounded-lg overflow-hidden border border-white/10 bg-white/5">
                             <img
                               src={url}
-                              alt={`Podgląd ${index + 1}`}
+                              alt={`Podgląd zdjęcia projektu ${index + 1}`}
                               className="w-full h-full object-cover"
                               onError={() => setBrokenImages(prev => new Set(prev).add(index))}
                             />
