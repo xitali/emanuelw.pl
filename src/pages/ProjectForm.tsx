@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate, useParams, Link } from 'react-router-dom';
-import { ArrowLeft, Save, X, Plus } from 'lucide-react';
+import { ArrowLeft, Save, X, Plus, Upload, Loader2 } from 'lucide-react';
 import { toast } from 'react-hot-toast';
 import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
@@ -47,6 +47,10 @@ const ProjectForm: React.FC = () => {
   const { projects, createProject, updateProjectById, loading, fetchProjects } = useProjectStore();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [imageUrls, setImageUrls] = useState<string[]>(['']);
+  const [uploadingIndices, setUploadingIndices] = useState<Set<number>>(new Set());
+  const [uploadErrors, setUploadErrors] = useState<Record<number, string>>({});
+  const [brokenImages, setBrokenImages] = useState<Set<number>>(new Set());
+  const fileInputRefs = useRef<(HTMLInputElement | null)[]>([]);
   const [formData, setFormData] = useState<ProjectFormData>({
     title: '',
     short_description: '',
@@ -187,6 +191,57 @@ const ProjectForm: React.FC = () => {
     const newUrls = [...imageUrls];
     newUrls[index] = value;
     setImageUrls(newUrls);
+    // Clear broken image flag when URL is changed
+    setBrokenImages(prev => {
+      const next = new Set(prev);
+      next.delete(index);
+      return next;
+    });
+  };
+
+  const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
+  const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10 MB
+
+  const uploadImage = async (index: number, file: File) => {
+    if (!ALLOWED_TYPES.includes(file.type)) {
+      setUploadErrors(prev => ({ ...prev, [index]: 'Dozwolone formaty: JPG, PNG, WebP, GIF' }));
+      return;
+    }
+    if (file.size > MAX_FILE_SIZE) {
+      setUploadErrors(prev => ({ ...prev, [index]: 'Maksymalny rozmiar pliku to 10 MB' }));
+      return;
+    }
+
+    setUploadErrors(prev => { const next = { ...prev }; delete next[index]; return next; });
+    setUploadingIndices(prev => new Set(prev).add(index));
+
+    try {
+      const response = await fetch('/api/upload-image', {
+        method: 'POST',
+        headers: {
+          'Content-Type': file.type,
+        },
+        body: file,
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || !data.url) {
+        throw new Error(data.error || 'Upload nie powiódł się');
+      }
+
+      updateImageUrl(index, data.url);
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'Błąd podczas uploadu';
+      setUploadErrors(prev => ({ ...prev, [index]: message }));
+      toast.error(message);
+    } finally {
+      setUploadingIndices(prev => {
+        const next = new Set(prev);
+        next.delete(index);
+        return next;
+      });
+    }
   };
 
 
@@ -396,26 +451,75 @@ const ProjectForm: React.FC = () => {
                 <label className="block text-sm font-medium text-gray-300 dark:text-gray-300 light:text-gray-700 mb-2">
                   Zdjęcia projektu *
                 </label>
-                <div className="space-y-2">
+                {/* aria-live region announces upload status to screen readers */}
+                <div aria-live="polite" aria-atomic="true" className="sr-only">
+                  {uploadingIndices.size > 0 ? 'Przesyłanie zdjęcia…' : ''}
+                </div>
+                <div className="space-y-3">
                   {imageUrls.map((url, index) => (
-                    <div key={index} className="flex gap-2">
-                      <input
-                        value={url}
-                        onChange={(e) => updateImageUrl(index, e.target.value)}
-                        className="flex-1 px-4 py-2 bg-white/5 dark:bg-white/5 light:bg-white border border-white/10 dark:border-white/10 light:border-gray-300 rounded-lg text-white dark:text-white light:text-gray-900 placeholder-gray-400 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
-                        placeholder="URL do zdjęcia projektu"
-                      />
-                      {imageUrls.length > 1 && (
-                        <Button
-                          type="button"
-                          variant="ghost"
-                          size="sm"
-                          icon={X}
-                          onClick={() => removeImageUrl(index)}
-                          className="text-red-400 hover:text-red-300"
-                        >
-                          Usuń
-                        </Button>
+                    <div key={index} className="space-y-1">
+                      <div className="flex gap-2 items-start">
+                        {/* Image preview */}
+                        {url && !brokenImages.has(index) && (
+                          <div className="w-12 h-12 flex-shrink-0 rounded-lg overflow-hidden border border-white/10 bg-white/5">
+                            <img
+                              src={url}
+                              alt={`Podgląd zdjęcia projektu ${index + 1}`}
+                              className="w-full h-full object-cover"
+                              onError={() => setBrokenImages(prev => new Set(prev).add(index))}
+                            />
+                          </div>
+                        )}
+                        <div className="flex-1 flex gap-2">
+                          <input
+                            value={url}
+                            onChange={(e) => updateImageUrl(index, e.target.value)}
+                            className="flex-1 px-4 py-2 bg-white/5 dark:bg-white/5 light:bg-white border border-white/10 dark:border-white/10 light:border-gray-300 rounded-lg text-white dark:text-white light:text-gray-900 placeholder-gray-400 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
+                            placeholder="URL do zdjęcia projektu"
+                            disabled={uploadingIndices.has(index)}
+                          />
+                          {/* Hidden file input */}
+                          <input
+                            ref={(el) => { fileInputRefs.current[index] = el; }}
+                            type="file"
+                            accept="image/jpeg,image/png,image/webp,image/gif"
+                            className="hidden"
+                            onChange={(e) => {
+                              const file = e.target.files?.[0];
+                              if (file) uploadImage(index, file);
+                              e.target.value = '';
+                            }}
+                          />
+                          {/* Upload button */}
+                          <Button
+                            type="button"
+                            variant="outline"
+                            size="sm"
+                            icon={uploadingIndices.has(index) ? Loader2 : Upload}
+                            onClick={() => fileInputRefs.current[index]?.click()}
+                            disabled={uploadingIndices.has(index)}
+                            aria-busy={uploadingIndices.has(index)}
+                            title="Prześlij plik"
+                          >
+                            {uploadingIndices.has(index) ? 'Przesyłanie…' : 'Prześlij'}
+                          </Button>
+                          {imageUrls.length > 1 && (
+                            <Button
+                              type="button"
+                              variant="ghost"
+                              size="sm"
+                              icon={X}
+                              onClick={() => removeImageUrl(index)}
+                              className="text-red-400 hover:text-red-300"
+                              disabled={uploadingIndices.has(index)}
+                            >
+                              Usuń
+                            </Button>
+                          )}
+                        </div>
+                      </div>
+                      {uploadErrors[index] && (
+                        <p className="text-xs text-red-400 pl-1">{uploadErrors[index]}</p>
                       )}
                     </div>
                   ))}
