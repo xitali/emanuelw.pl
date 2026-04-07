@@ -27,7 +27,7 @@ function getSigningKey(secretAccessKey, date, region, service) {
 async function putToR2({ accountId, accessKeyId, secretAccessKey, bucket, key, body, contentType }) {
   const region = 'auto';
   const service = 's3';
-  const host = `${accountId}.r2.cloudflarestorage.com`;
+  const host = `${accountId}.eu.r2.cloudflarestorage.com`;
 
   const now = new Date();
   const iso = now.toISOString(); // "2026-04-07T20:40:07.184Z"
