@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate, Link } from 'react-router-dom';
-import { ArrowLeft, Save, User, Mail, Database, Globe } from 'lucide-react';
+import { ArrowLeft, Save, User, Mail, Globe } from 'lucide-react';
 import { toast } from 'react-hot-toast';
 import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
@@ -18,8 +18,6 @@ interface SettingsFormData {
   social_linkedin: string;
   social_instagram: string;
   social_facebook: string;
-  supabaseUrl: string;
-  supabaseKey: string;
   emailjsServiceId: string;
   emailjsTemplateId: string;
   emailjsPublicKey: string;
@@ -49,8 +47,6 @@ const Settings: React.FC = () => {
     social_linkedin: '',
     social_instagram: '',
     social_facebook: '',
-    supabaseUrl: '',
-    supabaseKey: '',
     emailjsServiceId: '',
     emailjsTemplateId: '',
     emailjsPublicKey: '',
@@ -82,8 +78,6 @@ const Settings: React.FC = () => {
         social_linkedin: socialLinks.linkedin,
         social_instagram: socialLinks.instagram,
         social_facebook: socialLinks.facebook,
-        supabaseUrl: '',
-        supabaseKey: '',
         emailjsServiceId: '',
         emailjsTemplateId: '',
         emailjsPublicKey: '',
@@ -281,43 +275,6 @@ const Settings: React.FC = () => {
                   className="w-full px-4 py-3 dark:bg-white/5 light:bg-white dark:border-white/10 light:border-gray-300 border rounded-lg dark:text-white light:text-gray-900 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50 resize-none"
                   placeholder="Krótki opis o sobie..."
                 />
-              </div>
-            </Card>
-
-            {/* Database Configuration */}
-            <Card className="p-6">
-              <div className="flex items-center gap-3 mb-6">
-                <Database className="w-5 h-5 text-primary" />
-                <h2 className="text-xl font-semibold dark:text-white light:text-gray-900">Konfiguracja bazy danych</h2>
-              </div>
-              
-              <div className="grid grid-cols-1 gap-6">
-                <div>
-                  <label className="block text-sm font-medium dark:text-gray-300 light:text-gray-700 mb-2">
-                    Supabase URL
-                  </label>
-                  <input
-                    name="supabaseUrl"
-                    value={formData.supabaseUrl}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-3 dark:bg-white/5 light:bg-white dark:border-white/10 light:border-gray-300 border rounded-lg dark:text-white light:text-gray-900 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
-                    placeholder="https://your-project.supabase.co"
-                  />
-                </div>
-                
-                <div>
-                  <label className="block text-sm font-medium dark:text-gray-300 light:text-gray-700 mb-2">
-                    Supabase Anon Key
-                  </label>
-                  <input
-                    name="supabaseKey"
-                    value={formData.supabaseKey}
-                    onChange={handleInputChange}
-                    type="password"
-                    className="w-full px-4 py-3 dark:bg-white/5 light:bg-white dark:border-white/10 light:border-gray-300 border rounded-lg dark:text-white light:text-gray-900 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
-                    placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
-                  />
-                </div>
               </div>
             </Card>
 
