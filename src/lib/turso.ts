@@ -15,10 +15,24 @@ import bcrypt from 'bcryptjs';
 // Client
 // ========================
 
-export const client = createClient({
-  url: import.meta.env.VITE_TURSO_DB_URL as string,
-  authToken: import.meta.env.VITE_TURSO_AUTH_TOKEN as string,
-});
+type TursoClient = ReturnType<typeof createClient>;
+
+let cachedClient: TursoClient | null = null;
+
+const getClient = (): TursoClient => {
+  if (cachedClient) return cachedClient;
+  const url = import.meta.env.VITE_TURSO_DB_URL;
+  const authToken = import.meta.env.VITE_TURSO_AUTH_TOKEN;
+  if (!url) {
+    throw new Error('Missing VITE_TURSO_DB_URL env var (Vite build-time env)');
+  }
+  cachedClient = createClient({ url, authToken });
+  return cachedClient;
+};
+
+export const client: Pick<TursoClient, 'execute'> = {
+  execute: ((...args: any[]) => (getClient().execute as any)(...args)) as TursoClient['execute'],
+};
 
 // ========================
 // Utilities
