@@ -93,7 +93,7 @@ export default async function handler(req, res) {
   const uploadSecret = process.env.UPLOAD_SECRET;
   if (uploadSecret) {
     const authHeader = req.headers['authorization'] || '';
-    const token = authHeader.startsWith('Bearer ') ? authHeader.slice(7) : '';
+    const token = authHeader.toLowerCase().startsWith('bearer ') ? authHeader.slice(7) : '';
     if (token !== uploadSecret) {
       return res.status(401).json({ error: 'Unauthorized' });
     }

@@ -37,8 +37,8 @@ class ErrorBoundary extends Component<{ children: ReactNode }, ErrorBoundaryStat
   render() {
     if (this.state.hasError) {
       return (
-        <div className="min-h-screen flex items-center justify-center text-center p-8">
-          <div>
+        <main className="min-h-screen flex items-center justify-center text-center p-8">
+          <div role="alert">
             <h2 className="text-2xl font-bold mb-4">Coś poszło nie tak</h2>
             <p className="text-gray-500 mb-6">Wystąpił nieoczekiwany błąd. Odśwież stronę, aby spróbować ponownie.</p>
             <button
@@ -48,7 +48,7 @@ class ErrorBoundary extends Component<{ children: ReactNode }, ErrorBoundaryStat
               Odśwież stronę
             </button>
           </div>
-        </div>
+        </main>
       );
     }
     return this.props.children;
