@@ -56,7 +56,6 @@ const Login: React.FC = () => {
       toast.success('Zalogowano pomyślnie!');
       navigate('/admin/dashboard');
     } catch (error) {
-      console.error('Login error:', error);
       toast.error(error instanceof Error ? error.message : 'Wystąpił błąd podczas logowania');
     } finally {
       setIsLoading(false);

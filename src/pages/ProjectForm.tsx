@@ -216,10 +216,12 @@ const ProjectForm: React.FC = () => {
     setUploadingIndices(prev => new Set(prev).add(index));
 
     try {
+      const uploadSecret = import.meta.env.VITE_UPLOAD_SECRET;
       const response = await fetch('/api/upload-image', {
         method: 'POST',
         headers: {
           'Content-Type': file.type,
+          ...(uploadSecret ? { 'Authorization': `Bearer ${uploadSecret}` } : {}),
         },
         body: file,
       });

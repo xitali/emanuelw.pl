@@ -38,7 +38,7 @@ const generateSessionId = (): string => {
   const stored = sessionStorage.getItem('visit_session_id');
   if (stored) return stored;
   
-  const sessionId = `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+  const sessionId = crypto.randomUUID();
   sessionStorage.setItem('visit_session_id', sessionId);
   return sessionId;
 };
@@ -75,8 +75,7 @@ export const useVisitsStore = create<VisitsStore>((set, get) => ({
       const { data, error } = await db.pageVisits.getAll();
       if (error) throw error;
       set({ visits: data || [], loading: false });
-    } catch (error) {
-      console.error('Error fetching visits:', error);
+    } catch {
       set({ error: 'Błąd podczas pobierania odwiedzin', loading: false });
     }
   },
@@ -135,8 +134,7 @@ export const useVisitsStore = create<VisitsStore>((set, get) => ({
       };
 
       set({ stats, loading: false });
-    } catch (error) {
-      console.error('Error fetching visit stats:', error);
+    } catch {
       set({ error: 'Błąd podczas pobierania statystyk', loading: false });
     }
   },
@@ -166,7 +164,6 @@ export const useVisitsStore = create<VisitsStore>((set, get) => ({
           // RLS policy error - skip tracking silently
           return;
         }
-        console.error('Error tracking visit:', error);
         return;
       }
 
@@ -183,7 +180,6 @@ export const useVisitsStore = create<VisitsStore>((set, get) => ({
       if (message?.includes('row-level security policy')) {
         return;
       }
-      console.error('Error tracking visit:', error);
       // Don't show error to user for tracking failures
     }
   },
