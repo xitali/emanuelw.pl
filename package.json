@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "seed": "node scripts/seed-turso.mjs"
+    "seed": "node scripts/seed-turso.mjs",
+    "migrate": "node scripts/migrate-supabase-to-turso.mjs"
   },
   "dependencies": {
     "@libsql/client": "^0.17.2",
