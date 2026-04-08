@@ -31,8 +31,7 @@ export const useContactStore = create<ContactState>((set) => ({
       if (error) throw error;
 
       set({ messages: data || [], loading: false });
-    } catch (error) {
-      console.error('Error fetching messages:', error);
+    } catch {
       set({ 
         error: 'Błąd podczas pobierania wiadomości', 
         loading: false 
@@ -76,8 +75,7 @@ export const useContactStore = create<ContactState>((set) => ({
 
       toast.success('Wiadomość została wysłana!');
       return true;
-    } catch (error) {
-      console.error('Error sending message:', error);
+    } catch {
       set({ 
         error: 'Błąd podczas wysyłania wiadomości', 
         loading: false 
@@ -100,8 +98,7 @@ export const useContactStore = create<ContactState>((set) => ({
       }));
 
       toast.success('Wiadomość oznaczona jako przeczytana');
-    } catch (error) {
-      console.error('Error marking message as read:', error);
+    } catch {
       toast.error('Błąd podczas oznaczania wiadomości');
     }
   },
@@ -119,8 +116,7 @@ export const useContactStore = create<ContactState>((set) => ({
       }));
 
       toast.success('Wiadomość oznaczona jako nieprzeczytana');
-    } catch (error) {
-      console.error('Error marking message as unread:', error);
+    } catch {
       toast.error('Błąd podczas oznaczania wiadomości');
     }
   },
@@ -136,8 +132,7 @@ export const useContactStore = create<ContactState>((set) => ({
       }));
 
       toast.success('Wiadomość została usunięta');
-    } catch (error) {
-      console.error('Error deleting message:', error);
+    } catch {
       toast.error('Błąd podczas usuwania wiadomości');
     }
   },

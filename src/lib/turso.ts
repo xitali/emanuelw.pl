@@ -31,7 +31,8 @@ const getClient = (): TursoClient => {
 };
 
 export const client: Pick<TursoClient, 'execute'> = {
-  execute: ((...args: any[]) => (getClient().execute as any)(...args)) as TursoClient['execute'],
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  execute: ((...args: any[]) => (getClient().execute as (...a: any[]) => ReturnType<TursoClient['execute']>)(...args)) as TursoClient['execute'],
 };
 
 // ========================
