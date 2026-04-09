@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, Reorder } from 'framer-motion';
 import { useNavigate, useParams, Link } from 'react-router-dom';
-import { ArrowLeft, Save, X, Plus, Upload, Loader2, GripVertical } from 'lucide-react';
+import { ArrowLeft, Save, X, Plus, Upload, Loader2, GripVertical, ChevronUp, ChevronDown } from 'lucide-react';
 import { toast } from 'react-hot-toast';
 import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
@@ -14,7 +14,7 @@ interface ImageEntry {
   url: string;
 }
 
-const generateId = (): string => Math.random().toString(36).substring(2, 11);
+const generateId = (): string => crypto.randomUUID();
 
 interface ProjectFormData {
   title: string;
@@ -203,6 +203,18 @@ const ProjectForm: React.FC = () => {
     setBrokenImageIds(prev => {
       const next = new Set(prev);
       next.delete(id);
+      return next;
+    });
+  };
+
+  const moveImage = (id: string, direction: 'up' | 'down') => {
+    setImageEntries(prev => {
+      const index = prev.findIndex(e => e.id === id);
+      if (index === -1) return prev;
+      const newIndex = direction === 'up' ? index - 1 : index + 1;
+      if (newIndex < 0 || newIndex >= prev.length) return prev;
+      const next = [...prev];
+      [next[index], next[newIndex]] = [next[newIndex], next[index]];
       return next;
     });
   };
@@ -466,16 +478,38 @@ const ProjectForm: React.FC = () => {
                   {uploadingIds.size > 0 ? 'Przesyłanie zdjęcia…' : ''}
                 </div>
                 <div className="space-y-3">
-                  <Reorder.Group axis="y" values={imageEntries} onReorder={setImageEntries} className="space-y-3 list-none p-0 m-0">
-                    {imageEntries.map((entry) => (
+                  <Reorder.Group axis="y" values={imageEntries} onReorder={setImageEntries} className="space-y-3 list-none p-0 m-0" aria-label="Lista zdjęć projektu">
+                    {imageEntries.map((entry, index) => (
                       <Reorder.Item key={entry.id} value={entry} className="space-y-1">
                         <div className="flex gap-2 items-start">
-                          {/* Drag handle */}
-                          <div
-                            className="flex items-center justify-center w-8 h-10 text-gray-400 cursor-grab active:cursor-grabbing flex-shrink-0"
-                            title="Przeciągnij aby zmienić kolejność"
-                          >
-                            <GripVertical className="w-4 h-4" />
+                          {/* Drag handle + keyboard move buttons */}
+                          <div className="flex flex-col items-center gap-0.5 flex-shrink-0 mt-1">
+                            <button
+                              type="button"
+                              onClick={() => moveImage(entry.id, 'up')}
+                              disabled={index === 0}
+                              className="text-gray-400 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed"
+                              title="Przenieś wyżej"
+                              aria-label="Przenieś zdjęcie wyżej"
+                            >
+                              <ChevronUp className="w-3.5 h-3.5" />
+                            </button>
+                            <div
+                              className="text-gray-400 cursor-grab active:cursor-grabbing"
+                              title="Przeciągnij aby zmienić kolejność"
+                            >
+                              <GripVertical className="w-4 h-4" />
+                            </div>
+                            <button
+                              type="button"
+                              onClick={() => moveImage(entry.id, 'down')}
+                              disabled={index === imageEntries.length - 1}
+                              className="text-gray-400 hover:text-white disabled:opacity-30 disabled:cursor-not-allowed"
+                              title="Przenieś niżej"
+                              aria-label="Przenieś zdjęcie niżej"
+                            >
+                              <ChevronDown className="w-3.5 h-3.5" />
+                            </button>
                           </div>
                           {/* Image preview */}
                           {entry.url && !brokenImageIds.has(entry.id) && (
