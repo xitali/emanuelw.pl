@@ -14,7 +14,10 @@ interface ImageEntry {
   url: string;
 }
 
-const generateId = (): string => crypto.randomUUID();
+const generateId = (): string =>
+  typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function'
+    ? crypto.randomUUID()
+    : Math.random().toString(36).substring(2, 11) + Math.random().toString(36).substring(2, 11);
 
 interface ProjectFormData {
   title: string;
@@ -516,7 +519,7 @@ const ProjectForm: React.FC = () => {
                             <div className="w-12 h-12 flex-shrink-0 rounded-lg overflow-hidden border border-white/10 bg-white/5">
                               <img
                                 src={entry.url}
-                                alt={`Podgląd zdjęcia projektu`}
+                                alt={`Podgląd zdjęcia projektu ${index + 1}`}
                                 className="w-full h-full object-cover"
                                 onError={() => setBrokenImageIds(prev => new Set(prev).add(entry.id))}
                               />
