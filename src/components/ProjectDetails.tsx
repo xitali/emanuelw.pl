@@ -149,30 +149,38 @@ const ProjectDetails: React.FC = () => {
             
             {/* Project Image */}
             <div className="w-full lg:w-1/2">
-              <div className="aspect-video bg-gradient-to-br from-primary/20 to-secondary/20 rounded-xl overflow-hidden">
+              <div className="bg-gradient-to-br from-primary/20 to-secondary/20 rounded-xl overflow-hidden">
                 {project.images && project.images.length > 0 ? (
-                  <div className="relative">
-                    <img 
-                      src={project.images[Math.min(activeImageIndex, project.images.length - 1)]} 
-                      alt={project.title}
-                      className="w-full h-full object-cover"
-                    />
+                  <div>
+                    <div className="flex items-center justify-center bg-black/20">
+                      <img 
+                        src={project.images[Math.min(activeImageIndex, project.images.length - 1)]} 
+                        alt={project.title}
+                        className="w-full max-h-[500px] object-contain"
+                      />
+                    </div>
                     {project.images.length > 1 && (
-                      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
-                        {project.images.map((_, index) => (
+                      <div className="flex gap-2 p-3 overflow-x-auto">
+                        {project.images.map((img, index) => (
                           <button
                             key={index}
                             onClick={() => setActiveImageIndex(index)}
-                            className={`w-3 h-3 rounded-full transition-colors ${
-                              index === activeImageIndex ? 'bg-white' : 'bg-white/50'
+                            className={`flex-shrink-0 w-16 h-16 rounded-lg overflow-hidden border-2 transition-colors ${
+                              index === activeImageIndex ? 'border-primary' : 'border-white/20 hover:border-white/50'
                             }`}
-                          />
+                          >
+                            <img
+                              src={img}
+                              alt={`Zdjęcie ${index + 1}`}
+                              className="w-full h-full object-cover"
+                            />
+                          </button>
                         ))}
                       </div>
                     )}
                   </div>
                 ) : (
-                  <div className="w-full h-full flex items-center justify-center">
+                  <div className="w-full h-64 flex items-center justify-center">
                     <span className="text-8xl opacity-50">🚀</span>
                   </div>
                 )}

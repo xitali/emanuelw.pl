@@ -1,13 +1,20 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { motion, Reorder } from 'framer-motion';
 import { useNavigate, useParams, Link } from 'react-router-dom';
-import { ArrowLeft, Save, X, Plus, Upload, Loader2 } from 'lucide-react';
+import { ArrowLeft, Save, X, Plus, Upload, Loader2, GripVertical } from 'lucide-react';
 import { toast } from 'react-hot-toast';
 import Button from '../components/ui/Button';
 import Card from '../components/ui/Card';
 import { useAuthStore } from '../store/authStore';
 import { useProjectStore } from '../store/projectStore';
 import { Project, ProjectCategory, ProjectStatus } from '../types';
+
+interface ImageEntry {
+  id: string;
+  url: string;
+}
+
+const generateId = (): string => Math.random().toString(36).substring(2, 11);
 
 interface ProjectFormData {
   title: string;
@@ -46,11 +53,11 @@ const ProjectForm: React.FC = () => {
   const { isAuthenticated } = useAuthStore();
   const { projects, createProject, updateProjectById, loading, fetchProjects } = useProjectStore();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [imageUrls, setImageUrls] = useState<string[]>(['']);
-  const [uploadingIndices, setUploadingIndices] = useState<Set<number>>(new Set());
-  const [uploadErrors, setUploadErrors] = useState<Record<number, string>>({});
-  const [brokenImages, setBrokenImages] = useState<Set<number>>(new Set());
-  const fileInputRefs = useRef<(HTMLInputElement | null)[]>([]);
+  const [imageEntries, setImageEntries] = useState<ImageEntry[]>([{ id: generateId(), url: '' }]);
+  const [uploadingIds, setUploadingIds] = useState<Set<string>>(new Set());
+  const [uploadErrors, setUploadErrors] = useState<Record<string, string>>({});
+  const [brokenImageIds, setBrokenImageIds] = useState<Set<string>>(new Set());
+  const fileInputRefs = useRef<Record<string, HTMLInputElement | null>>({});
   const [formData, setFormData] = useState<ProjectFormData>({
     title: '',
     short_description: '',
@@ -133,7 +140,11 @@ const ProjectForm: React.FC = () => {
       };
       
       setFormData(formattedData);
-      setImageUrls(existingProject.images && existingProject.images.length > 0 ? existingProject.images : ['']);
+      setImageEntries(
+        existingProject.images && existingProject.images.length > 0
+          ? existingProject.images.map(url => ({ id: generateId(), url }))
+          : [{ id: generateId(), url: '' }]
+      );
     }
   }, [isEditing, existingProject, projects]);
   
@@ -178,23 +189,20 @@ const ProjectForm: React.FC = () => {
   };
 
   const addImageUrl = () => {
-    setImageUrls([...imageUrls, '']);
+    setImageEntries(prev => [...prev, { id: generateId(), url: '' }]);
   };
 
-  const removeImageUrl = (index: number) => {
-    if (imageUrls.length > 1) {
-      setImageUrls(imageUrls.filter((_, i) => i !== index));
+  const removeImageUrl = (id: string) => {
+    if (imageEntries.length > 1) {
+      setImageEntries(prev => prev.filter(entry => entry.id !== id));
     }
   };
 
-  const updateImageUrl = (index: number, value: string) => {
-    const newUrls = [...imageUrls];
-    newUrls[index] = value;
-    setImageUrls(newUrls);
-    // Clear broken image flag when URL is changed
-    setBrokenImages(prev => {
+  const updateImageUrl = (id: string, value: string) => {
+    setImageEntries(prev => prev.map(entry => entry.id === id ? { ...entry, url: value } : entry));
+    setBrokenImageIds(prev => {
       const next = new Set(prev);
-      next.delete(index);
+      next.delete(id);
       return next;
     });
   };
@@ -202,18 +210,18 @@ const ProjectForm: React.FC = () => {
   const ALLOWED_TYPES = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
   const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10 MB
 
-  const uploadImage = async (index: number, file: File) => {
+  const uploadImage = async (id: string, file: File) => {
     if (!ALLOWED_TYPES.includes(file.type)) {
-      setUploadErrors(prev => ({ ...prev, [index]: 'Dozwolone formaty: JPG, PNG, WebP, GIF' }));
+      setUploadErrors(prev => ({ ...prev, [id]: 'Dozwolone formaty: JPG, PNG, WebP, GIF' }));
       return;
     }
     if (file.size > MAX_FILE_SIZE) {
-      setUploadErrors(prev => ({ ...prev, [index]: 'Maksymalny rozmiar pliku to 10 MB' }));
+      setUploadErrors(prev => ({ ...prev, [id]: 'Maksymalny rozmiar pliku to 10 MB' }));
       return;
     }
 
-    setUploadErrors(prev => { const next = { ...prev }; delete next[index]; return next; });
-    setUploadingIndices(prev => new Set(prev).add(index));
+    setUploadErrors(prev => { const next = { ...prev }; delete next[id]; return next; });
+    setUploadingIds(prev => new Set(prev).add(id));
 
     try {
       const uploadSecret = import.meta.env.VITE_UPLOAD_SECRET;
@@ -232,15 +240,15 @@ const ProjectForm: React.FC = () => {
         throw new Error(data.error || 'Upload nie powiódł się');
       }
 
-      updateImageUrl(index, data.url);
+      updateImageUrl(id, data.url);
     } catch (error) {
       const message = error instanceof Error ? error.message : 'Błąd podczas uploadu';
-      setUploadErrors(prev => ({ ...prev, [index]: message }));
+      setUploadErrors(prev => ({ ...prev, [id]: message }));
       toast.error(message);
     } finally {
-      setUploadingIndices(prev => {
+      setUploadingIds(prev => {
         const next = new Set(prev);
-        next.delete(index);
+        next.delete(id);
         return next;
       });
     }
@@ -265,7 +273,7 @@ const ProjectForm: React.FC = () => {
       const successMetrics = data.success_metrics ? data.success_metrics.split(',').map(s => s.trim()).filter(s => s !== '') : [];
       const userFeedback = data.user_feedback ? data.user_feedback.split('\n').map(f => f.trim()).filter(f => f !== '') : [];
       const technicalMetrics = data.technical_metrics ? data.technical_metrics.split(',').map(t => t.trim()).filter(t => t !== '') : [];
-      const filteredImages = imageUrls.filter(url => url.trim() !== '');
+      const filteredImages = imageEntries.map(e => e.url).filter(url => url.trim() !== '');
       
       const projectData: Omit<Project, 'id' | 'created_at' | 'updated_at'> = {
         title: data.title,
@@ -455,76 +463,85 @@ const ProjectForm: React.FC = () => {
                 </label>
                 {/* aria-live region announces upload status to screen readers */}
                 <div aria-live="polite" aria-atomic="true" className="sr-only">
-                  {uploadingIndices.size > 0 ? 'Przesyłanie zdjęcia…' : ''}
+                  {uploadingIds.size > 0 ? 'Przesyłanie zdjęcia…' : ''}
                 </div>
                 <div className="space-y-3">
-                  {imageUrls.map((url, index) => (
-                    <div key={index} className="space-y-1">
-                      <div className="flex gap-2 items-start">
-                        {/* Image preview */}
-                        {url && !brokenImages.has(index) && (
-                          <div className="w-12 h-12 flex-shrink-0 rounded-lg overflow-hidden border border-white/10 bg-white/5">
-                            <img
-                              src={url}
-                              alt={`Podgląd zdjęcia projektu ${index + 1}`}
-                              className="w-full h-full object-cover"
-                              onError={() => setBrokenImages(prev => new Set(prev).add(index))}
-                            />
-                          </div>
-                        )}
-                        <div className="flex-1 flex gap-2">
-                          <input
-                            value={url}
-                            onChange={(e) => updateImageUrl(index, e.target.value)}
-                            className="flex-1 px-4 py-2 bg-white/5 dark:bg-white/5 light:bg-white border border-white/10 dark:border-white/10 light:border-gray-300 rounded-lg text-white dark:text-white light:text-gray-900 placeholder-gray-400 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
-                            placeholder="URL do zdjęcia projektu"
-                            disabled={uploadingIndices.has(index)}
-                          />
-                          {/* Hidden file input */}
-                          <input
-                            ref={(el) => { fileInputRefs.current[index] = el; }}
-                            type="file"
-                            accept="image/jpeg,image/png,image/webp,image/gif"
-                            className="hidden"
-                            onChange={(e) => {
-                              const file = e.target.files?.[0];
-                              if (file) uploadImage(index, file);
-                              e.target.value = '';
-                            }}
-                          />
-                          {/* Upload button */}
-                          <Button
-                            type="button"
-                            variant="outline"
-                            size="sm"
-                            icon={uploadingIndices.has(index) ? Loader2 : Upload}
-                            onClick={() => fileInputRefs.current[index]?.click()}
-                            disabled={uploadingIndices.has(index)}
-                            aria-busy={uploadingIndices.has(index)}
-                            title="Prześlij plik"
+                  <Reorder.Group axis="y" values={imageEntries} onReorder={setImageEntries} className="space-y-3 list-none p-0 m-0">
+                    {imageEntries.map((entry) => (
+                      <Reorder.Item key={entry.id} value={entry} className="space-y-1">
+                        <div className="flex gap-2 items-start">
+                          {/* Drag handle */}
+                          <div
+                            className="flex items-center justify-center w-8 h-10 text-gray-400 cursor-grab active:cursor-grabbing flex-shrink-0"
+                            title="Przeciągnij aby zmienić kolejność"
                           >
-                            {uploadingIndices.has(index) ? 'Przesyłanie…' : 'Prześlij'}
-                          </Button>
-                          {imageUrls.length > 1 && (
+                            <GripVertical className="w-4 h-4" />
+                          </div>
+                          {/* Image preview */}
+                          {entry.url && !brokenImageIds.has(entry.id) && (
+                            <div className="w-12 h-12 flex-shrink-0 rounded-lg overflow-hidden border border-white/10 bg-white/5">
+                              <img
+                                src={entry.url}
+                                alt={`Podgląd zdjęcia projektu`}
+                                className="w-full h-full object-cover"
+                                onError={() => setBrokenImageIds(prev => new Set(prev).add(entry.id))}
+                              />
+                            </div>
+                          )}
+                          <div className="flex-1 flex gap-2">
+                            <input
+                              value={entry.url}
+                              onChange={(e) => updateImageUrl(entry.id, e.target.value)}
+                              className="flex-1 px-4 py-2 bg-white/5 dark:bg-white/5 light:bg-white border border-white/10 dark:border-white/10 light:border-gray-300 rounded-lg text-white dark:text-white light:text-gray-900 placeholder-gray-400 dark:placeholder-gray-400 light:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary/50"
+                              placeholder="URL do zdjęcia projektu"
+                              disabled={uploadingIds.has(entry.id)}
+                            />
+                            {/* Hidden file input */}
+                            <input
+                              ref={(el) => { fileInputRefs.current[entry.id] = el; }}
+                              type="file"
+                              accept="image/jpeg,image/png,image/webp,image/gif"
+                              className="hidden"
+                              onChange={(e) => {
+                                const file = e.target.files?.[0];
+                                if (file) uploadImage(entry.id, file);
+                                e.target.value = '';
+                              }}
+                            />
+                            {/* Upload button */}
                             <Button
                               type="button"
-                              variant="ghost"
+                              variant="outline"
                               size="sm"
-                              icon={X}
-                              onClick={() => removeImageUrl(index)}
-                              className="text-red-400 hover:text-red-300"
-                              disabled={uploadingIndices.has(index)}
+                              icon={uploadingIds.has(entry.id) ? Loader2 : Upload}
+                              onClick={() => fileInputRefs.current[entry.id]?.click()}
+                              disabled={uploadingIds.has(entry.id)}
+                              aria-busy={uploadingIds.has(entry.id)}
+                              title="Prześlij plik"
                             >
-                              Usuń
+                              {uploadingIds.has(entry.id) ? 'Przesyłanie…' : 'Prześlij'}
                             </Button>
-                          )}
+                            {imageEntries.length > 1 && (
+                              <Button
+                                type="button"
+                                variant="ghost"
+                                size="sm"
+                                icon={X}
+                                onClick={() => removeImageUrl(entry.id)}
+                                className="text-red-400 hover:text-red-300"
+                                disabled={uploadingIds.has(entry.id)}
+                              >
+                                Usuń
+                              </Button>
+                            )}
+                          </div>
                         </div>
-                      </div>
-                      {uploadErrors[index] && (
-                        <p className="text-xs text-red-400 pl-1">{uploadErrors[index]}</p>
-                      )}
-                    </div>
-                  ))}
+                        {uploadErrors[entry.id] && (
+                          <p className="text-xs text-red-400 pl-1">{uploadErrors[entry.id]}</p>
+                        )}
+                      </Reorder.Item>
+                    ))}
+                  </Reorder.Group>
                   <Button
                     type="button"
                     variant="outline"
