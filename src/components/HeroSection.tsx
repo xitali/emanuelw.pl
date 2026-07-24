@@ -3,6 +3,8 @@
 import { useState } from "react";
 import Image from "next/image";
 import { Terminal as TerminalIcon, Sparkles, ArrowRight, Code2, Cpu, Database, CheckCircle2, Copy, Check, User, ShieldCheck } from "lucide-react";
+import { FadeIn } from "./animations/FadeIn";
+import { StaggerContainer, StaggerItem } from "./animations/StaggerContainer";
 
 export default function HeroSection() {
   const [terminalInput, setTerminalInput] = useState("");
@@ -83,7 +85,7 @@ export default function HeroSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
           {/* Left Column: Headline & Large Profile Photo */}
-          <div className="lg:col-span-7 space-y-8 text-left">
+          <FadeIn direction="up" delay={0.1} className="lg:col-span-7 space-y-8 text-left">
             
             {/* Header Profile Avatar & Status Pill */}
             <div className="flex flex-wrap items-center gap-5">
@@ -166,10 +168,10 @@ export default function HeroSection() {
                 <div className="text-xs text-slate-400 font-mono">Type-Safe TypeScript</div>
               </div>
             </div>
-          </div>
+          </FadeIn>
 
           {/* Right Column: Interactive CLI Terminal Widget */}
-          <div className="lg:col-span-5">
+          <FadeIn direction="left" delay={0.3} className="lg:col-span-5">
             <div className="glass-panel rounded-2xl overflow-hidden border border-cyan-500/20 shadow-2xl shadow-cyan-950/40">
               {/* Window Header */}
               <div className="bg-slate-950/80 px-4 py-3 border-b border-slate-800 flex items-center justify-between">
@@ -235,7 +237,7 @@ export default function HeroSection() {
                 />
               </form>
             </div>
-          </div>
+          </FadeIn>
 
         </div>
       </div>

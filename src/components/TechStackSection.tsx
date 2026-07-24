@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { Sparkles, Code2, Database, Server, Smartphone, Cpu, CheckCircle } from "lucide-react";
+import { FadeIn } from "./animations/FadeIn";
+import { StaggerContainer, StaggerItem } from "./animations/StaggerContainer";
 
 export default function TechStackSection() {
   const [activeTab, setActiveTab] = useState<string>("frontend");
@@ -42,7 +44,7 @@ export default function TechStackSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         
         {/* Header */}
-        <div className="text-center space-y-4 max-w-3xl mx-auto">
+        <FadeIn direction="up" className="text-center space-y-4 max-w-3xl mx-auto">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-panel border border-cyan-500/30 text-xs font-mono text-cyan-300">
             <Cpu className="w-3.5 h-3.5" />
             <span>Stos Technologiczny</span>
@@ -74,30 +76,31 @@ export default function TechStackSection() {
               );
             })}
           </div>
-        </div>
+        </FadeIn>
 
         {/* Tech Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+        <StaggerContainer key={activeTab} className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
           {technologies[activeTab as keyof typeof technologies].map((item, idx) => (
-            <div
-              key={idx}
-              className="glass-panel-interactive rounded-2xl p-6 border border-slate-800 flex items-start gap-4"
-            >
-              <div className="w-10 h-10 rounded-xl bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-cyan-400 shrink-0 mt-1">
-                <CheckCircle className="w-5 h-5" />
-              </div>
-              <div className="space-y-1">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-lg font-bold text-white">{item.name}</h3>
-                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-950/60 border border-cyan-500/30 text-cyan-300">
-                    {item.level}
-                  </span>
+            <StaggerItem key={idx}>
+              <div
+                className="glass-panel-interactive rounded-2xl p-6 border border-slate-800 flex items-start gap-4 h-full"
+              >
+                <div className="w-10 h-10 rounded-xl bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-cyan-400 shrink-0 mt-1">
+                  <CheckCircle className="w-5 h-5" />
                 </div>
-                <p className="text-sm text-slate-400 leading-relaxed">{item.desc}</p>
+                <div className="space-y-1">
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-lg font-bold text-white">{item.name}</h3>
+                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-950/60 border border-cyan-500/30 text-cyan-300">
+                      {item.level}
+                    </span>
+                  </div>
+                  <p className="text-sm text-slate-400 leading-relaxed">{item.desc}</p>
+                </div>
               </div>
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
 
       </div>
     </section>

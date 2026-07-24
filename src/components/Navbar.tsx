@@ -2,11 +2,13 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Terminal, Code2, Sparkles, MessageSquare, Shield, Menu, X, Rocket } from "lucide-react";
+import { Terminal, Code2, Sparkles, MessageSquare, Shield, Menu, X, Rocket, Wand2 } from "lucide-react";
+import { useAnimationContext } from "./animations/AnimationProvider";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { isAnimated, toggleAnimation } = useAnimationContext();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -65,8 +67,20 @@ export default function Navbar() {
           })}
         </nav>
 
-        {/* CTA Button */}
+        {/* CTA Button & Toggles */}
         <div className="hidden md:flex items-center gap-3">
+          <button
+            onClick={toggleAnimation}
+            title={isAnimated ? "Wyłącz nowoczesne animacje" : "Włącz nowoczesne animacje"}
+            className={`p-2.5 rounded-full border transition-all duration-300 ${
+              isAnimated 
+                ? "bg-purple-500/20 border-purple-500/40 text-purple-300 shadow-[0_0_15px_rgba(168,85,247,0.3)] hover:bg-purple-500/30" 
+                : "bg-slate-900 border-slate-700 text-slate-400 hover:text-white"
+            }`}
+          >
+            <Wand2 className={`w-4 h-4 ${isAnimated ? "animate-pulse" : ""}`} />
+          </button>
+          
           <a
             href="#kontakt"
             className="neon-glow-button px-5 py-2.5 rounded-full text-sm font-semibold text-white tracking-wide flex items-center gap-2"
