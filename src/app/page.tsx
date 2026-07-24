@@ -24,7 +24,7 @@ export default async function HomePage() {
   ]);
 
   return (
-    <main className="relative min-h-screen bg-[#060913] text-slate-100 overflow-x-hidden selection:bg-cyan-500/30 selection:text-cyan-200">
+    <main className="relative min-h-screen text-slate-900 dark:text-slate-100 overflow-x-hidden selection:bg-cyan-500/30 selection:text-cyan-900 dark:selection:text-cyan-200">
       <VisitTracker />
       <BackgroundGlow />
       <Navbar />

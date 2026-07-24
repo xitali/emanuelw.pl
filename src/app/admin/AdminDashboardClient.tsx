@@ -234,7 +234,7 @@ export default function AdminDashboardClient({ messages, visitsCount, projects, 
       {activeTab === "projects" && (
         <div className="max-w-7xl mx-auto space-y-6">
           <div className="flex items-center justify-between">
-            <h2 className="text-xl font-bold text-white">Lista Projektów w Turso DB</h2>
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white">Lista Projektów w Turso DB</h2>
             <button
               onClick={() => setIsAddModalOpen(true)}
               className="neon-glow-button px-5 py-2.5 rounded-full text-xs font-semibold text-white flex items-center gap-2"
@@ -245,7 +245,7 @@ export default function AdminDashboardClient({ messages, visitsCount, projects, 
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {projects.map((proj) => (
-              <div key={proj.id} className="glass-panel p-6 rounded-3xl border border-slate-800 space-y-4 flex flex-col justify-between">
+              <div key={proj.id} className="glass-panel p-6 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-transparent space-y-4 flex flex-col justify-between">
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
                     <span className="px-2.5 py-1 rounded bg-slate-900 border border-slate-800 text-cyan-400 text-[10px] font-mono">
@@ -254,24 +254,24 @@ export default function AdminDashboardClient({ messages, visitsCount, projects, 
                     <div className="flex gap-2">
                       <button
                         onClick={() => setEditingProject(proj)}
-                        className="p-2 rounded-lg bg-slate-900 border border-slate-700 text-cyan-300 hover:border-cyan-400"
+                        className="p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-cyan-600 dark:text-cyan-300 hover:border-cyan-400"
                       >
                         <Edit3 className="w-4 h-4" />
                       </button>
                       <button
                         onClick={() => handleDeleteProject(proj.id)}
-                        className="p-2 rounded-lg bg-slate-900 border border-slate-700 text-rose-400 hover:border-rose-500"
+                        className="p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-rose-600 dark:text-rose-400 hover:border-rose-500"
                       >
                         <Trash2 className="w-4 h-4" />
                       </button>
                     </div>
                   </div>
 
-                  <h3 className="text-lg font-bold text-white">{proj.title}</h3>
-                  <p className="text-xs text-slate-400 line-clamp-3">{proj.short_description}</p>
+                  <h3 className="text-lg font-bold text-slate-900 dark:text-white">{proj.title}</h3>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 line-clamp-3">{proj.short_description}</p>
                 </div>
 
-                <div className="pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-500 font-mono">
+                <div className="pt-3 border-t border-slate-200 dark:border-slate-800/80 flex items-center justify-between text-xs text-slate-400 dark:text-slate-500 font-mono">
                   <span>Tech: {proj.technologies?.length || 0}</span>
                   <span>{proj.created_at ? new Date(proj.created_at).toLocaleDateString() : ""}</span>
                 </div>
@@ -284,25 +284,25 @@ export default function AdminDashboardClient({ messages, visitsCount, projects, 
       {/* Services Tab */}
       {activeTab === "services" && (
         <div className="max-w-7xl mx-auto space-y-6">
-          <h2 className="text-xl font-bold text-white">Zarządzanie Cennikiem Usług w Turso DB</h2>
+          <h2 className="text-xl font-bold text-slate-900 dark:text-white">Zarządzanie Cennikiem Usług w Turso DB</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((serv) => (
-              <div key={serv.id} className="glass-panel p-6 rounded-3xl border border-slate-800 space-y-4">
-                <h3 className="text-lg font-bold text-white">{serv.name}</h3>
-                <p className="text-xs text-slate-400">{serv.short_description}</p>
+              <div key={serv.id} className="glass-panel p-6 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-transparent space-y-4">
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white">{serv.name}</h3>
+                <p className="text-xs text-slate-500 dark:text-slate-400">{serv.short_description}</p>
                 
-                <div className="pt-3 border-t border-slate-800 space-y-2">
-                  <label className="text-xs font-mono text-slate-400 uppercase">Cena Od (PLN):</label>
+                <div className="pt-3 border-t border-slate-200 dark:border-slate-800 space-y-2">
+                  <label className="text-xs font-mono text-slate-500 dark:text-slate-400 uppercase">Cena Od (PLN):</label>
                   <div className="flex items-center gap-2">
                     <input
                       type="number"
                       value={editingServicePrices[serv.id] ?? serv.starting_price}
                       onChange={(e) => setEditingServicePrices({ ...editingServicePrices, [serv.id]: Number(e.target.value) })}
-                      className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-white font-mono text-sm"
+                      className="w-full bg-white dark:bg-slate-900/50 border border-slate-300 dark:border-slate-700 rounded-lg px-3 py-2 text-sm text-slate-900 dark:text-white focus:border-cyan-500 outline-none"
                     />
                     <button
                       onClick={() => handleSaveServicePrice(serv.id)}
-                      className="px-4 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-black font-bold text-xs flex items-center gap-1 shrink-0 transition-colors"
+                      className="px-4 py-2 bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-600 dark:text-cyan-400 rounded-lg text-sm font-semibold transition-colors border border-cyan-500/20"
                     >
                       <Save className="w-4 h-4" /> Zapisz
                     </button>
@@ -317,27 +317,27 @@ export default function AdminDashboardClient({ messages, visitsCount, projects, 
       {/* Messages Tab */}
       {activeTab === "messages" && (
         <div className="max-w-7xl mx-auto space-y-6">
-          <h2 className="text-xl font-bold text-white">Przesłane Wiadomości Od Klienów</h2>
+          <h2 className="text-xl font-bold text-slate-900 dark:text-white">Przesłane Wiadomości Od Klienów</h2>
           {messages.length === 0 ? (
-            <div className="p-8 text-center text-slate-500 font-mono glass-panel rounded-3xl">Brak wiadomości w bazie Turso DB.</div>
+            <div className="p-8 text-center text-slate-500 font-mono glass-panel bg-white/50 dark:bg-transparent rounded-3xl border-slate-200 dark:border-slate-800">Brak wiadomości w bazie Turso DB.</div>
           ) : (
             <div className="space-y-4">
               {messages.map((msg) => (
-                <div key={msg.id} className="glass-panel p-6 rounded-3xl border border-slate-800 space-y-3">
-                  <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+                <div key={msg.id} className="glass-panel p-6 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-transparent space-y-3">
+                  <div className="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3">
                     <div>
-                      <span className="font-bold text-white text-base">{msg.name}</span>
-                      <div className="text-xs text-cyan-400 font-mono">{msg.email}</div>
+                      <span className="font-bold text-slate-900 dark:text-white text-base">{msg.name}</span>
+                      <div className="text-xs text-cyan-600 dark:text-cyan-400 font-mono">{msg.email}</div>
                     </div>
                     <button
                       onClick={() => handleDeleteMessage(msg.id)}
-                      className="p-2 rounded-xl bg-slate-900 text-rose-400 border border-slate-800 hover:border-rose-500"
+                      className="p-2 rounded-xl bg-white dark:bg-slate-900 text-rose-600 dark:text-rose-400 border border-slate-200 dark:border-slate-800 hover:border-rose-500"
                     >
                       <Trash2 className="w-4 h-4" />
                     </button>
                   </div>
-                  <div className="text-xs font-semibold text-slate-300">Temat: {msg.subject}</div>
-                  <p className="text-sm text-slate-300 bg-slate-950 p-4 rounded-2xl border border-slate-900">{msg.message}</p>
+                  <div className="text-xs font-semibold text-slate-500 dark:text-slate-300">Temat: {msg.subject}</div>
+                  <p className="text-sm text-slate-700 dark:text-slate-300 bg-white dark:bg-slate-950 p-4 rounded-2xl border border-slate-200 dark:border-slate-900">{msg.message}</p>
                 </div>
               ))}
             </div>
@@ -347,12 +347,12 @@ export default function AdminDashboardClient({ messages, visitsCount, projects, 
 
       {/* Photo Tab */}
       {activeTab === "photo" && (
-        <div className="max-w-3xl mx-auto glass-panel p-8 rounded-3xl border border-cyan-500/30 space-y-6">
+        <div className="max-w-3xl mx-auto glass-panel p-8 rounded-3xl border border-cyan-500/30 bg-white/50 dark:bg-transparent space-y-6">
           <div className="flex items-center gap-3">
-            <ImageIcon className="w-8 h-8 text-cyan-400" />
+            <ImageIcon className="w-8 h-8 text-cyan-600 dark:text-cyan-400" />
             <div>
-              <h2 className="text-xl font-bold text-white">Twoje Zdjęcie Profilowe</h2>
-              <p className="text-xs text-slate-400">Status wgrania zdjęcia profilowego</p>
+              <h2 className="text-xl font-bold text-slate-900 dark:text-white">Twoje Zdjęcie Profilowe</h2>
+              <p className="text-xs text-slate-500 dark:text-slate-400">Status wgrania zdjęcia profilowego</p>
             </div>
           </div>
 
@@ -366,28 +366,28 @@ export default function AdminDashboardClient({ messages, visitsCount, projects, 
       {/* Testimonials Tab */}
       {activeTab === "testimonials" && (
         <div className="max-w-7xl mx-auto space-y-8">
-          <div className="glass-panel p-6 sm:p-8 rounded-3xl border border-blue-500/30 space-y-6">
-            <h2 className="text-xl font-bold text-white flex items-center gap-2">
-              <Plus className="w-5 h-5 text-blue-400" /> Dodaj Nową Opinię
+          <div className="glass-panel p-6 sm:p-8 rounded-3xl border border-blue-500/30 bg-white/50 dark:bg-transparent space-y-6">
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
+              <Plus className="w-5 h-5 text-blue-600 dark:text-blue-400" /> Dodaj Nową Opinię
             </h2>
             <form onSubmit={handleCreateTestimonial} className="space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-slate-300 text-xs mb-1 font-mono">Imię i Nazwisko / Nazwa Klienta *</label>
-                  <input type="text" name="client_name" required className="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white text-sm" />
+                  <label className="block text-slate-700 dark:text-slate-300 text-xs mb-1 font-mono">Imię i Nazwisko / Nazwa Klienta *</label>
+                  <input type="text" name="client_name" required className="w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-950 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-white text-sm focus:border-blue-500 outline-none" />
                 </div>
                 <div>
-                  <label className="block text-slate-300 text-xs mb-1 font-mono">Firma / Stanowisko (opcjonalnie)</label>
-                  <input type="text" name="company" className="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white text-sm" />
+                  <label className="block text-slate-700 dark:text-slate-300 text-xs mb-1 font-mono">Firma / Stanowisko (opcjonalnie)</label>
+                  <input type="text" name="company" className="w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-950 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-white text-sm focus:border-blue-500 outline-none" />
                 </div>
               </div>
               <div>
-                <label className="block text-slate-300 text-xs mb-1 font-mono">Treść Opinii *</label>
-                <textarea name="content" required rows={3} className="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white text-sm resize-none" />
+                <label className="block text-slate-700 dark:text-slate-300 text-xs mb-1 font-mono">Treść Opinii *</label>
+                <textarea name="content" required rows={3} className="w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-950 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-white text-sm resize-none focus:border-blue-500 outline-none" />
               </div>
               <div>
-                <label className="block text-slate-300 text-xs mb-1 font-mono">Ocena (1-5) *</label>
-                <input type="number" name="rating" min="1" max="5" defaultValue="5" required className="w-24 px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white text-sm" />
+                <label className="block text-slate-700 dark:text-slate-300 text-xs mb-1 font-mono">Ocena (1-5) *</label>
+                <input type="number" name="rating" min="1" max="5" defaultValue="5" required className="w-24 px-4 py-3 rounded-xl bg-white dark:bg-slate-950 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-white text-sm focus:border-blue-500 outline-none" />
               </div>
               <button type="submit" disabled={loading} className="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm transition-colors">
                 {loading ? "Dodawanie..." : "Opublikuj Opinię"}
@@ -396,29 +396,29 @@ export default function AdminDashboardClient({ messages, visitsCount, projects, 
           </div>
 
           <div className="space-y-4">
-            <h2 className="text-xl font-bold text-white">Opublikowane Opinie</h2>
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white">Opublikowane Opinie</h2>
             {testimonials?.length === 0 ? (
-              <div className="p-8 text-center text-slate-500 font-mono glass-panel rounded-3xl">Brak dodanych opinii.</div>
+              <div className="p-8 text-center text-slate-500 font-mono glass-panel bg-white/50 dark:bg-transparent border-slate-200 dark:border-slate-800 rounded-3xl">Brak dodanych opinii.</div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {testimonials?.map((testim) => (
-                  <div key={testim.id} className="glass-panel p-6 rounded-3xl border border-slate-800 space-y-4">
+                  <div key={testim.id} className="glass-panel p-6 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-transparent space-y-4">
                     <div className="flex justify-between items-start">
                       <div>
-                        <div className="font-bold text-white">{testim.client_name}</div>
-                        <div className="text-xs text-blue-400 font-mono">{testim.company}</div>
+                        <div className="font-bold text-slate-900 dark:text-white">{testim.client_name}</div>
+                        <div className="text-xs text-blue-600 dark:text-blue-400 font-mono">{testim.company}</div>
                       </div>
                       <button
                         onClick={() => handleDeleteTestimonial(testim.id)}
-                        className="p-2 rounded-lg bg-slate-900 border border-slate-700 text-rose-400 hover:border-rose-500"
+                        className="p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-rose-600 dark:text-rose-400 hover:border-rose-500"
                       >
                         <Trash2 className="w-4 h-4" />
                       </button>
                     </div>
-                    <div className="flex text-amber-400">
-                      {[...Array(testim.rating)].map((_, i) => <Star key={i} className="w-4 h-4 fill-amber-400" />)}
+                    <div className="flex text-amber-500 dark:text-amber-400">
+                      {[...Array(testim.rating)].map((_, i) => <Star key={i} className="w-4 h-4 fill-amber-500 dark:fill-amber-400" />)}
                     </div>
-                    <p className="text-sm text-slate-300 italic">"{testim.content}"</p>
+                    <p className="text-sm text-slate-700 dark:text-slate-300 italic">"{testim.content}"</p>
                   </div>
                 ))}
               </div>
@@ -431,11 +431,11 @@ export default function AdminDashboardClient({ messages, visitsCount, projects, 
       {activeTab === "analytics" && (
         <div className="max-w-7xl mx-auto space-y-6">
           <div className="flex items-center gap-3 mb-4">
-            <Activity className="w-6 h-6 text-rose-400" />
-            <h2 className="text-xl font-bold text-white">Ruch na stronie (Ostatnie 30 dni)</h2>
+            <Activity className="w-6 h-6 text-rose-500 dark:text-rose-400" />
+            <h2 className="text-xl font-bold text-slate-900 dark:text-white">Ruch na stronie (Ostatnie 30 dni)</h2>
           </div>
           
-          <div className="glass-panel p-4 sm:p-8 rounded-3xl border border-slate-800 h-[400px]">
+          <div className="glass-panel p-4 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-transparent h-[400px]">
             {analytics?.length > 0 ? (
               <ResponsiveContainer width="100%" height="100%">
                 <LineChart data={analytics} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>

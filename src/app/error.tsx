@@ -17,7 +17,7 @@ export default function Error({
   }, [error]);
 
   return (
-    <main className="min-h-screen bg-[#060913] text-slate-100 flex flex-col items-center justify-center p-4 relative overflow-hidden">
+    <main className="min-h-screen text-slate-900 dark:text-slate-100 flex flex-col items-center justify-center p-4 relative overflow-hidden">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-rose-500/10 rounded-full blur-[100px]" />
       
       <div className="relative z-10 glass-panel p-10 sm:p-16 rounded-3xl border border-rose-500/20 text-center space-y-6 max-w-xl">
