@@ -115,12 +115,24 @@
   width: 8px;
 }
 ::-webkit-scrollbar-track {
+  background: #f1f5f9; /* slate-100 */
+}
+.dark ::-webkit-scrollbar-track,
+html.dark::-webkit-scrollbar-track {
   background: #060913;
 }
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
+  background: #cbd5e1; /* slate-300 */
   border-radius: 4px;
 }
+.dark ::-webkit-scrollbar-thumb,
+html.dark::-webkit-scrollbar-thumb {
+  background: #1e293b;
+}
 ::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8; /* slate-400 */
+}
+.dark ::-webkit-scrollbar-thumb:hover,
+html.dark::-webkit-scrollbar-thumb:hover {
   background: #38bdf8;
 }

@@ -38,19 +38,19 @@ export default function TechStackSection() {
   };
 
   return (
-    <section id="technologie" className="py-24 relative z-10 border-t border-slate-800/60">
+    <section id="technologie" className="py-24 relative z-10 border-t border-slate-200 dark:border-slate-800/60">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         
         {/* Header */}
         <div className="text-center space-y-4 max-w-3xl mx-auto">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-panel border border-cyan-500/30 text-xs font-mono text-cyan-300">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-panel border border-cyan-500/30 text-xs font-mono text-cyan-700 dark:text-cyan-300">
             <Cpu className="w-3.5 h-3.5" />
             <span>Stos Technologiczny</span>
           </div>
-          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white">
+          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-900 dark:text-white">
             Narzędzia & <span className="text-gradient-cyan">Technologie</span>
           </h2>
-          <p className="text-slate-400 text-base sm:text-lg">
+          <p className="text-slate-600 dark:text-slate-400 text-base sm:text-lg">
             Korzystam wyłącznie ze sprawdzonych, nowoczesnych i skalowalnych narzędzi, które zapewniają maksymalną szybkość strony.
           </p>
 
@@ -64,11 +64,11 @@ export default function TechStackSection() {
                   onClick={() => setActiveTab(cat.id)}
                   className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold tracking-wide transition-all ${
                     activeTab === cat.id
-                      ? "bg-cyan-500/20 border border-cyan-400 text-cyan-300 shadow-lg shadow-cyan-500/20"
-                      : "glass-panel text-slate-300 hover:text-white"
+                      ? "bg-cyan-50 dark:bg-cyan-500/20 border border-cyan-400 text-cyan-700 dark:text-cyan-300 shadow-lg shadow-cyan-500/20"
+                      : "glass-panel text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white"
                   }`}
                 >
-                  <Icon className="w-4 h-4 text-cyan-400" />
+                  <Icon className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
                   {cat.label}
                 </button>
               );
@@ -81,19 +81,19 @@ export default function TechStackSection() {
           {technologies[activeTab as keyof typeof technologies].map((item, idx) => (
             <div
               key={idx}
-              className="glass-panel-interactive rounded-2xl p-6 border border-slate-800 flex items-start gap-4"
+              className="glass-panel-interactive rounded-2xl p-6 border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-transparent flex items-start gap-4"
             >
-              <div className="w-10 h-10 rounded-xl bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-cyan-400 shrink-0 mt-1">
+              <div className="w-10 h-10 rounded-xl bg-cyan-50 dark:bg-cyan-500/20 border border-cyan-200 dark:border-cyan-500/40 flex items-center justify-center text-cyan-600 dark:text-cyan-400 shrink-0 mt-1">
                 <CheckCircle className="w-5 h-5" />
               </div>
               <div className="space-y-1">
                 <div className="flex items-center justify-between">
-                  <h3 className="text-lg font-bold text-white">{item.name}</h3>
-                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-950/60 border border-cyan-500/30 text-cyan-300">
+                  <h3 className="text-lg font-bold text-slate-900 dark:text-white">{item.name}</h3>
+                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-50 dark:bg-cyan-950/60 border border-cyan-200 dark:border-cyan-500/30 text-cyan-700 dark:text-cyan-300">
                     {item.level}
                   </span>
                 </div>
-                <p className="text-sm text-slate-400 leading-relaxed">{item.desc}</p>
+                <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">{item.desc}</p>
               </div>
             </div>
           ))}

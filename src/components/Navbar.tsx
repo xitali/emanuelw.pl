@@ -32,7 +32,7 @@ export default function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-[#060913]/80 backdrop-blur-md border-b border-cyan-500/10 py-3 shadow-2xl shadow-cyan-950/20"
+          ? "bg-white/80 dark:bg-[#060913]/80 backdrop-blur-md border-b border-slate-200/50 dark:border-cyan-500/10 py-3 shadow-2xl shadow-slate-200/50 dark:shadow-cyan-950/20"
           : "bg-transparent py-5"
       }`}
     >
@@ -64,16 +64,16 @@ export default function Navbar() {
         </div>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-1 bg-[#0f172a]/60 backdrop-blur-md p-1.5 rounded-full border border-white/10">
+        <nav className="hidden md:flex items-center gap-1 bg-white/60 dark:bg-[#0f172a]/60 backdrop-blur-md p-1.5 rounded-full border border-slate-200 dark:border-white/10 shadow-sm dark:shadow-none">
           {navLinks.map((link) => {
             const Icon = link.icon;
             return (
               <a
                 key={link.name}
                 href={link.href}
-                className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-slate-300 hover:text-cyan-400 hover:bg-cyan-500/10 rounded-full transition-all duration-200"
+                className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-cyan-600 dark:hover:text-cyan-400 hover:bg-cyan-50 dark:hover:bg-cyan-500/10 rounded-full transition-all duration-200"
               >
-                <Icon className="w-4 h-4 text-cyan-400/80" />
+                <Icon className="w-4 h-4 text-cyan-600 dark:text-cyan-400/80" />
                 {link.name}
               </a>
             );
@@ -104,7 +104,7 @@ export default function Navbar() {
         {/* Mobile menu trigger */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden p-2 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 hover:text-white"
+          className="md:hidden p-2 rounded-lg bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:text-cyan-600 dark:hover:text-white"
           aria-label="Menu"
         >
           {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -113,7 +113,7 @@ export default function Navbar() {
 
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
-        <div className="md:hidden glass-panel border-b border-cyan-500/20 px-4 py-6 mt-3 space-y-3 animate-fadeIn">
+        <div className="md:hidden glass-panel border-b border-slate-200 dark:border-cyan-500/20 px-4 py-6 mt-3 space-y-3 animate-fadeIn bg-white/95 dark:bg-[#0d121e]/95">
           {navLinks.map((link) => {
             const Icon = link.icon;
             return (
@@ -121,9 +121,9 @@ export default function Navbar() {
                 key={link.name}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center gap-3 px-4 py-3 text-slate-200 hover:text-cyan-400 hover:bg-cyan-500/10 rounded-xl font-medium transition-all"
+                className="flex items-center gap-3 px-4 py-3 text-slate-700 dark:text-slate-200 hover:text-cyan-600 dark:hover:text-cyan-400 hover:bg-cyan-50 dark:hover:bg-cyan-500/10 rounded-xl font-medium transition-all"
               >
-                <Icon className="w-5 h-5 text-cyan-400" />
+                <Icon className="w-5 h-5 text-cyan-600 dark:text-cyan-400" />
                 {link.name}
               </a>
             );

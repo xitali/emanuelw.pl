@@ -94,25 +94,25 @@ export default function AdminDashboardClient({ messages, visitsCount, projects, 
   }
 
   return (
-    <main className="min-h-screen bg-[#060913] text-slate-100 p-4 sm:p-8 md:p-12 space-y-8">
+    <main className="min-h-screen bg-slate-50 dark:bg-[#060913] text-slate-900 dark:text-slate-100 p-4 sm:p-8 md:p-12 space-y-8">
       
       {/* Top Header */}
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-slate-800 pb-6">
+      <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-slate-200 dark:border-slate-800 pb-6">
         <div className="space-y-1">
-          <Link href="/" className="inline-flex items-center gap-2 text-xs font-mono text-cyan-400 hover:text-cyan-300">
+          <Link href="/" className="inline-flex items-center gap-2 text-xs font-mono text-cyan-600 dark:text-cyan-400 hover:text-cyan-700 dark:hover:text-cyan-300">
             <ArrowLeft className="w-4 h-4" /> Powrót do Strony Podglądu
           </Link>
-          <h1 className="text-3xl font-extrabold text-white flex items-center gap-3">
-            <ShieldCheck className="w-8 h-8 text-cyan-400" /> Panel CMS & Admin Turso
+          <h1 className="text-3xl font-extrabold text-slate-900 dark:text-white flex items-center gap-3">
+            <ShieldCheck className="w-8 h-8 text-cyan-600 dark:text-cyan-400" /> Panel CMS & Admin Turso
           </h1>
-          <p className="text-xs sm:text-sm text-slate-400">
+          <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
             Pełny CRUD dla bazy danych `emanuelw-xitali.aws-eu-west-1.turso.io`
           </p>
         </div>
 
         <div className="flex items-center gap-4">
           <form action={logoutAdminAction}>
-            <button type="submit" className="px-4 py-2 rounded-xl bg-rose-950/60 border border-rose-500/40 text-rose-300 text-xs font-semibold hover:bg-rose-900/60 transition-colors">
+            <button type="submit" className="px-4 py-2 rounded-xl bg-rose-50 dark:bg-rose-950/60 border border-rose-200 dark:border-rose-500/40 text-rose-600 dark:text-rose-300 text-xs font-semibold hover:bg-rose-100 dark:hover:bg-rose-900/60 transition-colors">
               Wyloguj się
             </button>
           </form>
@@ -120,44 +120,44 @@ export default function AdminDashboardClient({ messages, visitsCount, projects, 
       </div>
 
       {actionStatus && (
-        <div className="max-w-7xl mx-auto p-4 rounded-2xl bg-emerald-950/80 border border-emerald-500/50 text-emerald-300 text-sm font-medium flex items-center gap-2">
-          <CheckCircle className="w-5 h-5 text-emerald-400" />
+        <div className="max-w-7xl mx-auto p-4 rounded-2xl bg-emerald-50 dark:bg-emerald-950/80 border border-emerald-200 dark:border-emerald-500/50 text-emerald-700 dark:text-emerald-300 text-sm font-medium flex items-center gap-2">
+          <CheckCircle className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
           <span>{actionStatus}</span>
         </div>
       )}
 
       {/* KPI Stats */}
       <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div className="glass-panel p-6 rounded-3xl border border-slate-800 space-y-2">
-          <div className="flex items-center justify-between text-slate-400">
+        <div className="glass-panel p-6 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-transparent space-y-2">
+          <div className="flex items-center justify-between text-slate-500 dark:text-slate-400">
             <span className="text-xs font-mono uppercase">Odsłony Łącznie</span>
-            <Eye className="w-5 h-5 text-cyan-400" />
+            <Eye className="w-5 h-5 text-cyan-600 dark:text-cyan-400" />
           </div>
-          <div className="text-3xl font-extrabold text-white">{visitsCount}</div>
+          <div className="text-3xl font-extrabold text-slate-900 dark:text-white">{visitsCount}</div>
         </div>
 
-        <div className="glass-panel p-6 rounded-3xl border border-slate-800 space-y-2">
-          <div className="flex items-center justify-between text-slate-400">
+        <div className="glass-panel p-6 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-transparent space-y-2">
+          <div className="flex items-center justify-between text-slate-500 dark:text-slate-400">
             <span className="text-xs font-mono uppercase">Wiadomości</span>
-            <MessageSquare className="w-5 h-5 text-purple-400" />
+            <MessageSquare className="w-5 h-5 text-purple-600 dark:text-purple-400" />
           </div>
-          <div className="text-3xl font-extrabold text-white">{messages.length}</div>
+          <div className="text-3xl font-extrabold text-slate-900 dark:text-white">{messages.length}</div>
         </div>
 
-        <div className="glass-panel p-6 rounded-3xl border border-slate-800 space-y-2">
-          <div className="flex items-center justify-between text-slate-400">
+        <div className="glass-panel p-6 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-transparent space-y-2">
+          <div className="flex items-center justify-between text-slate-500 dark:text-slate-400">
             <span className="text-xs font-mono uppercase">Projekty</span>
-            <Code2 className="w-5 h-5 text-emerald-400" />
+            <Code2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
           </div>
-          <div className="text-3xl font-extrabold text-white">{projects.length}</div>
+          <div className="text-3xl font-extrabold text-slate-900 dark:text-white">{projects.length}</div>
         </div>
 
-        <div className="glass-panel p-6 rounded-3xl border border-slate-800 space-y-2">
-          <div className="flex items-center justify-between text-slate-400">
+        <div className="glass-panel p-6 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-transparent space-y-2">
+          <div className="flex items-center justify-between text-slate-500 dark:text-slate-400">
             <span className="text-xs font-mono uppercase">Usługi</span>
-            <Rocket className="w-5 h-5 text-amber-400" />
+            <Rocket className="w-5 h-5 text-amber-600 dark:text-amber-400" />
           </div>
-          <div className="text-3xl font-extrabold text-white">{services.length}</div>
+          <div className="text-3xl font-extrabold text-slate-900 dark:text-white">{services.length}</div>
         </div>
       </div>
 
@@ -167,8 +167,8 @@ export default function AdminDashboardClient({ messages, visitsCount, projects, 
           onClick={() => setActiveTab("projects")}
           className={`flex items-center gap-2 px-6 py-3 rounded-full text-xs font-semibold ${
             activeTab === "projects"
-              ? "bg-cyan-500/20 border border-cyan-400 text-cyan-300"
-              : "glass-panel text-slate-400 hover:text-white"
+              ? "bg-cyan-50 dark:bg-cyan-500/20 border border-cyan-400 text-cyan-700 dark:text-cyan-300"
+              : "glass-panel text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
           }`}
         >
           <Code2 className="w-4 h-4" /> Projekty ({projects.length})
@@ -178,8 +178,8 @@ export default function AdminDashboardClient({ messages, visitsCount, projects, 
           onClick={() => setActiveTab("services")}
           className={`flex items-center gap-2 px-6 py-3 rounded-full text-xs font-semibold ${
             activeTab === "services"
-              ? "bg-amber-500/20 border border-amber-400 text-amber-300"
-              : "glass-panel text-slate-400 hover:text-white"
+              ? "bg-amber-50 dark:bg-amber-500/20 border border-amber-400 text-amber-700 dark:text-amber-300"
+              : "glass-panel text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
           }`}
         >
           <Rocket className="w-4 h-4" /> Ceny Usług ({services.length})
@@ -189,8 +189,8 @@ export default function AdminDashboardClient({ messages, visitsCount, projects, 
           onClick={() => setActiveTab("messages")}
           className={`flex items-center gap-2 px-6 py-3 rounded-full text-xs font-semibold ${
             activeTab === "messages"
-              ? "bg-purple-500/20 border border-purple-400 text-purple-300"
-              : "glass-panel text-slate-400 hover:text-white"
+              ? "bg-purple-50 dark:bg-purple-500/20 border border-purple-400 text-purple-700 dark:text-purple-300"
+              : "glass-panel text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
           }`}
         >
           <MessageSquare className="w-4 h-4" /> Wiadomości ({messages.length})
@@ -200,8 +200,8 @@ export default function AdminDashboardClient({ messages, visitsCount, projects, 
           onClick={() => setActiveTab("photo")}
           className={`flex items-center gap-2 px-6 py-3 rounded-full text-xs font-semibold ${
             activeTab === "photo"
-              ? "bg-emerald-500/20 border border-emerald-400 text-emerald-300"
-              : "glass-panel text-slate-400 hover:text-white"
+              ? "bg-emerald-50 dark:bg-emerald-500/20 border border-emerald-400 text-emerald-700 dark:text-emerald-300"
+              : "glass-panel text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
           }`}
         >
           <ImageIcon className="w-4 h-4" /> Zdjęcie Profilowe
@@ -211,8 +211,8 @@ export default function AdminDashboardClient({ messages, visitsCount, projects, 
           onClick={() => setActiveTab("testimonials")}
           className={`flex items-center gap-2 px-6 py-3 rounded-full text-xs font-semibold ${
             activeTab === "testimonials"
-              ? "bg-blue-500/20 border border-blue-400 text-blue-300"
-              : "glass-panel text-slate-400 hover:text-white"
+              ? "bg-blue-50 dark:bg-blue-500/20 border border-blue-400 text-blue-700 dark:text-blue-300"
+              : "glass-panel text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
           }`}
         >
           <Star className="w-4 h-4" /> Opinie ({testimonials?.length || 0})
@@ -222,8 +222,8 @@ export default function AdminDashboardClient({ messages, visitsCount, projects, 
           onClick={() => setActiveTab("analytics")}
           className={`flex items-center gap-2 px-6 py-3 rounded-full text-xs font-semibold ${
             activeTab === "analytics"
-              ? "bg-rose-500/20 border border-rose-400 text-rose-300"
-              : "glass-panel text-slate-400 hover:text-white"
+              ? "bg-rose-50 dark:bg-rose-500/20 border border-rose-400 text-rose-700 dark:text-rose-300"
+              : "glass-panel text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
           }`}
         >
           <BarChart className="w-4 h-4" /> Analityka
