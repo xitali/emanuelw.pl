@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import { sendContactMessageAction } from "@/app/actions/contact";
 import confetti from "canvas-confetti";
 import { Mail, Phone, MapPin, Send, CheckCircle2, AlertCircle, Sparkles } from "lucide-react";
-import { FadeIn } from "./animations/FadeIn";
 
 interface ContactSectionProps {
   settings: Record<string, string>;
@@ -73,7 +72,7 @@ export default function ContactSection({ settings }: ContactSectionProps) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         
         {/* Header */}
-        <FadeIn direction="up" className="text-center space-y-4 max-w-3xl mx-auto">
+        <div className="text-center space-y-4 max-w-3xl mx-auto">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-panel border border-cyan-500/30 text-xs font-mono text-cyan-300">
             <Mail className="w-3.5 h-3.5" />
             <span>Nawiążmy Kontakt</span>
@@ -84,13 +83,13 @@ export default function ContactSection({ settings }: ContactSectionProps) {
           <p className="text-slate-400 text-base sm:text-lg">
             Napisz do mnie lub zadzwoń. Wybór usługi automatycznie uzupełnia poniższy formularz.
           </p>
-        </FadeIn>
+        </div>
 
         {/* Grid: Contact Info + Form */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 max-w-6xl mx-auto items-start">
           
           {/* Info cards */}
-          <FadeIn direction="right" delay={0.2} className="lg:col-span-5 space-y-6">
+          <div className="lg:col-span-5 space-y-6">
             <div className="glass-panel rounded-3xl p-8 border border-slate-800 space-y-6">
               <h3 className="text-2xl font-bold text-white">Dane Kontaktowe</h3>
               
@@ -179,10 +178,10 @@ export default function ContactSection({ settings }: ContactSectionProps) {
               </div>
 
             </div>
-          </FadeIn>
+          </div>
 
           {/* Form */}
-          <FadeIn direction="left" delay={0.4} className="lg:col-span-7">
+          <div className="lg:col-span-7">
             <form onSubmit={handleSubmit} className="glass-panel rounded-3xl p-8 border border-cyan-500/30 space-y-6">
               <h3 className="text-2xl font-bold text-white">Napisz Wiadomość</h3>
 
@@ -274,7 +273,7 @@ export default function ContactSection({ settings }: ContactSectionProps) {
                 )}
               </button>
             </form>
-          </FadeIn>
+          </div>
 
         </div>
 

@@ -1,16 +1,19 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
-import { Terminal, Code2, Sparkles, MessageSquare, Shield, Menu, X, Rocket, Wand2 } from "lucide-react";
-import { useAnimationContext } from "./animations/AnimationProvider";
+import { Terminal, Code2, Sparkles, MessageSquare, Menu, X, Rocket, Wand2 } from "lucide-react";
+import { useTheme } from "next-themes";
+import { useRouter } from "next/navigation";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { isAnimated, toggleAnimation } = useAnimationContext();
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
+    setMounted(true);
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
@@ -23,7 +26,6 @@ export default function Navbar() {
     { name: "Usługi", href: "#uslugi", icon: Rocket },
     { name: "Technologie", href: "#technologie", icon: Sparkles },
     { name: "Kontakt", href: "#kontakt", icon: MessageSquare },
-    { name: "Admin CMS", href: "/admin", icon: Shield },
   ];
 
   return (
@@ -36,19 +38,30 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         {/* Brand Logo */}
-        <Link href="/" className="flex items-center gap-3 group">
+        <div className="flex items-center gap-3 group cursor-pointer" onClick={() => router.push('/')}>
           <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-purple-600 flex items-center justify-center shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform duration-300">
             <Terminal className="w-5 h-5 text-white" />
           </div>
           <div className="flex flex-col">
-            <span className="text-lg font-bold tracking-tight text-white group-hover:text-cyan-400 transition-colors">
-              Emanuel<span className="text-cyan-400">.</span>Włoch
+            <span className="text-lg font-bold tracking-tight text-white dark:text-white text-slate-900 group-hover:text-cyan-400 transition-colors">
+              Emanuel
+              <span 
+                className="text-cyan-400 cursor-default" 
+                onClick={(e) => {
+                  e.stopPropagation();
+                  router.push('/admin');
+                }}
+                title="Secret Admin Panel"
+              >
+                .
+              </span>
+              Włoch
             </span>
-            <span className="text-[10px] font-mono tracking-widest text-cyan-400/80 uppercase">
+            <span className="text-[10px] font-mono tracking-widest text-cyan-500 dark:text-cyan-400/80 uppercase">
               Full-Stack Architect
             </span>
           </div>
-        </Link>
+        </div>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-1 bg-[#0f172a]/60 backdrop-blur-md p-1.5 rounded-full border border-white/10">
@@ -67,19 +80,17 @@ export default function Navbar() {
           })}
         </nav>
 
-        {/* CTA Button & Toggles */}
+        {/* CTA Button & Theme Toggle */}
         <div className="hidden md:flex items-center gap-3">
-          <button
-            onClick={toggleAnimation}
-            title={isAnimated ? "Wyłącz nowoczesne animacje" : "Włącz nowoczesne animacje"}
-            className={`p-2.5 rounded-full border transition-all duration-300 ${
-              isAnimated 
-                ? "bg-purple-500/20 border-purple-500/40 text-purple-300 shadow-[0_0_15px_rgba(168,85,247,0.3)] hover:bg-purple-500/30" 
-                : "bg-slate-900 border-slate-700 text-slate-400 hover:text-white"
-            }`}
-          >
-            <Wand2 className={`w-4 h-4 ${isAnimated ? "animate-pulse" : ""}`} />
-          </button>
+          {mounted && (
+            <button
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              title="Przełącz motyw (Jasny/Ciemny)"
+              className="p-2.5 rounded-full border border-slate-700 dark:bg-slate-900 bg-white text-slate-400 hover:text-cyan-400 transition-colors"
+            >
+              <Wand2 className="w-4 h-4" />
+            </button>
+          )}
           
           <a
             href="#kontakt"

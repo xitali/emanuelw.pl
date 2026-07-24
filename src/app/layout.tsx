@@ -18,7 +18,6 @@ export const metadata: Metadata = {
 };
 
 import { ThemeProvider } from "@/components/ThemeProvider";
-import { AnimationProvider } from "@/components/animations/AnimationProvider";
 
 export default function RootLayout({
   children,
@@ -31,16 +30,14 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-[#060913] text-slate-100 dark:bg-[#060913] dark:text-slate-100 transition-colors duration-300">
+      <body className="min-h-full flex flex-col bg-slate-50 text-slate-900 dark:bg-[#060913] dark:text-slate-100 transition-colors duration-300">
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
         >
-          <AnimationProvider>
-            {children}
-          </AnimationProvider>
+          {children}
         </ThemeProvider>
       </body>
     </html>

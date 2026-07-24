@@ -5,8 +5,6 @@ import { Project } from "@/types";
 import ProjectModal from "./ProjectModal";
 import Image from "next/image";
 import { Sparkles, Layers, ArrowUpRight } from "lucide-react";
-import { FadeIn } from "./animations/FadeIn";
-import { StaggerContainer, StaggerItem } from "./animations/StaggerContainer";
 
 interface ProjectsSectionProps {
   initialProjects: Project[];
@@ -34,7 +32,7 @@ export default function ProjectsSection({ initialProjects }: ProjectsSectionProp
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         
         {/* Section Header */}
-        <FadeIn direction="up" className="text-center space-y-4 max-w-3xl mx-auto">
+        <div className="text-center space-y-4 max-w-3xl mx-auto">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-panel border border-cyan-500/30 text-xs font-mono text-cyan-300">
             <Sparkles className="w-3.5 h-3.5" />
             <span>Portfolio Realizacji</span>
@@ -62,20 +60,20 @@ export default function ProjectsSection({ initialProjects }: ProjectsSectionProp
               </button>
             ))}
           </div>
-        </FadeIn>
+        </div>
 
         {/* Projects Cards Grid */}
-        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredProjects.map((project) => {
             const hasImage = project.images && project.images.length > 0;
             const mainImg = hasImage ? project.images[0] : null;
 
             return (
-              <StaggerItem key={project.id}>
-                <div
-                  onClick={() => setActiveModalProject(project)}
-                  className="glass-panel-interactive rounded-3xl overflow-hidden cursor-pointer flex flex-col group border border-slate-800 h-full"
-                >
+              <div
+                key={project.id}
+                onClick={() => setActiveModalProject(project)}
+                className="glass-panel-interactive rounded-3xl overflow-hidden cursor-pointer flex flex-col group border border-slate-800"
+              >
                 {/* Image / Banner */}
                 <div className="relative h-56 w-full bg-slate-950 overflow-hidden">
                   {mainImg ? (
@@ -137,10 +135,9 @@ export default function ProjectsSection({ initialProjects }: ProjectsSectionProp
                   </div>
                 </div>
               </div>
-            </StaggerItem>
-          );
-        })}
-      </StaggerContainer>
+            );
+          })}
+        </div>
 
         {/* Modal Drawer */}
         <ProjectModal
