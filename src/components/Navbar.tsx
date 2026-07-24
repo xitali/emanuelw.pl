@@ -43,7 +43,7 @@ export default function Navbar() {
             <Terminal className="w-5 h-5 text-white" />
           </div>
           <div className="flex flex-col">
-            <span className="text-lg font-bold tracking-tight text-white dark:text-white text-slate-900 group-hover:text-cyan-400 transition-colors">
+            <span className="text-lg font-bold tracking-tight text-slate-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">
               Emanuel
               <span 
                 className="text-cyan-400 cursor-default" 

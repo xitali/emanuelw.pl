@@ -6,6 +6,7 @@ import { createProjectAction, updateProjectAction, deleteProjectAction, deleteMe
 import { ArrowLeft, MessageSquare, Code2, Rocket, Eye, ShieldCheck, Clock, Mail, Trash2, Plus, Edit3, X, CheckCircle, Image as ImageIcon, Save, BarChart, Star, Activity } from "lucide-react";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 import Link from "next/link";
+import { useTheme } from "next-themes";
 
 interface AdminDashboardClientProps {
   messages: ContactMessage[];
@@ -17,6 +18,7 @@ interface AdminDashboardClientProps {
 }
 
 export default function AdminDashboardClient({ messages, visitsCount, projects, services, testimonials, analytics }: AdminDashboardClientProps) {
+  const { theme } = useTheme();
   const [activeTab, setActiveTab] = useState<"projects" | "services" | "messages" | "photo" | "testimonials" | "analytics">("projects");
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [editingProject, setEditingProject] = useState<Project | null>(null);
@@ -248,7 +250,7 @@ export default function AdminDashboardClient({ messages, visitsCount, projects, 
               <div key={proj.id} className="glass-panel p-6 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-transparent space-y-4 flex flex-col justify-between">
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
-                    <span className="px-2.5 py-1 rounded bg-slate-900 border border-slate-800 text-cyan-400 text-[10px] font-mono">
+                    <span className="px-2.5 py-1 rounded bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-cyan-700 dark:text-cyan-400 text-[10px] font-mono">
                       {proj.project_type || proj.category}
                     </span>
                     <div className="flex gap-2">
@@ -439,14 +441,19 @@ export default function AdminDashboardClient({ messages, visitsCount, projects, 
             {analytics?.length > 0 ? (
               <ResponsiveContainer width="100%" height="100%">
                 <LineChart data={analytics} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" vertical={false} />
-                  <XAxis dataKey="date" stroke="#64748b" fontSize={12} tickLine={false} axisLine={false} />
-                  <YAxis stroke="#64748b" fontSize={12} tickLine={false} axisLine={false} allowDecimals={false} />
+                  <CartesianGrid strokeDasharray="3 3" stroke={theme === 'dark' ? "#1e293b" : "#e2e8f0"} vertical={false} />
+                  <XAxis dataKey="date" stroke={theme === 'dark' ? "#64748b" : "#94a3b8"} fontSize={12} tickLine={false} axisLine={false} />
+                  <YAxis stroke={theme === 'dark' ? "#64748b" : "#94a3b8"} fontSize={12} tickLine={false} axisLine={false} allowDecimals={false} />
                   <Tooltip 
-                    contentStyle={{ backgroundColor: '#0f172a', borderColor: '#334155', borderRadius: '12px', color: '#fff' }}
-                    itemStyle={{ color: '#22d3ee' }}
+                    contentStyle={{ 
+                      backgroundColor: theme === 'dark' ? '#0f172a' : '#ffffff', 
+                      borderColor: theme === 'dark' ? '#334155' : '#e2e8f0', 
+                      borderRadius: '12px', 
+                      color: theme === 'dark' ? '#fff' : '#0f172a' 
+                    }}
+                    itemStyle={{ color: '#0ea5e9' }}
                   />
-                  <Line type="monotone" dataKey="visits" name="Odwiedziny" stroke="#22d3ee" strokeWidth={3} dot={{ r: 4, fill: '#0f172a', strokeWidth: 2 }} activeDot={{ r: 6, fill: '#22d3ee' }} />
+                  <Line type="monotone" dataKey="visits" name="Odwiedziny" stroke="#0ea5e9" strokeWidth={3} dot={{ r: 4, fill: theme === 'dark' ? '#0f172a' : '#ffffff', strokeWidth: 2 }} activeDot={{ r: 6, fill: '#0ea5e9' }} />
                 </LineChart>
               </ResponsiveContainer>
             ) : (
