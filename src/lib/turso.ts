@@ -4,7 +4,7 @@ import { unstable_cache, revalidatePath } from "next/cache";
 import bcrypt from "bcryptjs";
 
 const url = process.env.TURSO_DATABASE_URL || "libsql://***REMOVED_TURSO_URL***";
-const authToken = process.env.TURSO_AUTH_TOKEN || "";
+const authToken = process.env.TURSO_AUTH_TOKEN || "***REMOVED_SECRET***";
 
 export const turso = createClient({
   url,
