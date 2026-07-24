@@ -1,6 +1,6 @@
 "use server";
 
-import { verifyAdminPassword, createProject, updateProject, deleteProject, deleteContactMessage, updateServicePrice } from "@/lib/turso";
+import { verifyAdminPassword, createProject, updateProject, deleteProject, deleteContactMessage, updateServicePrice, addTestimonial, deleteTestimonial } from "@/lib/turso";
 import { createAdminSession, logoutAdminSession, verifyAdminSession } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
@@ -117,6 +117,37 @@ export async function updateServicePriceAction(id: string, priceFrom: number) {
   if (!isAuth) throw new Error("Brak uprawnień!");
 
   await updateServicePrice(id, priceFrom);
+  revalidatePath("/admin");
+  revalidatePath("/");
+  return { success: true };
+}
+
+export async function createTestimonialAction(formData: FormData) {
+  const isAuth = await verifyAdminSession();
+  if (!isAuth) throw new Error("Brak uprawnień!");
+
+  const client_name = formData.get("client_name") as string;
+  const company = formData.get("company") as string;
+  const content = formData.get("content") as string;
+  const rating = Number(formData.get("rating") || 5);
+
+  await addTestimonial({
+    client_name,
+    company,
+    content,
+    rating
+  });
+
+  revalidatePath("/admin");
+  revalidatePath("/");
+  return { success: true };
+}
+
+export async function deleteTestimonialAction(id: string) {
+  const isAuth = await verifyAdminSession();
+  if (!isAuth) throw new Error("Brak uprawnień!");
+
+  await deleteTestimonial(id);
   revalidatePath("/admin");
   revalidatePath("/");
   return { success: true };

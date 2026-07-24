@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { Terminal as TerminalIcon, Sparkles, ArrowRight, Code2, Cpu, Database, CheckCircle2, Copy, Check, User, ShieldCheck } from "lucide-react";
 
 export default function HeroSection() {
@@ -91,11 +92,14 @@ export default function HeroSection() {
                 <div className="absolute -inset-1 bg-gradient-to-r from-cyan-400 via-purple-500 to-blue-600 rounded-3xl blur-md opacity-70 group-hover:opacity-100 transition duration-500" />
                 <div className="relative w-28 h-28 sm:w-36 sm:h-36 rounded-2xl overflow-hidden glass-panel border-2 border-cyan-400/80 shadow-2xl shadow-cyan-500/30 shrink-0 bg-slate-950">
                   {!imgError ? (
-                    <img
+                    <Image
                       src="/emanuel_wloch.jpg"
                       alt="Emanuel Włoch - Full-Stack Developer"
+                      fill
+                      priority
+                      sizes="(max-width: 640px) 112px, 144px"
                       onError={() => setImgError(true)}
-                      className="w-full h-full object-cover object-top hover:scale-105 transition-transform duration-500"
+                      className="object-cover object-top hover:scale-105 transition-transform duration-500"
                     />
                   ) : (
                     <div className="w-full h-full bg-gradient-to-tr from-cyan-500 to-purple-600 flex items-center justify-center text-white">

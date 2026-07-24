@@ -1,4 +1,4 @@
-import { getProjects, getServices, getSiteSettings, getPageVisitsCount } from "@/lib/turso";
+import { getProjects, getServices, getSiteSettings, getPageVisitsCount, getTestimonials } from "@/lib/turso";
 import Navbar from "@/components/Navbar";
 import BackgroundGlow from "@/components/BackgroundGlow";
 import HeroSection from "@/components/HeroSection";
@@ -6,6 +6,7 @@ import ProjectsSection from "@/components/ProjectsSection";
 import ServicesSection from "@/components/ServicesSection";
 import TechStackSection from "@/components/TechStackSection";
 import ContactSection from "@/components/ContactSection";
+import TestimonialsSection from "@/components/TestimonialsSection";
 import Footer from "@/components/Footer";
 import VisitTracker from "@/components/VisitTracker";
 
@@ -14,11 +15,12 @@ export const revalidate = 3600;
 
 export default async function HomePage() {
   // Parallel cached data fetching from Turso DB (< 15ms response)
-  const [projects, services, settings, visitCount] = await Promise.all([
+  const [projects, services, settings, visitCount, testimonials] = await Promise.all([
     getProjects(),
     getServices(),
     getSiteSettings(),
     getPageVisitsCount(),
+    getTestimonials(),
   ]);
 
   return (
@@ -32,6 +34,7 @@ export default async function HomePage() {
         <ProjectsSection initialProjects={projects} />
         <ServicesSection initialServices={services} />
         <TechStackSection />
+        <TestimonialsSection testimonials={testimonials} />
         <ContactSection settings={settings} />
       </div>
 

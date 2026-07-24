@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Project } from "@/types";
 import ProjectModal from "./ProjectModal";
+import Image from "next/image";
 import { Sparkles, Layers, ArrowUpRight } from "lucide-react";
 
 interface ProjectsSectionProps {
@@ -76,10 +77,12 @@ export default function ProjectsSection({ initialProjects }: ProjectsSectionProp
                 {/* Image / Banner */}
                 <div className="relative h-56 w-full bg-slate-950 overflow-hidden">
                   {mainImg ? (
-                    <img
+                    <Image
                       src={mainImg}
                       alt={project.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-slate-900 to-slate-950">

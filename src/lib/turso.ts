@@ -1,5 +1,5 @@
 import { createClient } from "@libsql/client";
-import { Project, Service, SiteSetting, ContactMessage } from "@/types";
+import { Project, Service, SiteSetting, ContactMessage, Testimonial } from "@/types";
 import { unstable_cache, revalidatePath } from "next/cache";
 import bcrypt from "bcryptjs";
 
@@ -307,5 +307,84 @@ export async function verifyAdminPassword(password: string): Promise<boolean> {
   } catch (error) {
     console.error("Error verifying admin password:", error);
     return false;
+  }
+}
+
+// ---------------- TESTIMONIALS ---------------- //
+
+export const getTestimonials = unstable_cache(
+  async (): Promise<Testimonial[]> => {
+    try {
+      const result = await turso.execute("SELECT * FROM testimonials WHERE is_published = 1 ORDER BY created_at DESC");
+      return result.rows.map((row) => ({
+        id: String(row.id),
+        client_name: String(row.client_name),
+        company: row.company ? String(row.company) : undefined,
+        content: String(row.content),
+        rating: Number(row.rating),
+        is_published: row.is_published === 1 || row.is_published === "1",
+        created_at: String(row.created_at || ''),
+      }));
+    } catch (err) {
+      console.error("Error fetching testimonials:", err);
+      return [];
+    }
+  },
+  ["testimonials-list"],
+  { revalidate: 3600 }
+);
+
+export async function addTestimonial(data: Partial<Testimonial>) {
+  const id = crypto.randomUUID();
+  await turso.execute({
+    sql: `INSERT INTO testimonials (id, client_name, company, content, rating, is_published)
+          VALUES (?, ?, ?, ?, ?, ?)`,
+    args: [
+      id,
+      data.client_name || "Anonim",
+      data.company || "",
+      data.content || "",
+      data.rating || 5,
+      1
+    ],
+  });
+  revalidatePath("/");
+  return { id, success: true };
+}
+
+export async function deleteTestimonial(id: string) {
+  await turso.execute({
+    sql: "DELETE FROM testimonials WHERE id = ?",
+    args: [id],
+  });
+  revalidatePath("/");
+  return { success: true };
+}
+
+// ---------------- ANALYTICS ---------------- //
+
+export async function getPageVisitsStats() {
+  try {
+    // Prosta agregacja wizyt po datach (ostatnie 30 dni)
+    const result = await turso.execute(`
+      SELECT 
+        DATE(created_at) as date, 
+        COUNT(*) as count 
+      FROM page_visits 
+      GROUP BY DATE(created_at)
+      ORDER BY DATE(created_at) DESC
+      LIMIT 30
+    `);
+    
+    // Formatujemy dla Recharts (od najstarszej daty do najnowszej)
+    const stats = result.rows.map(row => ({
+      date: String(row.date),
+      visits: Number(row.count)
+    })).reverse();
+    
+    return stats;
+  } catch (err) {
+    console.error("Error fetching analytics:", err);
+    return [];
   }
 }

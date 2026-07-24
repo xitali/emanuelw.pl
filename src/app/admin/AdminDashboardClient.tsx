@@ -1,9 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { Project, ContactMessage, Service } from "@/types";
-import { createProjectAction, updateProjectAction, deleteProjectAction, deleteMessageAction, logoutAdminAction, updateServicePriceAction } from "@/app/actions/admin";
-import { ArrowLeft, MessageSquare, Code2, Rocket, Eye, ShieldCheck, Clock, Mail, Trash2, Plus, Edit3, X, CheckCircle, Image as ImageIcon, Save } from "lucide-react";
+import { Project, ContactMessage, Service, Testimonial } from "@/types";
+import { createProjectAction, updateProjectAction, deleteProjectAction, deleteMessageAction, logoutAdminAction, updateServicePriceAction, createTestimonialAction, deleteTestimonialAction } from "@/app/actions/admin";
+import { ArrowLeft, MessageSquare, Code2, Rocket, Eye, ShieldCheck, Clock, Mail, Trash2, Plus, Edit3, X, CheckCircle, Image as ImageIcon, Save, BarChart, Star, Activity } from "lucide-react";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 import Link from "next/link";
 
 interface AdminDashboardClientProps {
@@ -11,10 +12,12 @@ interface AdminDashboardClientProps {
   visitsCount: number;
   projects: Project[];
   services: Service[];
+  testimonials: Testimonial[];
+  analytics: { date: string; visits: number }[];
 }
 
-export default function AdminDashboardClient({ messages, visitsCount, projects, services }: AdminDashboardClientProps) {
-  const [activeTab, setActiveTab] = useState<"projects" | "services" | "messages" | "photo">("projects");
+export default function AdminDashboardClient({ messages, visitsCount, projects, services, testimonials, analytics }: AdminDashboardClientProps) {
+  const [activeTab, setActiveTab] = useState<"projects" | "services" | "messages" | "photo" | "testimonials" | "analytics">("projects");
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [editingProject, setEditingProject] = useState<Project | null>(null);
   const [editingServicePrices, setEditingServicePrices] = useState<Record<string, number>>(() => {
@@ -69,6 +72,24 @@ export default function AdminDashboardClient({ messages, visitsCount, projects, 
     await updateServicePriceAction(id, newPrice);
     setLoading(false);
     setActionStatus("Zaktualizowano cenę usługi w bazie Turso DB!");
+    setTimeout(() => setActionStatus(null), 3000);
+  }
+
+  async function handleCreateTestimonial(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setLoading(true);
+    const formData = new FormData(e.currentTarget);
+    await createTestimonialAction(formData);
+    setLoading(false);
+    (e.target as HTMLFormElement).reset();
+    setActionStatus("Dodano nową opinię!");
+    setTimeout(() => setActionStatus(null), 3000);
+  }
+
+  async function handleDeleteTestimonial(id: string) {
+    if (!confirm("Czy na pewno chcesz usunąć tę opinię?")) return;
+    await deleteTestimonialAction(id);
+    setActionStatus("Usunięto opinię!");
     setTimeout(() => setActionStatus(null), 3000);
   }
 
@@ -184,6 +205,28 @@ export default function AdminDashboardClient({ messages, visitsCount, projects, 
           }`}
         >
           <ImageIcon className="w-4 h-4" /> Zdjęcie Profilowe
+        </button>
+
+        <button
+          onClick={() => setActiveTab("testimonials")}
+          className={`flex items-center gap-2 px-6 py-3 rounded-full text-xs font-semibold ${
+            activeTab === "testimonials"
+              ? "bg-blue-500/20 border border-blue-400 text-blue-300"
+              : "glass-panel text-slate-400 hover:text-white"
+          }`}
+        >
+          <Star className="w-4 h-4" /> Opinie ({testimonials?.length || 0})
+        </button>
+
+        <button
+          onClick={() => setActiveTab("analytics")}
+          className={`flex items-center gap-2 px-6 py-3 rounded-full text-xs font-semibold ${
+            activeTab === "analytics"
+              ? "bg-rose-500/20 border border-rose-400 text-rose-300"
+              : "glass-panel text-slate-400 hover:text-white"
+          }`}
+        >
+          <BarChart className="w-4 h-4" /> Analityka
         </button>
       </div>
 
@@ -316,6 +359,99 @@ export default function AdminDashboardClient({ messages, visitsCount, projects, 
           <div className="p-4 rounded-2xl bg-emerald-950/60 border border-emerald-500/40 text-emerald-300 text-xs sm:text-sm font-mono flex items-center gap-3">
             <CheckCircle className="w-6 h-6 text-emerald-400 shrink-0" />
             <span>Twoje zdjęcie profilowe zostało pomyślnie wgrane i jest wyświetlane w sekcji Hero!</span>
+          </div>
+        </div>
+      )}
+
+      {/* Testimonials Tab */}
+      {activeTab === "testimonials" && (
+        <div className="max-w-7xl mx-auto space-y-8">
+          <div className="glass-panel p-6 sm:p-8 rounded-3xl border border-blue-500/30 space-y-6">
+            <h2 className="text-xl font-bold text-white flex items-center gap-2">
+              <Plus className="w-5 h-5 text-blue-400" /> Dodaj Nową Opinię
+            </h2>
+            <form onSubmit={handleCreateTestimonial} className="space-y-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-slate-300 text-xs mb-1 font-mono">Imię i Nazwisko / Nazwa Klienta *</label>
+                  <input type="text" name="client_name" required className="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white text-sm" />
+                </div>
+                <div>
+                  <label className="block text-slate-300 text-xs mb-1 font-mono">Firma / Stanowisko (opcjonalnie)</label>
+                  <input type="text" name="company" className="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white text-sm" />
+                </div>
+              </div>
+              <div>
+                <label className="block text-slate-300 text-xs mb-1 font-mono">Treść Opinii *</label>
+                <textarea name="content" required rows={3} className="w-full px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white text-sm resize-none" />
+              </div>
+              <div>
+                <label className="block text-slate-300 text-xs mb-1 font-mono">Ocena (1-5) *</label>
+                <input type="number" name="rating" min="1" max="5" defaultValue="5" required className="w-24 px-4 py-3 rounded-xl bg-slate-950 border border-slate-800 text-white text-sm" />
+              </div>
+              <button type="submit" disabled={loading} className="px-6 py-3 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm transition-colors">
+                {loading ? "Dodawanie..." : "Opublikuj Opinię"}
+              </button>
+            </form>
+          </div>
+
+          <div className="space-y-4">
+            <h2 className="text-xl font-bold text-white">Opublikowane Opinie</h2>
+            {testimonials?.length === 0 ? (
+              <div className="p-8 text-center text-slate-500 font-mono glass-panel rounded-3xl">Brak dodanych opinii.</div>
+            ) : (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {testimonials?.map((testim) => (
+                  <div key={testim.id} className="glass-panel p-6 rounded-3xl border border-slate-800 space-y-4">
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <div className="font-bold text-white">{testim.client_name}</div>
+                        <div className="text-xs text-blue-400 font-mono">{testim.company}</div>
+                      </div>
+                      <button
+                        onClick={() => handleDeleteTestimonial(testim.id)}
+                        className="p-2 rounded-lg bg-slate-900 border border-slate-700 text-rose-400 hover:border-rose-500"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </div>
+                    <div className="flex text-amber-400">
+                      {[...Array(testim.rating)].map((_, i) => <Star key={i} className="w-4 h-4 fill-amber-400" />)}
+                    </div>
+                    <p className="text-sm text-slate-300 italic">"{testim.content}"</p>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* Analytics Tab */}
+      {activeTab === "analytics" && (
+        <div className="max-w-7xl mx-auto space-y-6">
+          <div className="flex items-center gap-3 mb-4">
+            <Activity className="w-6 h-6 text-rose-400" />
+            <h2 className="text-xl font-bold text-white">Ruch na stronie (Ostatnie 30 dni)</h2>
+          </div>
+          
+          <div className="glass-panel p-4 sm:p-8 rounded-3xl border border-slate-800 h-[400px]">
+            {analytics?.length > 0 ? (
+              <ResponsiveContainer width="100%" height="100%">
+                <LineChart data={analytics} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" vertical={false} />
+                  <XAxis dataKey="date" stroke="#64748b" fontSize={12} tickLine={false} axisLine={false} />
+                  <YAxis stroke="#64748b" fontSize={12} tickLine={false} axisLine={false} allowDecimals={false} />
+                  <Tooltip 
+                    contentStyle={{ backgroundColor: '#0f172a', borderColor: '#334155', borderRadius: '12px', color: '#fff' }}
+                    itemStyle={{ color: '#22d3ee' }}
+                  />
+                  <Line type="monotone" dataKey="visits" name="Odwiedziny" stroke="#22d3ee" strokeWidth={3} dot={{ r: 4, fill: '#0f172a', strokeWidth: 2 }} activeDot={{ r: 6, fill: '#22d3ee' }} />
+                </LineChart>
+              </ResponsiveContainer>
+            ) : (
+              <div className="h-full flex items-center justify-center text-slate-500 font-mono">Brak danych analitycznych do wyświetlenia.</div>
+            )}
           </div>
         </div>
       )}

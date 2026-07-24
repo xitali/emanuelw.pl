@@ -76,3 +76,13 @@ export interface PageVisit {
   session_id?: string;
   created_at?: string;
 }
+
+export interface Testimonial {
+  id: string;
+  client_name: string;
+  company?: string;
+  content: string;
+  rating: number;
+  is_published?: boolean | number;
+  created_at?: string;
+}

@@ -1,6 +1,7 @@
 "use client";
 
 import { Project } from "@/types";
+import Image from "next/image";
 import { X, ExternalLink, CheckCircle2, ShieldCheck, Zap, Layers, Award } from "lucide-react";
 
 interface ProjectModalProps {
@@ -51,10 +52,12 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {project.images.map((imgUrl, idx) => (
               <div key={idx} className="relative rounded-2xl overflow-hidden border border-slate-800 group h-64 bg-slate-950">
-                <img
+                <Image
                   src={imgUrl}
                   alt={`${project.title} screen ${idx + 1}`}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  fill
+                  sizes="(max-width: 640px) 100vw, 50vw"
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
             ))}
