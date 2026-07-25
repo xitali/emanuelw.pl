@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Emanuel Włoch — terminal">
+  <defs>
+    <linearGradient id="brand" x1="70" y1="442" x2="442" y2="70" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#06B6D4"/>
+      <stop offset="0.48" stop-color="#3B82F6"/>
+      <stop offset="1" stop-color="#7C3AED"/>
+    </linearGradient>
+    <linearGradient id="sheen" x1="104" y1="78" x2="392" y2="438" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF" stop-opacity=".24"/>
+      <stop offset=".45" stop-color="#FFFFFF" stop-opacity=".04"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect x="32" y="32" width="448" height="448" rx="112" fill="url(#brand)"/>
+  <rect x="47" y="47" width="418" height="418" rx="98" fill="none" stroke="#FFFFFF" stroke-opacity=".18" stroke-width="6"/>
+  <path d="M155 174 245 256l-90 82" fill="none" stroke="#FFFFFF" stroke-width="42" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M278 338h92" fill="none" stroke="#FFFFFF" stroke-width="42" stroke-linecap="round"/>
+  <path d="M94 92h324a66 66 0 0 1 48 21" fill="none" stroke="url(#sheen)" stroke-width="18" stroke-linecap="round"/>
+</svg>
