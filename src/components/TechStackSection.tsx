@@ -15,25 +15,26 @@ export default function TechStackSection() {
 
   const technologies = {
     frontend: [
-      { name: "Next.js 15 (App Router)", level: "Zaawansowany / Ekspert", desc: "Server Components, Server Actions, ISR & Edge Routing" },
-      { name: "React 19 & TypeScript", level: "Zaawansowany", desc: "Czysty, typowany kod bez błędów w runtime" },
-      { name: "Tailwind CSS v4 & Glassmorphism", level: "Ekspert", desc: "Nowoczesne układy z animacjami Framer Motion" },
-      { name: "HTML5 / CSS3 / Web Vitals", level: "Ekspert", desc: "Optymalizacja Lighthouse 95+ i WCAG dostępność" },
+      { name: "Next.js 15 & React 19", level: "Zaawansowany / Ekspert", desc: "Server Components, Server Actions, wydajny App Router i błyskawiczne renderowanie." },
+      { name: "TypeScript & tRPC", level: "Zaawansowany", desc: "W pełni typowany kod od frontendu po backend, minimalizujący błędy." },
+      { name: "Tailwind CSS v4 & shadcn/ui", level: "Ekspert", desc: "Nowoczesne, piękne komponenty UI z płynnymi mikro-animacjami." },
+      { name: "Web Vitals & Optymalizacja", level: "Ekspert", desc: "Maksymalizacja wydajności Lighthouse i perfekcyjna responsywność." },
     ],
     backend: [
-      { name: "Node.js / Next.js Server", level: "Zaawansowany", desc: "Wydajne endpointy REST oraz GraphQL API" },
-      { name: "Python / Fast-API / Automation", level: "Średniozaawansowany", desc: "Skrypty automatyzujące i integracje botów" },
-      { name: "Autentykacja & Bezpieczeństwo", level: "Zaawansowany", desc: "JWT, OAuth, Supabase Auth, RBAC Role" },
+      { name: "Node.js & Hono (Edge Computing)", level: "Zaawansowany", desc: "Ultraszybkie endpointy API i logika biznesowa wykonywana blisko użytkownika." },
+      { name: "Architektura Event-Driven", level: "Średniozaawansowany", desc: "Skalowalne systemy asynchroniczne gotowe na duże natężenie ruchu." },
+      { name: "Zaawansowane Bezpieczeństwo", level: "Zaawansowany", desc: "Logowanie bezhasłowe (Magic Links), JWT, OAuth 2.0 oraz reguły RBAC." },
     ],
     database: [
-      { name: "Turso (LibSQL / SQLite Edge)", level: "Ekspert", desc: "Ultra-szybka baza danych na brzegu AWS EU-West" },
-      { name: "Supabase (PostgreSQL & Storage)", level: "Ekspert", desc: "Bazy relacyjne, Row Level Security, R2 / CDN Bucket" },
-      { name: "Drizzle ORM & Prisma", level: "Zaawansowany", desc: "Bezpieczne zapytania i szybkie migracje schema" },
+      { name: "Turso (Edge SQLite)", level: "Ekspert", desc: "Błyskawiczna baza danych replikowana globalnie na brzegu sieci." },
+      { name: "Supabase & PostgreSQL", level: "Ekspert", desc: "Potężne bazy relacyjne ze Storage i nasłuchiwaniem zmian w czasie rzeczywistym." },
+      { name: "Vector Databases (RAG)", level: "Zaawansowany", desc: "Rozwiązania do błyskawicznego przeszukiwania kontekstowego i zaawansowanych systemów rekomendacji." },
+      { name: "Drizzle ORM", level: "Zaawansowany", desc: "Superszybki, bezpieczny ORM do wydajnej i bezbłędnej komunikacji z bazą." },
     ],
     mobile: [
-      { name: "React Native & Expo", level: "Zaawansowany", desc: "Aplikacje mobilne na iOS & Android z jedną bazą kodu" },
-      { name: "Flutter & Dart", level: "Średniozaawansowany", desc: "Wydajne hybrydowe interfejsy mobilne" },
-      { name: "Electron & Tauri", level: "Zaawansowany", desc: "Natywne aplikacje pulpitowe dla Windows & macOS" },
+      { name: "React Native & Expo", level: "Zaawansowany", desc: "Wydajne aplikacje mobilne na iOS & Android współdzielące kod z wersją webową." },
+      { name: "Flutter & Dart", level: "Średniozaawansowany", desc: "Przepiękne, natywnie skompilowane hybrydowe interfejsy z płynnością 120 FPS." },
+      { name: "Tauri (Rust) & Electron", level: "Zaawansowany", desc: "Niezwykle lekkie i wydajne aplikacje desktopowe oparte na kodzie webowym." },
     ],
   };
 
