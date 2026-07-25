@@ -500,35 +500,35 @@ export default function AdminDashboardClient({ messages, visitsCount, projects, 
 
       {/* Modal: Add Project */}
       {isAddModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
-          <form onSubmit={handleCreateProject} className="glass-panel w-full max-w-2xl max-h-[90vh] overflow-y-auto p-6 rounded-3xl border border-cyan-500/40 space-y-4 bg-[#090d16]">
-            <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-              <h3 className="text-lg font-bold text-white">Dodaj Nowy Projekt do Turso DB</h3>
-              <button type="button" onClick={() => setIsAddModalOpen(false)} className="text-slate-400 hover:text-white"><X className="w-5 h-5" /></button>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-md">
+          <form onSubmit={handleCreateProject} className="glass-panel w-full max-w-2xl max-h-[90vh] overflow-y-auto p-6 rounded-3xl border border-slate-300 dark:border-cyan-500/40 space-y-4 bg-white dark:bg-[#090d16] text-slate-900 dark:text-white">
+            <div className="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3">
+              <h3 className="text-lg font-bold text-slate-900 dark:text-white">Dodaj Nowy Projekt</h3>
+              <button type="button" onClick={() => setIsAddModalOpen(false)} className="text-slate-400 hover:text-slate-900 dark:hover:text-white"><X className="w-5 h-5" /></button>
             </div>
 
             <div className="space-y-3 text-xs">
               <div>
-                <label className="block text-slate-300 mb-1 font-mono">Tytuł Projektu *</label>
-                <input type="text" name="title" required className="w-full p-3 rounded-xl bg-slate-950 border border-slate-800 text-white" />
+                <label className="block text-slate-700 dark:text-slate-300 mb-1 font-mono font-semibold">Tytuł Projektu *</label>
+                <input type="text" name="title" required placeholder="np. Modern Portfolio" className="w-full p-3 rounded-xl bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-white font-sans" />
               </div>
               <div>
-                <label className="block text-slate-300 mb-1 font-mono">Krótki Opis *</label>
-                <input type="text" name="short_description" required className="w-full p-3 rounded-xl bg-slate-950 border border-slate-800 text-white" />
+                <label className="block text-slate-700 dark:text-slate-300 mb-1 font-mono font-semibold">Krótki Opis *</label>
+                <input type="text" name="short_description" required className="w-full p-3 rounded-xl bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-white font-sans" />
               </div>
               <div>
-                <label className="block text-slate-300 mb-1 font-mono">Szczegółowy Opis</label>
-                <textarea name="detailed_description" rows={3} className="w-full p-3 rounded-xl bg-slate-950 border border-slate-800 text-white resize-none" />
+                <label className="block text-slate-700 dark:text-slate-300 mb-1 font-mono font-semibold">Szczegółowy Opis</label>
+                <textarea name="detailed_description" rows={3} className="w-full p-3 rounded-xl bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-white font-sans resize-none" />
               </div>
               <div>
-                <label className="block text-slate-300 mb-1 font-mono">Technologie (oddzielone przecinkami)</label>
-                <input type="text" name="technologies" placeholder="Next.js 15, TypeScript, Turso, Tailwind" className="w-full p-3 rounded-xl bg-slate-950 border border-slate-800 text-white" />
+                <label className="block text-slate-700 dark:text-slate-300 mb-1 font-mono font-semibold">Technologie (oddzielone przecinkami)</label>
+                <input type="text" name="technologies" placeholder="Next.js 15, TypeScript, Turso, Tailwind" className="w-full p-3 rounded-xl bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-white font-sans" />
               </div>
               <div>
-                <label className="block text-slate-300 mb-1 font-mono">Adresy Obrazów (URL lub wgraj z komputera)</label>
+                <label className="block text-slate-700 dark:text-slate-300 mb-1 font-mono font-semibold">Adresy Obrazów (URL lub wgraj z komputera)</label>
                 <div className="flex gap-2">
-                  <input type="text" name="images" placeholder="/projects/img1.jpg lub https://..." className="w-full p-3 rounded-xl bg-slate-950 border border-slate-800 text-white" />
-                  <label className="shrink-0 px-4 py-3 rounded-xl bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-500/40 text-cyan-300 font-semibold cursor-pointer flex items-center gap-2 transition-colors">
+                  <input type="text" name="images" placeholder="/projects/img1.jpg lub https://..." className="w-full p-3 rounded-xl bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-white font-sans" />
+                  <label className="shrink-0 px-4 py-3 rounded-xl bg-cyan-100 hover:bg-cyan-200 dark:bg-cyan-500/20 dark:hover:bg-cyan-500/30 border border-cyan-300 dark:border-cyan-500/40 text-cyan-900 dark:text-cyan-300 font-semibold cursor-pointer flex items-center gap-2 transition-colors">
                     <Upload className="w-4 h-4" />
                     <span>{uploadingImage ? "Przesyłanie..." : "Wgraj z Komputera"}</span>
                     <input
@@ -542,12 +542,12 @@ export default function AdminDashboardClient({ messages, visitsCount, projects, 
               </div>
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-slate-300 mb-1 font-mono">URL Projektu Live</label>
-                  <input type="text" name="project_url" placeholder="https://..." className="w-full p-3 rounded-xl bg-slate-950 border border-slate-800 text-white" />
+                  <label className="block text-slate-700 dark:text-slate-300 mb-1 font-mono font-semibold">URL Projektu Live</label>
+                  <input type="text" name="project_url" placeholder="https://..." className="w-full p-3 rounded-xl bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-white font-sans" />
                 </div>
                 <div>
-                  <label className="block text-slate-300 mb-1 font-mono">URL Repozytorium GitHub</label>
-                  <input type="text" name="repository_url" placeholder="https://github.com/..." className="w-full p-3 rounded-xl bg-slate-950 border border-slate-800 text-white" />
+                  <label className="block text-slate-700 dark:text-slate-300 mb-1 font-mono font-semibold">URL Repozytorium GitHub</label>
+                  <input type="text" name="repository_url" placeholder="https://github.com/..." className="w-full p-3 rounded-xl bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-white font-sans" />
                 </div>
               </div>
             </div>
@@ -561,35 +561,35 @@ export default function AdminDashboardClient({ messages, visitsCount, projects, 
 
       {/* Modal: Edit Project */}
       {editingProject && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
-          <form onSubmit={handleUpdateProject} className="glass-panel w-full max-w-2xl max-h-[90vh] overflow-y-auto p-6 rounded-3xl border border-cyan-500/40 space-y-4 bg-[#090d16]">
-            <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-              <h3 className="text-lg font-bold text-white">Edytuj Projekt</h3>
-              <button type="button" onClick={() => setEditingProject(null)} className="text-slate-400 hover:text-white"><X className="w-5 h-5" /></button>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-md">
+          <form onSubmit={handleUpdateProject} className="glass-panel w-full max-w-2xl max-h-[90vh] overflow-y-auto p-6 rounded-3xl border border-slate-300 dark:border-cyan-500/40 space-y-4 bg-white dark:bg-[#090d16] text-slate-900 dark:text-white">
+            <div className="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3">
+              <h3 className="text-lg font-bold text-slate-900 dark:text-white">Edytuj Projekt</h3>
+              <button type="button" onClick={() => setEditingProject(null)} className="text-slate-400 hover:text-slate-900 dark:hover:text-white"><X className="w-5 h-5" /></button>
             </div>
 
             <div className="space-y-3 text-xs">
               <div>
-                <label className="block text-slate-300 mb-1 font-mono">Tytuł Projektu *</label>
-                <input type="text" name="title" defaultValue={editingProject.title} required className="w-full p-3 rounded-xl bg-slate-950 border border-slate-800 text-white" />
+                <label className="block text-slate-700 dark:text-slate-300 mb-1 font-mono font-semibold">Tytuł Projektu *</label>
+                <input type="text" name="title" defaultValue={editingProject.title} required className="w-full p-3 rounded-xl bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-white font-sans" />
               </div>
               <div>
-                <label className="block text-slate-300 mb-1 font-mono">Krótki Opis *</label>
-                <input type="text" name="short_description" defaultValue={editingProject.short_description} required className="w-full p-3 rounded-xl bg-slate-950 border border-slate-800 text-white" />
+                <label className="block text-slate-700 dark:text-slate-300 mb-1 font-mono font-semibold">Krótki Opis *</label>
+                <input type="text" name="short_description" defaultValue={editingProject.short_description} required className="w-full p-3 rounded-xl bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-white font-sans" />
               </div>
               <div>
-                <label className="block text-slate-300 mb-1 font-mono">Szczegółowy Opis</label>
-                <textarea name="detailed_description" defaultValue={editingProject.detailed_description} rows={3} className="w-full p-3 rounded-xl bg-slate-950 border border-slate-800 text-white resize-none" />
+                <label className="block text-slate-700 dark:text-slate-300 mb-1 font-mono font-semibold">Szczegółowy Opis</label>
+                <textarea name="detailed_description" defaultValue={editingProject.detailed_description} rows={3} className="w-full p-3 rounded-xl bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-white font-sans resize-none" />
               </div>
               <div>
-                <label className="block text-slate-300 mb-1 font-mono">Technologie (oddzielone przecinkami)</label>
-                <input type="text" name="technologies" defaultValue={editingProject.technologies?.join(", ")} className="w-full p-3 rounded-xl bg-slate-950 border border-slate-800 text-white" />
+                <label className="block text-slate-700 dark:text-slate-300 mb-1 font-mono font-semibold">Technologie (oddzielone przecinkami)</label>
+                <input type="text" name="technologies" defaultValue={Array.isArray(editingProject.technologies) ? editingProject.technologies.join(", ") : (editingProject.technologies || "")} className="w-full p-3 rounded-xl bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-white font-sans" />
               </div>
               <div>
-                <label className="block text-slate-300 mb-1 font-mono">Adresy Obrazów (URL lub wgraj z komputera)</label>
+                <label className="block text-slate-700 dark:text-slate-300 mb-1 font-mono font-semibold">Adresy Obrazów (URL lub wgraj z komputera)</label>
                 <div className="flex gap-2">
-                  <input type="text" name="images" defaultValue={editingProject.images?.join(", ")} placeholder="/projects/img1.jpg lub https://..." className="w-full p-3 rounded-xl bg-slate-950 border border-slate-800 text-white" />
-                  <label className="shrink-0 px-4 py-3 rounded-xl bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-500/40 text-cyan-300 font-semibold cursor-pointer flex items-center gap-2 transition-colors">
+                  <input type="text" name="images" defaultValue={Array.isArray(editingProject.images) ? editingProject.images.join(", ") : (editingProject.images || "")} placeholder="/projects/img1.jpg lub https://..." className="w-full p-3 rounded-xl bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-white font-sans" />
+                  <label className="shrink-0 px-4 py-3 rounded-xl bg-cyan-100 hover:bg-cyan-200 dark:bg-cyan-500/20 dark:hover:bg-cyan-500/30 border border-cyan-300 dark:border-cyan-500/40 text-cyan-900 dark:text-cyan-300 font-semibold cursor-pointer flex items-center gap-2 transition-colors">
                     <Upload className="w-4 h-4" />
                     <span>{uploadingImage ? "Przesyłanie..." : "Wgraj z Komputera"}</span>
                     <input
@@ -603,12 +603,12 @@ export default function AdminDashboardClient({ messages, visitsCount, projects, 
               </div>
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-slate-300 mb-1 font-mono">URL Projektu Live</label>
-                  <input type="text" name="project_url" defaultValue={editingProject.project_url} className="w-full p-3 rounded-xl bg-slate-950 border border-slate-800 text-white" />
+                  <label className="block text-slate-700 dark:text-slate-300 mb-1 font-mono font-semibold">URL Projektu Live</label>
+                  <input type="text" name="project_url" defaultValue={editingProject.project_url} className="w-full p-3 rounded-xl bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-white font-sans" />
                 </div>
                 <div>
-                  <label className="block text-slate-300 mb-1 font-mono">URL Repozytorium GitHub</label>
-                  <input type="text" name="repository_url" defaultValue={editingProject.repository_url} className="w-full p-3 rounded-xl bg-slate-950 border border-slate-800 text-white" />
+                  <label className="block text-slate-700 dark:text-slate-300 mb-1 font-mono font-semibold">URL Repozytorium GitHub</label>
+                  <input type="text" name="repository_url" defaultValue={editingProject.repository_url} className="w-full p-3 rounded-xl bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-white font-sans" />
                 </div>
               </div>
             </div>
