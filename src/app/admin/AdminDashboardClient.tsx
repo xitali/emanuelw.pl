@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Project, ContactMessage, Service, Testimonial } from "@/types";
 import { createProjectAction, updateProjectAction, deleteProjectAction, deleteMessageAction, logoutAdminAction, updateServicePriceAction, createTestimonialAction, deleteTestimonialAction } from "@/app/actions/admin";
-import { ArrowLeft, MessageSquare, Code2, Rocket, Eye, ShieldCheck, Clock, Mail, Trash2, Plus, Edit3, X, CheckCircle, Image as ImageIcon, Save, BarChart, Star, Activity } from "lucide-react";
+import { ArrowLeft, MessageSquare, Code2, Rocket, Eye, ShieldCheck, Clock, Mail, Trash2, Plus, Edit3, X, CheckCircle, Image as ImageIcon, Save, BarChart, Star, Activity, Upload } from "lucide-react";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 import Link from "next/link";
 import { useTheme } from "next-themes";
@@ -28,7 +28,42 @@ export default function AdminDashboardClient({ messages, visitsCount, projects, 
     return initial;
   });
   const [loading, setLoading] = useState(false);
+  const [uploadingImage, setUploadingImage] = useState(false);
   const [actionStatus, setActionStatus] = useState<string | null>(null);
+
+  async function handleImageFileUpload(e: React.ChangeEvent<HTMLInputElement>, targetInputName: string, formElement: HTMLFormElement | null) {
+    const file = e.target.files?.[0];
+    if (!file || !formElement) return;
+
+    setUploadingImage(true);
+    try {
+      const uploadData = new FormData();
+      uploadData.append("file", file);
+
+      const res = await fetch("/api/upload", {
+        method: "POST",
+        body: uploadData,
+      });
+
+      const data = await res.json();
+      if (data.success && data.url) {
+        const input = formElement.querySelector(`input[name="${targetInputName}"]`) as HTMLInputElement | null;
+        if (input) {
+          const currentVal = input.value.trim();
+          input.value = currentVal ? `${currentVal}, ${data.url}` : data.url;
+        }
+        setActionStatus("Przesłano zdjęcie z komputera!");
+        setTimeout(() => setActionStatus(null), 3000);
+      } else {
+        alert(data.error || "Wystąpił błąd podczas przesyłania pliku.");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Błąd połączenia z serwerem podczas przesyłania.");
+    } finally {
+      setUploadingImage(false);
+    }
+  }
 
   async function handleCreateProject(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -490,8 +525,20 @@ export default function AdminDashboardClient({ messages, visitsCount, projects, 
                 <input type="text" name="technologies" placeholder="Next.js 15, TypeScript, Turso, Tailwind" className="w-full p-3 rounded-xl bg-slate-950 border border-slate-800 text-white" />
               </div>
               <div>
-                <label className="block text-slate-300 mb-1 font-mono">Adresy Obrazów (URL oddzielone przecinkami)</label>
-                <input type="text" name="images" placeholder="https://example.com/img1.jpg" className="w-full p-3 rounded-xl bg-slate-950 border border-slate-800 text-white" />
+                <label className="block text-slate-300 mb-1 font-mono">Adresy Obrazów (URL lub wgraj z komputera)</label>
+                <div className="flex gap-2">
+                  <input type="text" name="images" placeholder="/projects/img1.jpg lub https://..." className="w-full p-3 rounded-xl bg-slate-950 border border-slate-800 text-white" />
+                  <label className="shrink-0 px-4 py-3 rounded-xl bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-500/40 text-cyan-300 font-semibold cursor-pointer flex items-center gap-2 transition-colors">
+                    <Upload className="w-4 h-4" />
+                    <span>{uploadingImage ? "Przesyłanie..." : "Wgraj z Komputera"}</span>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      className="hidden"
+                      onChange={(e) => handleImageFileUpload(e, "images", e.currentTarget.closest("form"))}
+                    />
+                  </label>
+                </div>
               </div>
               <div className="grid grid-cols-2 gap-3">
                 <div>
@@ -539,8 +586,20 @@ export default function AdminDashboardClient({ messages, visitsCount, projects, 
                 <input type="text" name="technologies" defaultValue={editingProject.technologies?.join(", ")} className="w-full p-3 rounded-xl bg-slate-950 border border-slate-800 text-white" />
               </div>
               <div>
-                <label className="block text-slate-300 mb-1 font-mono">Adresy Obrazów (URL oddzielone przecinkami)</label>
-                <input type="text" name="images" defaultValue={editingProject.images?.join(", ")} className="w-full p-3 rounded-xl bg-slate-950 border border-slate-800 text-white" />
+                <label className="block text-slate-300 mb-1 font-mono">Adresy Obrazów (URL lub wgraj z komputera)</label>
+                <div className="flex gap-2">
+                  <input type="text" name="images" defaultValue={editingProject.images?.join(", ")} placeholder="/projects/img1.jpg lub https://..." className="w-full p-3 rounded-xl bg-slate-950 border border-slate-800 text-white" />
+                  <label className="shrink-0 px-4 py-3 rounded-xl bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-500/40 text-cyan-300 font-semibold cursor-pointer flex items-center gap-2 transition-colors">
+                    <Upload className="w-4 h-4" />
+                    <span>{uploadingImage ? "Przesyłanie..." : "Wgraj z Komputera"}</span>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      className="hidden"
+                      onChange={(e) => handleImageFileUpload(e, "images", e.currentTarget.closest("form"))}
+                    />
+                  </label>
+                </div>
               </div>
               <div className="grid grid-cols-2 gap-3">
                 <div>
