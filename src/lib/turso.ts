@@ -8,6 +8,7 @@ import {
   Testimonial,
   PublicSiteSettings,
   PushSubscriptionRecord,
+  AndroidDeviceRecord,
 } from "@/types";
 import { unstable_cache, revalidatePath } from "next/cache";
 import bcrypt from "bcryptjs";
@@ -285,6 +286,55 @@ export async function deletePushSubscription(endpoint: string) {
   await turso.execute({
     sql: "DELETE FROM push_subscriptions WHERE endpoint = ?",
     args: [endpoint],
+  });
+}
+
+export async function upsertAndroidDevice(device: AndroidDeviceRecord) {
+  const now = new Date().toISOString();
+  await turso.batch(
+    [
+      {
+        sql: "DELETE FROM android_devices WHERE installation_id = ? AND device_id <> ?",
+        args: [device.installation_id, device.device_id],
+      },
+      {
+        sql: `INSERT INTO android_devices (
+                device_id, installation_id, created_at, updated_at
+              ) VALUES (?, ?, ?, ?)
+              ON CONFLICT(device_id) DO UPDATE SET
+                installation_id = excluded.installation_id,
+                updated_at = excluded.updated_at`,
+        args: [device.device_id, device.installation_id, now, now],
+      },
+    ],
+    "write",
+  );
+}
+
+export async function getAndroidDevices(): Promise<AndroidDeviceRecord[]> {
+  const result = await turso.execute(
+    "SELECT device_id, installation_id, created_at, updated_at FROM android_devices",
+  );
+
+  return result.rows.map((row) => ({
+    device_id: String(row.device_id),
+    installation_id: String(row.installation_id),
+    created_at: String(row.created_at || ""),
+    updated_at: String(row.updated_at || ""),
+  }));
+}
+
+export async function deleteAndroidDevice(deviceId: string) {
+  await turso.execute({
+    sql: "DELETE FROM android_devices WHERE device_id = ?",
+    args: [deviceId],
+  });
+}
+
+export async function deleteAndroidDeviceByInstallationId(installationId: string) {
+  await turso.execute({
+    sql: "DELETE FROM android_devices WHERE installation_id = ?",
+    args: [installationId],
   });
 }
 

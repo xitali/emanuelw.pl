@@ -28,9 +28,11 @@ export const contactSchema = z.object({
   subject: z.string().trim().max(200).optional().default(""),
   message: z
     .string()
-    .trim()
-    .min(10, "Wiadomość musi mieć co najmniej 10 znaków.")
-    .max(2000, "Wiadomość może mieć maksymalnie 2000 znaków."),
+    .max(2000, "Wiadomość może mieć maksymalnie 2000 znaków.")
+    .refine(
+      (value) => value.trim().length >= 10,
+      "Wiadomość musi mieć co najmniej 10 znaków.",
+    ),
   website: z.string().max(0).optional().default(""),
 });
 
@@ -69,6 +71,24 @@ export const pushActionSchema = z.discriminatedUnion("action", [
     action: z.literal("test"),
   }),
 ]);
+
+export const mobileLoginSchema = z.object({
+  password: z.string().min(1).max(256),
+});
+
+export const androidDeviceSchema = z.object({
+  deviceId: z.uuid(),
+  installationId: z
+    .string()
+    .trim()
+    .min(20)
+    .max(4096)
+    .regex(/^[A-Za-z0-9_:\-]+$/, "Nieprawidłowy token urządzenia."),
+});
+
+export const mobileMessageDeleteSchema = z.object({
+  id: z.uuid(),
+});
 
 export const projectSchema = z.object({
   title: z.string().trim().min(2).max(120),

@@ -10,7 +10,9 @@ const COOKIE_NAME =
     : "admin_session";
 const ISSUER = "emanuelwloch.pl";
 const AUDIENCE = "emanuelwloch.pl/admin";
+const MOBILE_AUDIENCE = "emanuelwloch.pl/android-admin";
 const SESSION_SECONDS = 60 * 60 * 8;
+export const MOBILE_SESSION_SECONDS = 60 * 60 * 24 * 30;
 
 export async function createAdminSession() {
   const token = await new SignJWT({ role: "admin" })
@@ -46,6 +48,42 @@ export async function verifyAdminSession(): Promise<boolean> {
       audience: AUDIENCE,
     });
     return verified.payload.role === "admin" && verified.payload.sub === "admin";
+  } catch {
+    return false;
+  }
+}
+
+export async function createMobileAdminToken(): Promise<string> {
+  return new SignJWT({ role: "admin", client: "android" })
+    .setProtectedHeader({ alg: "HS256" })
+    .setSubject("admin")
+    .setIssuer(ISSUER)
+    .setAudience(MOBILE_AUDIENCE)
+    .setJti(crypto.randomUUID())
+    .setIssuedAt()
+    .setExpirationTime(`${MOBILE_SESSION_SECONDS}s`)
+    .sign(getJwtSecret());
+}
+
+export async function verifyMobileAdminToken(
+  authorizationHeader: string | null,
+): Promise<boolean> {
+  try {
+    if (!authorizationHeader?.startsWith("Bearer ")) return false;
+    const token = authorizationHeader.slice("Bearer ".length).trim();
+    if (!token) return false;
+
+    const verified = await jwtVerify(token, getJwtSecret(), {
+      algorithms: ["HS256"],
+      issuer: ISSUER,
+      audience: MOBILE_AUDIENCE,
+    });
+
+    return (
+      verified.payload.role === "admin" &&
+      verified.payload.client === "android" &&
+      verified.payload.sub === "admin"
+    );
   } catch {
     return false;
   }

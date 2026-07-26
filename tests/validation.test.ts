@@ -20,6 +20,19 @@ describe("walidacja formularzy", () => {
     expect(result.success).toBe(true);
   });
 
+  it("zachowuje spacje i entery wiadomości dokładnie jak wpisano", () => {
+    const message = "  Pierwsza linia\n\n    Druga linia  \n";
+    const result = contactSchema.parse({
+      name: "Jan Kowalski",
+      email: "jan@example.com",
+      subject: "Formatowanie",
+      message,
+      website: "",
+    });
+
+    expect(result.message).toBe(message);
+  });
+
   it("odrzuca pole-pułapkę i nieprawidłowy e-mail", () => {
     const result = contactSchema.safeParse({
       name: "Bot",

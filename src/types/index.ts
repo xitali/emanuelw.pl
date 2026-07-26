@@ -84,6 +84,13 @@ export interface PushSubscriptionRecord {
   updated_at?: string;
 }
 
+export interface AndroidDeviceRecord {
+  device_id: string;
+  installation_id: string;
+  created_at?: string;
+  updated_at?: string;
+}
+
 export interface PageVisit {
   id: string;
   page_path: string;

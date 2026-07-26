@@ -40,3 +40,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Android local build artifacts and signing material
+/android-admin/.gradle/
+/android-admin/local.properties
+/android-admin/**/build/
+/android-admin/keystore.properties
+/android-admin/*.jks
+/android-admin/app/google-services.json
+/.tools/
+/EmanuelAdmin-*.apk

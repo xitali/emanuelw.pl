@@ -406,7 +406,7 @@ export default function AdminDashboardClient({ messages, visitsCount, projects, 
                     </button>
                   </div>
                   <div className="text-xs font-semibold text-slate-500 dark:text-slate-300">Temat: {msg.subject}</div>
-                  <p className="text-sm text-slate-700 dark:text-slate-300 bg-white dark:bg-slate-950 p-4 rounded-2xl border border-slate-200 dark:border-slate-900">{msg.message}</p>
+                  <p className="text-sm text-slate-700 dark:text-slate-300 bg-white dark:bg-slate-950 p-4 rounded-2xl border border-slate-200 dark:border-slate-900 whitespace-pre-wrap break-words">{msg.message}</p>
                 </div>
               ))}
             </div>

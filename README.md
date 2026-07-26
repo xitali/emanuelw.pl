@@ -9,7 +9,7 @@ Portfolio i lekki CMS Emanuela Włocha. Produkcja działa pod
 - Tailwind CSS v4 i Framer Motion
 - Turso (libSQL), Vercel Blob
 - Zod, JOSE, bcrypt, Vitest i GitHub Actions
-- instalowalna aplikacja PWA i szyfrowane powiadomienia Web Push
+- natywna aplikacja Android, Firebase Cloud Messaging i awaryjna aplikacja PWA
 
 ## Uruchomienie lokalne
 
@@ -30,6 +30,9 @@ Portfolio i lekki CMS Emanuela Włocha. Produkcja działa pod
 - `NEXT_PUBLIC_VAPID_PUBLIC_KEY` — publiczny klucz powiadomień Web Push.
 - `VAPID_PRIVATE_KEY` — prywatny klucz powiadomień przechowywany wyłącznie po stronie serwera.
 - `VAPID_SUBJECT` — adres kontaktowy właściciela kluczy, np. `mailto:adres@example.com`.
+- `FIREBASE_PROJECT_ID` — identyfikator projektu Firebase.
+- `FIREBASE_CLIENT_EMAIL` — konto serwisowe używane wyłącznie przez serwer.
+- `FIREBASE_PRIVATE_KEY_BASE64` — zakodowany klucz konta serwisowego; nigdy nie trafia do aplikacji.
 
 Nie wpisuj wartości tych zmiennych do kodu ani do zgłoszeń GitHub.
 
@@ -49,15 +52,12 @@ anonimowych statystyk dziennych.
 
 ## Aplikacja Android
 
-Panel `/admin` jest instalowalną aplikacją PWA. Po zalogowaniu:
+Natywny projekt Kotlin/Jetpack Compose znajduje się w `android-admin/`.
+Aplikacja loguje się do osobnego, chronionego API, przechowuje token sesji
+w Android Keystore i odbiera natywne powiadomienia przez Firebase Cloud
+Messaging. Szczegóły instalacji opisuje [ANDROID_APP.md](./ANDROID_APP.md).
 
-1. kliknij `Zainstaluj aplikację`,
-2. kliknij `Włącz powiadomienia`,
-3. zaakceptuj zgodę Androida,
-4. użyj `Wyślij test`.
-
-Nowa wiadomość z formularza wywołuje powiadomienie po zapisaniu rekordu w
-Turso. Subskrypcje są dostępne wyłącznie dla zalogowanego administratora.
+Panel `/admin` pozostaje instalowalną aplikacją PWA jako rozwiązanie awaryjne.
 
 ## Bezpieczeństwo
 

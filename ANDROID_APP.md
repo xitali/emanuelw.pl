@@ -1,39 +1,47 @@
 # Emanuel Admin na Androida
 
-To prywatna, instalowalna aplikacja PWA. Nie wymaga Google Play, Firebase,
-Android Studio ani płatnego abonamentu.
+To prywatna, natywna aplikacja Android dla właściciela portfolio. Nie wymaga
+publikacji w Google Play ani płatnego abonamentu.
 
 ## Instalacja na telefonie
 
-1. Otwórz Chrome na Androidzie.
-2. Wejdź na `https://emanuelwloch.pl/admin`.
-3. Zaloguj się swoim hasłem administratora.
-4. Naciśnij `Zainstaluj aplikację`.
-5. Jeżeli Chrome nie pokaże okna instalacji:
-   - naciśnij trzy kropki `⋮`,
-   - wybierz `Zainstaluj aplikację` albo `Dodaj do ekranu głównego`,
-   - potwierdź.
-6. Otwórz ikonę `Emanuel Admin` z ekranu telefonu.
-7. Naciśnij `Włącz powiadomienia`.
-8. Gdy Android zapyta o zgodę, naciśnij `Zezwól`.
-9. Naciśnij `Wyślij test`.
+1. Pobierz plik `EmanuelAdmin-1.0.0.apk` na telefon.
+2. Otwórz pobrany plik.
+3. Jeżeli Android zablokuje instalację:
+   - naciśnij `Ustawienia`,
+   - włącz `Zezwól z tego źródła` dla aplikacji, z której otwierasz APK,
+   - wróć i naciśnij `Zainstaluj`.
+4. Otwórz aplikację `Emanuel Admin`.
+5. Wpisz to samo hasło, którego używasz w panelu `/admin`.
+6. Gdy Android zapyta o powiadomienia, naciśnij `Zezwól`.
+7. W górnym pasku naciśnij ikonę dzwonka, aby wysłać test.
 
-Po dotknięciu powiadomienia aplikacja otwiera kartę `Wiadomości`. Jeżeli sesja
-administratora wygasła, najpierw pojawi się ekran logowania.
+Po dotknięciu powiadomienia otworzy się natywna lista wiadomości. Treść
+wiadomości jest pobierana dopiero po zalogowaniu; samo powiadomienie nie
+zawiera danych klienta.
 
-## Konfiguracja serwera
+## Ważne
 
-W Vercel muszą istnieć trzy zmienne:
+- APK jest podpisany prywatnym kluczem i może być instalowany bez Google Play.
+- Przy aktualizacji instaluj nowy APK bez odinstalowywania poprzedniej wersji.
+- Pliki `android-admin/emanuel-admin-release.jks` i
+  `android-admin/keystore.properties` są lokalne i ignorowane przez Git.
+  Trzeba zachować ich bezpieczną kopię, bo bez nich kolejne wydanie nie
+  zaktualizuje obecnej aplikacji.
+- `android-admin/app/google-services.json` również jest lokalny i ignorowany
+  przez Git. W razie utraty można pobrać go ponownie z ustawień aplikacji
+  Android w Firebase.
+- Telefon musi mieć usługi Google Play. Firebase działa tylko jako niewidoczny
+  transport; powiadomienie wyświetla systemowa aplikacja `Emanuel Admin`, nie
+  Chrome.
 
-- `NEXT_PUBLIC_VAPID_PUBLIC_KEY`,
-- `VAPID_PRIVATE_KEY`,
-- `VAPID_SUBJECT`.
+## Budowa dla programisty
 
-Klucze lokalne tworzy polecenie:
+Projekt znajduje się w `android-admin/`. Wymaga JDK 17 i Android SDK API 36.
 
 ```powershell
-npm run push:setup
+cd android-admin
+.\gradlew.bat assembleRelease
 ```
 
-Prywatnego klucza nie wolno umieszczać w GitHubie, wiadomości e-mail ani
-zrzutach ekranu.
+Wynik: `android-admin/app/build/outputs/apk/release/app-release.apk`.

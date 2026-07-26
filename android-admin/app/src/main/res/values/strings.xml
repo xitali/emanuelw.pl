@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Emanuel Admin</string>
+    <string name="notification_channel_name">Wiadomości z portfolio</string>
+    <string name="notification_channel_description">Powiadomienia o nowych wiadomościach z formularza</string>
+</resources>

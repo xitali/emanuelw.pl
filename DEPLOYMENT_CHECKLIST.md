@@ -104,10 +104,16 @@ Vercel stosuje nowe zmienne dopiero do nowego wdrożenia:
 
 ## 6. Aplikacja Emanuel Admin na Androida
 
-- [x] Dodano instalowalny manifest aplikacji.
-- [x] Dodano Service Worker i obsługę powiadomień w tle.
-- [x] Dodano chronione API zapisywania subskrypcji administratora.
-- [x] Dodano wysyłkę powiadomienia po zapisaniu wiadomości w Turso.
-- [x] Dodano automatyczne usuwanie wygasłych subskrypcji.
+- [x] Utworzono natywną aplikację Kotlin/Jetpack Compose.
+- [x] Dodano logowanie do osobnego API mobilnego i 30-dniową sesję.
+- [x] Token sesji jest szyfrowany przez Android Keystore.
+- [x] Dodano natywne powiadomienia `Emanuel Admin` przez aktualny standard
+  Firebase Installation ID.
+- [x] Powiadomienie nie zawiera danych klienta.
+- [x] Dodano listę wiadomości, odświeżanie, usuwanie, wylogowanie i test
+  powiadomienia.
+- [x] Zbudowano i zweryfikowano podpisany APK release.
 - [ ] Zainstaluj aplikację na Androidzie zgodnie z `ANDROID_APP.md`.
 - [ ] Włącz powiadomienia i wykonaj test na telefonie.
+- [ ] Zrób bezpieczną kopię dwóch lokalnych plików podpisu wskazanych w
+  `ANDROID_APP.md`.

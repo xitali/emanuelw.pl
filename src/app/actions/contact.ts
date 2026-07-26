@@ -8,6 +8,7 @@ import { revalidatePath } from "next/cache";
 import { headers } from "next/headers";
 import { after } from "next/server";
 import { notifyAboutContactMessage } from "@/lib/push";
+import { notifyAndroidAboutContactMessage } from "@/lib/firebase";
 
 export async function sendContactMessageAction(formData: FormData) {
   const validation = contactSchema.safeParse({
@@ -57,9 +58,12 @@ export async function sendContactMessageAction(formData: FormData) {
       subject: validData.subject || "Kontakt z portfolio",
     });
     after(async () => {
-      await notifyAboutContactMessage({
-        id: savedMessage.id,
-      });
+      await Promise.allSettled([
+        notifyAboutContactMessage({
+          id: savedMessage.id,
+        }),
+        notifyAndroidAboutContactMessage(savedMessage.id),
+      ]);
     });
     revalidatePath("/admin");
     return { success: true, message: "Wiadomość została wysłana. Dziękuję!" };

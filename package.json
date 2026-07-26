@@ -13,6 +13,7 @@
     "check": "npm run lint && npm run typecheck && npm run test && npm run build",
     "db:migrate": "node --env-file=.env.local scripts/migrate.mjs",
     "db:repair": "node --env-file=.env.local scripts/repair-production-data.mjs",
+    "firebase:import": "node scripts/import-firebase-service-account.mjs",
     "push:setup": "node scripts/setup-web-push.mjs",
     "push:check": "node --env-file=.env.local scripts/check-push-setup.mjs"
   },
