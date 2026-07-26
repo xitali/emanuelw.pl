@@ -4,6 +4,7 @@ import { Project } from "@/types";
 import Image from "next/image";
 import { X, ExternalLink, CheckCircle2, ShieldCheck, Zap, Layers, Award } from "lucide-react";
 import { useEffect, useRef } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
 
@@ -68,14 +69,14 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
     };
   }, [project, onClose]);
 
-  if (!project) return null;
+  if (!project || typeof document === "undefined") return null;
 
   const images = parseArray(project.images);
   const technologies = parseArray(project.technologies);
   const keyFeatures = parseArray(project.key_features);
   const technicalMetrics = parseArray(project.technical_metrics);
 
-  return (
+  return createPortal(
     <div
       className="fixed inset-0 z-[100] flex items-center justify-center overflow-y-auto overscroll-contain p-4 sm:p-6 md:p-10 bg-black/75 backdrop-blur-md animate-fadeIn"
       onMouseDown={(event) => {
@@ -241,6 +242,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
           </div>
         )}
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }
