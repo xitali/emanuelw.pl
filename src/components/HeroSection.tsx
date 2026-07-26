@@ -112,7 +112,7 @@ export default function HeroSection() {
               <div className="space-y-2">
                 <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full glass-panel border border-cyan-500/30 text-xs font-mono text-cyan-700 dark:text-cyan-300 shadow-lg">
                   <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 dark:bg-emerald-400 animate-ping" />
-                  <span>Dostępny do nowych projektów B2B</span>
+                  <span>Dostępny do nowych projektów</span>
                 </div>
                 <div className="text-xs text-slate-500 dark:text-slate-400 font-mono flex items-center gap-2">
                   <ShieldCheck className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
