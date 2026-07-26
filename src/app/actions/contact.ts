@@ -6,6 +6,8 @@ import { getClientIp } from "@/lib/request";
 import { contactSchema } from "@/lib/validation";
 import { revalidatePath } from "next/cache";
 import { headers } from "next/headers";
+import { after } from "next/server";
+import { notifyAboutContactMessage } from "@/lib/push";
 
 export async function sendContactMessageAction(formData: FormData) {
   const validation = contactSchema.safeParse({
@@ -50,9 +52,14 @@ export async function sendContactMessageAction(formData: FormData) {
   try {
     const { website: _website, ...validData } = validation.data;
     void _website;
-    await submitContactMessage({
+    const savedMessage = await submitContactMessage({
       ...validData,
       subject: validData.subject || "Kontakt z portfolio",
+    });
+    after(async () => {
+      await notifyAboutContactMessage({
+        id: savedMessage.id,
+      });
     });
     revalidatePath("/admin");
     return { success: true, message: "Wiadomość została wysłana. Dziękuję!" };

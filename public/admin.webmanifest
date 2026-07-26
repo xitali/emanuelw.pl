@@ -1,0 +1,28 @@
+{
+  "id": "/admin",
+  "name": "Emanuel Admin",
+  "short_name": "Emanuel Admin",
+  "description": "Prywatny panel wiadomości i zarządzania portfolio Emanuela Włocha.",
+  "start_url": "/admin?source=pwa",
+  "scope": "/",
+  "lang": "pl",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#060913",
+  "theme_color": "#060913",
+  "categories": ["business", "productivity"],
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

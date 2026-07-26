@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Panel administracyjny",
+  applicationName: "Emanuel Admin",
+  manifest: "/admin.webmanifest",
   alternates: {
     canonical: null,
   },

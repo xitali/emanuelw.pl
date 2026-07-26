@@ -9,6 +9,7 @@ Portfolio i lekki CMS Emanuela Włocha. Produkcja działa pod
 - Tailwind CSS v4 i Framer Motion
 - Turso (libSQL), Vercel Blob
 - Zod, JOSE, bcrypt, Vitest i GitHub Actions
+- instalowalna aplikacja PWA i szyfrowane powiadomienia Web Push
 
 ## Uruchomienie lokalne
 
@@ -26,6 +27,9 @@ Portfolio i lekki CMS Emanuela Włocha. Produkcja działa pod
 - `JWT_SECRET` — losowy sekret sesji, minimum 32 znaki.
 - `RATE_LIMIT_SALT` — osobny losowy sekret do anonimizacji identyfikatorów.
 - `BLOB_READ_WRITE_TOKEN` — token magazynu Vercel Blob dla obrazów CMS.
+- `NEXT_PUBLIC_VAPID_PUBLIC_KEY` — publiczny klucz powiadomień Web Push.
+- `VAPID_PRIVATE_KEY` — prywatny klucz powiadomień przechowywany wyłącznie po stronie serwera.
+- `VAPID_SUBJECT` — adres kontaktowy właściciela kluczy, np. `mailto:adres@example.com`.
 
 Nie wpisuj wartości tych zmiennych do kodu ani do zgłoszeń GitHub.
 
@@ -36,10 +40,24 @@ Każdy push oraz pull request jest sprawdzany również przez GitHub Actions.
 
 ## Baza danych
 
-- `npm run db:migrate` — tworzy bezpieczny rate limit i anonimowe statystyki.
+- `npm run db:migrate` — uruchamia wszystkie brakujące migracje, w tym tabelę subskrypcji powiadomień.
 - `npm run db:repair` — stosuje zatwierdzone poprawki treści produkcyjnych.
 
-Migracje są powtarzalne. Nie usuwają historycznej tabeli `page_visits`.
+Migracje są wykonywane jednokrotnie i zapisywane w `schema_migrations`.
+Historyczna tabela `page_visits` została usunięta po przeniesieniu danych do
+anonimowych statystyk dziennych.
+
+## Aplikacja Android
+
+Panel `/admin` jest instalowalną aplikacją PWA. Po zalogowaniu:
+
+1. kliknij `Zainstaluj aplikację`,
+2. kliknij `Włącz powiadomienia`,
+3. zaakceptuj zgodę Androida,
+4. użyj `Wyślij test`.
+
+Nowa wiadomość z formularza wywołuje powiadomienie po zapisaniu rekordu w
+Turso. Subskrypcje są dostępne wyłącznie dla zalogowanego administratora.
 
 ## Bezpieczeństwo
 

@@ -34,6 +34,42 @@ export const contactSchema = z.object({
   website: z.string().max(0).optional().default(""),
 });
 
+const pushEndpointSchema = z
+  .url("Nieprawidłowy adres subskrypcji.")
+  .max(2048)
+  .refine((value) => value.startsWith("https://"), {
+    message: "Subskrypcja powiadomień musi używać HTTPS.",
+  });
+
+const pushKeySchema = z
+  .string()
+  .min(16)
+  .max(512)
+  .regex(/^[A-Za-z0-9_-]+$/, "Nieprawidłowy klucz subskrypcji.");
+
+export const pushSubscriptionSchema = z.object({
+  endpoint: pushEndpointSchema,
+  expirationTime: z.number().nullable().optional(),
+  keys: z.object({
+    p256dh: pushKeySchema,
+    auth: pushKeySchema,
+  }),
+});
+
+export const pushActionSchema = z.discriminatedUnion("action", [
+  z.object({
+    action: z.literal("subscribe"),
+    subscription: pushSubscriptionSchema,
+  }),
+  z.object({
+    action: z.literal("unsubscribe"),
+    endpoint: pushEndpointSchema,
+  }),
+  z.object({
+    action: z.literal("test"),
+  }),
+]);
+
 export const projectSchema = z.object({
   title: z.string().trim().min(2).max(120),
   short_description: z.string().trim().min(10).max(300),

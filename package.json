@@ -12,7 +12,9 @@
     "test:watch": "vitest",
     "check": "npm run lint && npm run typecheck && npm run test && npm run build",
     "db:migrate": "node --env-file=.env.local scripts/migrate.mjs",
-    "db:repair": "node --env-file=.env.local scripts/repair-production-data.mjs"
+    "db:repair": "node --env-file=.env.local scripts/repair-production-data.mjs",
+    "push:setup": "node scripts/setup-web-push.mjs",
+    "push:check": "node --env-file=.env.local scripts/check-push-setup.mjs"
   },
   "engines": {
     "node": ">=20.9.0"
@@ -41,6 +43,7 @@
     "recharts": "^3.10.0",
     "sharp": "^0.35.3",
     "tailwind-merge": "^3.6.0",
+    "web-push": "^3.6.7",
     "zod": "^4.4.3"
   },
   "devDependencies": {
@@ -50,6 +53,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/web-push": "^3.6.4",
     "eslint": "^9",
     "eslint-config-next": "^16.2.12",
     "jsdom": "^29.1.1",

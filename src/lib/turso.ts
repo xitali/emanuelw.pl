@@ -7,6 +7,7 @@ import {
   ContactMessage,
   Testimonial,
   PublicSiteSettings,
+  PushSubscriptionRecord,
 } from "@/types";
 import { unstable_cache, revalidatePath } from "next/cache";
 import bcrypt from "bcryptjs";
@@ -239,6 +240,51 @@ export async function deleteContactMessage(id: string) {
   await turso.execute({
     sql: "DELETE FROM contact_messages WHERE id = ?",
     args: [id],
+  });
+}
+
+export async function upsertPushSubscription(
+  subscription: PushSubscriptionRecord,
+) {
+  const now = new Date().toISOString();
+  await turso.execute({
+    sql: `INSERT INTO push_subscriptions (
+            endpoint, p256dh, auth, created_at, updated_at
+          ) VALUES (?, ?, ?, ?, ?)
+          ON CONFLICT(endpoint) DO UPDATE SET
+            p256dh = excluded.p256dh,
+            auth = excluded.auth,
+            updated_at = excluded.updated_at`,
+    args: [
+      subscription.endpoint,
+      subscription.p256dh,
+      subscription.auth,
+      now,
+      now,
+    ],
+  });
+}
+
+export async function getPushSubscriptions(): Promise<
+  PushSubscriptionRecord[]
+> {
+  const result = await turso.execute(
+    "SELECT endpoint, p256dh, auth, created_at, updated_at FROM push_subscriptions",
+  );
+
+  return result.rows.map((row) => ({
+    endpoint: String(row.endpoint),
+    p256dh: String(row.p256dh),
+    auth: String(row.auth),
+    created_at: String(row.created_at || ""),
+    updated_at: String(row.updated_at || ""),
+  }));
+}
+
+export async function deletePushSubscription(endpoint: string) {
+  await turso.execute({
+    sql: "DELETE FROM push_subscriptions WHERE endpoint = ?",
+    args: [endpoint],
   });
 }
 

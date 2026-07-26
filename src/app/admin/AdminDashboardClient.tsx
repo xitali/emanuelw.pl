@@ -8,6 +8,7 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 import Link from "next/link";
 import { useTheme } from "next-themes";
 import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
+import AdminAppManager from "@/components/AdminAppManager";
 
 interface AdminDashboardClientProps {
   messages: ContactMessage[];
@@ -16,11 +17,13 @@ interface AdminDashboardClientProps {
   services: Service[];
   testimonials: Testimonial[];
   analytics: { date: string; visits: number }[];
+  initialTab?: "projects" | "messages";
+  initialMessageId?: string;
 }
 
-export default function AdminDashboardClient({ messages, visitsCount, projects, services, testimonials, analytics }: AdminDashboardClientProps) {
+export default function AdminDashboardClient({ messages, visitsCount, projects, services, testimonials, analytics, initialTab = "projects", initialMessageId }: AdminDashboardClientProps) {
   const { theme } = useTheme();
-  const [activeTab, setActiveTab] = useState<"projects" | "services" | "messages" | "photo" | "testimonials" | "analytics">("projects");
+  const [activeTab, setActiveTab] = useState<"projects" | "services" | "messages" | "photo" | "testimonials" | "analytics">(initialTab);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [editingProject, setEditingProject] = useState<Project | null>(null);
   const [editingServicePrices, setEditingServicePrices] = useState<Record<string, number>>(() => {
@@ -34,6 +37,16 @@ export default function AdminDashboardClient({ messages, visitsCount, projects, 
   const isProjectModalOpen = isAddModalOpen || Boolean(editingProject);
 
   useBodyScrollLock(isProjectModalOpen);
+
+  useEffect(() => {
+    if (!initialMessageId) return;
+
+    window.setTimeout(() => {
+      document
+        .getElementById(`message-${initialMessageId}`)
+        ?.scrollIntoView({ behavior: "smooth", block: "center" });
+    }, 150);
+  }, [initialMessageId]);
 
   useEffect(() => {
     if (!isProjectModalOpen) return;
@@ -179,6 +192,8 @@ export default function AdminDashboardClient({ messages, visitsCount, projects, 
           <span>{actionStatus}</span>
         </div>
       )}
+
+      <AdminAppManager />
 
       {/* KPI Stats */}
       <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -377,7 +392,7 @@ export default function AdminDashboardClient({ messages, visitsCount, projects, 
           ) : (
             <div className="space-y-4">
               {messages.map((msg) => (
-                <div key={msg.id} className="glass-panel p-6 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-transparent space-y-3">
+                <div id={`message-${msg.id}`} key={msg.id} className="glass-panel p-6 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-transparent space-y-3 scroll-mt-6">
                   <div className="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3">
                     <div>
                       <span className="font-bold text-slate-900 dark:text-white text-base">{msg.name}</span>

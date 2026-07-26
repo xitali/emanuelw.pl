@@ -101,3 +101,13 @@ Vercel stosuje nowe zmienne dopiero do nowego wdrożenia:
 - [ ] Zgłoszenie do GitHub Support zostało wysłane. Poczekaj na odpowiedź w
   sprawie usunięcia starych referencji pull requestów, których właściciel
   repozytorium nie może wyczyścić samodzielnie.
+
+## 6. Aplikacja Emanuel Admin na Androida
+
+- [x] Dodano instalowalny manifest aplikacji.
+- [x] Dodano Service Worker i obsługę powiadomień w tle.
+- [x] Dodano chronione API zapisywania subskrypcji administratora.
+- [x] Dodano wysyłkę powiadomienia po zapisaniu wiadomości w Turso.
+- [x] Dodano automatyczne usuwanie wygasłych subskrypcji.
+- [ ] Zainstaluj aplikację na Androidzie zgodnie z `ANDROID_APP.md`.
+- [ ] Włącz powiadomienia i wykonaj test na telefonie.

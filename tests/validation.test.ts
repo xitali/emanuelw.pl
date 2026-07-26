@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   contactSchema,
   projectSchema,
+  pushActionSchema,
   splitCommaSeparated,
 } from "../src/lib/validation";
 import { PROJECT_QUOTE_PREFILL } from "../src/lib/contact-prefill";
@@ -61,5 +62,30 @@ describe("walidacja formularzy", () => {
     expect(PROJECT_QUOTE_PREFILL.message).toContain("Rodzaj projektu:");
     expect(PROJECT_QUOTE_PREFILL.message).toContain("Budżet orientacyjny:");
     expect(PROJECT_QUOTE_PREFILL.message).toContain("[");
+  });
+
+  it("akceptuje bezpieczną subskrypcję Web Push", () => {
+    const result = pushActionSchema.safeParse({
+      action: "subscribe",
+      subscription: {
+        endpoint: "https://fcm.googleapis.com/fcm/send/test-device",
+        expirationTime: null,
+        keys: {
+          p256dh: "Abcdefghijklmnopqrstuvwxyz_1234567890",
+          auth: "Abcdefghijklmnop",
+        },
+      },
+    });
+
+    expect(result.success).toBe(true);
+  });
+
+  it("odrzuca subskrypcję Web Push bez HTTPS", () => {
+    const result = pushActionSchema.safeParse({
+      action: "unsubscribe",
+      endpoint: "http://example.com/push/test",
+    });
+
+    expect(result.success).toBe(false);
   });
 });

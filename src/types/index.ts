@@ -76,6 +76,14 @@ export interface ContactMessage {
   created_at?: string;
 }
 
+export interface PushSubscriptionRecord {
+  endpoint: string;
+  p256dh: string;
+  auth: string;
+  created_at?: string;
+  updated_at?: string;
+}
+
 export interface PageVisit {
   id: string;
   page_path: string;
