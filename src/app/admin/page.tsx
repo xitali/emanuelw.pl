@@ -1,6 +1,6 @@
 import { verifyAdminSession } from "@/lib/auth";
 import { redirect } from "next/navigation";
-import { getContactMessages, getPageVisitsCount, getProjects, getServices, getTestimonials, getPageVisitsStats } from "@/lib/turso";
+import { getContactMessages, getPageVisitsCount, getAdminProjects, getServices, getTestimonials, getPageVisitsStats } from "@/lib/turso";
 import AdminDashboardClient from "./AdminDashboardClient";
 
 export const revalidate = 0; // Dynamic route for admin panel
@@ -14,7 +14,7 @@ export default async function AdminPage() {
   const [messages, visitsCount, projects, services, testimonials, analytics] = await Promise.all([
     getContactMessages(),
     getPageVisitsCount(),
-    getProjects(),
+    getAdminProjects(),
     getServices(),
     getTestimonials(),
     getPageVisitsStats(),

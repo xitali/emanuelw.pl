@@ -4,9 +4,11 @@ import { useState, useEffect } from "react";
 import { sendContactMessageAction } from "@/app/actions/contact";
 import confetti from "canvas-confetti";
 import { Mail, Phone, MapPin, Send, CheckCircle2, AlertCircle, Sparkles } from "lucide-react";
+import { PublicSiteSettings } from "@/types";
+import Link from "next/link";
 
 interface ContactSectionProps {
-  settings: Record<string, string>;
+  settings: PublicSiteSettings;
 }
 
 export default function ContactSection({ settings }: ContactSectionProps) {
@@ -61,7 +63,9 @@ export default function ContactSection({ settings }: ContactSectionProps) {
           spread: 70,
           origin: { y: 0.6 },
         });
-      } catch (err) {}
+      } catch {
+        // Animacja jest dodatkiem; wysłanie wiadomości pozostaje udane.
+      }
     } else {
       setStatusMsg({ type: "error", text: res.error || "Wystąpił błąd przy wysyłce." });
     }
@@ -193,6 +197,8 @@ export default function ContactSection({ settings }: ContactSectionProps) {
 
               {statusMsg && (
                 <div
+                  role={statusMsg.type === "error" ? "alert" : "status"}
+                  aria-live="polite"
                   className={`p-4 rounded-2xl text-xs sm:text-sm font-medium flex items-center gap-3 ${
                     statusMsg.type === "success"
                       ? "bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-500/40 text-emerald-700 dark:text-emerald-300"
@@ -210,8 +216,9 @@ export default function ContactSection({ settings }: ContactSectionProps) {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1.5">
-                  <label className="text-xs font-mono text-slate-600 dark:text-slate-300">Twoje Imię *</label>
+                  <label htmlFor="contact-name" className="text-xs font-mono text-slate-600 dark:text-slate-300">Twoje Imię *</label>
                   <input
+                    id="contact-name"
                     type="text"
                     name="name"
                     required
@@ -221,8 +228,9 @@ export default function ContactSection({ settings }: ContactSectionProps) {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-mono text-slate-600 dark:text-slate-300">Adres Email *</label>
+                  <label htmlFor="contact-email" className="text-xs font-mono text-slate-600 dark:text-slate-300">Adres Email *</label>
                   <input
+                    id="contact-email"
                     type="email"
                     name="email"
                     required
@@ -233,8 +241,9 @@ export default function ContactSection({ settings }: ContactSectionProps) {
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-xs font-mono text-slate-600 dark:text-slate-300">Temat Wiadomości</label>
+                <label htmlFor="contact-subject" className="text-xs font-mono text-slate-600 dark:text-slate-300">Temat Wiadomości</label>
                 <input
+                  id="contact-subject"
                   type="text"
                   name="subject"
                   value={subject}
@@ -245,8 +254,9 @@ export default function ContactSection({ settings }: ContactSectionProps) {
               </div>
 
               <div className="space-y-1.5">
-                <label className="text-xs font-mono text-slate-600 dark:text-slate-300">Wiadomość *</label>
+                <label htmlFor="contact-message" className="text-xs font-mono text-slate-600 dark:text-slate-300">Wiadomość *</label>
                 <textarea
+                  id="contact-message"
                   name="message"
                   required
                   rows={6}
@@ -256,6 +266,28 @@ export default function ContactSection({ settings }: ContactSectionProps) {
                   className="w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:border-cyan-400 focus:outline-none text-slate-900 dark:text-slate-100 text-sm resize-none"
                 />
               </div>
+
+              <div className="absolute -left-[10000px]" aria-hidden="true">
+                <label htmlFor="contact-website">Strona internetowa</label>
+                <input
+                  id="contact-website"
+                  name="website"
+                  type="text"
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+              </div>
+
+              <p className="text-xs leading-relaxed text-slate-500 dark:text-slate-400">
+                Wysyłając formularz, potwierdzasz zapoznanie się z{" "}
+                <Link
+                  href="/polityka-prywatnosci"
+                  className="text-cyan-700 underline underline-offset-2 dark:text-cyan-300"
+                >
+                  polityką prywatności
+                </Link>
+                .
+              </p>
 
               <button
                 type="submit"

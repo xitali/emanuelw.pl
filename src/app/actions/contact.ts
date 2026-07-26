@@ -1,82 +1,66 @@
 "use server";
 
 import { submitContactMessage } from "@/lib/turso";
+import { checkRateLimit } from "@/lib/rate-limit";
+import { getClientIp } from "@/lib/request";
+import { contactSchema } from "@/lib/validation";
 import { revalidatePath } from "next/cache";
 import { headers } from "next/headers";
-import { z } from "zod";
-
-const contactSchema = z.object({
-  name: z.string().min(2, "Imię musi mieć co najmniej 2 znaki").max(100, "Imię jest za długie"),
-  email: z.string().email("Podaj prawidłowy adres e-mail"),
-  subject: z.string().max(200, "Temat jest za długi").optional(),
-  message: z.string().min(10, "Wiadomość musi mieć minimum 10 znaków").max(2000, "Wiadomość jest za długa (max 2000 znaków)"),
-});
-
-// Prosty in-memory Rate Limiter
-// Zabezpiecza przed prostym spamem, choć resetuje się przy "cold start" na Vercelu
-const rateLimitMap = new Map<string, { count: number; timestamp: number }>();
-const RATE_LIMIT_WINDOW = 60 * 1000; // 1 minuta
-const MAX_REQUESTS = 3; // max 3 wiadomości na minutę
-
-function isRateLimited(ip: string): boolean {
-  const now = Date.now();
-  const record = rateLimitMap.get(ip);
-
-  if (!record) {
-    rateLimitMap.set(ip, { count: 1, timestamp: now });
-    return false;
-  }
-
-  if (now - record.timestamp > RATE_LIMIT_WINDOW) {
-    rateLimitMap.set(ip, { count: 1, timestamp: now });
-    return false;
-  }
-
-  if (record.count >= MAX_REQUESTS) {
-    return true;
-  }
-
-  record.count += 1;
-  return false;
-}
 
 export async function sendContactMessageAction(formData: FormData) {
-  // Pobieranie IP w Next.js Server Actions
+  const validation = contactSchema.safeParse({
+    name: formData.get("name"),
+    email: formData.get("email"),
+    subject: formData.get("subject"),
+    message: formData.get("message"),
+    website: formData.get("website"),
+  });
+
+  if (!validation.success) {
+    if (formData.get("website")) {
+      return { success: true, message: "Wiadomość została wysłana." };
+    }
+
+    return {
+      success: false,
+      error:
+        validation.error.issues[0]?.message ??
+        "Sprawdź dane w formularzu.",
+    };
+  }
+
   const headersList = await headers();
-  const ip = headersList.get("x-forwarded-for") || headersList.get("x-real-ip") || "unknown";
+  const ip = getClientIp(headersList);
+  const rateLimit = await checkRateLimit({
+    namespace: "contact",
+    identifier: ip,
+    limit: 3,
+    windowMs: 10 * 60 * 1000,
+  });
 
-  if (isRateLimited(ip)) {
-    return { success: false, error: "Zbyt wiele zapytań. Odczekaj chwilę przed wysłaniem kolejnej wiadomości." };
+  if (!rateLimit.allowed) {
+    return {
+      success: false,
+      error: `Zbyt wiele prób. Spróbuj ponownie za około ${Math.ceil(
+        rateLimit.retryAfter / 60,
+      )} min.`,
+    };
   }
-
-  const name = formData.get("name") as string;
-  const email = formData.get("email") as string;
-  const subject = formData.get("subject") as string;
-  const message = formData.get("message") as string;
-
-  // Walidacja Zod
-  const validationResult = contactSchema.safeParse({ name, email, subject, message });
-
-  if (!validationResult.success) {
-    // Pobieranie pierwszego błędu z Zoda
-    const firstError = validationResult.error.issues[0]?.message || "Nieprawidłowe dane formularza";
-    return { success: false, error: firstError };
-  }
-
-  const validData = validationResult.data;
 
   try {
+    const { website: _website, ...validData } = validation.data;
+    void _website;
     await submitContactMessage({
-      name: validData.name,
-      email: validData.email,
-      subject: validData.subject || "Kontakt z Portfolio",
-      message: validData.message,
+      ...validData,
+      subject: validData.subject || "Kontakt z portfolio",
     });
-
     revalidatePath("/admin");
-    return { success: true, message: "Wiadomość została pomyślnie wysłana i zapisana!" };
+    return { success: true, message: "Wiadomość została wysłana. Dziękuję!" };
   } catch (error) {
-    console.error("Error submitting contact form:", error);
-    return { success: false, error: "Wystąpił błąd podczas wysyłania. Spróbuj ponowne." };
+    console.error("Nie udało się zapisać wiadomości:", error);
+    return {
+      success: false,
+      error: "Nie udało się wysłać wiadomości. Spróbuj ponownie później.",
+    };
   }
 }

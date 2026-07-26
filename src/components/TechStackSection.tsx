@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Sparkles, Code2, Database, Server, Smartphone, Cpu, CheckCircle } from "lucide-react";
+import { Code2, Database, Server, Cpu, CheckCircle } from "lucide-react";
 
 export default function TechStackSection() {
   const [activeTab, setActiveTab] = useState<string>("frontend");
@@ -10,31 +10,24 @@ export default function TechStackSection() {
     { id: "frontend", label: "Frontend & Web", icon: Code2 },
     { id: "backend", label: "Backend & API", icon: Server },
     { id: "database", label: "Bazy Danych & Edge", icon: Database },
-    { id: "mobile", label: "Mobile & Desktop", icon: Smartphone },
   ];
 
   const technologies = {
     frontend: [
-      { name: "Next.js 15 & React 19", level: "Zaawansowany / Ekspert", desc: "Server Components, Server Actions, wydajny App Router i błyskawiczne renderowanie." },
-      { name: "TypeScript & tRPC", level: "Zaawansowany", desc: "W pełni typowany kod od frontendu po backend, minimalizujący błędy." },
-      { name: "Tailwind CSS v4 & shadcn/ui", level: "Ekspert", desc: "Nowoczesne, piękne komponenty UI z płynnymi mikro-animacjami." },
-      { name: "Web Vitals & Optymalizacja", level: "Ekspert", desc: "Maksymalizacja wydajności Lighthouse i perfekcyjna responsywność." },
+      { name: "Next.js 16 & React 19", level: "Codzienna praca", desc: "App Router, Server Components, Server Actions i renderowanie po stronie serwera." },
+      { name: "TypeScript & Zod", level: "Codzienna praca", desc: "Typowanie aplikacji oraz walidacja danych na granicy frontendu i backendu." },
+      { name: "Tailwind CSS v4 & Framer Motion", level: "Codzienna praca", desc: "Responsywne interfejsy i dopracowane mikroanimacje." },
+      { name: "Dostępność & wydajność", level: "Stały proces", desc: "Semantyczny HTML, obsługa klawiatury, optymalizacja obrazów i testy produkcyjne." },
     ],
     backend: [
-      { name: "Node.js & Hono (Edge Computing)", level: "Zaawansowany", desc: "Ultraszybkie endpointy API i logika biznesowa wykonywana blisko użytkownika." },
-      { name: "Architektura Event-Driven", level: "Średniozaawansowany", desc: "Skalowalne systemy asynchroniczne gotowe na duże natężenie ruchu." },
-      { name: "Zaawansowane Bezpieczeństwo", level: "Zaawansowany", desc: "Logowanie bezhasłowe (Magic Links), JWT, OAuth 2.0 oraz reguły RBAC." },
+      { name: "Next.js Server Actions & Route Handlers", level: "Wdrożone", desc: "Logika formularzy, panel CMS i zabezpieczone endpointy API." },
+      { name: "JOSE, bcrypt i rate limiting", level: "Wdrożone", desc: "Podpisane sesje, haszowane hasła oraz ochrona formularzy i API przed nadużyciami." },
+      { name: "Vercel & Blob Storage", level: "Wdrożone", desc: "Hosting aplikacji i trwałe przechowywanie obrazów przesyłanych przez CMS." },
     ],
     database: [
-      { name: "Turso (Edge SQLite)", level: "Ekspert", desc: "Błyskawiczna baza danych replikowana globalnie na brzegu sieci." },
-      { name: "Supabase & PostgreSQL", level: "Ekspert", desc: "Potężne bazy relacyjne ze Storage i nasłuchiwaniem zmian w czasie rzeczywistym." },
-      { name: "Vector Databases (RAG)", level: "Zaawansowany", desc: "Rozwiązania do błyskawicznego przeszukiwania kontekstowego i zaawansowanych systemów rekomendacji." },
-      { name: "Drizzle ORM", level: "Zaawansowany", desc: "Superszybki, bezpieczny ORM do wydajnej i bezbłędnej komunikacji z bazą." },
-    ],
-    mobile: [
-      { name: "React Native & Expo", level: "Zaawansowany", desc: "Wydajne aplikacje mobilne na iOS & Android współdzielące kod z wersją webową." },
-      { name: "Flutter & Dart", level: "Średniozaawansowany", desc: "Przepiękne, natywnie skompilowane hybrydowe interfejsy z płynnością 120 FPS." },
-      { name: "Tauri (Rust) & Electron", level: "Zaawansowany", desc: "Niezwykle lekkie i wydajne aplikacje desktopowe oparte na kodzie webowym." },
+      { name: "Turso (libSQL)", level: "Wdrożone", desc: "Relacyjna baza danych dla projektów, usług, opinii, wiadomości i statystyk." },
+      { name: "SQL & migracje", level: "Wdrożone", desc: "Jawne schematy, indeksy, zapytania parametryzowane i powtarzalne migracje." },
+      { name: "Anonimowa analityka", level: "Wdrożone", desc: "Dzienne agregaty odsłon bez zapisywania adresów IP i danych przeglądarki." },
     ],
   };
 
@@ -56,13 +49,16 @@ export default function TechStackSection() {
           </p>
 
           {/* Category Tabs */}
-          <div className="flex flex-wrap justify-center gap-2 pt-4">
+          <div role="tablist" aria-label="Kategorie technologii" className="flex flex-wrap justify-center gap-2 pt-4">
             {techCategories.map((cat) => {
               const Icon = cat.icon;
               return (
                 <button
                   key={cat.id}
                   onClick={() => setActiveTab(cat.id)}
+                  role="tab"
+                  aria-selected={activeTab === cat.id}
+                  aria-controls="technology-panel"
                   className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-xs font-semibold tracking-wide transition-all ${
                     activeTab === cat.id
                       ? "bg-cyan-50 dark:bg-cyan-500/20 border border-cyan-400 text-cyan-700 dark:text-cyan-300 shadow-lg shadow-cyan-500/20"
@@ -78,7 +74,7 @@ export default function TechStackSection() {
         </div>
 
         {/* Tech Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+        <div id="technology-panel" role="tabpanel" className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
           {technologies[activeTab as keyof typeof technologies].map((item, idx) => (
             <div
               key={idx}

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Terminal, Heart, Shield, Activity } from "lucide-react";
+import { Terminal, Activity } from "lucide-react";
 
 interface FooterProps {
   visitCount?: number;
@@ -31,6 +31,9 @@ export default function Footer({ visitCount = 0 }: FooterProps) {
 
           {/* Copyright */}
           <div className="flex items-center gap-4 text-xs text-slate-500 dark:text-slate-400">
+            <Link href="/polityka-prywatnosci" className="hover:text-cyan-600 dark:hover:text-cyan-400">
+              Polityka prywatności
+            </Link>
             <span>© {new Date().getFullYear()} Emanuel Włoch. Wszystkie prawa zastrzeżone.</span>
           </div>
 

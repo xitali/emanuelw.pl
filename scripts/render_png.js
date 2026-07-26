@@ -1,6 +1,4 @@
 import { execSync } from 'child_process';
-import path from 'path';
-import fs from 'fs';
 
 const htmlPath = `C:\\Users\\emanu\\.gemini\\antigravity\\brain\\3d9c90dd-c2b0-4a90-8f8e-80760a303359\\render_banner.html`;
 const targetPngPath = `C:\\Users\\emanu\\.gemini\\antigravity\\brain\\3d9c90dd-c2b0-4a90-8f8e-80760a303359\\facebook_banner_ultra_hd.png`;

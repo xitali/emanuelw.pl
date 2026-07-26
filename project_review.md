@@ -1,6 +1,12 @@
+# Archiwalny audyt projektu — nieaktualny
+
+> Ten dokument opisuje starszy stan aplikacji. Aktualne informacje znajdują
+> się w `README.md`, `SECURITY.md`, migracjach oraz konfiguracji CI.
+
 # 🚀 Pełny Audyt i Plan Rozwoju (Project Review)
 
-Przeanalizowałem cały kod Twojego projektu (`d:\emanuelw`). Aplikacja stoi na bardzo nowoczesnym, stabilnym stosie (Next.js 15, React 19, Tailwind v4, Turso DB). Poniżej zestawienie elementów, które **warto ulepszyć, naprawić lub dodać**, by przenieść ten projekt z poziomu "bardzo dobrego" do poziomu **"światowej klasy premium"**.
+Dokument dotyczył starszej wersji projektu (Next.js 15) i pozostaje wyłącznie
+jako zapis historyczny.
 
 ---
 

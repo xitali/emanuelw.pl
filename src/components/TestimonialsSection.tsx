@@ -32,7 +32,7 @@ export default function TestimonialsSection({ testimonials }: TestimonialsSectio
           {testimonials.map((testim) => (
             <div key={testim.id} className="glass-panel-interactive p-8 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-transparent space-y-6 flex flex-col justify-between group">
               <div className="space-y-4">
-                <div className="flex gap-1">
+                <div className="flex gap-1" aria-label={`Ocena: ${testim.rating} na 5`}>
                   {[...Array(testim.rating)].map((_, i) => (
                     <Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />
                   ))}
@@ -40,9 +40,9 @@ export default function TestimonialsSection({ testimonials }: TestimonialsSectio
                     <Star key={i} className="w-5 h-5 fill-slate-200 dark:fill-slate-800 text-slate-300 dark:text-slate-700" />
                   ))}
                 </div>
-                <p className="text-slate-600 dark:text-slate-300 italic text-sm md:text-base leading-relaxed">
-                  "{testim.content}"
-                </p>
+                <blockquote className="text-slate-600 dark:text-slate-300 italic text-sm md:text-base leading-relaxed">
+                  {testim.content}
+                </blockquote>
               </div>
               <div className="pt-6 border-t border-slate-200 dark:border-slate-800 flex items-center gap-4">
                 <div className="w-10 h-10 rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white font-bold shrink-0 shadow-lg shadow-cyan-500/20">

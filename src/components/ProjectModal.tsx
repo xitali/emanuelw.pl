@@ -3,15 +3,17 @@
 import { Project } from "@/types";
 import Image from "next/image";
 import { X, ExternalLink, CheckCircle2, ShieldCheck, Zap, Layers, Award } from "lucide-react";
+import { useEffect, useRef } from "react";
+import Link from "next/link";
 
 interface ProjectModalProps {
   project: Project | null;
   onClose: () => void;
 }
 
-function parseArray(val: any): string[] {
+function parseArray(val: unknown): string[] {
   if (!val) return [];
-  if (Array.isArray(val)) return val;
+  if (Array.isArray(val)) return val.filter((item): item is string => typeof item === "string");
   if (typeof val === "string") {
     try {
       const parsed = JSON.parse(val);
@@ -24,6 +26,49 @@ function parseArray(val: any): string[] {
 }
 
 export default function ProjectModal({ project, onClose }: ProjectModalProps) {
+  const dialogRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!project) return;
+
+    const previouslyFocused = document.activeElement as HTMLElement | null;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    dialogRef.current?.focus();
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        onClose();
+        return;
+      }
+
+      if (event.key !== "Tab" || !dialogRef.current) return;
+      const focusable = Array.from(
+        dialogRef.current.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
+        ),
+      );
+      if (focusable.length === 0) return;
+
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = previousOverflow;
+      previouslyFocused?.focus();
+    };
+  }, [project, onClose]);
+
   if (!project) return null;
 
   const images = parseArray(project.images);
@@ -32,8 +77,18 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
   const technicalMetrics = parseArray(project.technical_metrics);
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-10 overflow-y-auto bg-black/75 backdrop-blur-md animate-fadeIn">
-      <div 
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-10 overflow-y-auto bg-black/75 backdrop-blur-md animate-fadeIn"
+      onMouseDown={(event) => {
+        if (event.target === event.currentTarget) onClose();
+      }}
+    >
+      <div
+        ref={dialogRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="project-dialog-title"
+        tabIndex={-1}
         className="glass-panel relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-3xl border border-slate-300 dark:border-cyan-500/30 p-6 sm:p-8 shadow-2xl space-y-8 bg-white dark:bg-[#090d16] text-slate-900 dark:text-white"
         onClick={(e) => e.stopPropagation()}
       >
@@ -58,7 +113,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               </span>
             )}
           </div>
-          <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
+          <h2 id="project-dialog-title" className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
             {project.title}
           </h2>
           <p className="text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed font-normal">
@@ -85,6 +140,12 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
         {/* Links CTAs */}
         <div className="flex flex-wrap gap-4 pt-2">
+          <Link
+            href={`/projekty/${project.id}`}
+            className="px-6 py-3 rounded-full text-sm font-semibold text-cyan-900 bg-cyan-100 hover:bg-cyan-200 border border-cyan-300 dark:bg-cyan-950 dark:hover:bg-cyan-900 dark:text-cyan-200 dark:border-cyan-700 flex items-center gap-2 transition-colors"
+          >
+            Pełne case study
+          </Link>
           {project.project_url && (
             <a
               href={project.project_url}

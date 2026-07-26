@@ -3,17 +3,14 @@
 import { useState, useEffect } from "react";
 import { Terminal, Code2, Sparkles, MessageSquare, Menu, X, Rocket, Wand2 } from "lucide-react";
 import { useTheme } from "next-themes";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-  const router = useRouter();
+  const { resolvedTheme, setTheme } = useTheme();
 
   useEffect(() => {
-    setMounted(true);
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
@@ -38,30 +35,19 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         {/* Brand Logo */}
-        <div className="flex items-center gap-3 group cursor-pointer" onClick={() => router.push('/')}>
+        <Link href="/" className="flex items-center gap-3 group">
           <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-cyan-500 to-purple-600 flex items-center justify-center shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform duration-300">
             <Terminal className="w-5 h-5 text-white" />
           </div>
           <div className="flex flex-col">
             <span className="text-lg font-bold tracking-tight text-slate-900 dark:text-white group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">
-              Emanuel
-              <span 
-                className="text-cyan-400 cursor-default" 
-                onClick={(e) => {
-                  e.stopPropagation();
-                  router.push('/admin');
-                }}
-                title="Secret Admin Panel"
-              >
-                .
-              </span>
-              Włoch
+              Emanuel<span className="text-cyan-400">.</span>Włoch
             </span>
             <span className="text-[10px] font-mono tracking-widest text-cyan-500 dark:text-cyan-400/80 uppercase">
-              Full-Stack Architect
+              Full-Stack Developer
             </span>
           </div>
-        </div>
+        </Link>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-1 bg-white/60 dark:bg-[#0f172a]/60 backdrop-blur-md p-1.5 rounded-full border border-slate-200 dark:border-white/10 shadow-sm dark:shadow-none">
@@ -82,15 +68,14 @@ export default function Navbar() {
 
         {/* CTA Button & Theme Toggle */}
         <div className="hidden md:flex items-center gap-3">
-          {mounted && (
-            <button
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              title="Przełącz motyw (Jasny/Ciemny)"
-              className="p-2.5 rounded-full border border-slate-700 dark:bg-slate-900 bg-white text-slate-400 hover:text-cyan-400 transition-colors"
-            >
-              <Wand2 className="w-4 h-4" />
-            </button>
-          )}
+          <button
+            onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+            aria-label="Przełącz jasny lub ciemny motyw"
+            title="Przełącz jasny lub ciemny motyw"
+            className="p-2.5 rounded-full border border-slate-300 dark:border-slate-700 dark:bg-slate-900 bg-white text-slate-600 dark:text-slate-300 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors"
+          >
+            <Wand2 className="w-4 h-4" aria-hidden="true" />
+          </button>
           
           <a
             href="#kontakt"
@@ -106,6 +91,8 @@ export default function Navbar() {
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           className="md:hidden p-2 rounded-lg bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-600 dark:text-slate-300 hover:text-cyan-600 dark:hover:text-white"
           aria-label="Menu"
+          aria-expanded={mobileMenuOpen}
+          aria-controls="mobile-navigation"
         >
           {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
@@ -113,7 +100,7 @@ export default function Navbar() {
 
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
-        <div className="md:hidden glass-panel border-b border-slate-200 dark:border-cyan-500/20 px-4 py-6 mt-3 space-y-3 animate-fadeIn bg-white/95 dark:bg-[#0d121e]/95">
+        <div id="mobile-navigation" className="md:hidden glass-panel border-b border-slate-200 dark:border-cyan-500/20 px-4 py-6 mt-3 space-y-3 animate-fadeIn bg-white/95 dark:bg-[#0d121e]/95">
           {navLinks.map((link) => {
             const Icon = link.icon;
             return (
@@ -128,6 +115,14 @@ export default function Navbar() {
               </a>
             );
           })}
+          <button
+            type="button"
+            onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+            className="w-full flex items-center gap-3 px-4 py-3 text-slate-700 dark:text-slate-200 hover:text-cyan-600 dark:hover:text-cyan-400 hover:bg-cyan-50 dark:hover:bg-cyan-500/10 rounded-xl font-medium transition-all"
+          >
+            <Wand2 className="w-5 h-5 text-cyan-600 dark:text-cyan-400" />
+            Przełącz motyw
+          </button>
           <a
             href="#kontakt"
             onClick={() => setMobileMenuOpen(false)}

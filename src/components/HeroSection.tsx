@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { Terminal as TerminalIcon, Sparkles, ArrowRight, Code2, Cpu, Database, CheckCircle2, Copy, Check, User, ShieldCheck } from "lucide-react";
+import { Terminal as TerminalIcon, ArrowRight, Copy, Check, User, ShieldCheck } from "lucide-react";
 
 export default function HeroSection() {
   const [terminalInput, setTerminalInput] = useState("");
@@ -10,7 +10,7 @@ export default function HeroSection() {
   const [imgError, setImgError] = useState(false);
   const [terminalOutput, setTerminalOutput] = useState<string[]>([
     "Emanuel Włoch v2.5 CLI Terminal initialized.",
-    "Połączono z bazą Turso (aws-eu-west-1): OK [latency ~10ms]",
+    "Połączono z bazą Turso (libSQL): OK",
     "Wpisz 'help' lub wybierz szybkie komendy poniżej:",
   ]);
 
@@ -31,17 +31,17 @@ export default function HeroSection() {
         break;
       case "about":
         response = [
-          "Emanuel Włoch: Full-Stack Engineer & Architect.",
-          "Specjalizacja: Next.js 15, React 19, TypeScript, Turso, Tailwind v4, Mobile (React Native/Flutter).",
+          "Emanuel Włoch: Full-Stack Developer.",
+          "Specjalizacja: Next.js 16, React 19, TypeScript, Turso i Tailwind CSS v4.",
           "Lokalizacja: Podkarpacie / Zdalnie.",
         ];
         break;
       case "stack":
         response = [
           "CORE: Next.js, React, TypeScript, Node.js",
-          "DATABASE: Turso (LibSQL), Supabase (PostgreSQL), Redis",
-          "STYLING: Tailwind CSS v4, Framer Motion, Glassmorphism",
-          "MOBILE/DESKTOP: React Native, Flutter, Electron, Tauri",
+          "DATABASE: Turso (libSQL)",
+          "STYLING: Tailwind CSS v4, Framer Motion",
+          "QUALITY: Zod, Vitest, ESLint, GitHub Actions",
         ];
         break;
       case "projects":
@@ -116,15 +116,15 @@ export default function HeroSection() {
                 </div>
                 <div className="text-xs text-slate-500 dark:text-slate-400 font-mono flex items-center gap-2">
                   <ShieldCheck className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
-                  Full-Stack Software Architect
+                  Full-Stack Developer
                 </div>
               </div>
             </div>
 
             {/* Main title */}
             <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.1]">
-              Tworzę Ultra-Szybkie <br />
-              <span className="text-gradient-cyan">Aplikacje Webowe</span> & Mobilne
+              Tworzę nowoczesne <br />
+              <span className="text-gradient-cyan">strony i aplikacje webowe</span>
             </h1>
 
             {/* Paragraph description */}
@@ -154,16 +154,16 @@ export default function HeroSection() {
             {/* Quick stats badges */}
             <div className="pt-6 grid grid-cols-3 gap-4 border-t border-slate-200 dark:border-slate-800/80">
               <div>
-                <div className="text-2xl font-bold text-slate-900 dark:text-white">99<span className="text-cyan-500 dark:text-cyan-400">%+</span></div>
-                <div className="text-xs text-slate-500 dark:text-slate-400 font-mono">Lighthouse Score</div>
+                <div className="text-xl font-bold text-slate-900 dark:text-white">Next.js 16</div>
+                <div className="text-xs text-slate-500 dark:text-slate-400 font-mono">App Router</div>
               </div>
               <div>
-                <div className="text-2xl font-bold text-slate-900 dark:text-white">&lt;10<span className="text-purple-500 dark:text-purple-400">ms</span></div>
-                <div className="text-xs text-slate-500 dark:text-slate-400 font-mono">Turso Edge Latency</div>
+                <div className="text-xl font-bold text-slate-900 dark:text-white">Turso</div>
+                <div className="text-xs text-slate-500 dark:text-slate-400 font-mono">Relacyjna baza danych</div>
               </div>
               <div>
-                <div className="text-2xl font-bold text-slate-900 dark:text-white">100<span className="text-emerald-500 dark:text-emerald-400">%</span></div>
-                <div className="text-xs text-slate-500 dark:text-slate-400 font-mono">Type-Safe TypeScript</div>
+                <div className="text-xl font-bold text-slate-900 dark:text-white">CI</div>
+                <div className="text-xs text-slate-500 dark:text-slate-400 font-mono">Automatyczne testy</div>
               </div>
             </div>
           </div>

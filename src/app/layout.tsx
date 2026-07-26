@@ -16,11 +16,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://emanuelwloch.pl"),
   title: {
-    default: "Emanuel Włoch – Tworzenie Stron & Aplikacji Webowych | Full-Stack Architect",
+    default: "Emanuel Włoch – Strony i aplikacje webowe",
     template: "%s | Emanuel Włoch",
   },
   description:
-    "Emanuel Włoch – Nowoczesne strony internetowe, e-commerce, dedykowane aplikacje webowe oraz systemy Edge Rzeszów / Polska. Superszybki czas ładowania i ocena 100/100 Lighthouse.",
+    "Projektuję i rozwijam nowoczesne strony internetowe, e-commerce oraz dedykowane aplikacje webowe w Next.js i TypeScript.",
   keywords: [
     "Emanuel Włoch",
     "tworzenie stron internetowych Rzeszów",
@@ -28,7 +28,6 @@ export const metadata: Metadata = {
     "Full-Stack Software Engineer",
     "aplikacje webowe",
     "sklepy internetowe",
-    "architektura Edge",
     "Turso DB",
     "TypeScript",
     "freelancer programista",
@@ -46,11 +45,11 @@ export const metadata: Metadata = {
     canonical: "https://emanuelwloch.pl",
   },
   openGraph: {
-    title: "Emanuel Włoch – Full-Stack Software Engineer & Edge Architect",
+    title: "Emanuel Włoch – Full-Stack Developer",
     description:
-      "Projektuję i buduję superszybkie strony internetowe, e-commerce oraz zaawansowane aplikacje webowe w architekturze Edge.",
+      "Projektuję i rozwijam strony internetowe, e-commerce oraz dedykowane aplikacje webowe.",
     url: "https://emanuelwloch.pl",
-    siteName: "Emanuel Włoch - Web Development & Software Architecture",
+    siteName: "Emanuel Włoch - Web Development",
     locale: "pl_PL",
     type: "website",
     images: [
@@ -66,10 +65,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Emanuel Włoch – Full-Stack Software Engineer",
+    title: "Emanuel Włoch – Full-Stack Developer",
     description:
-      "Projektuję i buduję nowoczesne aplikacje webowe, sklepy internetowe i systemy Edge.",
-    creator: "@xitali_",
+      "Projektuję i rozwijam nowoczesne aplikacje webowe i sklepy internetowe.",
     images: ["https://emanuelwloch.pl/og-image.jpg"],
   },
   robots: {
@@ -98,53 +96,6 @@ export const metadata: Metadata = {
   manifest: "/site.webmanifest",
 };
 
-// JSON-LD Structured Data Schema.org for Google Search Engine Knowledge Graph
-const jsonLdPerson = {
-  "@context": "https://schema.org",
-  "@type": "Person",
-  name: "Emanuel Włoch",
-  url: "https://emanuelwloch.pl",
-  image: "https://emanuelwloch.pl/og-image.jpg",
-  sameAs: [
-    "https://github.com/xitali",
-    "https://x.com/xitali_",
-    "https://www.linkedin.com/in/emanuelwloch",
-  ],
-  jobTitle: "Full-Stack Software Engineer & Architect",
-  worksFor: {
-    "@type": "Organization",
-    name: "Emanuel Włoch Software Services",
-  },
-  knowsAbout: [
-    "Next.js",
-    "React",
-    "TypeScript",
-    "Turso DB",
-    "Tailwind CSS",
-    "Web Performance",
-    "Edge Architecture",
-    "Software Architecture",
-  ],
-};
-
-const jsonLdBusiness = {
-  "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  name: "Emanuel Włoch - Tworzenie Stron & Aplikacji Webowych",
-  url: "https://emanuelwloch.pl",
-  image: "https://emanuelwloch.pl/og-image.jpg",
-  description:
-    "Tworzenie superszybkich stron internetowych, aplikacji webowych oraz sklepów e-commerce.",
-  address: {
-    "@type": "PostalAddress",
-    addressLocality: "Rzeszów",
-    addressCountry: "PL",
-  },
-  priceRange: "$$",
-  telephone: "+48 000 000 000",
-  email: "emanuel.wloch@gmail.com",
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -156,16 +107,6 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased scroll-smooth scroll-pt-28`}
     >
-      <head>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdPerson) }}
-        />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBusiness) }}
-        />
-      </head>
       <body className="min-h-full flex flex-col bg-slate-50 text-slate-900 dark:bg-[#060913] dark:text-slate-100 transition-colors duration-300">
         <ThemeProvider
           attribute="class"

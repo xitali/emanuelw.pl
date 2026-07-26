@@ -4,7 +4,7 @@ Kompleksowy przewodnik po pozycjonowaniu (SEO) oraz optymalizacji widoczności w
 
 ---
 
-## 🎯 1. Konfiguracja Meta-Tagów & Open Graph w Next.js 15
+## 🎯 1. Konfiguracja Meta-Tagów & Open Graph w Next.js 16
 
 Aby Google i media społecznościowe (LinkedIn, Facebook, X, Discord) poprawnie wyświetlały Twoją stronę i generowały wysoką klikalność (CTR), skonfiguruj metadata w pliku `src/app/layout.tsx`:
 
@@ -83,7 +83,7 @@ Google premiuje strony z ustrukturyzowanymi danymi (Rich Snippets). Umieść w s
 
 ## 🗺️ 3. Generowanie Plików `sitemap.xml` oraz `robots.txt`
 
-Next.js 15 pozwala na automatyczne generowanie sitemap.
+Next.js 16 pozwala na automatyczne generowanie sitemap.
 
 ### Stwórz plik `src/app/sitemap.ts`:
 ```typescript

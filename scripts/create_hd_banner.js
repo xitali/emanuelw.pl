@@ -1,5 +1,4 @@
 import fs from 'fs';
-import { execSync } from 'child_process';
 
 const bgImagePath = `C:\\Users\\emanu\\.gemini\\antigravity\\brain\\3d9c90dd-c2b0-4a90-8f8e-80760a303359\\fb_cover_bg_hd_1784990979692.jpg`;
 const bgBase64 = fs.readFileSync(bgImagePath).toString('base64');
@@ -111,7 +110,7 @@ const svgContent = `<svg xmlns="http://www.w3.org/2000/svg" width="${svgWidth}" 
       <!-- Zap Vector Icon -->
       <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" transform="translate(20, 13) scale(0.9)" fill="none" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
       <text x="48" y="31" class="tech-badge-text">
-        Next.js 15  <tspan fill="#334155">•</tspan>  React 19  <tspan fill="#334155">•</tspan>  TypeScript  <tspan fill="#334155">•</tspan>  Turso Edge DB  <tspan fill="#334155">•</tspan>  Tailwind v4
+        Next.js 16  <tspan fill="#334155">•</tspan>  React 19  <tspan fill="#334155">•</tspan>  TypeScript  <tspan fill="#334155">•</tspan>  Turso DB  <tspan fill="#334155">•</tspan>  Tailwind v4
       </text>
     </g>
 
@@ -180,7 +179,6 @@ const svgContent = `<svg xmlns="http://www.w3.org/2000/svg" width="${svgWidth}" 
 
 const svgPath = `C:\\Users\\emanu\\.gemini\\antigravity\\brain\\3d9c90dd-c2b0-4a90-8f8e-80760a303359\\facebook_banner_ultra_hd.svg`;
 const htmlPath = `C:\\Users\\emanu\\.gemini\\antigravity\\brain\\3d9c90dd-c2b0-4a90-8f8e-80760a303359\\render_banner.html`;
-const pngPath = `C:\\Users\\emanu\\.gemini\\antigravity\\brain\\3d9c90dd-c2b0-4a90-8f8e-80760a303359\\facebook_banner_ultra_hd.png`;
 
 fs.writeFileSync(svgPath, svgContent);
 

@@ -1,15 +1,45 @@
 import { recordPageVisit } from "@/lib/turso";
+import { checkRateLimit } from "@/lib/rate-limit";
+import { getClientIp } from "@/lib/request";
 import { NextResponse } from "next/server";
+import { z } from "zod";
 
-export async function POST(req: Request) {
+const visitSchema = z.object({
+  path: z.string().startsWith("/").max(200),
+});
+
+export async function POST(request: Request) {
   try {
-    const userAgent = req.headers.get("user-agent") || undefined;
-    const body = await req.json().catch(() => ({}));
-    const path = body.path || "/";
+    const body = await request.json();
+    const validation = visitSchema.safeParse(body);
 
-    await recordPageVisit(path, userAgent);
-    return NextResponse.json({ success: true });
-  } catch (error) {
-    return NextResponse.json({ success: false }, { status: 500 });
+    if (!validation.success) {
+      return NextResponse.json({ success: false }, { status: 400 });
+    }
+
+    const rateLimit = await checkRateLimit({
+      namespace: "visit",
+      identifier: getClientIp(request.headers),
+      limit: 30,
+      windowMs: 60 * 1000,
+    });
+
+    if (!rateLimit.allowed) {
+      return NextResponse.json(
+        { success: false },
+        {
+          status: 429,
+          headers: { "Retry-After": String(rateLimit.retryAfter) },
+        },
+      );
+    }
+
+    await recordPageVisit(validation.data.path);
+    return NextResponse.json(
+      { success: true },
+      { headers: { "Cache-Control": "no-store" } },
+    );
+  } catch {
+    return NextResponse.json({ success: false }, { status: 400 });
   }
 }

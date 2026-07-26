@@ -1,4 +1,10 @@
-import { getProjects, getServices, getSiteSettings, getPageVisitsCount, getTestimonials } from "@/lib/turso";
+import {
+  getProjects,
+  getServices,
+  getPublicSiteSettings,
+  getPageVisitsCount,
+  getTestimonials,
+} from "@/lib/turso";
 import Navbar from "@/components/Navbar";
 import BackgroundGlow from "@/components/BackgroundGlow";
 import HeroSection from "@/components/HeroSection";
@@ -9,6 +15,7 @@ import ContactSection from "@/components/ContactSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import Footer from "@/components/Footer";
 import VisitTracker from "@/components/VisitTracker";
+import HomeStructuredData from "@/components/HomeStructuredData";
 
 // High performance revalidation tag caching
 export const revalidate = 3600;
@@ -18,12 +25,14 @@ export default async function HomePage() {
   const [projects, services, settings, visitCount, testimonials] = await Promise.all([
     getProjects(),
     getServices(),
-    getSiteSettings(),
+    getPublicSiteSettings(),
     getPageVisitsCount(),
     getTestimonials(),
   ]);
 
   return (
+    <>
+      <HomeStructuredData />
     <main className="relative min-h-screen text-slate-900 dark:text-slate-100 overflow-x-hidden selection:bg-cyan-500/30 selection:text-cyan-900 dark:selection:text-cyan-200">
       <VisitTracker />
       <BackgroundGlow />
@@ -40,5 +49,6 @@ export default async function HomePage() {
 
       <Footer visitCount={visitCount} />
     </main>
+    </>
   );
 }

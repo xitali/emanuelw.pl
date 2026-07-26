@@ -1,36 +1,46 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# emanuelwloch.pl
 
-## Getting Started
+Portfolio i lekki CMS Emanuela Włocha. Produkcja działa pod
+[emanuelwloch.pl](https://emanuelwloch.pl).
 
-First, run the development server:
+## Stos
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Next.js 16, React 19 i TypeScript
+- Tailwind CSS v4 i Framer Motion
+- Turso (libSQL), Vercel Blob
+- Zod, JOSE, bcrypt, Vitest i GitHub Actions
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Uruchomienie lokalne
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Zainstaluj Node.js 20.9 lub nowszy.
+2. Wykonaj `npm install`.
+3. Skopiuj `.env.example` do `.env.local` i wpisz własne wartości.
+4. Wykonaj `npm run db:migrate`.
+5. Uruchom `npm run dev`.
+6. Otwórz `http://localhost:3000`.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Wymagane zmienne
 
-## Learn More
+- `TURSO_DATABASE_URL` — adres bazy Turso.
+- `TURSO_AUTH_TOKEN` — token dostępu do bazy.
+- `JWT_SECRET` — losowy sekret sesji, minimum 32 znaki.
+- `RATE_LIMIT_SALT` — osobny losowy sekret do anonimizacji identyfikatorów.
+- `BLOB_READ_WRITE_TOKEN` — token magazynu Vercel Blob dla obrazów CMS.
 
-To learn more about Next.js, take a look at the following resources:
+Nie wpisuj wartości tych zmiennych do kodu ani do zgłoszeń GitHub.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Kontrola jakości
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+`npm run check` uruchamia lint, kontrolę typów, testy i build produkcyjny.
+Każdy push oraz pull request jest sprawdzany również przez GitHub Actions.
 
-## Deploy on Vercel
+## Baza danych
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `npm run db:migrate` — tworzy bezpieczny rate limit i anonimowe statystyki.
+- `npm run db:repair` — stosuje zatwierdzone poprawki treści produkcyjnych.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Migracje są powtarzalne. Nie usuwają historycznej tabeli `page_visits`.
+
+## Bezpieczeństwo
+
+Zasady zgłaszania problemów opisuje [SECURITY.md](./SECURITY.md).

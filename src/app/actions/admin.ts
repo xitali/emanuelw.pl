@@ -1,20 +1,82 @@
 "use server";
 
-import { verifyAdminPassword, createProject, updateProject, deleteProject, deleteContactMessage, updateServicePrice, addTestimonial, deleteTestimonial } from "@/lib/turso";
-import { createAdminSession, logoutAdminSession, verifyAdminSession } from "@/lib/auth";
+import {
+  verifyAdminPassword,
+  createProject,
+  updateProject,
+  deleteProject,
+  deleteContactMessage,
+  updateServicePrice,
+  addTestimonial,
+  deleteTestimonial,
+} from "@/lib/turso";
+import {
+  createAdminSession,
+  logoutAdminSession,
+  verifyAdminSession,
+} from "@/lib/auth";
+import { checkRateLimit } from "@/lib/rate-limit";
+import { getClientIp } from "@/lib/request";
+import {
+  idSchema,
+  projectSchema,
+  servicePriceSchema,
+  splitCommaSeparated,
+  testimonialSchema,
+} from "@/lib/validation";
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
+import { headers } from "next/headers";
+
+async function requireAdmin() {
+  if (!(await verifyAdminSession())) {
+    throw new Error("Brak uprawnień.");
+  }
+}
+
+function projectFromFormData(formData: FormData) {
+  return projectSchema.safeParse({
+    title: formData.get("title"),
+    short_description: formData.get("short_description"),
+    detailed_description: formData.get("detailed_description"),
+    technologies: splitCommaSeparated(formData.get("technologies")),
+    images: splitCommaSeparated(formData.get("images")),
+    project_url: formData.get("project_url") ?? "",
+    repository_url: formData.get("repository_url") ?? "",
+    category: formData.get("category") ?? "web",
+    project_type: formData.get("project_type") ?? "web-app",
+    project_status: formData.get("project_status") ?? "active",
+    featured: formData.get("featured") === "on",
+  });
+}
 
 export async function loginAdminAction(formData: FormData) {
-  const password = formData.get("password") as string;
+  const password = formData.get("password");
 
-  if (!password) {
+  if (typeof password !== "string" || password.length < 8 || password.length > 200) {
     return { success: false, error: "Wprowadź hasło administratora." };
+  }
+
+  const headersList = await headers();
+  const rateLimit = await checkRateLimit({
+    namespace: "admin-login",
+    identifier: getClientIp(headersList),
+    limit: 5,
+    windowMs: 15 * 60 * 1000,
+  });
+
+  if (!rateLimit.allowed) {
+    return {
+      success: false,
+      error: `Zbyt wiele prób. Spróbuj ponownie za około ${Math.ceil(
+        rateLimit.retryAfter / 60,
+      )} min.`,
+    };
   }
 
   const isValid = await verifyAdminPassword(password);
   if (!isValid) {
-    return { success: false, error: "Nieprawidłowe hasło administratora!" };
+    return { success: false, error: "Nieprawidłowe hasło administratora." };
   }
 
   await createAdminSession();
@@ -27,34 +89,16 @@ export async function logoutAdminAction() {
 }
 
 export async function createProjectAction(formData: FormData) {
-  const isAuth = await verifyAdminSession();
-  if (!isAuth) throw new Error("Brak uprawnień!");
+  await requireAdmin();
+  const validation = projectFromFormData(formData);
+  if (!validation.success) {
+    return {
+      success: false,
+      error: validation.error.issues[0]?.message ?? "Nieprawidłowe dane projektu.",
+    };
+  }
 
-  const title = formData.get("title") as string;
-  const short_description = formData.get("short_description") as string;
-  const detailed_description = formData.get("detailed_description") as string;
-  const technologiesRaw = formData.get("technologies") as string;
-  const imagesRaw = formData.get("images") as string;
-  const project_url = formData.get("project_url") as string;
-  const repository_url = formData.get("repository_url") as string;
-  const category = formData.get("category") as string;
-  const project_type = formData.get("project_type") as string;
-
-  const technologies = technologiesRaw ? technologiesRaw.split(",").map((t) => t.trim()) : [];
-  const images = imagesRaw ? imagesRaw.split(",").map((img) => img.trim()) : [];
-
-  await createProject({
-    title,
-    short_description,
-    detailed_description,
-    technologies,
-    images,
-    project_url,
-    repository_url,
-    category,
-    project_type,
-    featured: true,
-  });
+  await createProject(validation.data);
 
   revalidatePath("/admin");
   revalidatePath("/");
@@ -62,31 +106,14 @@ export async function createProjectAction(formData: FormData) {
 }
 
 export async function updateProjectAction(id: string, formData: FormData) {
-  const isAuth = await verifyAdminSession();
-  if (!isAuth) throw new Error("Brak uprawnień!");
+  await requireAdmin();
+  const validId = idSchema.safeParse(id);
+  const validation = projectFromFormData(formData);
+  if (!validId.success || !validation.success) {
+    return { success: false, error: "Nieprawidłowe dane projektu." };
+  }
 
-  const title = formData.get("title") as string;
-  const short_description = formData.get("short_description") as string;
-  const detailed_description = formData.get("detailed_description") as string;
-  const technologiesRaw = formData.get("technologies") as string;
-  const imagesRaw = formData.get("images") as string;
-  const project_url = formData.get("project_url") as string;
-  const repository_url = formData.get("repository_url") as string;
-  const category = formData.get("category") as string;
-
-  const technologies = technologiesRaw ? technologiesRaw.split(",").map((t) => t.trim()) : [];
-  const images = imagesRaw ? imagesRaw.split(",").map((img) => img.trim()) : [];
-
-  await updateProject(id, {
-    title,
-    short_description,
-    detailed_description,
-    technologies,
-    images,
-    project_url,
-    repository_url,
-    category,
-  });
+  await updateProject(validId.data, validation.data);
 
   revalidatePath("/admin");
   revalidatePath("/");
@@ -94,49 +121,42 @@ export async function updateProjectAction(id: string, formData: FormData) {
 }
 
 export async function deleteProjectAction(id: string) {
-  const isAuth = await verifyAdminSession();
-  if (!isAuth) throw new Error("Brak uprawnień!");
-
-  await deleteProject(id);
+  await requireAdmin();
+  await deleteProject(idSchema.parse(id));
   revalidatePath("/admin");
   revalidatePath("/");
   return { success: true };
 }
 
 export async function deleteMessageAction(id: string) {
-  const isAuth = await verifyAdminSession();
-  if (!isAuth) throw new Error("Brak uprawnień!");
-
-  await deleteContactMessage(id);
+  await requireAdmin();
+  await deleteContactMessage(idSchema.parse(id));
   revalidatePath("/admin");
   return { success: true };
 }
 
 export async function updateServicePriceAction(id: string, priceFrom: number) {
-  const isAuth = await verifyAdminSession();
-  if (!isAuth) throw new Error("Brak uprawnień!");
-
-  await updateServicePrice(id, priceFrom);
+  await requireAdmin();
+  const data = servicePriceSchema.parse({ id, price: priceFrom });
+  await updateServicePrice(data.id, data.price);
   revalidatePath("/admin");
   revalidatePath("/");
   return { success: true };
 }
 
 export async function createTestimonialAction(formData: FormData) {
-  const isAuth = await verifyAdminSession();
-  if (!isAuth) throw new Error("Brak uprawnień!");
-
-  const client_name = formData.get("client_name") as string;
-  const company = formData.get("company") as string;
-  const content = formData.get("content") as string;
-  const rating = Number(formData.get("rating") || 5);
-
-  await addTestimonial({
-    client_name,
-    company,
-    content,
-    rating
+  await requireAdmin();
+  const validation = testimonialSchema.safeParse({
+    client_name: formData.get("client_name"),
+    company: formData.get("company"),
+    content: formData.get("content"),
+    rating: formData.get("rating"),
   });
+  if (!validation.success) {
+    return { success: false, error: "Sprawdź dane opinii." };
+  }
+
+  await addTestimonial(validation.data);
 
   revalidatePath("/admin");
   revalidatePath("/");
@@ -144,10 +164,8 @@ export async function createTestimonialAction(formData: FormData) {
 }
 
 export async function deleteTestimonialAction(id: string) {
-  const isAuth = await verifyAdminSession();
-  if (!isAuth) throw new Error("Brak uprawnień!");
-
-  await deleteTestimonial(id);
+  await requireAdmin();
+  await deleteTestimonial(idSchema.parse(id));
   revalidatePath("/admin");
   revalidatePath("/");
   return { success: true };

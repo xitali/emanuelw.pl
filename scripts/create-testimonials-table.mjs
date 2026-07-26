@@ -1,7 +1,7 @@
-const { createClient } = require('@libsql/client');
+import { createClient } from "@libsql/client";
 const turso = createClient({
-  url: 'libsql://***REMOVED_TURSO_URL***',
-  authToken: '***REMOVED_JWT_TOKEN***'
+  url: process.env.TURSO_DATABASE_URL,
+  authToken: process.env.TURSO_AUTH_TOKEN,
 });
 
 turso.execute(`
@@ -14,6 +14,7 @@ turso.execute(`
     is_published INTEGER DEFAULT 1,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP
   )
-`).then(() => {
-  console.log('Table created successfully');
-}).catch(console.error);
+`);
+
+await turso.close();
+console.log("Tabela testimonials jest gotowa.");

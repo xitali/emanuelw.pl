@@ -1,14 +1,20 @@
+import "server-only";
+
 import { createClient } from "@libsql/client";
-import { Project, Service, SiteSetting, ContactMessage, Testimonial } from "@/types";
+import {
+  Project,
+  Service,
+  ContactMessage,
+  Testimonial,
+  PublicSiteSettings,
+} from "@/types";
 import { unstable_cache, revalidatePath } from "next/cache";
 import bcrypt from "bcryptjs";
-
-const url = process.env.TURSO_DATABASE_URL || "libsql://***REMOVED_TURSO_URL***";
-const authToken = process.env.TURSO_AUTH_TOKEN || "***REMOVED_SECRET***";
+import { requireServerEnv } from "@/lib/env";
 
 export const turso = createClient({
-  url,
-  authToken,
+  url: requireServerEnv("TURSO_DATABASE_URL"),
+  authToken: requireServerEnv("TURSO_AUTH_TOKEN"),
 });
 
 // Utility helper to safely parse JSON arrays from DB text columns
@@ -40,7 +46,9 @@ function safeParseJsonArray(jsonStr: unknown): string[] {
 export const getProjects = unstable_cache(
   async (): Promise<Project[]> => {
     try {
-      const result = await turso.execute("SELECT * FROM projects ORDER BY created_at DESC");
+      const result = await turso.execute(
+        "SELECT * FROM projects ORDER BY featured DESC, created_at DESC",
+      );
       return result.rows.map((row) => ({
         id: String(row.id || ''),
         title: String(row.title || ''),
@@ -84,10 +92,39 @@ export const getProjects = unstable_cache(
   { revalidate: 3600 }
 );
 
+export async function getAdminProjects(): Promise<Project[]> {
+  const result = await turso.execute(
+    "SELECT * FROM projects ORDER BY featured DESC, created_at DESC",
+  );
+
+  return result.rows.map((row) => ({
+    id: String(row.id || ""),
+    title: String(row.title || ""),
+    short_description: String(row.short_description || ""),
+    detailed_description: String(row.detailed_description || ""),
+    technologies: safeParseJsonArray(row.technologies),
+    images: safeParseJsonArray(row.images),
+    project_url: row.project_url ? String(row.project_url) : undefined,
+    repository_url: row.repository_url
+      ? String(row.repository_url)
+      : undefined,
+    category: row.category ? String(row.category) : undefined,
+    project_type: row.project_type ? String(row.project_type) : undefined,
+    featured: row.featured === "1" || row.featured === 1,
+    project_status: row.project_status
+      ? String(row.project_status)
+      : "active",
+    created_at: row.created_at ? String(row.created_at) : undefined,
+    updated_at: row.updated_at ? String(row.updated_at) : undefined,
+  }));
+}
+
 export const getServices = unstable_cache(
   async (): Promise<Service[]> => {
     try {
-      const result = await turso.execute("SELECT * FROM services ORDER BY CAST(order_index AS INTEGER) ASC");
+      const result = await turso.execute(
+        "SELECT * FROM services WHERE COALESCE(active, 1) = 1 ORDER BY CAST(COALESCE(order_index, 0) AS INTEGER) ASC",
+      );
       return result.rows.map((row) => ({
         id: String(row.id || ''),
         name: String(row.title || row.name || ''),
@@ -111,14 +148,30 @@ export const getServices = unstable_cache(
   { revalidate: 3600 }
 );
 
-export const getSiteSettings = unstable_cache(
-  async (): Promise<Record<string, string>> => {
+const PUBLIC_SETTING_KEYS = [
+  "personal_email",
+  "personal_phone",
+  "social_facebook",
+  "social_github",
+  "social_instagram",
+  "social_linkedin",
+] as const;
+
+export const getPublicSiteSettings = unstable_cache(
+  async (): Promise<PublicSiteSettings> => {
     try {
-      const result = await turso.execute("SELECT setting_key, setting_value FROM site_settings");
-      const settings: Record<string, string> = {};
+      const placeholders = PUBLIC_SETTING_KEYS.map(() => "?").join(", ");
+      const result = await turso.execute({
+        sql: `SELECT setting_key, setting_value FROM site_settings WHERE setting_key IN (${placeholders})`,
+        args: [...PUBLIC_SETTING_KEYS],
+      });
+      const settings: PublicSiteSettings = {};
       for (const row of result.rows) {
         if (row.setting_key && row.setting_value) {
-          settings[String(row.setting_key)] = String(row.setting_value);
+          const key = String(row.setting_key) as keyof PublicSiteSettings;
+          if (PUBLIC_SETTING_KEYS.includes(key)) {
+            settings[key] = String(row.setting_value);
+          }
         }
       }
       return settings;
@@ -149,14 +202,15 @@ export async function submitContactMessage(data: {
   return { id, success: true };
 }
 
-export async function recordPageVisit(pagePath: string, userAgent?: string, sessionId?: string) {
+export async function recordPageVisit(pagePath: string) {
   try {
-    const id = crypto.randomUUID();
-    const createdAt = new Date().toISOString();
+    const viewDate = new Date().toISOString().slice(0, 10);
     await turso.execute({
-      sql: `INSERT INTO page_visits (id, page_path, visitor_ip, user_agent, referrer, session_id, created_at)
-            VALUES (?, ?, NULL, ?, NULL, ?, ?)`,
-      args: [id, pagePath, userAgent || null, sessionId || null, createdAt],
+      sql: `INSERT INTO daily_page_views (view_date, page_path, view_count)
+            VALUES (?, ?, 1)
+            ON CONFLICT(view_date, page_path)
+            DO UPDATE SET view_count = view_count + 1`,
+      args: [viewDate, pagePath],
     });
   } catch (err) {
     console.error("Error recording page visit:", err);
@@ -190,9 +244,11 @@ export async function deleteContactMessage(id: string) {
 
 export async function getPageVisitsCount(): Promise<number> {
   try {
-    const result = await turso.execute("SELECT COUNT(*) as count FROM page_visits");
+    const result = await turso.execute(
+      "SELECT COALESCE(SUM(view_count), 0) as count FROM daily_page_views",
+    );
     return Number(result.rows[0]?.count || 0);
-  } catch (err) {
+  } catch {
     return 0;
   }
 }
@@ -296,9 +352,6 @@ export async function deleteProject(id: string) {
 
 export async function verifyAdminPassword(password: string): Promise<boolean> {
   try {
-    const envPassword = process.env.ADMIN_PASSWORD || "***REMOVED_SECRET***";
-    if (password === envPassword) return true;
-
     const result = await turso.execute("SELECT password_hash FROM admin_users LIMIT 1");
     if (result.rows.length === 0) return false;
 
@@ -321,7 +374,7 @@ export const getTestimonials = unstable_cache(
         client_name: String(row.client_name),
         company: row.company ? String(row.company) : undefined,
         content: String(row.content),
-        rating: Number(row.rating),
+        rating: Math.min(5, Math.max(1, Number(row.rating) || 5)),
         is_published: row.is_published === 1 || row.is_published === "1",
         created_at: String(row.created_at || ''),
       }));
@@ -365,14 +418,11 @@ export async function deleteTestimonial(id: string) {
 
 export async function getPageVisitsStats() {
   try {
-    // Prosta agregacja wizyt po datach (ostatnie 30 dni)
     const result = await turso.execute(`
-      SELECT 
-        DATE(created_at) as date, 
-        COUNT(*) as count 
-      FROM page_visits 
-      GROUP BY DATE(created_at)
-      ORDER BY DATE(created_at) DESC
+      SELECT view_date as date, SUM(view_count) as count
+      FROM daily_page_views
+      GROUP BY view_date
+      ORDER BY view_date DESC
       LIMIT 30
     `);
     
@@ -387,4 +437,9 @@ export async function getPageVisitsStats() {
     console.error("Error fetching analytics:", err);
     return [];
   }
+}
+
+export async function getProjectById(id: string): Promise<Project | null> {
+  const projects = await getProjects();
+  return projects.find((project) => project.id === id) ?? null;
 }

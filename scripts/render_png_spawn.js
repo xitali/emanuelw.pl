@@ -1,5 +1,4 @@
 import { spawnSync } from 'child_process';
-import path from 'path';
 import fs from 'fs';
 
 const htmlFile = `C:\\Users\\emanu\\.gemini\\antigravity\\brain\\3d9c90dd-c2b0-4a90-8f8e-80760a303359\\render_banner.html`;
@@ -23,7 +22,7 @@ if (fs.existsSync(outputPng)) {
 } else {
   console.log('PNG creation failed, searching for screenshot.png...');
   // Try default screenshot name
-  const res2 = spawnSync(edgeExe, [
+  spawnSync(edgeExe, [
     '--headless=new',
     '--disable-gpu',
     '--screenshot',

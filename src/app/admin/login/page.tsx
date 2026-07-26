@@ -49,7 +49,7 @@ export default function AdminLoginPage() {
         </div>
 
         {errorMsg && (
-          <div className="p-4 rounded-xl bg-rose-50 dark:bg-rose-950/60 border border-rose-200 dark:border-rose-500/40 text-rose-600 dark:text-rose-300 text-xs flex items-center gap-2">
+          <div role="alert" aria-live="polite" className="p-4 rounded-xl bg-rose-50 dark:bg-rose-950/60 border border-rose-200 dark:border-rose-500/40 text-rose-600 dark:text-rose-300 text-xs flex items-center gap-2">
             <AlertCircle className="w-4 h-4 text-rose-500 dark:text-rose-400 shrink-0" />
             <span>{errorMsg}</span>
           </div>
@@ -57,11 +57,12 @@ export default function AdminLoginPage() {
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-1.5">
-            <label className="text-xs font-mono text-slate-600 dark:text-slate-300 flex items-center gap-2">
+            <label htmlFor="admin-password" className="text-xs font-mono text-slate-600 dark:text-slate-300 flex items-center gap-2">
               <KeyRound className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" /> Hasło Administratora
             </label>
             <div className="relative">
               <input
+                id="admin-password"
                 type="password"
                 name="password"
                 required

@@ -57,6 +57,15 @@ export interface SiteSetting {
   updated_at?: string;
 }
 
+export interface PublicSiteSettings {
+  personal_email?: string;
+  personal_phone?: string;
+  social_facebook?: string;
+  social_github?: string;
+  social_instagram?: string;
+  social_linkedin?: string;
+}
+
 export interface ContactMessage {
   id: string;
   name: string;

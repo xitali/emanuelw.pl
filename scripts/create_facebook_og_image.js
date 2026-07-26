@@ -120,7 +120,7 @@ const svgContent = `<svg xmlns="http://www.w3.org/2000/svg" width="${svgWidth}" 
     <g transform="translate(50, 245)">
       <g transform="translate(0, 0)">
         <rect width="130" height="36" rx="8" fill="rgba(2, 6, 23, 0.85)" stroke="rgba(56, 189, 248, 0.35)" stroke-width="1" />
-        <text x="65" y="23" class="pill-text" text-anchor="middle">Next.js 15</text>
+        <text x="65" y="23" class="pill-text" text-anchor="middle">Next.js 16</text>
       </g>
       <g transform="translate(142, 0)">
         <rect width="115" height="36" rx="8" fill="rgba(2, 6, 23, 0.85)" stroke="rgba(56, 189, 248, 0.35)" stroke-width="1" />

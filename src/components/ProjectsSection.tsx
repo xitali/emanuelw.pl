@@ -5,6 +5,7 @@ import { Project } from "@/types";
 import ProjectModal from "./ProjectModal";
 import Image from "next/image";
 import { Sparkles, Layers, ArrowUpRight } from "lucide-react";
+import { projectMatchesCategory } from "@/lib/project-filter";
 
 interface ProjectsSectionProps {
   initialProjects: Project[];
@@ -15,17 +16,15 @@ export default function ProjectsSection({ initialProjects }: ProjectsSectionProp
   const [activeModalProject, setActiveModalProject] = useState<Project | null>(null);
 
   const categories = [
-    { id: "all", label: "Wszystkie Projects" },
-    { id: "web", label: "Web Development" },
+    { id: "all", label: "Wszystkie projekty" },
+    { id: "web", label: "Strony i aplikacje webowe" },
     { id: "e-commerce", label: "E-commerce" },
     { id: "mobile", label: "Aplikacje Mobilne" },
   ];
 
-  const filteredProjects = initialProjects.filter((project) => {
-    if (selectedCategory === "all") return true;
-    const cat = (project.category || project.project_type || "").toLowerCase();
-    return cat.includes(selectedCategory);
-  });
+  const filteredProjects = initialProjects.filter((project) =>
+    projectMatchesCategory(project, selectedCategory),
+  );
 
   return (
     <section id="projekty" className="py-24 relative z-10 border-t border-slate-200 dark:border-slate-800/60">
@@ -50,6 +49,7 @@ export default function ProjectsSection({ initialProjects }: ProjectsSectionProp
               <button
                 key={cat.id}
                 onClick={() => setSelectedCategory(cat.id)}
+                aria-pressed={selectedCategory === cat.id}
                 className={`px-5 py-2.5 rounded-full text-xs font-semibold tracking-wide transition-all ${
                   selectedCategory === cat.id
                     ? "bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/25"
@@ -69,10 +69,13 @@ export default function ProjectsSection({ initialProjects }: ProjectsSectionProp
             const mainImg = hasImage ? project.images[0] : null;
 
             return (
-              <div
+              <button
+                type="button"
                 key={project.id}
                 onClick={() => setActiveModalProject(project)}
-                className="glass-panel-interactive rounded-3xl overflow-hidden cursor-pointer flex flex-col group border border-slate-200 dark:border-slate-800"
+                aria-haspopup="dialog"
+                aria-label={`Zobacz szczegóły projektu ${project.title}`}
+                className="glass-panel-interactive rounded-3xl overflow-hidden cursor-pointer flex flex-col group border border-slate-200 dark:border-slate-800 text-left"
               >
                 {/* Image / Banner */}
                 <div className="relative h-56 w-full bg-slate-100 dark:bg-slate-950 overflow-hidden">
@@ -95,6 +98,16 @@ export default function ProjectsSection({ initialProjects }: ProjectsSectionProp
                     <span className="px-3 py-1 rounded-full bg-white/90 dark:bg-black/70 backdrop-blur-md border border-cyan-500/30 text-cyan-700 dark:text-cyan-300 text-[10px] font-mono uppercase tracking-wider shadow-sm">
                       {project.project_type || project.category || "Web App"}
                     </span>
+                    {project.project_status === "archived" && (
+                      <span className="px-3 py-1 rounded-full bg-slate-900/80 backdrop-blur-md border border-slate-600 text-slate-100 text-[10px] font-mono uppercase tracking-wider">
+                        Case study
+                      </span>
+                    )}
+                    {project.project_status === "in-development" && (
+                      <span className="px-3 py-1 rounded-full bg-amber-950/80 backdrop-blur-md border border-amber-500/50 text-amber-200 text-[10px] font-mono uppercase tracking-wider">
+                        W realizacji
+                      </span>
+                    )}
                   </div>
 
                   <div className="absolute top-4 right-4">
@@ -134,10 +147,16 @@ export default function ProjectsSection({ initialProjects }: ProjectsSectionProp
                     </div>
                   </div>
                 </div>
-              </div>
+              </button>
             );
           })}
         </div>
+
+        {filteredProjects.length === 0 && (
+          <p className="text-center text-slate-600 dark:text-slate-400">
+            Brak projektów w tej kategorii.
+          </p>
+        )}
 
         {/* Modal Drawer */}
         <ProjectModal

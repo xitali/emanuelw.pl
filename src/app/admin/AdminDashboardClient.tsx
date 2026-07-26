@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Project, ContactMessage, Service, Testimonial } from "@/types";
 import { createProjectAction, updateProjectAction, deleteProjectAction, deleteMessageAction, logoutAdminAction, updateServicePriceAction, createTestimonialAction, deleteTestimonialAction } from "@/app/actions/admin";
-import { ArrowLeft, MessageSquare, Code2, Rocket, Eye, ShieldCheck, Clock, Mail, Trash2, Plus, Edit3, X, CheckCircle, Image as ImageIcon, Save, BarChart, Star, Activity, Upload } from "lucide-react";
+import { ArrowLeft, MessageSquare, Code2, Rocket, Eye, ShieldCheck, Trash2, Plus, Edit3, X, CheckCircle, Image as ImageIcon, Save, BarChart, Star, Activity, Upload } from "lucide-react";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 import Link from "next/link";
 import { useTheme } from "next-themes";
@@ -143,7 +143,7 @@ export default function AdminDashboardClient({ messages, visitsCount, projects, 
             <ShieldCheck className="w-8 h-8 text-cyan-600 dark:text-cyan-400" /> Panel CMS & Admin Turso
           </h1>
           <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
-            Pełny CRUD dla bazy danych `emanuelw-xitali.aws-eu-west-1.turso.io`
+            Bezpieczne zarządzanie treścią portfolio
           </p>
         </div>
 
@@ -157,7 +157,7 @@ export default function AdminDashboardClient({ messages, visitsCount, projects, 
       </div>
 
       {actionStatus && (
-        <div className="max-w-7xl mx-auto p-4 rounded-2xl bg-emerald-50 dark:bg-emerald-950/80 border border-emerald-200 dark:border-emerald-500/50 text-emerald-700 dark:text-emerald-300 text-sm font-medium flex items-center gap-2">
+        <div role="status" aria-live="polite" className="max-w-7xl mx-auto p-4 rounded-2xl bg-emerald-50 dark:bg-emerald-950/80 border border-emerald-200 dark:border-emerald-500/50 text-emerald-700 dark:text-emerald-300 text-sm font-medium flex items-center gap-2">
           <CheckCircle className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
           <span>{actionStatus}</span>
         </div>
@@ -455,7 +455,7 @@ export default function AdminDashboardClient({ messages, visitsCount, projects, 
                     <div className="flex text-amber-500 dark:text-amber-400">
                       {[...Array(testim.rating)].map((_, i) => <Star key={i} className="w-4 h-4 fill-amber-500 dark:fill-amber-400" />)}
                     </div>
-                    <p className="text-sm text-slate-700 dark:text-slate-300 italic">"{testim.content}"</p>
+                    <blockquote className="text-sm text-slate-700 dark:text-slate-300 italic">{testim.content}</blockquote>
                   </div>
                 ))}
               </div>
@@ -522,7 +522,7 @@ export default function AdminDashboardClient({ messages, visitsCount, projects, 
               </div>
               <div>
                 <label className="block text-slate-700 dark:text-slate-300 mb-1 font-mono font-semibold">Technologie (oddzielone przecinkami)</label>
-                <input type="text" name="technologies" placeholder="Next.js 15, TypeScript, Turso, Tailwind" className="w-full p-3 rounded-xl bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-white font-sans" />
+                <input type="text" name="technologies" placeholder="Next.js 16, TypeScript, Turso, Tailwind" className="w-full p-3 rounded-xl bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-white font-sans" />
               </div>
               <div>
                 <label className="block text-slate-700 dark:text-slate-300 mb-1 font-mono font-semibold">Adresy Obrazów (URL lub wgraj z komputera)</label>
@@ -550,6 +550,32 @@ export default function AdminDashboardClient({ messages, visitsCount, projects, 
                   <input type="text" name="repository_url" placeholder="https://github.com/..." className="w-full p-3 rounded-xl bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-white font-sans" />
                 </div>
               </div>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div>
+                  <label htmlFor="add-category" className="block text-slate-700 dark:text-slate-300 mb-1 font-mono font-semibold">Kategoria</label>
+                  <select id="add-category" name="category" defaultValue="web" className="w-full p-3 rounded-xl bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-slate-800">
+                    <option value="web">Web</option>
+                    <option value="e-commerce">E-commerce</option>
+                    <option value="mobile">Mobile</option>
+                  </select>
+                </div>
+                <div>
+                  <label htmlFor="add-project-type" className="block text-slate-700 dark:text-slate-300 mb-1 font-mono font-semibold">Typ projektu</label>
+                  <input id="add-project-type" name="project_type" defaultValue="web-app" className="w-full p-3 rounded-xl bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-slate-800" />
+                </div>
+                <div>
+                  <label htmlFor="add-project-status" className="block text-slate-700 dark:text-slate-300 mb-1 font-mono font-semibold">Status</label>
+                  <select id="add-project-status" name="project_status" defaultValue="active" className="w-full p-3 rounded-xl bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-slate-800">
+                    <option value="active">Aktywny</option>
+                    <option value="in-development">W budowie</option>
+                    <option value="archived">Archiwalny</option>
+                  </select>
+                </div>
+              </div>
+              <label className="flex items-center gap-2 text-slate-700 dark:text-slate-300 font-semibold">
+                <input type="checkbox" name="featured" className="size-4 accent-cyan-500" />
+                Wyróżniony projekt
+              </label>
             </div>
 
             <button type="submit" disabled={loading} className="neon-glow-button w-full py-3 rounded-xl font-semibold text-white">
@@ -611,6 +637,32 @@ export default function AdminDashboardClient({ messages, visitsCount, projects, 
                   <input type="text" name="repository_url" defaultValue={editingProject.repository_url} className="w-full p-3 rounded-xl bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-white font-sans" />
                 </div>
               </div>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                <div>
+                  <label htmlFor="edit-category" className="block text-slate-700 dark:text-slate-300 mb-1 font-mono font-semibold">Kategoria</label>
+                  <select id="edit-category" name="category" defaultValue={editingProject.category || "web"} className="w-full p-3 rounded-xl bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-slate-800">
+                    <option value="web">Web</option>
+                    <option value="e-commerce">E-commerce</option>
+                    <option value="mobile">Mobile</option>
+                  </select>
+                </div>
+                <div>
+                  <label htmlFor="edit-project-type" className="block text-slate-700 dark:text-slate-300 mb-1 font-mono font-semibold">Typ projektu</label>
+                  <input id="edit-project-type" name="project_type" defaultValue={editingProject.project_type || "web-app"} className="w-full p-3 rounded-xl bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-slate-800" />
+                </div>
+                <div>
+                  <label htmlFor="edit-project-status" className="block text-slate-700 dark:text-slate-300 mb-1 font-mono font-semibold">Status</label>
+                  <select id="edit-project-status" name="project_status" defaultValue={editingProject.project_status || "active"} className="w-full p-3 rounded-xl bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-slate-800">
+                    <option value="active">Aktywny</option>
+                    <option value="in-development">W budowie</option>
+                    <option value="archived">Archiwalny</option>
+                  </select>
+                </div>
+              </div>
+              <label className="flex items-center gap-2 text-slate-700 dark:text-slate-300 font-semibold">
+                <input type="checkbox" name="featured" defaultChecked={Boolean(editingProject.featured)} className="size-4 accent-cyan-500" />
+                Wyróżniony projekt
+              </label>
             </div>
 
             <button type="submit" disabled={loading} className="neon-glow-button w-full py-3 rounded-xl font-semibold text-white">
