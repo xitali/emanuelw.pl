@@ -55,9 +55,11 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/og-image.jpg",
-        width: 1640,
-        height: 624,
+        url: "https://emanuelwloch.pl/og-image.jpg",
+        secureUrl: "https://emanuelwloch.pl/og-image.jpg",
+        width: 1200,
+        height: 630,
+        type: "image/jpeg",
         alt: "Emanuel Włoch Full-Stack Software Engineer",
       },
     ],
@@ -68,7 +70,7 @@ export const metadata: Metadata = {
     description:
       "Projektuję i buduję nowoczesne aplikacje webowe, sklepy internetowe i systemy Edge.",
     creator: "@xitali_",
-    images: ["/og-image.jpg"],
+    images: ["https://emanuelwloch.pl/og-image.jpg"],
   },
   robots: {
     index: true,
