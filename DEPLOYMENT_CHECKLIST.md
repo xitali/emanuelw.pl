@@ -29,11 +29,13 @@ punktów 1–3.
 3. Wybierz `Blob`.
 4. Nazwij magazyn np. `emanuelw-project-images`.
 5. Wybierz dostęp publiczny i połącz magazyn z tym projektem.
-6. Sprawdź w `Settings` → `Environment Variables`, czy pojawił się
-   `BLOB_READ_WRITE_TOKEN`.
+6. Sprawdź w `Settings` → `Environment Variables`, czy pojawiły się
+   `BLOB_STORE_ID` i `BLOB_WEBHOOK_PUBLIC_KEY`.
 
-Vercel dodaje tę zmienną automatycznie po połączeniu magazynu z projektem:
-[dokumentacja Vercel Blob](https://vercel.com/docs/vercel-blob/using-blob-sdk).
+Nowe połączenia Vercel Blob domyślnie korzystają z krótkotrwałego tokenu OIDC,
+dlatego `BLOB_READ_WRITE_TOKEN` może nie być widoczny i nie jest wtedy
+wymagany. Vercel przekazuje token OIDC funkcjom automatycznie:
+[Vercel Blob z OIDC](https://vercel.com/changelog/vercel-blob-now-supports-oidc-authentication).
 
 ## 3. Unieważnij ujawniony token Turso
 
@@ -60,9 +62,11 @@ Ta operacja powoduje krótką przerwę w dostępie do bazy.
 
 4. Skopiuj wynik tylko raz.
 5. W Vercel wejdź w `Settings` → `Environment Variables`.
-6. Edytuj `TURSO_AUTH_TOKEN` i wklej nowy token.
-7. W lokalnym `.env.local` również zastąp wartość `TURSO_AUTH_TOKEN`.
-8. Usuń z `.env.local` nieużywane `ADMIN_PASSWORD`.
+6. Edytuj `TURSO_AUTH_TOKEN`, wklej nowy token i upewnij się, że zmienna
+   obejmuje co najmniej środowiska `Production` i `Preview`.
+7. Sprawdź, czy `TURSO_DATABASE_URL` również obejmuje `Production` i `Preview`.
+8. W lokalnym `.env.local` również zastąp wartość `TURSO_AUTH_TOKEN`.
+9. Usuń z `.env.local` nieużywane `ADMIN_PASSWORD`.
 
 Oficjalne polecenia:
 [unieważnianie tokenów](https://docs.turso.tech/cli/db/tokens/invalidate) i
