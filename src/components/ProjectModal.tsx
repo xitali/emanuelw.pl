@@ -77,7 +77,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto overscroll-contain p-4 sm:p-6 md:p-10 bg-black/75 backdrop-blur-md animate-fadeIn"
+      className="fixed inset-0 z-[100] flex items-center justify-center overflow-y-auto overscroll-contain p-4 sm:p-6 md:p-10 bg-black/75 backdrop-blur-md animate-fadeIn"
       onMouseDown={(event) => {
         if (event.target === event.currentTarget) onClose();
       }}
