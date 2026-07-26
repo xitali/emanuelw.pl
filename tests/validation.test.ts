@@ -4,6 +4,7 @@ import {
   projectSchema,
   splitCommaSeparated,
 } from "../src/lib/validation";
+import { PROJECT_QUOTE_PREFILL } from "../src/lib/contact-prefill";
 
 describe("walidacja formularzy", () => {
   it("akceptuje poprawną wiadomość", () => {
@@ -53,5 +54,12 @@ describe("walidacja formularzy", () => {
       "TypeScript",
       "Zod",
     ]);
+  });
+
+  it("przygotowuje czytelny szablon zapytania o wycenę", () => {
+    expect(PROJECT_QUOTE_PREFILL.subject).toBe("Zapytanie o wycenę projektu");
+    expect(PROJECT_QUOTE_PREFILL.message).toContain("Rodzaj projektu:");
+    expect(PROJECT_QUOTE_PREFILL.message).toContain("Budżet orientacyjny:");
+    expect(PROJECT_QUOTE_PREFILL.message).toContain("[");
   });
 });

@@ -4,11 +4,18 @@ import { useState, useEffect } from "react";
 import { Terminal, Code2, Sparkles, MessageSquare, Menu, X, Rocket, Wand2 } from "lucide-react";
 import { useTheme } from "next-themes";
 import Link from "next/link";
+import { openContactForm, PROJECT_QUOTE_PREFILL } from "@/lib/contact-prefill";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { resolvedTheme, setTheme } = useTheme();
+
+  const handleProjectQuote = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    setMobileMenuOpen(false);
+    openContactForm(PROJECT_QUOTE_PREFILL);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -79,6 +86,7 @@ export default function Navbar() {
           
           <a
             href="#kontakt"
+            onClick={handleProjectQuote}
             className="neon-glow-button px-5 py-2.5 rounded-full text-sm font-semibold text-white tracking-wide flex items-center gap-2"
           >
             <Sparkles className="w-4 h-4" />
@@ -125,7 +133,7 @@ export default function Navbar() {
           </button>
           <a
             href="#kontakt"
-            onClick={() => setMobileMenuOpen(false)}
+            onClick={handleProjectQuote}
             className="block text-center neon-glow-button py-3 rounded-xl text-white font-semibold mt-4"
           >
             Wyceń Projekt

@@ -1,12 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Project, ContactMessage, Service, Testimonial } from "@/types";
 import { createProjectAction, updateProjectAction, deleteProjectAction, deleteMessageAction, logoutAdminAction, updateServicePriceAction, createTestimonialAction, deleteTestimonialAction } from "@/app/actions/admin";
 import { ArrowLeft, MessageSquare, Code2, Rocket, Eye, ShieldCheck, Trash2, Plus, Edit3, X, CheckCircle, Image as ImageIcon, Save, BarChart, Star, Activity, Upload } from "lucide-react";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 import Link from "next/link";
 import { useTheme } from "next-themes";
+import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
 
 interface AdminDashboardClientProps {
   messages: ContactMessage[];
@@ -30,6 +31,22 @@ export default function AdminDashboardClient({ messages, visitsCount, projects, 
   const [loading, setLoading] = useState(false);
   const [uploadingImage, setUploadingImage] = useState(false);
   const [actionStatus, setActionStatus] = useState<string | null>(null);
+  const isProjectModalOpen = isAddModalOpen || Boolean(editingProject);
+
+  useBodyScrollLock(isProjectModalOpen);
+
+  useEffect(() => {
+    if (!isProjectModalOpen) return;
+
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key !== "Escape") return;
+      setIsAddModalOpen(false);
+      setEditingProject(null);
+    };
+
+    document.addEventListener("keydown", handleEscape);
+    return () => document.removeEventListener("keydown", handleEscape);
+  }, [isProjectModalOpen]);
 
   async function handleImageFileUpload(e: React.ChangeEvent<HTMLInputElement>, targetInputName: string, formElement: HTMLFormElement | null) {
     const file = e.target.files?.[0];
@@ -500,11 +517,17 @@ export default function AdminDashboardClient({ messages, visitsCount, projects, 
 
       {/* Modal: Add Project */}
       {isAddModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-md">
-          <form onSubmit={handleCreateProject} className="glass-panel w-full max-w-2xl max-h-[90vh] overflow-y-auto p-6 rounded-3xl border border-slate-300 dark:border-cyan-500/40 space-y-4 bg-white dark:bg-[#090d16] text-slate-900 dark:text-white">
+        <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto overscroll-contain p-4 bg-black/75 backdrop-blur-md">
+          <form
+            onSubmit={handleCreateProject}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="add-project-dialog-title"
+            className="glass-panel w-full max-w-2xl max-h-[calc(100dvh-2rem)] overflow-y-auto overscroll-contain p-6 rounded-3xl border border-slate-300 dark:border-cyan-500/40 space-y-4 bg-white dark:bg-[#090d16] text-slate-900 dark:text-white"
+          >
             <div className="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3">
-              <h3 className="text-lg font-bold text-slate-900 dark:text-white">Dodaj Nowy Projekt</h3>
-              <button type="button" onClick={() => setIsAddModalOpen(false)} className="text-slate-400 hover:text-slate-900 dark:hover:text-white"><X className="w-5 h-5" /></button>
+              <h3 id="add-project-dialog-title" className="text-lg font-bold text-slate-900 dark:text-white">Dodaj Nowy Projekt</h3>
+              <button type="button" onClick={() => setIsAddModalOpen(false)} aria-label="Zamknij okno dodawania projektu" className="text-slate-400 hover:text-slate-900 dark:hover:text-white"><X className="w-5 h-5" /></button>
             </div>
 
             <div className="space-y-3 text-xs">
@@ -587,11 +610,17 @@ export default function AdminDashboardClient({ messages, visitsCount, projects, 
 
       {/* Modal: Edit Project */}
       {editingProject && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-md">
-          <form onSubmit={handleUpdateProject} className="glass-panel w-full max-w-2xl max-h-[90vh] overflow-y-auto p-6 rounded-3xl border border-slate-300 dark:border-cyan-500/40 space-y-4 bg-white dark:bg-[#090d16] text-slate-900 dark:text-white">
+        <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto overscroll-contain p-4 bg-black/75 backdrop-blur-md">
+          <form
+            onSubmit={handleUpdateProject}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="edit-project-dialog-title"
+            className="glass-panel w-full max-w-2xl max-h-[calc(100dvh-2rem)] overflow-y-auto overscroll-contain p-6 rounded-3xl border border-slate-300 dark:border-cyan-500/40 space-y-4 bg-white dark:bg-[#090d16] text-slate-900 dark:text-white"
+          >
             <div className="flex items-center justify-between border-b border-slate-200 dark:border-slate-800 pb-3">
-              <h3 className="text-lg font-bold text-slate-900 dark:text-white">Edytuj Projekt</h3>
-              <button type="button" onClick={() => setEditingProject(null)} className="text-slate-400 hover:text-slate-900 dark:hover:text-white"><X className="w-5 h-5" /></button>
+              <h3 id="edit-project-dialog-title" className="text-lg font-bold text-slate-900 dark:text-white">Edytuj Projekt</h3>
+              <button type="button" onClick={() => setEditingProject(null)} aria-label="Zamknij okno edycji projektu" className="text-slate-400 hover:text-slate-900 dark:hover:text-white"><X className="w-5 h-5" /></button>
             </div>
 
             <div className="space-y-3 text-xs">

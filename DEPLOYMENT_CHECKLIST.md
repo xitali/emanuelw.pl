@@ -86,15 +86,18 @@ Vercel stosuje nowe zmienne dopiero do nowego wdrożenia:
 
 ## 5. Po udanym wdrożeniu
 
-- Sprawdź, czy masz zgodę każdej osoby na publikację imienia, firmy i opinii.
+- [ ] Sprawdź, czy masz zgodę każdej osoby na publikację imienia, firmy i opinii.
   Brak zgody oznacza: usuń lub ukryj opinię w panelu.
-- Ustal, czy chcesz usunąć historyczne rekordy z tabeli `page_visits`.
-  Nowy kod już ich nie tworzy; dane zostały wcześniej zagregowane.
-- Uzupełnij politykę prywatności o pełną nazwę działalności i adres, jeżeli
-  prowadzisz działalność gospodarczą.
-- Włącz GitHub Secret Scanning i Push Protection w `Settings` →
-  `Advanced Security` → `Secret Protection`.
-- W osobnym, kontrolowanym kroku wyczyść sekret z historii Git. Ta operacja
-  przepisuje historię i wymaga force push, dlatego nie została wykonana
-  automatycznie. GitHub zaleca najpierw rotację sekretu:
+- [x] Usunięto historyczną tabelę `page_visits` z adresami IP, danymi
+  przeglądarki i identyfikatorami sesji. Publiczny licznik korzysta z
+  zagregowanej tabeli `daily_page_views` i zachował pełny wynik.
+- [x] Polityka prywatności poprawnie wskazuje Emanuela Włocha jako
+  administratora danych. Dane firmy i adres działalności nie są wymagane,
+  dopóki działalność gospodarcza nie zostanie zarejestrowana.
+- [x] Włączono GitHub Secret Scanning i Push Protection.
+- [x] Sekret usunięto z historii wszystkich gałęzi, stary klucz Supabase
+  wyłączono, a alert Secret Scanning zamknięto jako unieważniony:
   [usuwanie danych wrażliwych z historii](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/removing-sensitive-data-from-a-repository).
+- [ ] Zgłoszenie do GitHub Support zostało wysłane. Poczekaj na odpowiedź w
+  sprawie usunięcia starych referencji pull requestów, których właściciel
+  repozytorium nie może wyczyścić samodzielnie.

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Service } from "@/types";
 import { Rocket, Check, Code, Globe, Shield, Star, Smartphone, Zap, Users, Calculator, ArrowRight } from "lucide-react";
+import { openContactForm } from "@/lib/contact-prefill";
 
 interface ServicesSectionProps {
   initialServices: Service[];
@@ -39,36 +40,22 @@ export default function ServicesSection({ initialServices }: ServicesSectionProp
   };
 
   const handleSelectService = (serviceName: string, price: number, currency: string) => {
-    const event = new CustomEvent("selectService", {
-      detail: {
-        subject: `Zapytanie o usługę: ${serviceName}`,
-        message: `Dzień dobry,\n\nJestem zainteresowany/a usługą "${serviceName}" (cena od ${price} ${currency}). Proszę o kontakt w celu omówienia szczegółów.\n\nOpis mojego projektu / dodatkowe wymagania:\n- `,
-      },
+    openContactForm({
+      subject: `Zapytanie o usługę: ${serviceName}`,
+      message: `Dzień dobry,\n\nJestem zainteresowany/a usługą "${serviceName}" (cena od ${price} ${currency}). Proszę o kontakt w celu omówienia szczegółów.\n\nOpis mojego projektu / dodatkowe wymagania:\n- `,
+      badge: "Wybrana usługa została automatycznie wpisana w formularzu!",
     });
-    window.dispatchEvent(event);
-
-    const contactElem = document.getElementById("kontakt");
-    if (contactElem) {
-      contactElem.scrollIntoView({ behavior: "smooth" });
-    }
   };
 
   const handleSelectCalculator = () => {
     const estimate = calculateEstimate();
     const typeLabel = projectType === "landing" ? "Wizytówka" : projectType === "ecommerce" ? "Sklep E-commerce" : "Aplikacja Webowa";
     
-    const event = new CustomEvent("selectService", {
-      detail: {
-        subject: `Wycena z kalkulatora: ${typeLabel} (~${estimate} PLN)`,
-        message: `Dzień dobry,\n\nPrzesyłam wycenę z kalkulatora dla projektu "${typeLabel}".\nParametry: CMS (${needsCms ? 'Tak' : 'Nie'}), Płatności Online (${needsPayments ? 'Tak' : 'Nie'}), Aplikacja Mobilna (${needsMobile ? 'Tak' : 'Nie'}).\nSzacowany budżet: ~${estimate} PLN netto.\n\nProszę o kontakt w celu bezpłatnej konsultacji.\n\nOpis moich potrzeb / uwag do projektu:\n- `,
-      },
+    openContactForm({
+      subject: `Wycena z kalkulatora: ${typeLabel} (~${estimate} PLN)`,
+      message: `Dzień dobry,\n\nPrzesyłam wycenę z kalkulatora dla projektu "${typeLabel}".\nParametry: CMS (${needsCms ? 'Tak' : 'Nie'}), Płatności Online (${needsPayments ? 'Tak' : 'Nie'}), Aplikacja Mobilna (${needsMobile ? 'Tak' : 'Nie'}).\nSzacowany budżet: ~${estimate} PLN netto.\n\nProszę o kontakt w celu bezpłatnej konsultacji.\n\nOpis moich potrzeb / uwag do projektu:\n- `,
+      badge: "Parametry kalkulatora zostały automatycznie wpisane w formularzu!",
     });
-    window.dispatchEvent(event);
-
-    const contactElem = document.getElementById("kontakt");
-    if (contactElem) {
-      contactElem.scrollIntoView({ behavior: "smooth" });
-    }
   };
 
   return (

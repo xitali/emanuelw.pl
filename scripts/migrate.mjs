@@ -1,4 +1,4 @@
-import { readFile } from "node:fs/promises";
+import { readdir, readFile } from "node:fs/promises";
 import { createClient } from "@libsql/client";
 
 const url = process.env.TURSO_DATABASE_URL;
@@ -9,17 +9,43 @@ if (!url || !authToken) {
 }
 
 const client = createClient({ url, authToken });
-const sql = await readFile(
-  new URL("../migrations/001_security_and_analytics.sql", import.meta.url),
-  "utf8",
-);
+const migrationsDirectory = new URL("../migrations/", import.meta.url);
 
-for (const statement of sql
-  .split(";")
-  .map((value) => value.trim())
-  .filter(Boolean)) {
-  await client.execute(statement);
+await client.execute(`
+  CREATE TABLE IF NOT EXISTS schema_migrations (
+    filename TEXT PRIMARY KEY,
+    applied_at TEXT NOT NULL
+  )
+`);
+
+const files = (await readdir(migrationsDirectory))
+  .filter((filename) => filename.endsWith(".sql"))
+  .sort();
+
+for (const filename of files) {
+  const existing = await client.execute({
+    sql: "SELECT 1 FROM schema_migrations WHERE filename = ? LIMIT 1",
+    args: [filename],
+  });
+  if (existing.rows.length > 0) continue;
+
+  const sql = await readFile(new URL(filename, migrationsDirectory), "utf8");
+  const statements = sql
+    .split(";")
+    .map((value) => value.trim())
+    .filter(Boolean);
+
+  await client.batch(
+    [
+      ...statements,
+      {
+        sql: "INSERT INTO schema_migrations (filename, applied_at) VALUES (?, ?)",
+        args: [filename, new Date().toISOString()],
+      },
+    ],
+    "write",
+  );
 }
 
 await client.close();
-console.log("Migracja bazy zakończona.");
+console.log(`Migracje bazy zakończone (${files.length} plików).`);

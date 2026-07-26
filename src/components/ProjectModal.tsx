@@ -5,6 +5,7 @@ import Image from "next/image";
 import { X, ExternalLink, CheckCircle2, ShieldCheck, Zap, Layers, Award } from "lucide-react";
 import { useEffect, useRef } from "react";
 import Link from "next/link";
+import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
 
 interface ProjectModalProps {
   project: Project | null;
@@ -27,13 +28,12 @@ function parseArray(val: unknown): string[] {
 
 export default function ProjectModal({ project, onClose }: ProjectModalProps) {
   const dialogRef = useRef<HTMLDivElement>(null);
+  useBodyScrollLock(Boolean(project));
 
   useEffect(() => {
     if (!project) return;
 
     const previouslyFocused = document.activeElement as HTMLElement | null;
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
     dialogRef.current?.focus();
 
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -64,7 +64,6 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
     document.addEventListener("keydown", handleKeyDown);
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = previousOverflow;
       previouslyFocused?.focus();
     };
   }, [project, onClose]);
@@ -78,7 +77,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-10 overflow-y-auto bg-black/75 backdrop-blur-md animate-fadeIn"
+      className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto overscroll-contain p-4 sm:p-6 md:p-10 bg-black/75 backdrop-blur-md animate-fadeIn"
       onMouseDown={(event) => {
         if (event.target === event.currentTarget) onClose();
       }}
@@ -89,7 +88,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
         aria-modal="true"
         aria-labelledby="project-dialog-title"
         tabIndex={-1}
-        className="glass-panel relative w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-3xl border border-slate-300 dark:border-cyan-500/30 p-6 sm:p-8 shadow-2xl space-y-8 bg-white dark:bg-[#090d16] text-slate-900 dark:text-white"
+        className="glass-panel relative w-full max-w-4xl max-h-[calc(100dvh-2rem)] sm:max-h-[calc(100dvh-3rem)] overflow-y-auto overscroll-contain rounded-3xl border border-slate-300 dark:border-cyan-500/30 p-6 sm:p-8 shadow-2xl space-y-8 bg-white dark:bg-[#090d16] text-slate-900 dark:text-white"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}

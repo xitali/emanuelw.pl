@@ -6,6 +6,8 @@ import confetti from "canvas-confetti";
 import { Mail, Phone, MapPin, Send, CheckCircle2, AlertCircle, Sparkles } from "lucide-react";
 import { PublicSiteSettings } from "@/types";
 import Link from "next/link";
+import { CONTACT_PREFILL_EVENT } from "@/lib/contact-prefill";
+import type { ContactPrefill } from "@/lib/contact-prefill";
 
 interface ContactSectionProps {
   settings: PublicSiteSettings;
@@ -27,18 +29,21 @@ export default function ContactSection({ settings }: ContactSectionProps) {
   const github = settings["social_github"] || "https://github.com/xitali";
 
   useEffect(() => {
-    const handleServiceSelect = (e: Event) => {
-      const customEvt = e as CustomEvent<{ subject: string; message: string }>;
+    const handleContactPrefill = (e: Event) => {
+      const customEvt = e as CustomEvent<ContactPrefill>;
       if (customEvt.detail) {
         if (customEvt.detail.subject) setSubject(customEvt.detail.subject);
         if (customEvt.detail.message) setMessage(customEvt.detail.message);
-        setAutoFilledBadge("Wybrana usługa została automatycznie wpisana w formularzu!");
+        setAutoFilledBadge(
+          customEvt.detail.badge
+            || "Wybrane dane zostały automatycznie wpisane w formularzu!",
+        );
         setTimeout(() => setAutoFilledBadge(null), 5000);
       }
     };
 
-    window.addEventListener("selectService", handleServiceSelect);
-    return () => window.removeEventListener("selectService", handleServiceSelect);
+    window.addEventListener(CONTACT_PREFILL_EVENT, handleContactPrefill);
+    return () => window.removeEventListener(CONTACT_PREFILL_EVENT, handleContactPrefill);
   }, []);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
@@ -85,7 +90,7 @@ export default function ContactSection({ settings }: ContactSectionProps) {
             Porozmawiajmy o <span className="text-gradient-cyan">Twoim Projekcie</span>
           </h2>
           <p className="text-slate-600 dark:text-slate-400 text-base sm:text-lg">
-            Napisz do mnie lub zadzwoń. Wybór usługi automatycznie uzupełnia poniższy formularz.
+            Napisz do mnie lub zadzwoń. Wybór usługi albo wyceny automatycznie przygotuje poniższy formularz.
           </p>
         </div>
 
