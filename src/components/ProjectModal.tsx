@@ -93,8 +93,9 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
       >
         {/* Close Button */}
         <button
+          type="button"
           onClick={onClose}
-          className="absolute top-6 right-6 p-2 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-slate-900/80 border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:border-cyan-500 transition-colors shadow-sm"
+          className="absolute top-6 right-6 z-20 p-2 rounded-full bg-slate-100 hover:bg-slate-200 dark:bg-slate-900/80 border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white hover:border-cyan-500 transition-colors shadow-sm"
           aria-label="Zamknij modal"
         >
           <X className="w-6 h-6" />
