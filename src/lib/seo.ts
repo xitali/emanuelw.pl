@@ -4,6 +4,7 @@ export const SITE_URL = "https://emanuelwloch.pl";
 
 export function slugify(value: string): string {
   return value
+    .replace(/[łŁ]/g, "l")
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
     .toLowerCase()

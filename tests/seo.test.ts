@@ -11,6 +11,7 @@ describe("SEO URL helpers", () => {
     expect(slugify("Rzeszów Tatuaż – Iluminatia Tattoo")).toBe(
       "rzeszow-tatuaz-iluminatia-tattoo",
     );
+    expect(slugify("Emanuel Włoch")).toBe("emanuel-wloch");
   });
 
   it("keeps the stable project id at the end of the readable path", () => {
