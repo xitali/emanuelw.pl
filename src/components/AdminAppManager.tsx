@@ -2,6 +2,7 @@
 
 import { useEffect, useState, useSyncExternalStore } from "react";
 import { Bell, BellOff, Download, Send, Smartphone } from "lucide-react";
+import { isAndroidPlatform } from "@/lib/platform";
 
 interface BeforeInstallPromptEvent extends Event {
   prompt: () => Promise<void>;
@@ -24,6 +25,25 @@ function getStandaloneSnapshot() {
 }
 
 function getStandaloneServerSnapshot() {
+  return false;
+}
+
+function subscribeToPlatform() {
+  return () => undefined;
+}
+
+function getAndroidSnapshot() {
+  const navigatorWithUserAgentData = navigator as Navigator & {
+    userAgentData?: { platform?: string };
+  };
+
+  return isAndroidPlatform(
+    navigator.userAgent,
+    navigatorWithUserAgentData.userAgentData?.platform,
+  );
+}
+
+function getAndroidServerSnapshot() {
   return false;
 }
 
@@ -61,6 +81,11 @@ async function postPushAction(body: unknown) {
 }
 
 export default function AdminAppManager() {
+  const isAndroid = useSyncExternalStore(
+    subscribeToPlatform,
+    getAndroidSnapshot,
+    getAndroidServerSnapshot,
+  );
   const [isSupported, setIsSupported] = useState<boolean | null>(null);
   const [isSubscribed, setIsSubscribed] = useState(false);
   const isStandalone = useSyncExternalStore(
@@ -76,6 +101,8 @@ export default function AdminAppManager() {
   const publicVapidKey = process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY;
 
   useEffect(() => {
+    if (!isAndroid) return;
+
     const handleInstallPrompt = (event: Event) => {
       event.preventDefault();
       setInstallPrompt(event as BeforeInstallPromptEvent);
@@ -123,7 +150,7 @@ export default function AdminAppManager() {
       window.removeEventListener("beforeinstallprompt", handleInstallPrompt);
       window.removeEventListener("appinstalled", handleInstalled);
     };
-  }, [publicVapidKey]);
+  }, [isAndroid, publicVapidKey]);
 
   async function installApp() {
     if (!installPrompt) {
@@ -228,6 +255,10 @@ export default function AdminAppManager() {
     } finally {
       setLoading(false);
     }
+  }
+
+  if (!isAndroid) {
+    return null;
   }
 
   return (
