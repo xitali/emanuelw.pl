@@ -30,7 +30,8 @@ export default function Footer({ visitCount = 0 }: FooterProps) {
           </div>
 
           {/* Copyright */}
-          <div className="flex items-center gap-4 text-xs text-slate-500 dark:text-slate-400">
+          <div className="flex flex-wrap items-center justify-center gap-4 text-xs text-slate-500 dark:text-slate-400">
+            <span>Jarosław, Podkarpackie</span>
             <Link href="/tworzenie-stron-internetowych-rzeszow" className="hover:text-cyan-600 dark:hover:text-cyan-400">
               Strony internetowe Rzeszów
             </Link>

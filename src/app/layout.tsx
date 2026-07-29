@@ -16,11 +16,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://emanuelwloch.pl"),
   title: {
-    default: "Emanuel Włoch – Strony internetowe i aplikacje | Rzeszów",
+    default: "Emanuel Włoch – Strony internetowe i aplikacje | Jarosław",
     template: "%s | Emanuel Włoch",
   },
   description:
-    "Projektuję szybkie strony internetowe, sklepy i aplikacje webowe dla firm z Rzeszowa i całej Polski. Zobacz realizacje i omów swój projekt.",
+    "Projektuję szybkie strony internetowe, sklepy i aplikacje webowe dla firm z Jarosławia, Podkarpacia i całej Polski. Zobacz realizacje i omów swój projekt.",
   applicationName: "Portfolio Emanuela Włocha",
   category: "technology",
   authors: [{ name: "Emanuel Włoch", url: "https://emanuelwloch.pl" }],
@@ -35,9 +35,9 @@ export const metadata: Metadata = {
     canonical: "https://emanuelwloch.pl",
   },
   openGraph: {
-    title: "Emanuel Włoch – Strony internetowe i aplikacje | Rzeszów",
+    title: "Emanuel Włoch – Strony internetowe i aplikacje | Jarosław",
     description:
-      "Szybkie strony internetowe, sklepy i aplikacje webowe dla firm z Rzeszowa i całej Polski.",
+      "Szybkie strony internetowe, sklepy i aplikacje webowe dla firm z Jarosławia, Podkarpacia i całej Polski.",
     url: "https://emanuelwloch.pl",
     siteName: "Emanuel Włoch – Web Development",
     locale: "pl_PL",
@@ -57,7 +57,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Emanuel Włoch – Strony internetowe i aplikacje",
     description:
-      "Szybkie strony internetowe, sklepy i aplikacje webowe dla firm z Rzeszowa i całej Polski.",
+      "Szybkie strony internetowe, sklepy i aplikacje webowe dla firm z Jarosławia, Podkarpacia i całej Polski.",
     images: ["https://emanuelwloch.pl/og-image.jpg"],
   },
   robots: {

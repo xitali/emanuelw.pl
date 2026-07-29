@@ -78,7 +78,7 @@ const structuredData = [
     serviceType: "Projektowanie i tworzenie stron internetowych",
     description:
       "Projektowanie szybkich, responsywnych i bezpiecznych stron internetowych z SEO technicznym.",
-    areaServed: ["Rzeszów", "Podkarpackie", "Polska"],
+    areaServed: ["Jarosław", "Rzeszów", "Podkarpackie", "Polska"],
     provider: {
       "@type": "Person",
       "@id": `${SITE_URL}/#emanuel-wloch`,
@@ -129,7 +129,7 @@ export default function WebsiteDevelopmentRzeszowPage() {
 
             <div className="max-w-4xl space-y-6">
               <p className="font-mono text-sm uppercase tracking-wider text-cyan-700 dark:text-cyan-300">
-                Rzeszów • Podkarpacie • współpraca zdalna
+                Jarosław • Rzeszów • Podkarpacie • współpraca zdalna
               </p>
               <h1 className="text-4xl font-extrabold leading-tight text-slate-950 dark:text-white sm:text-6xl">
                 Tworzenie stron internetowych w Rzeszowie
@@ -248,7 +248,7 @@ export default function WebsiteDevelopmentRzeszowPage() {
                 {
                   question: "Czy pracujesz tylko z klientami z Rzeszowa?",
                   answer:
-                    "Nie. Spotkanie w Rzeszowie jest możliwe, ale cały proces mogę przeprowadzić zdalnie dla klienta z dowolnego miejsca w Polsce.",
+                    "Nie. Działam z Jarosławia na Podkarpaciu, obsługuję również firmy z Rzeszowa, a cały proces mogę przeprowadzić zdalnie dla klienta z dowolnego miejsca w Polsce.",
                 },
                 {
                   question: "Czy strona będzie działać na telefonie?",

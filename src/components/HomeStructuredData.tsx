@@ -47,7 +47,7 @@ export default function HomeStructuredData({
           "Sklepy internetowe",
           "Wydajność stron internetowych",
         ],
-        areaServed: ["Rzeszów", "Podkarpackie", "Polska"],
+        areaServed: ["Jarosław", "Rzeszów", "Podkarpackie", "Polska"],
         makesOffer: services.map((service) => ({
           "@type": "Offer",
           price: service.starting_price,

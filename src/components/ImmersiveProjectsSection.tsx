@@ -165,21 +165,33 @@ function ProjectDeckCard({
         }}
       >
         {mainImage ? (
-          <Image
-            src={mainImage}
-            alt={`Podgląd projektu ${project.title}`}
-            fill
-            sizes="(max-width: 1024px) 100vw, 64vw"
-            className="object-cover object-top transition-transform duration-1000 ease-out group-hover:scale-[1.025]"
-            priority={index === 0}
-          />
+          <>
+            <Image
+              src={mainImage}
+              alt=""
+              fill
+              sizes="(max-width: 1024px) 100vw, 64vw"
+              className="scale-110 object-cover opacity-35 blur-2xl"
+              aria-hidden="true"
+            />
+            <div className="absolute inset-3 overflow-hidden rounded-[1.45rem] bg-black/20 sm:inset-5 xl:rounded-[2.6rem]">
+              <Image
+                src={mainImage}
+                alt={`Pełny podgląd projektu ${project.title}`}
+                fill
+                sizes="(max-width: 1024px) 100vw, 62vw"
+                className="object-contain object-center transition-transform duration-1000 ease-out group-hover:scale-[1.012]"
+                priority={index === 0}
+              />
+            </div>
+          </>
         ) : (
           <div className="flex size-full items-center justify-center bg-[radial-gradient(circle_at_30%_25%,#252a34,#101216_48%,#08090b)]">
             <Layers className="size-20 text-white/15" />
           </div>
         )}
 
-        <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-black/15" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-black/10" />
         <div
           className="absolute inset-x-0 bottom-0 h-1/2 opacity-40"
           style={{
@@ -196,15 +208,10 @@ function ProjectDeckCard({
           </span>
         </div>
 
-        <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-5 p-5 sm:p-7">
-          <div className="max-w-[72%]">
-            <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-white/55">
-              {project.project_type || project.category || "Digital product"}
-            </span>
-            <p className="mt-2 line-clamp-1 text-lg font-medium tracking-[-0.02em] text-white sm:text-2xl">
-              {project.title}
-            </p>
-          </div>
+        <div className="absolute inset-x-0 bottom-0 flex items-center justify-between gap-5 p-5 sm:p-7">
+          <span className="rounded-full border border-white/15 bg-black/55 px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.16em] text-white/80 backdrop-blur-xl">
+            {project.project_type || project.category || "Digital product"}
+          </span>
           <span
             className="hidden h-1.5 w-16 rounded-full sm:block"
             style={{
@@ -230,7 +237,7 @@ function ProjectDeckCard({
             alt=""
             fill
             sizes="55vw"
-            className="object-cover object-bottom"
+            className="object-contain object-center"
           />
         </div>
       )}
@@ -260,13 +267,25 @@ function MobileProjectCard({
       >
         <div className="relative aspect-[4/3] overflow-hidden rounded-[1.75rem] border border-white/10 bg-[#111318]">
           {mainImage ? (
-            <Image
-              src={mainImage}
-              alt={`Podgląd projektu ${project.title}`}
-              fill
-              sizes="100vw"
-              className="object-cover object-top"
-            />
+            <>
+              <Image
+                src={mainImage}
+                alt=""
+                fill
+                sizes="100vw"
+                className="scale-110 object-cover opacity-35 blur-xl"
+                aria-hidden="true"
+              />
+              <div className="absolute inset-2 overflow-hidden rounded-[1.3rem] bg-black/20">
+                <Image
+                  src={mainImage}
+                  alt={`Pełny podgląd projektu ${project.title}`}
+                  fill
+                  sizes="100vw"
+                  className="object-contain object-center"
+                />
+              </div>
+            </>
           ) : (
             <div className="flex size-full items-center justify-center">
               <Layers className="size-16 text-white/15" />
@@ -290,7 +309,7 @@ function MobileProjectCard({
         </div>
 
         <div className="mt-6">
-          <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.16em] text-white/45">
+          <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.16em] text-white/65">
             <span>{getProjectStatus(project)}</span>
             <span>•</span>
             <span>{project.project_type || project.category || "Projekt"}</span>
@@ -298,7 +317,7 @@ function MobileProjectCard({
           <h3 className="mt-3 text-3xl font-medium leading-none tracking-[-0.04em] text-white">
             {project.title}
           </h3>
-          <p className="mt-4 line-clamp-3 text-sm leading-relaxed text-white/55">
+          <p className="mt-4 line-clamp-3 text-sm leading-relaxed text-white/72">
             {project.short_description}
           </p>
         </div>
@@ -321,11 +340,14 @@ export default function ImmersiveProjectsSection({
   const filteredProjects = initialProjects.filter((project) =>
     projectMatchesCategory(project, selectedCategory),
   );
-  const activeProject =
-    filteredProjects[Math.min(activeIndex, filteredProjects.length - 1)] ??
-    null;
+  const safeActiveIndex = Math.min(
+    activeIndex,
+    Math.max(filteredProjects.length - 1, 0),
+  );
+  const activeProject = filteredProjects[safeActiveIndex] ?? null;
   const activeAccent =
-    projectAccents[activeIndex % projectAccents.length] ?? projectAccents[0];
+    projectAccents[safeActiveIndex % projectAccents.length] ??
+    projectAccents[0];
 
   const { scrollYProgress } = useScroll({
     target: stageRef,
@@ -367,6 +389,30 @@ export default function ImmersiveProjectsSection({
     });
   }
 
+  function changeCategory(categoryId: string) {
+    if (categoryId === selectedCategory) {
+      return;
+    }
+
+    scrollYProgress.set(0);
+    setActiveIndex(0);
+    setSelectedCategory(categoryId);
+
+    requestAnimationFrame(() => {
+      const stage = stageRef.current;
+
+      if (!stage) {
+        return;
+      }
+
+      const stageTop = window.scrollY + stage.getBoundingClientRect().top;
+
+      if (window.scrollY > stageTop) {
+        window.scrollTo({ top: stageTop, behavior: "auto" });
+      }
+    });
+  }
+
   return (
     <section
       id="projekty"
@@ -387,7 +433,7 @@ export default function ImmersiveProjectsSection({
 
       <div className="relative mx-auto max-w-[1500px] px-4 pt-24 sm:px-6 lg:px-8 lg:pt-32">
         <header className="relative border-b border-white/10 pb-14 lg:pb-20">
-          <div className="flex items-center justify-between gap-6 font-mono text-[10px] uppercase tracking-[0.2em] text-white/45">
+          <div className="flex items-center justify-between gap-6 font-mono text-[10px] uppercase tracking-[0.2em] text-white/65">
             <div className="flex items-center gap-3">
               <Plus className="size-3 text-white" />
               <span>Selected work</span>
@@ -401,7 +447,7 @@ export default function ImmersiveProjectsSection({
 
           <div className="mt-12 grid items-end gap-8 lg:grid-cols-[1fr_auto]">
             <div>
-              <div className="mb-5 flex items-center gap-2 text-xs text-white/50">
+              <div className="mb-5 flex items-center gap-2 text-xs text-white/70">
                 <Sparkles className="size-3.5" />
                 <span>Interaktywne portfolio realizacji</span>
               </div>
@@ -410,11 +456,11 @@ export default function ImmersiveProjectsSection({
                 className="max-w-6xl text-[clamp(3.8rem,10vw,9.5rem)] font-medium leading-[0.78] tracking-[-0.075em]"
               >
                 Wybrane
-                <span className="block text-white/22">projekty.</span>
+                <span className="block text-white/35">projekty.</span>
               </h2>
             </div>
 
-            <p className="max-w-sm pb-1 text-sm leading-relaxed text-white/50 sm:text-base lg:pb-2">
+            <p className="max-w-sm pb-1 text-sm leading-relaxed text-white/72 sm:text-base lg:pb-2">
               Produkty cyfrowe projektowane od interfejsu po zaplecze.
               Każdy ekran poniżej prowadzi do pełnego case study.
             </p>
@@ -428,15 +474,12 @@ export default function ImmersiveProjectsSection({
               <button
                 key={category.id}
                 type="button"
-                onClick={() => {
-                  setSelectedCategory(category.id);
-                  setActiveIndex(0);
-                }}
+                onClick={() => changeCategory(category.id)}
                 aria-pressed={selectedCategory === category.id}
                 className={`rounded-full border px-4 py-2 text-xs transition-all outline-none focus-visible:ring-2 focus-visible:ring-white ${
                   selectedCategory === category.id
                     ? "border-white bg-white text-black"
-                    : "border-white/12 bg-white/[0.025] text-white/55 hover:border-white/35 hover:text-white"
+                    : "border-white/20 bg-white/[0.04] text-white/72 hover:border-white/50 hover:text-white"
                 }`}
               >
                 {category.label}
@@ -452,10 +495,14 @@ export default function ImmersiveProjectsSection({
             ref={stageRef}
             className="relative mx-auto hidden max-w-[1500px] px-8 lg:block"
             style={{
-              height: `${Math.max(140, filteredProjects.length * 72)}vh`,
+              height: `${Math.max(140, 100 + (filteredProjects.length - 1) * 34)}vh`,
+              overflowAnchor: "none",
             }}
           >
-            <div className="sticky top-[72px] flex h-[calc(100vh-72px)] min-h-[650px] items-center">
+            <div
+              key={`stage-${selectedCategory}`}
+              className="sticky top-[72px] flex h-[calc(100vh-72px)] min-h-[650px] items-center"
+            >
               <AnimatePresence mode="wait">
                 <motion.div
                   key={`ambient-${activeProject?.id ?? "empty"}`}
@@ -486,7 +533,7 @@ export default function ImmersiveProjectsSection({
                 <div className="relative z-40">
                   <div className="mb-10 flex items-center gap-4 font-mono text-[10px] uppercase tracking-[0.2em] text-white/35">
                     <span className="text-white">
-                      {String(activeIndex + 1).padStart(2, "0")}
+                      {String(safeActiveIndex + 1).padStart(2, "0")}
                     </span>
                     <span className="h-px w-12 bg-white/20" />
                     <span>{String(filteredProjects.length).padStart(2, "0")}</span>
@@ -509,7 +556,7 @@ export default function ImmersiveProjectsSection({
                         }
                         transition={{ duration: shouldReduceMotion ? 0 : 0.42 }}
                       >
-                        <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.17em] text-white/40">
+                        <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.17em] text-white/65">
                           <span
                             className="size-1.5 rounded-full"
                             style={{
@@ -530,7 +577,7 @@ export default function ImmersiveProjectsSection({
                           {activeProject.title}
                         </h3>
 
-                        <p className="mt-7 max-w-md text-base leading-relaxed text-white/52">
+                        <p className="mt-7 max-w-md text-base leading-relaxed text-white/75">
                           {activeProject.short_description}
                         </p>
 
@@ -540,7 +587,7 @@ export default function ImmersiveProjectsSection({
                             .map((technology, technologyIndex) => (
                               <span
                                 key={`${technology}-${technologyIndex}`}
-                                className="font-mono text-[10px] uppercase tracking-[0.13em] text-white/35"
+                                className="font-mono text-[10px] uppercase tracking-[0.13em] text-white/58"
                               >
                                 {technology}
                               </span>
@@ -570,12 +617,12 @@ export default function ImmersiveProjectsSection({
                         type="button"
                         onClick={() => scrollToProject(index)}
                         aria-label={`Przejdź do projektu ${project.title}`}
-                        aria-current={index === activeIndex ? "true" : undefined}
+                        aria-current={index === safeActiveIndex ? "true" : undefined}
                         className="group flex h-8 items-center outline-none"
                       >
                         <span
                           className={`block h-px transition-all duration-500 ${
-                            index === activeIndex
+                            index === safeActiveIndex
                               ? "w-10 bg-white"
                               : "w-4 bg-white/20 group-hover:bg-white/55"
                           }`}
@@ -594,7 +641,7 @@ export default function ImmersiveProjectsSection({
                       key={project.id}
                       project={project}
                       index={index}
-                      activeIndex={activeIndex}
+                      activeIndex={safeActiveIndex}
                       shouldReduceMotion={shouldReduceMotion}
                       onOpen={setActiveModalProject}
                     />
@@ -622,7 +669,7 @@ export default function ImmersiveProjectsSection({
       )}
 
       <div className="relative mx-auto max-w-[1500px] px-4 pb-24 sm:px-6 lg:px-8 lg:pb-32">
-        <div className="flex items-center justify-between border-t border-white/10 pt-8 font-mono text-[10px] uppercase tracking-[0.18em] text-white/35">
+        <div className="flex items-center justify-between border-t border-white/10 pt-8 font-mono text-[10px] uppercase tracking-[0.18em] text-white/58">
           <span>End of selected work</span>
           <div className="flex items-center gap-2">
             <span>Masz projekt?</span>
