@@ -2,7 +2,7 @@
 
 Nie publikuj informacji o podatnościach w zgłoszeniu GitHub.
 
-Wyślij opis problemu na `emanuel.wloch@gmail.com`. Dodaj kroki odtworzenia,
+Wyślij opis problemu na `kontakt@emanuelwloch.pl`. Dodaj kroki odtworzenia,
 wpływ problemu i — jeśli to możliwe — propozycję poprawki. Nie umieszczaj w
 wiadomości prawdziwych tokenów, haseł ani danych innych osób.
 

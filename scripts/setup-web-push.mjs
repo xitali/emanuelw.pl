@@ -22,7 +22,7 @@ const separator = current.length > 0 && !current.endsWith("\n") ? "\n" : "";
 const addition = [
   `${separator}NEXT_PUBLIC_VAPID_PUBLIC_KEY=${keys.publicKey}`,
   `VAPID_PRIVATE_KEY=${keys.privateKey}`,
-  "VAPID_SUBJECT=mailto:emanuel.wloch@gmail.com",
+  "VAPID_SUBJECT=mailto:kontakt@emanuelwloch.pl",
   "",
 ].join("\n");
 

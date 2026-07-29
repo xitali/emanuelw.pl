@@ -22,7 +22,7 @@ export default function ContactSection({ settings }: ContactSectionProps) {
   const [message, setMessage] = useState("");
   const [autoFilledBadge, setAutoFilledBadge] = useState<string | null>(null);
 
-  const email = settings["personal_email"] || "emanuel.wloch@gmail.com";
+  const email = settings["personal_email"] || "kontakt@emanuelwloch.pl";
   const phone = settings["personal_phone"] || "+48 725 403 682";
   const instagram = settings["social_instagram"] || "https://www.instagram.com/mrmun1o";
   const facebook = settings["social_facebook"] || "https://facebook.com/emanuel.wloch";

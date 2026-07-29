@@ -61,7 +61,7 @@ Google premiuje strony z ustrukturyzowanymi danymi (Rich Snippets). Umieść w s
   "name": "Emanuel Włoch - Usługi Programistyczne & IT",
   "image": "https://emanuelwloch.pl/emanuel_wloch.jpg",
   "telephone": "+48725403682",
-  "email": "emanuel.wloch@gmail.com",
+  "email": "kontakt@emanuelwloch.pl",
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Rzeszów",

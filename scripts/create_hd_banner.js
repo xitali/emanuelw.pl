@@ -121,7 +121,7 @@ const svgContent = `<svg xmlns="http://www.w3.org/2000/svg" width="${svgWidth}" 
         <rect width="340" height="44" rx="12" fill="rgba(6, 9, 19, 0.6)" stroke="rgba(255, 255, 255, 0.08)" stroke-width="1" />
         <!-- Mail Icon Vector -->
         <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2zM22 6l-10 7L2 6" transform="translate(14, 11)" fill="none" stroke="#0ea5e9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        <text x="48" y="27" class="contact-item-text">emanuel.wloch@gmail.com</text>
+        <text x="48" y="27" class="contact-item-text">kontakt@emanuelwloch.pl</text>
       </g>
 
       <!-- Item 2: GitHub -->
@@ -164,7 +164,7 @@ const svgContent = `<svg xmlns="http://www.w3.org/2000/svg" width="${svgWidth}" 
         <text y="0" fill="#c084fc">export const <tspan fill="#38bdf8">emanuelWloch</tspan> = {</text>
         <text y="32" fill="#94a3b8">  name: <tspan fill="#4ade80">'Emanuel Włoch'</tspan>,</text>
         <text y="64" fill="#94a3b8">  title: <tspan fill="#4ade80">'Full-Stack Software Engineer'</tspan>,</text>
-        <text y="96" fill="#94a3b8">  email: <tspan fill="#38bdf8">'emanuel.wloch@gmail.com'</tspan>,</text>
+        <text y="96" fill="#94a3b8">  email: <tspan fill="#38bdf8">'kontakt@emanuelwloch.pl'</tspan>,</text>
         <text y="128" fill="#94a3b8">  github: <tspan fill="#38bdf8">'https://github.com/xitali'</tspan>,</text>
         <text y="160" fill="#94a3b8">  website: <tspan fill="#38bdf8">'https://emanuelwloch.pl'</tspan>,</text>
         <text y="192" fill="#94a3b8">  primaryStack: [<tspan fill="#38bdf8">'Next.js'</tspan>, <tspan fill="#38bdf8">'React'</tspan>, <tspan fill="#38bdf8">'Turso'</tspan>],</text>

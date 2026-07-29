@@ -14,7 +14,7 @@ export default function PrivacyPolicyPage() {
       <article className="mx-auto max-w-3xl space-y-8 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-950 sm:p-10">
         <header className="space-y-3">
           <p className="font-mono text-sm text-cyan-700 dark:text-cyan-300">
-            Ostatnia aktualizacja: 26 lipca 2026 r.
+            Ostatnia aktualizacja: 29 lipca 2026 r.
           </p>
           <h1 className="text-3xl font-extrabold text-slate-950 dark:text-white sm:text-4xl">
             Polityka prywatności
@@ -26,8 +26,8 @@ export default function PrivacyPolicyPage() {
           <p>
             Administratorem danych jest Emanuel Włoch. W sprawach dotyczących
             prywatności napisz na{" "}
-            <a className="text-cyan-700 underline dark:text-cyan-300" href="mailto:emanuel.wloch@gmail.com">
-              emanuel.wloch@gmail.com
+            <a className="text-cyan-700 underline dark:text-cyan-300" href="mailto:kontakt@emanuelwloch.pl">
+              kontakt@emanuelwloch.pl
             </a>
             .
           </p>

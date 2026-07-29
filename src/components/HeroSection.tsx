@@ -9,7 +9,7 @@ interface HeroSectionProps {
 }
 
 export default function HeroSection({
-  email = "emanuel.wloch@gmail.com",
+  email = "kontakt@emanuelwloch.pl",
 }: HeroSectionProps) {
   const [terminalInput, setTerminalInput] = useState("");
   const [copied, setCopied] = useState(false);
