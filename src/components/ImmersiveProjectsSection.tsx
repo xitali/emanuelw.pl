@@ -340,6 +340,13 @@ export default function ImmersiveProjectsSection({
   const filteredProjects = initialProjects.filter((project) =>
     projectMatchesCategory(project, selectedCategory),
   );
+  const availableCategories = categories.filter(
+    (category) =>
+      category.id === "all" ||
+      initialProjects.some((project) =>
+        projectMatchesCategory(project, category.id),
+      ),
+  );
   const safeActiveIndex = Math.min(
     activeIndex,
     Math.max(filteredProjects.length - 1, 0),
@@ -470,7 +477,7 @@ export default function ImmersiveProjectsSection({
             className="mt-12 flex flex-wrap gap-2"
             aria-label="Filtrowanie projektów"
           >
-            {categories.map((category) => (
+            {availableCategories.map((category) => (
               <button
                 key={category.id}
                 type="button"

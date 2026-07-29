@@ -13,10 +13,22 @@ const project: Project = {
 };
 
 describe("filtrowanie projektów", () => {
-  it("sprawdza kategorię i typ projektu", () => {
-    expect(projectMatchesCategory(project, "web")).toBe(true);
+  it("nie nakłada kategorii web i e-commerce", () => {
+    expect(projectMatchesCategory(project, "web")).toBe(false);
     expect(projectMatchesCategory(project, "e-commerce")).toBe(true);
     expect(projectMatchesCategory(project, "mobile")).toBe(false);
+  });
+
+  it("rozpoznaje projekt mobilny", () => {
+    const mobileProject: Project = {
+      ...project,
+      id: "2",
+      category: "mobile",
+      project_type: "android-app",
+    };
+
+    expect(projectMatchesCategory(mobileProject, "mobile")).toBe(true);
+    expect(projectMatchesCategory(mobileProject, "web")).toBe(false);
   });
 
   it("zwraca wszystkie projekty dla filtra all", () => {
