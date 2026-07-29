@@ -8,7 +8,7 @@ import {
 import Navbar from "@/components/Navbar";
 import BackgroundGlow from "@/components/BackgroundGlow";
 import HeroSection from "@/components/HeroSection";
-import ProjectsSection from "@/components/ProjectsSection";
+import ProjectsSection from "@/components/ProjectShowcaseSection";
 import ServicesSection from "@/components/ServicesSection";
 import TechStackSection from "@/components/TechStackSection";
 import ContactSection from "@/components/ContactSection";
