@@ -4,7 +4,13 @@ import { useState } from "react";
 import Image from "next/image";
 import { Terminal as TerminalIcon, ArrowRight, Copy, Check, User, ShieldCheck } from "lucide-react";
 
-export default function HeroSection() {
+interface HeroSectionProps {
+  email?: string;
+}
+
+export default function HeroSection({
+  email = "emanuel.wloch@gmail.com",
+}: HeroSectionProps) {
   const [terminalInput, setTerminalInput] = useState("");
   const [copied, setCopied] = useState(false);
   const [imgError, setImgError] = useState(false);
@@ -53,7 +59,7 @@ export default function HeroSection() {
         break;
       case "contact":
         response = [
-          "Email: emanuel.wloch@gmail.com",
+          `Email: ${email}`,
           "Telefon: +48 725 403 682",
           "GitHub: github.com/xitali",
           "Instagram: @mrmun1o",
@@ -72,7 +78,7 @@ export default function HeroSection() {
   };
 
   const copyEmail = () => {
-    navigator.clipboard.writeText("emanuel.wloch@gmail.com");
+    navigator.clipboard.writeText(email);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -147,7 +153,7 @@ export default function HeroSection() {
                 className="glass-panel-interactive px-6 py-3.5 rounded-full text-sm font-medium text-slate-700 dark:text-slate-200 flex items-center gap-2"
               >
                 {copied ? <Check className="w-4 h-4 text-emerald-500 dark:text-emerald-400" /> : <Copy className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />}
-                {copied ? "Skopiowano Email!" : "emanuel.wloch@gmail.com"}
+                {copied ? "Skopiowano Email!" : email}
               </button>
             </div>
 

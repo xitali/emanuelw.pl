@@ -16,23 +16,13 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://emanuelwloch.pl"),
   title: {
-    default: "Emanuel Włoch – Strony i aplikacje webowe",
+    default: "Emanuel Włoch – Strony internetowe i aplikacje | Rzeszów",
     template: "%s | Emanuel Włoch",
   },
   description:
-    "Projektuję i rozwijam nowoczesne strony internetowe, e-commerce oraz dedykowane aplikacje webowe w Next.js i TypeScript.",
-  keywords: [
-    "Emanuel Włoch",
-    "tworzenie stron internetowych Rzeszów",
-    "programista Next.js",
-    "Full-Stack Software Engineer",
-    "aplikacje webowe",
-    "sklepy internetowe",
-    "Turso DB",
-    "TypeScript",
-    "freelancer programista",
-    "tworzenie aplikacji Rzeszów",
-  ],
+    "Projektuję szybkie strony internetowe, sklepy i aplikacje webowe dla firm z Rzeszowa i całej Polski. Zobacz realizacje i omów swój projekt.",
+  applicationName: "Portfolio Emanuela Włocha",
+  category: "technology",
   authors: [{ name: "Emanuel Włoch", url: "https://emanuelwloch.pl" }],
   creator: "Emanuel Włoch",
   publisher: "Emanuel Włoch",
@@ -45,11 +35,11 @@ export const metadata: Metadata = {
     canonical: "https://emanuelwloch.pl",
   },
   openGraph: {
-    title: "Emanuel Włoch – Full-Stack Developer",
+    title: "Emanuel Włoch – Strony internetowe i aplikacje | Rzeszów",
     description:
-      "Projektuję i rozwijam strony internetowe, e-commerce oraz dedykowane aplikacje webowe.",
+      "Szybkie strony internetowe, sklepy i aplikacje webowe dla firm z Rzeszowa i całej Polski.",
     url: "https://emanuelwloch.pl",
-    siteName: "Emanuel Włoch - Web Development",
+    siteName: "Emanuel Włoch – Web Development",
     locale: "pl_PL",
     type: "website",
     images: [
@@ -65,9 +55,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Emanuel Włoch – Full-Stack Developer",
+    title: "Emanuel Włoch – Strony internetowe i aplikacje",
     description:
-      "Projektuję i rozwijam nowoczesne aplikacje webowe i sklepy internetowe.",
+      "Szybkie strony internetowe, sklepy i aplikacje webowe dla firm z Rzeszowa i całej Polski.",
     images: ["https://emanuelwloch.pl/og-image.jpg"],
   },
   robots: {

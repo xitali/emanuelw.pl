@@ -1,28 +1,30 @@
-import { MetadataRoute } from 'next';
+import type { MetadataRoute } from "next";
 import { getProjects } from "@/lib/turso";
+import { getProjectPath, SITE_URL, toAbsoluteUrl } from "@/lib/seo";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://emanuelwloch.pl';
   const projects = await getProjects();
 
   return [
     {
-      url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 1.0,
+      url: SITE_URL,
     },
     {
-      url: `${baseUrl}/polityka-prywatnosci`,
-      lastModified: new Date(),
-      changeFrequency: 'yearly',
-      priority: 0.3,
+      url: `${SITE_URL}/tworzenie-stron-internetowych-rzeszow`,
+      lastModified: new Date("2026-07-29"),
+    },
+    {
+      url: `${SITE_URL}/polityka-prywatnosci`,
+      lastModified: new Date("2026-07-26"),
     },
     ...projects.map((project) => ({
-      url: `${baseUrl}/projekty/${project.id}`,
-      lastModified: project.updated_at ? new Date(project.updated_at) : new Date(),
-      changeFrequency: "monthly" as const,
-      priority: 0.8,
+      url: `${SITE_URL}${getProjectPath(project)}`,
+      lastModified: project.updated_at
+        ? new Date(project.updated_at)
+        : undefined,
+      images: project.images
+        .map((image) => toAbsoluteUrl(image))
+        .filter((image): image is string => Boolean(image)),
     })),
   ];
 }

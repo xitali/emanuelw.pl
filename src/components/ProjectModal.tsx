@@ -7,6 +7,7 @@ import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import Link from "next/link";
 import { useBodyScrollLock } from "@/hooks/useBodyScrollLock";
+import { getProjectPath } from "@/lib/seo";
 
 interface ProjectModalProps {
   project: Project | null;
@@ -142,7 +143,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
         {/* Links CTAs */}
         <div className="flex flex-wrap gap-4 pt-2">
           <Link
-            href={`/projekty/${project.id}`}
+            href={getProjectPath(project)}
             className="px-6 py-3 rounded-full text-sm font-semibold text-cyan-900 bg-cyan-100 hover:bg-cyan-200 border border-cyan-300 dark:bg-cyan-950 dark:hover:bg-cyan-900 dark:text-cyan-200 dark:border-cyan-700 flex items-center gap-2 transition-colors"
           >
             Pełne case study

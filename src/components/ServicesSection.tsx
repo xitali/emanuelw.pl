@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Service } from "@/types";
 import { Rocket, Check, Code, Globe, Shield, Star, Smartphone, Zap, Users, Calculator, ArrowRight } from "lucide-react";
 import { openContactForm } from "@/lib/contact-prefill";
+import Link from "next/link";
 
 interface ServicesSectionProps {
   initialServices: Service[];
@@ -74,6 +75,13 @@ export default function ServicesSection({ initialServices }: ServicesSectionProp
           <p className="text-slate-600 dark:text-slate-400 text-base sm:text-lg">
             Wybierz usługę, aby automatycznie wypełnić formularz kontaktowy z podaną wyceną i zgłosić projekt.
           </p>
+          <Link
+            href="/tworzenie-stron-internetowych-rzeszow"
+            className="inline-flex items-center gap-2 font-semibold text-cyan-700 hover:text-cyan-600 dark:text-cyan-300 dark:hover:text-cyan-200"
+          >
+            Jak tworzę strony internetowe w Rzeszowie
+            <ArrowRight className="size-4" />
+          </Link>
         </div>
 
         {/* Services Cards Grid */}

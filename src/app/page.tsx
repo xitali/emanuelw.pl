@@ -32,14 +32,14 @@ export default async function HomePage() {
 
   return (
     <>
-      <HomeStructuredData />
+      <HomeStructuredData services={services} settings={settings} />
     <main className="relative min-h-screen text-slate-900 dark:text-slate-100 overflow-x-hidden selection:bg-cyan-500/30 selection:text-cyan-900 dark:selection:text-cyan-200">
       <VisitTracker />
       <BackgroundGlow />
       <Navbar />
       
       <div className="relative z-10 space-y-12">
-        <HeroSection />
+        <HeroSection email={settings.personal_email} />
         <ProjectsSection initialProjects={projects} />
         <ServicesSection initialServices={services} />
         <TechStackSection />

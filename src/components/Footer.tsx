@@ -31,6 +31,9 @@ export default function Footer({ visitCount = 0 }: FooterProps) {
 
           {/* Copyright */}
           <div className="flex items-center gap-4 text-xs text-slate-500 dark:text-slate-400">
+            <Link href="/tworzenie-stron-internetowych-rzeszow" className="hover:text-cyan-600 dark:hover:text-cyan-400">
+              Strony internetowe Rzeszów
+            </Link>
             <Link href="/polityka-prywatnosci" className="hover:text-cyan-600 dark:hover:text-cyan-400">
               Polityka prywatności
             </Link>

@@ -26,10 +26,10 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: "Projekty", href: "#projekty", icon: Code2 },
-    { name: "Usługi", href: "#uslugi", icon: Rocket },
-    { name: "Technologie", href: "#technologie", icon: Sparkles },
-    { name: "Kontakt", href: "#kontakt", icon: MessageSquare },
+    { name: "Projekty", href: "/#projekty", icon: Code2 },
+    { name: "Usługi", href: "/#uslugi", icon: Rocket },
+    { name: "Technologie", href: "/#technologie", icon: Sparkles },
+    { name: "Kontakt", href: "/#kontakt", icon: MessageSquare },
   ];
 
   return (
