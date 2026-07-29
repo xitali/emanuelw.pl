@@ -16,6 +16,7 @@ import TestimonialsSection from "@/components/TestimonialsSection";
 import Footer from "@/components/Footer";
 import VisitTracker from "@/components/VisitTracker";
 import HomeStructuredData from "@/components/HomeStructuredData";
+import ScrollBuildSection from "@/components/ScrollBuildSection";
 
 // High performance revalidation tag caching
 export const revalidate = 3600;
@@ -33,13 +34,14 @@ export default async function HomePage() {
   return (
     <>
       <HomeStructuredData services={services} settings={settings} />
-    <main className="relative min-h-screen text-slate-900 dark:text-slate-100 overflow-x-hidden selection:bg-cyan-500/30 selection:text-cyan-900 dark:selection:text-cyan-200">
+    <main className="relative min-h-screen text-slate-900 dark:text-slate-100 overflow-x-clip selection:bg-cyan-500/30 selection:text-cyan-900 dark:selection:text-cyan-200">
       <VisitTracker />
       <BackgroundGlow />
       <Navbar />
       
-      <div className="relative z-10 space-y-12">
+      <div className="relative z-10">
         <HeroSection email={settings.personal_email} />
+        <ScrollBuildSection />
         <ProjectsSection initialProjects={projects} />
         <ServicesSection initialServices={services} />
         <TechStackSection />
