@@ -127,14 +127,24 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
         {images.length > 0 && (
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {images.map((imgUrl, idx) => (
-              <div key={idx} className="relative rounded-2xl overflow-hidden border border-slate-300 dark:border-slate-800 group h-64 bg-slate-100 dark:bg-slate-950 shadow-sm">
+              <div key={idx} className="group relative h-64 overflow-hidden rounded-2xl border border-slate-300 bg-slate-100 shadow-sm dark:border-slate-800 dark:bg-slate-950">
                 <Image
                   src={imgUrl}
-                  alt={`${project.title} screen ${idx + 1}`}
+                  alt=""
                   fill
                   sizes="(max-width: 640px) 100vw, 50vw"
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="scale-110 object-cover opacity-28 blur-2xl"
+                  aria-hidden="true"
                 />
+                <div className="absolute inset-2 overflow-hidden rounded-xl bg-black/10">
+                  <Image
+                    src={imgUrl}
+                    alt={`${project.title} – ekran ${idx + 1}`}
+                    fill
+                    sizes="(max-width: 640px) 100vw, 50vw"
+                    className="object-contain object-center transition-transform duration-500 group-hover:scale-[1.015]"
+                  />
+                </div>
               </div>
             ))}
           </div>

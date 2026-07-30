@@ -5,12 +5,12 @@ import {
   getPageVisitsCount,
   getTestimonials,
 } from "@/lib/turso";
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/ProfessionalNavbar";
 import BackgroundGlow from "@/components/BackgroundGlow";
-import HeroSection from "@/components/HeroSection";
+import HeroSection from "@/components/ProfessionalHeroSection";
 import ProjectsSection from "@/components/ImmersiveProjectsSection";
 import ServicesSection from "@/components/ServicesSection";
-import TechStackSection from "@/components/TechStackSection";
+import TechStackSection from "@/components/ProfessionalTechStackSection";
 import ContactSection from "@/components/ContactSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import Footer from "@/components/Footer";
@@ -40,7 +40,22 @@ export default async function HomePage() {
       <Navbar />
       
       <div className="relative z-10">
-        <HeroSection email={settings.personal_email} />
+        <HeroSection
+          email={settings.personal_email}
+          projectCount={projects.length}
+          featuredProject={
+            projects[0]
+              ? {
+                  title: projects[0].title,
+                  image: projects[0].images?.[0] ?? null,
+                  type:
+                    projects[0].project_type ||
+                    projects[0].category ||
+                    "Produkt cyfrowy",
+                }
+              : undefined
+          }
+        />
         <ScrollBuildSection />
         <ProjectsSection initialProjects={projects} />
         <ServicesSection initialServices={services} />

@@ -78,7 +78,7 @@ export default function ScrollBuildSection() {
     <section
       ref={sectionRef}
       aria-labelledby="build-heading"
-      className="scroll-build-section relative z-10 border-y border-slate-200/80 bg-white/45 dark:border-white/[0.07] dark:bg-[#070a12]/70 lg:min-h-[190vh]"
+      className="scroll-build-section relative z-10 border-y border-slate-200/80 bg-white/45 dark:border-white/[0.07] dark:bg-[#070a12]/70 lg:min-h-[165vh]"
     >
       <div className="scroll-build-sticky relative flex items-center overflow-hidden py-24 lg:sticky lg:top-[72px] lg:h-[calc(100vh-72px)] lg:py-5">
         <div

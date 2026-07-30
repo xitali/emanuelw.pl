@@ -11,10 +11,10 @@ export default function TestimonialsSection({ testimonials }: TestimonialsSectio
   if (!testimonials || testimonials.length === 0) return null;
 
   return (
-    <section className="py-24 relative z-10 border-t border-slate-200 dark:border-slate-800/60">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+    <section className="relative z-10 overflow-hidden border-t border-slate-200 py-24 dark:border-slate-800/60 lg:py-32">
+      <div className="mx-auto max-w-[1500px] space-y-14 px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center space-y-4 max-w-3xl mx-auto">
+        <div className="mx-auto max-w-4xl space-y-4 text-center">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-panel border border-cyan-500/30 text-xs font-mono text-cyan-700 dark:text-cyan-300">
             <MessageSquareQuote className="w-3.5 h-3.5" />
             <span>Zaufanie Klientów</span>
@@ -28,10 +28,20 @@ export default function TestimonialsSection({ testimonials }: TestimonialsSectio
         </div>
 
         {/* Grid of Testimonials */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {testimonials.map((testim) => (
-            <div key={testim.id} className="glass-panel-interactive p-8 rounded-3xl border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-transparent space-y-6 flex flex-col justify-between group">
-              <div className="space-y-4">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {testimonials.map((testim, testimonialIndex) => (
+            <article
+              key={testim.id}
+              className="glass-panel-interactive group relative flex min-h-80 flex-col justify-between space-y-8 overflow-hidden rounded-[2rem] border border-slate-200 bg-white/55 p-7 dark:border-slate-800 dark:bg-transparent sm:p-8"
+            >
+              <span
+                aria-hidden="true"
+                className="absolute -right-1 -top-8 font-serif text-[10rem] leading-none text-cyan-500/[0.06] dark:text-cyan-300/[0.045]"
+              >
+                “
+              </span>
+              <div className="relative space-y-5">
+                <div className="flex items-center justify-between">
                 <div className="flex gap-1" aria-label={`Ocena: ${testim.rating} na 5`}>
                   {[...Array(testim.rating)].map((_, i) => (
                     <Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />
@@ -39,6 +49,10 @@ export default function TestimonialsSection({ testimonials }: TestimonialsSectio
                   {[...Array(5 - testim.rating)].map((_, i) => (
                     <Star key={i} className="w-5 h-5 fill-slate-200 dark:fill-slate-800 text-slate-300 dark:text-slate-700" />
                   ))}
+                </div>
+                  <span className="font-mono text-[10px] tracking-[0.18em] text-slate-400 dark:text-white/25">
+                    0{testimonialIndex + 1}
+                  </span>
                 </div>
                 <blockquote className="text-slate-600 dark:text-slate-300 italic text-sm md:text-base leading-relaxed">
                   {testim.content}
@@ -55,7 +69,7 @@ export default function TestimonialsSection({ testimonials }: TestimonialsSectio
                   )}
                 </div>
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </div>

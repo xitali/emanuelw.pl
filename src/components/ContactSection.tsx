@@ -77,11 +77,15 @@ export default function ContactSection({ settings }: ContactSectionProps) {
   }
 
   return (
-    <section id="kontakt" className="py-24 relative z-10 border-t border-slate-200 dark:border-slate-800/60 bg-slate-50/90 dark:bg-[#040710]/90">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+    <section id="kontakt" className="relative z-10 overflow-hidden border-t border-slate-200 bg-slate-50/90 py-24 dark:border-slate-800/60 dark:bg-[#040710]/90 lg:py-32">
+      <div
+        aria-hidden="true"
+        className="absolute -right-48 top-20 size-[34rem] rounded-full bg-violet-500/[0.07] blur-[160px]"
+      />
+      <div className="relative mx-auto max-w-[1500px] space-y-16 px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="text-center space-y-4 max-w-3xl mx-auto">
+        <div className="mx-auto max-w-4xl space-y-4 text-center">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-panel border border-cyan-500/30 text-xs font-mono text-cyan-700 dark:text-cyan-300">
             <Mail className="w-3.5 h-3.5" />
             <span>Nawiążmy Kontakt</span>
@@ -95,11 +99,11 @@ export default function ContactSection({ settings }: ContactSectionProps) {
         </div>
 
         {/* Grid: Contact Info + Form */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 max-w-6xl mx-auto items-start">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 items-start gap-6 lg:grid-cols-12 lg:gap-8">
           
           {/* Info cards */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="glass-panel rounded-3xl p-8 border border-slate-200 dark:border-slate-800 bg-white/50 dark:bg-transparent space-y-6">
+            <div className="glass-panel space-y-6 rounded-[2rem] border border-slate-200 bg-white/55 p-7 dark:border-slate-800 dark:bg-transparent sm:p-8">
               <h3 className="text-2xl font-bold text-slate-900 dark:text-white">Dane Kontaktowe</h3>
               
               <div className="space-y-4">
@@ -135,7 +139,7 @@ export default function ContactSection({ settings }: ContactSectionProps) {
                   </div>
                   <div>
                     <div className="text-[10px] font-mono text-slate-500 dark:text-slate-400 uppercase">Lokalizacja</div>
-                    <div className="text-sm font-semibold">Polska / Podkarpacie / Remote</div>
+                    <div className="text-sm font-semibold">Jarosław / Podkarpackie / zdalnie</div>
                   </div>
                 </div>
 
@@ -190,7 +194,7 @@ export default function ContactSection({ settings }: ContactSectionProps) {
 
           {/* Form */}
           <div className="lg:col-span-7">
-            <form onSubmit={handleSubmit} className="glass-panel rounded-3xl p-8 border border-cyan-500/30 bg-white/80 dark:bg-transparent space-y-6">
+            <form onSubmit={handleSubmit} className="glass-panel space-y-6 rounded-[2rem] border border-cyan-500/20 bg-white/85 p-7 shadow-[0_32px_90px_-54px_rgba(8,145,178,0.5)] dark:bg-transparent sm:p-8 lg:p-10">
               <h3 className="text-2xl font-bold text-slate-900 dark:text-white">Napisz Wiadomość</h3>
 
               {autoFilledBadge && (
@@ -268,7 +272,7 @@ export default function ContactSection({ settings }: ContactSectionProps) {
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   placeholder="Opisz krótko swój projekt lub zadaj pytanie..."
-                  className="w-full px-4 py-3 rounded-xl bg-white dark:bg-slate-950 border border-slate-200 dark:border-slate-800 focus:border-cyan-400 focus:outline-none text-slate-900 dark:text-slate-100 text-sm resize-none"
+                  className="w-full min-h-40 resize-y rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-900 focus:border-cyan-400 focus:outline-none focus:ring-4 focus:ring-cyan-500/10 dark:border-slate-800 dark:bg-slate-950 dark:text-slate-100"
                 />
               </div>
 

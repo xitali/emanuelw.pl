@@ -502,7 +502,7 @@ export default function ImmersiveProjectsSection({
             ref={stageRef}
             className="relative mx-auto hidden max-w-[1500px] px-8 lg:block"
             style={{
-              height: `${Math.max(140, 100 + (filteredProjects.length - 1) * 34)}vh`,
+              height: `${Math.max(128, 96 + (filteredProjects.length - 1) * 24)}vh`,
               overflowAnchor: "none",
             }}
           >
