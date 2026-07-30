@@ -18,6 +18,10 @@
     --text-muted: #64748b;
   }
 
+  html {
+    scroll-padding-top: 7rem;
+  }
+
   body {
     font-family: var(--font-geist-sans), system-ui, sans-serif;
     overflow-x: hidden;

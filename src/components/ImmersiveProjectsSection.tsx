@@ -438,21 +438,21 @@ export default function ImmersiveProjectsSection({
         }}
       />
 
-      <div className="relative mx-auto max-w-[1500px] px-4 pt-24 sm:px-6 lg:px-8 lg:pt-32">
-        <header className="relative border-b border-white/10 pb-14 lg:pb-20">
+      <div className="relative mx-auto max-w-[1500px] px-4 pt-20 sm:px-6 lg:px-8 lg:pt-24">
+        <header className="relative border-b border-white/10 pb-12 lg:pb-16">
           <div className="flex items-center justify-between gap-6 font-mono text-[10px] uppercase tracking-[0.2em] text-white/65">
             <div className="flex items-center gap-3">
               <Plus className="size-3 text-white" />
-              <span>Selected work</span>
+              <span>Wybrane realizacje</span>
             </div>
             <span>2022 — 2026</span>
             <div className="hidden items-center gap-3 sm:flex">
-              <span>Scroll to explore</span>
+              <span>Przewiń, aby zobaczyć</span>
               <ArrowDownRight className="size-3 text-white" />
             </div>
           </div>
 
-          <div className="mt-12 grid items-end gap-8 lg:grid-cols-[1fr_auto]">
+          <div className="mt-10 grid items-end gap-8 lg:grid-cols-[0.9fr_0.55fr] lg:gap-16">
             <div>
               <div className="mb-5 flex items-center gap-2 text-xs text-white/70">
                 <Sparkles className="size-3.5" />
@@ -460,7 +460,7 @@ export default function ImmersiveProjectsSection({
               </div>
               <h2
                 id="projects-heading"
-                className="max-w-6xl text-[clamp(3.8rem,10vw,9.5rem)] font-medium leading-[0.78] tracking-[-0.075em]"
+                className="max-w-4xl text-[clamp(2.85rem,5.5vw,5.75rem)] font-medium leading-[0.88] tracking-[-0.055em]"
               >
                 Wybrane
                 <span className="block text-white/35">projekty.</span>
@@ -677,7 +677,7 @@ export default function ImmersiveProjectsSection({
 
       <div className="relative mx-auto max-w-[1500px] px-4 pb-24 sm:px-6 lg:px-8 lg:pb-32">
         <div className="flex items-center justify-between border-t border-white/10 pt-8 font-mono text-[10px] uppercase tracking-[0.18em] text-white/58">
-          <span>End of selected work</span>
+          <span>Koniec wybranych realizacji</span>
           <div className="flex items-center gap-2">
             <span>Masz projekt?</span>
             <ArrowDownRight className="size-3 text-white" />

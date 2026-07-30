@@ -9,7 +9,7 @@ import Navbar from "@/components/ProfessionalNavbar";
 import BackgroundGlow from "@/components/BackgroundGlow";
 import HeroSection from "@/components/ProfessionalHeroSection";
 import ProjectsSection from "@/components/ImmersiveProjectsSection";
-import ServicesSection from "@/components/ServicesSection";
+import ServicesSection from "@/components/ProfessionalServicesSection";
 import TechStackSection from "@/components/ProfessionalTechStackSection";
 import ContactSection from "@/components/ContactSection";
 import TestimonialsSection from "@/components/TestimonialsSection";

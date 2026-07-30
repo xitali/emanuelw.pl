@@ -1,8 +1,13 @@
 import type { NextConfig } from "next";
 
+const scriptSource =
+  process.env.NODE_ENV === "development"
+    ? "script-src 'self' 'unsafe-inline' 'unsafe-eval'"
+    : "script-src 'self' 'unsafe-inline'";
+
 const contentSecurityPolicy = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline'",
+  scriptSource,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' blob: data: https://i.ibb.co https://image2url.com https://*.r2.dev https://*.public.blob.vercel-storage.com",
   "font-src 'self'",

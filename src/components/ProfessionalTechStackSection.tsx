@@ -116,7 +116,7 @@ export default function ProfessionalTechStackSection() {
       />
 
       <div className="relative mx-auto max-w-[1500px] px-4 sm:px-6 lg:px-8">
-        <div className="grid gap-10 border-b border-white/10 pb-14 lg:grid-cols-[0.72fr_1.28fr] lg:items-end lg:gap-20 lg:pb-20">
+        <div className="grid gap-10 border-b border-white/10 pb-12 lg:grid-cols-[0.9fr_0.7fr] lg:items-end lg:gap-20 lg:pb-16">
           <div>
             <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] text-cyan-200/65">
               <Braces className="size-3.5" />
@@ -124,7 +124,7 @@ export default function ProfessionalTechStackSection() {
             </div>
             <h2
               id="technology-heading"
-              className="mt-5 text-[clamp(3.3rem,7vw,7.5rem)] font-medium leading-[0.82] tracking-[-0.07em]"
+              className="mt-5 text-[clamp(2.85rem,5.5vw,5.75rem)] font-medium leading-[0.88] tracking-[-0.055em]"
             >
               Technologia
               <span className="block text-white/30">ma pomagać.</span>
