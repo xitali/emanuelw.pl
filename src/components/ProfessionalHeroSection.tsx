@@ -21,7 +21,7 @@ const HeroArtwork = dynamic(() => import("./HeroArtwork"), {
   ssr: false,
   loading: () => (
     <div
-      className="mx-auto aspect-[0.92] w-full max-w-[720px] animate-pulse rounded-[2.75rem] border border-white/10 bg-white/[0.035]"
+      className="mx-auto aspect-[0.98] w-full max-w-[680px] animate-pulse rounded-[2.5rem] border border-white/10 bg-white/[0.035]"
       aria-hidden="true"
     />
   ),
@@ -61,7 +61,7 @@ export default function ProfessionalHeroSection({
   }
 
   return (
-    <section className="hero-stage relative isolate overflow-hidden bg-[#05070c] pb-20 pt-28 text-white sm:pb-24 sm:pt-32 lg:min-h-[min(940px,100svh)] lg:pb-16 lg:pt-32">
+    <section className="hero-stage relative isolate overflow-hidden bg-[#05070c] pb-16 pt-28 text-white sm:pb-20 sm:pt-32 lg:min-h-[min(880px,100svh)] lg:pb-14 lg:pt-28">
       <div
         aria-hidden="true"
         className="absolute inset-0 opacity-35"
@@ -82,44 +82,52 @@ export default function ProfessionalHeroSection({
         className="absolute -right-[14rem] bottom-[-10rem] size-[42rem] rounded-full bg-violet-600/15 blur-[170px]"
       />
 
-      <div className="relative mx-auto grid w-full max-w-[1500px] items-center gap-14 px-4 sm:px-6 lg:grid-cols-[0.86fr_1.14fr] lg:gap-8 lg:px-8 xl:gap-14">
-        <div className="relative z-10 max-w-3xl">
+      <div className="relative mx-auto grid w-full max-w-[1500px] items-center gap-14 px-4 sm:px-6 lg:grid-cols-[0.96fr_1.04fr] lg:gap-10 lg:px-8 xl:gap-14">
+        <div className="relative z-10 max-w-4xl">
           <div className="flex flex-wrap items-center gap-3">
-            <div className="flex items-center gap-3 rounded-full border border-white/12 bg-white/[0.055] py-1.5 pl-1.5 pr-4 backdrop-blur-xl">
-              <div className="relative size-9 overflow-hidden rounded-full border border-white/20 bg-slate-800">
+            <div className="flex items-center gap-4 rounded-[1.4rem] border border-white/12 bg-white/[0.055] p-2.5 pr-5 backdrop-blur-xl">
+              <div className="relative size-20 shrink-0 overflow-hidden rounded-[1.05rem] border border-white/20 bg-slate-800 shadow-[0_16px_42px_-18px_rgba(34,211,238,.45)] sm:size-24">
                 <Image
                   src="/emanuel_wloch.jpg"
                   alt="Emanuel Włoch"
                   fill
                   priority
-                  sizes="36px"
+                  sizes="(max-width: 640px) 80px, 96px"
                   className="object-cover object-top"
                 />
               </div>
-              <div className="flex items-center gap-2 text-xs text-white/78">
-                <span className="size-1.5 rounded-full bg-emerald-300 shadow-[0_0_12px_rgba(110,231,183,.9)]" />
-                Dostępny do współpracy
+              <div>
+                <div className="text-sm font-semibold tracking-[-0.02em] text-white">
+                  Emanuel Włoch
+                </div>
+                <div className="mt-1 text-[10px] uppercase tracking-[0.16em] text-white/42">
+                  Full-stack developer
+                </div>
+                <div className="mt-3 flex items-center gap-2 text-xs text-white/72">
+                  <span className="size-1.5 rounded-full bg-emerald-300 shadow-[0_0_12px_rgba(110,231,183,.9)]" />
+                  Dostępny do współpracy
+                </div>
               </div>
             </div>
 
-            <div className="flex items-center gap-2 rounded-full border border-white/10 px-3.5 py-2 text-xs text-white/55">
+            <div className="flex items-center gap-2 self-end rounded-full border border-white/10 bg-black/15 px-3.5 py-2 text-xs text-white/55">
               <MapPin className="size-3.5 text-cyan-300" />
               Jarosław / zdalnie
             </div>
           </div>
 
-          <div className="mt-11 font-mono text-[10px] uppercase tracking-[0.24em] text-cyan-200/70 sm:text-xs">
+          <div className="mt-8 font-mono text-[10px] uppercase tracking-[0.24em] text-cyan-200/70 sm:text-xs">
             Full-stack development • product design
           </div>
 
-          <h1 className="mt-5 max-w-4xl text-[clamp(3.45rem,6.6vw,7.35rem)] font-medium leading-[0.88] tracking-[-0.072em]">
+          <h1 className="mt-4 max-w-4xl text-[clamp(2.85rem,4.6vw,5rem)] font-medium leading-[0.92] tracking-[-0.055em]">
             Cyfrowe produkty,
             <span className="block bg-gradient-to-r from-white via-cyan-200 to-violet-300 bg-clip-text text-transparent">
               które robią różnicę.
             </span>
           </h1>
 
-          <p className="mt-8 max-w-2xl text-base leading-relaxed text-white/66 sm:text-lg lg:text-xl">
+          <p className="mt-7 max-w-2xl text-base leading-relaxed text-white/66 sm:text-lg">
             Projektuję i wdrażam szybkie strony, sklepy oraz aplikacje webowe —
             od wyrazistego interfejsu po bezpieczny backend i produkcyjne
             wdrożenie.
@@ -143,7 +151,7 @@ export default function ProfessionalHeroSection({
             </button>
           </div>
 
-          <div className="mt-11 grid max-w-2xl grid-cols-1 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 sm:grid-cols-3">
+          <div className="mt-9 grid max-w-2xl grid-cols-1 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 sm:grid-cols-3">
             <div className="bg-[#080b12]/90 px-5 py-4">
               <div className="flex items-baseline gap-1 text-2xl font-semibold tracking-tight">
                 {projectCount > 0 ? (
@@ -190,7 +198,7 @@ export default function ProfessionalHeroSection({
           </button>
         </div>
 
-        <div className="relative min-w-0 lg:-mr-8 xl:-mr-14">
+        <div className="relative min-w-0 lg:pl-2">
           <HeroArtwork
             projectTitle={featuredProject?.title}
             projectImage={featuredProject?.image}

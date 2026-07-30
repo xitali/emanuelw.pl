@@ -28,10 +28,10 @@ export default function HeroArtwork({
     <div
       role="img"
       aria-label={`Wizualizacja procesu projektowego na przykładzie realizacji ${projectTitle}`}
-      className="relative mx-auto aspect-[0.92] w-full max-w-[720px]"
+      className="relative mx-auto aspect-[0.98] w-full max-w-[680px]"
     >
       <motion.div
-        className="absolute inset-[3%] overflow-hidden rounded-[2.75rem] border border-white/15 bg-[#080a10] shadow-[0_54px_160px_-48px_rgba(0,0,0,0.95)]"
+        className="absolute inset-[4%] overflow-hidden rounded-[2.5rem] border border-white/15 bg-[#080a10] shadow-[0_54px_160px_-48px_rgba(0,0,0,0.95)]"
         initial={shouldReduceMotion ? false : { opacity: 0, y: 24, scale: 0.97 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: shouldReduceMotion ? 0 : 0.85, ease: [0.16, 1, 0.3, 1] }}
@@ -66,7 +66,7 @@ export default function HeroArtwork({
         </div>
 
         <motion.div
-          className="absolute inset-x-[8%] top-[17%] z-10 h-[56%] overflow-hidden rounded-[1.5rem] border border-white/16 bg-[#070a11]/86 shadow-[0_34px_100px_-30px_rgba(0,0,0,0.86)] backdrop-blur-xl sm:rounded-[2rem]"
+          className="absolute inset-x-[10%] top-[18%] z-20 h-[52%] overflow-hidden rounded-[1.5rem] border border-white/16 bg-[#070a11]/86 shadow-[0_34px_100px_-30px_rgba(0,0,0,0.86)] backdrop-blur-xl sm:rounded-[2rem]"
           animate={
             shouldReduceMotion
               ? undefined
@@ -122,7 +122,7 @@ export default function HeroArtwork({
           </div>
         </motion.div>
 
-        <div className="absolute inset-x-[8%] bottom-[7%] z-10 grid grid-cols-3 gap-2 sm:gap-3">
+        <div className="absolute inset-x-[8%] bottom-[7%] z-20 grid grid-cols-3 gap-2 sm:gap-3">
           {[
             { label: "Interfejs", shortLabel: "UI", icon: Layers3 },
             { label: "Backend", shortLabel: "API", icon: Database },
@@ -145,7 +145,7 @@ export default function HeroArtwork({
       </motion.div>
 
       <motion.div
-        className="absolute -left-1 top-[17%] hidden items-center gap-2 rounded-full border border-white/14 bg-[#0a0d15]/82 px-4 py-2.5 text-[10px] uppercase tracking-[0.15em] text-white/75 shadow-xl backdrop-blur-xl sm:flex"
+        className="absolute left-[1%] top-[14%] z-30 hidden items-center gap-2 rounded-full border border-white/18 bg-[#0a0d15]/92 px-4 py-2.5 text-[10px] uppercase tracking-[0.15em] text-white/80 shadow-[0_18px_50px_-22px_rgba(0,0,0,.9)] backdrop-blur-xl sm:flex"
         animate={shouldReduceMotion ? undefined : { y: [0, 7, 0] }}
         transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
       >
@@ -154,7 +154,7 @@ export default function HeroArtwork({
       </motion.div>
 
       <motion.div
-        className="absolute -right-1 bottom-[20%] max-w-[190px] rounded-2xl border border-white/14 bg-[#0a0d15]/86 p-4 text-white shadow-2xl backdrop-blur-xl sm:right-0"
+        className="absolute right-[1%] top-[63%] z-30 w-[190px] rounded-2xl border border-white/18 bg-[#0a0d15]/94 p-4 text-white shadow-[0_22px_60px_-24px_rgba(0,0,0,.95)] backdrop-blur-xl sm:right-[2%]"
         animate={shouldReduceMotion ? undefined : { y: [0, -8, 0] }}
         transition={{ duration: 7.5, repeat: Infinity, ease: "easeInOut" }}
       >
