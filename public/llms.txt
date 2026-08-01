@@ -1,0 +1,36 @@
+# Emanuel Włoch — portfolio i usługi web development
+
+> Oficjalna strona Emanuela Włocha, full-stack developera z Jarosławia w województwie podkarpackim. Projektuje i wdraża strony internetowe, sklepy oraz aplikacje webowe dla klientów z Polski. Rzeszów jest obsługiwanym rynkiem, a nie miejscem zamieszkania.
+
+## Najważniejsze strony
+
+- [O Emanuelu Włochu](https://emanuelwloch.pl/o-mnie): doświadczenie, specjalizacje i zweryfikowane profile zewnętrzne.
+- [Pełna oferta](https://emanuelwloch.pl/uslugi): katalog usług, zakresy i proces współpracy.
+- [Tworzenie stron internetowych](https://emanuelwloch.pl/tworzenie-stron-internetowych): strony firmowe i landing pages.
+- [Tworzenie aplikacji webowych](https://emanuelwloch.pl/tworzenie-aplikacji-webowych): panele, konta, bazy danych i API.
+- [Sklepy internetowe](https://emanuelwloch.pl/sklepy-internetowe): katalog, koszyk, płatności i panel.
+- [Next.js developer](https://emanuelwloch.pl/nextjs-developer): nowe aplikacje, audyty, migracje i wydajność.
+- [Strony internetowe Jarosław](https://emanuelwloch.pl/tworzenie-stron-internetowych-jaroslaw): lokalna oferta dla Jarosławia i Podkarpacia.
+- [Strony internetowe Rzeszów](https://emanuelwloch.pl/tworzenie-stron-internetowych-rzeszow): zdalna oferta dla firm z rynku rzeszowskiego.
+- [Poradniki](https://emanuelwloch.pl/poradniki): autorskie odpowiedzi dotyczące kosztów, terminów i wyboru technologii.
+
+## Poradniki
+
+- [Ile kosztuje strona internetowa w 2026 roku?](https://emanuelwloch.pl/poradniki/ile-kosztuje-strona-internetowa-2026)
+- [Next.js czy WordPress — co wybrać?](https://emanuelwloch.pl/poradniki/nextjs-czy-wordpress)
+- [Ile trwa stworzenie strony internetowej?](https://emanuelwloch.pl/poradniki/ile-trwa-tworzenie-strony-internetowej)
+
+## Wybrane case studies
+
+- [VIP Transfery](https://emanuelwloch.pl/projekty/vip-transfery-platforma-premium-transport-solutions-09e837ed-2206-49b7-9b81-21c6222a18f5): platforma usług transportowych premium, Next.js i lokalne SEO.
+- [Iluminatia Tattoo](https://emanuelwloch.pl/projekty/rzeszow-tatuaz-iluminatia-tattoo-5fa80c09-f256-4dc9-a94e-6a08ae809345): strona lokalnego studia, galeria i mierzenie kontaktów.
+- [Dmuchańce Afryka](https://emanuelwloch.pl/projekty/dmuchance-afryka-strona-wynajmu-dmuchancow-3bc5ed9c-c7c8-4532-adec-326f78389f0e): aplikacja z panelem, galerią i zarządzaniem wydarzeniami.
+
+## Profile
+
+- [GitHub](https://github.com/xitali)
+- [Useme](https://useme.com/pl/roles/contractor/emanuel-wloch%2C525723/)
+
+## Kontakt
+
+- [Formularz kontaktowy](https://emanuelwloch.pl/#kontakt)

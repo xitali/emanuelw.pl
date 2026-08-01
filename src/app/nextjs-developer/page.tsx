@@ -1,10 +1,10 @@
 import SeoServicePage, { createServiceMetadata } from "@/components/SeoServicePage";
 import { getServicePage } from "@/lib/service-pages";
 
-const data = getServicePage("tworzenie-stron-internetowych-rzeszow")!;
+const data = getServicePage("nextjs-developer")!;
 
 export const metadata = createServiceMetadata(data);
 
-export default function RzeszowWebsitesPage() {
+export default function NextDeveloperPage() {
   return <SeoServicePage data={data} />;
 }

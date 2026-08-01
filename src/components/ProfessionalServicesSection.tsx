@@ -177,10 +177,10 @@ export default function ProfessionalServicesSection({
               do realnego celu.
             </p>
             <Link
-              href="/tworzenie-stron-internetowych-rzeszow"
+              href="/uslugi"
               className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-cyan-700 transition-colors hover:text-cyan-600 dark:text-cyan-300 dark:hover:text-cyan-200"
             >
-              Oferta dla klientów z Rzeszowa
+              Pełna oferta i odpowiedzi na pytania
               <ArrowRight className="size-4" />
             </Link>
           </div>

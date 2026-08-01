@@ -2,6 +2,10 @@ import type { Project } from "@/types";
 
 export const SITE_URL = "https://emanuelwloch.pl";
 
+export function serializeJsonLd(value: unknown) {
+  return JSON.stringify(value).replace(/</g, "\\u003c");
+}
+
 export function slugify(value: string): string {
   return value
     .replace(/[łŁ]/g, "l")

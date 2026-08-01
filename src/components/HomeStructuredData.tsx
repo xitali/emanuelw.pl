@@ -1,5 +1,7 @@
 import type { PublicSiteSettings, Service } from "@/types";
-import { SITE_URL } from "@/lib/seo";
+import { serializeJsonLd, SITE_URL } from "@/lib/seo";
+
+const USEME_URL = "https://useme.com/pl/roles/contractor/emanuel-wloch%2C525723/";
 
 interface HomeStructuredDataProps {
   services: Service[];
@@ -16,6 +18,8 @@ export default function HomeStructuredData({
     settings.social_github,
     settings.social_linkedin,
     settings.social_instagram,
+    settings.social_facebook,
+    USEME_URL,
   ].filter(Boolean);
 
   const structuredData = {
@@ -28,15 +32,30 @@ export default function HomeStructuredData({
         name: "Emanuel Włoch – strony internetowe i aplikacje",
         inLanguage: "pl-PL",
         publisher: { "@id": personId },
+        about: { "@id": personId },
       },
       {
         "@type": "Person",
         "@id": personId,
         name: "Emanuel Włoch",
-        url: SITE_URL,
+        url: `${SITE_URL}/o-mnie`,
         image: `${SITE_URL}/emanuel_wloch.jpg`,
         sameAs,
         jobTitle: "Full-Stack Developer",
+        mainEntityOfPage: { "@id": `${SITE_URL}/o-mnie#webpage` },
+        hasOccupation: {
+          "@type": "Occupation",
+          name: "Full-Stack Developer",
+          occupationLocation: {
+            "@type": "City",
+            name: "Jarosław",
+          },
+        },
+        homeLocation: {
+          "@type": "Place",
+          name: "Jarosław, Podkarpackie, Polska",
+        },
+        knowsLanguage: ["pl", "en"],
         email: settings.personal_email,
         telephone: settings.personal_phone,
         knowsAbout: [
@@ -68,7 +87,7 @@ export default function HomeStructuredData({
     <script
       type="application/ld+json"
       dangerouslySetInnerHTML={{
-        __html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
+        __html: serializeJsonLd(structuredData),
       }}
     />
   );
