@@ -39,9 +39,17 @@ const processSteps = [
 export default function ScrollBuildSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const shouldReduceMotion = useReducedMotion();
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start start", "end end"],
+  const { scrollY } = useScroll();
+  const scrollYProgress = useTransform(scrollY, (latestScrollY) => {
+    const section = sectionRef.current;
+    if (!section || typeof window === "undefined") return 0;
+
+    const sectionRect = section.getBoundingClientRect();
+    const start = sectionRect.top + latestScrollY;
+    const end = start + sectionRect.height - window.innerHeight;
+    if (end <= start) return latestScrollY >= start ? 1 : 0;
+
+    return Math.min(1, Math.max(0, (latestScrollY - start) / (end - start)));
   });
   const progress = useSpring(scrollYProgress, {
     stiffness: 110,
@@ -50,22 +58,22 @@ export default function ScrollBuildSection() {
   });
 
   const sceneRotateX = useTransform(progress, [0, 0.55, 1], [17, 5, 0]);
-  const sceneRotateY = useTransform(progress, [0, 0.6, 1], [-24, 7, 0]);
+  const sceneRotateY = useTransform(progress, [0, 0.6, 1], [-12, 3, 0]);
   const sceneScale = useTransform(progress, [0, 0.7, 1], [0.82, 1.025, 1]);
 
-  const interfaceX = useTransform(progress, [0, 0.72, 1], [-105, -16, 0]);
-  const interfaceY = useTransform(progress, [0, 0.72, 1], [-150, -20, 0]);
-  const interfaceRotate = useTransform(progress, [0, 0.72, 1], [-10, -2, 0]);
+  const interfaceX = useTransform(progress, [0, 0.72, 1], [-42, -8, 0]);
+  const interfaceY = useTransform(progress, [0, 0.72, 1], [-110, -16, 0]);
+  const interfaceRotate = useTransform(progress, [0, 0.72, 1], [-6, -1, 0]);
   const interfaceOpacity = useTransform(progress, [0, 0.18, 1], [0.32, 1, 1]);
 
-  const logicX = useTransform(progress, [0, 0.58, 1], [125, 18, 0]);
+  const logicX = useTransform(progress, [0, 0.58, 1], [48, 10, 0]);
   const logicY = useTransform(progress, [0, 0.58, 1], [10, 0, 0]);
-  const logicRotate = useTransform(progress, [0, 0.58, 1], [8, 1, 0]);
+  const logicRotate = useTransform(progress, [0, 0.58, 1], [5, 1, 0]);
   const logicOpacity = useTransform(progress, [0, 0.2, 1], [0.28, 1, 1]);
 
-  const dataX = useTransform(progress, [0, 0.76, 1], [-72, -10, 0]);
-  const dataY = useTransform(progress, [0, 0.76, 1], [165, 24, 0]);
-  const dataRotate = useTransform(progress, [0, 0.76, 1], [-6, -1, 0]);
+  const dataX = useTransform(progress, [0, 0.76, 1], [-30, -6, 0]);
+  const dataY = useTransform(progress, [0, 0.76, 1], [125, 18, 0]);
+  const dataRotate = useTransform(progress, [0, 0.76, 1], [-4, -1, 0]);
   const dataOpacity = useTransform(progress, [0, 0.24, 1], [0.24, 1, 1]);
 
   const statusOpacity = useTransform(progress, [0.76, 0.94], [0, 1]);
@@ -140,7 +148,7 @@ export default function ScrollBuildSection() {
             </div>
           </div>
 
-          <div className="relative mx-auto h-[470px] w-full max-w-[700px] sm:h-[540px] lg:h-[min(570px,calc(100vh-7rem))]">
+          <div className="relative mx-auto h-[610px] w-full max-w-[700px] sm:h-[640px] lg:h-[min(660px,calc(100vh-5rem))]">
             <div
               aria-hidden="true"
               className="absolute inset-x-[12%] bottom-[8%] h-[28%] rounded-[50%] bg-cyan-400/10 dark:bg-cyan-400/[0.08]"
@@ -152,7 +160,7 @@ export default function ScrollBuildSection() {
               style={{ perspective: "1500px", perspectiveOrigin: "50% 48%" }}
             >
               <motion.div
-                className="absolute inset-[4%] [transform-style:preserve-3d]"
+                className="absolute inset-x-[4%] inset-y-[2%] [transform-style:preserve-3d]"
                 style={{
                   rotateX: staticTransform ?? sceneRotateX,
                   rotateY: staticTransform ?? sceneRotateY,
@@ -164,13 +172,13 @@ export default function ScrollBuildSection() {
                   style={{
                     x: staticTransform ?? interfaceX,
                     y: staticTransform ?? interfaceY,
-                    z: 72,
+                    z: 36,
                     rotateZ: staticTransform ?? interfaceRotate,
                     opacity: staticOpacity ?? interfaceOpacity,
                     willChange: "transform",
                   }}
                 >
-                  <div className="flex items-center justify-between border-b border-slate-200 px-4 py-3 dark:border-white/10">
+                  <div className="flex items-center justify-between border-b border-slate-200 px-4 py-2.5 dark:border-white/10">
                     <div className="flex items-center gap-2">
                       <span className="size-2 rounded-full bg-rose-400" />
                       <span className="size-2 rounded-full bg-amber-400" />
@@ -180,14 +188,14 @@ export default function ScrollBuildSection() {
                       Warstwa interfejsu
                     </span>
                   </div>
-                  <div className="grid grid-cols-[0.36fr_0.64fr] gap-4 p-5">
-                    <div className="space-y-3">
+                  <div className="grid grid-cols-[0.36fr_0.64fr] gap-3 p-4">
+                    <div className="space-y-2.5">
                       <div className="h-3 w-20 rounded-full bg-slate-900 dark:bg-white" />
                       <div className="h-2 w-full rounded-full bg-slate-200 dark:bg-white/10" />
                       <div className="h-2 w-4/5 rounded-full bg-slate-200 dark:bg-white/10" />
-                      <div className="mt-5 h-8 w-24 rounded-full bg-gradient-to-r from-cyan-500 to-violet-600" />
+                      <div className="mt-4 h-7 w-20 rounded-full bg-gradient-to-r from-cyan-500 to-violet-600" />
                     </div>
-                    <div className="relative min-h-32 overflow-hidden rounded-xl border border-cyan-500/15 bg-slate-950 p-4">
+                    <div className="relative min-h-[104px] overflow-hidden rounded-xl border border-cyan-500/15 bg-slate-950 p-3.5">
                       <div className="absolute -right-8 -top-10 size-28 rounded-full bg-violet-500/30" />
                       <div className="absolute -bottom-10 left-6 size-24 rounded-full bg-cyan-400/25" />
                       <div className="relative grid h-full grid-cols-2 gap-2">
@@ -200,14 +208,14 @@ export default function ScrollBuildSection() {
                       </div>
                     </div>
                   </div>
-                  <div className="flex items-center gap-3 border-t border-slate-200 px-5 py-3 text-xs text-slate-500 dark:border-white/10 dark:text-slate-400">
+                  <div className="flex items-center gap-3 border-t border-slate-200 px-5 py-2.5 text-xs text-slate-500 dark:border-white/10 dark:text-slate-400">
                     <Braces className="size-4 text-cyan-500" />
                     <span>Next.js 16 · React 19 · TypeScript</span>
                   </div>
                 </motion.article>
 
                 <motion.article
-                  className="absolute inset-x-[9%] top-[30%] overflow-hidden rounded-2xl border border-slate-200 bg-[#f8fafc] shadow-[0_28px_70px_-38px_rgba(15,23,42,0.65)] [backface-visibility:hidden] dark:border-white/10 dark:bg-[#0c111c] dark:shadow-[0_32px_80px_-34px_rgba(0,0,0,0.9)]"
+                  className="absolute inset-x-[9%] top-[38%] overflow-hidden rounded-2xl border border-slate-200 bg-[#f8fafc] shadow-[0_28px_70px_-38px_rgba(15,23,42,0.65)] [backface-visibility:hidden] dark:border-white/10 dark:bg-[#0c111c] dark:shadow-[0_32px_80px_-34px_rgba(0,0,0,0.9)]"
                   style={{
                     x: staticTransform ?? logicX,
                     y: staticTransform ?? logicY,
@@ -217,7 +225,7 @@ export default function ScrollBuildSection() {
                     willChange: "transform",
                   }}
                 >
-                  <div className="flex items-center justify-between border-b border-slate-200 px-5 py-3 dark:border-white/10">
+                  <div className="flex items-center justify-between border-b border-slate-200 px-5 py-2.5 dark:border-white/10">
                     <div className="flex items-center gap-2">
                       <Server className="size-4 text-violet-500" />
                       <span className="text-sm font-semibold text-slate-800 dark:text-slate-100">
@@ -228,14 +236,14 @@ export default function ScrollBuildSection() {
                       chronione
                     </span>
                   </div>
-                  <div className="grid grid-cols-3 gap-2 p-5">
+                  <div className="grid grid-cols-3 gap-2 p-3">
                     {["/api", "auth", "actions"].map((item, index) => (
                       <div
                         key={item}
-                        className="rounded-xl border border-slate-200 bg-white p-3 dark:border-white/[0.08] dark:bg-white/[0.035]"
+                        className="rounded-xl border border-slate-200 bg-white p-2.5 dark:border-white/[0.08] dark:bg-white/[0.035]"
                       >
                         <div
-                          className={`mb-3 size-2 rounded-full ${
+                          className={`mb-2 size-2 rounded-full ${
                             index === 0
                               ? "bg-cyan-400"
                               : index === 1
@@ -249,24 +257,24 @@ export default function ScrollBuildSection() {
                       </div>
                     ))}
                   </div>
-                  <div className="flex items-center gap-3 border-t border-slate-200 px-5 py-3 text-xs text-slate-500 dark:border-white/10 dark:text-slate-400">
+                  <div className="flex items-center gap-3 border-t border-slate-200 px-5 py-2.5 text-xs text-slate-500 dark:border-white/10 dark:text-slate-400">
                     <ShieldCheck className="size-4 text-violet-500" />
                     <span>Walidacja · autoryzacja · rate limiting</span>
                   </div>
                 </motion.article>
 
                 <motion.article
-                  className="absolute inset-x-[13%] top-[56%] overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_28px_70px_-38px_rgba(15,23,42,0.65)] [backface-visibility:hidden] dark:border-white/10 dark:bg-[#090e17] dark:shadow-[0_32px_80px_-34px_rgba(0,0,0,0.9)]"
+                  className="absolute inset-x-[13%] top-[68%] overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-[0_28px_70px_-38px_rgba(15,23,42,0.65)] [backface-visibility:hidden] dark:border-white/10 dark:bg-[#090e17] dark:shadow-[0_32px_80px_-34px_rgba(0,0,0,0.9)]"
                   style={{
                     x: staticTransform ?? dataX,
                     y: staticTransform ?? dataY,
-                    z: -72,
+                    z: -36,
                     rotateZ: staticTransform ?? dataRotate,
                     opacity: staticOpacity ?? dataOpacity,
                     willChange: "transform",
                   }}
                 >
-                  <div className="flex items-center justify-between border-b border-slate-200 px-5 py-3 dark:border-white/10">
+                  <div className="flex items-center justify-between border-b border-slate-200 px-5 py-2 dark:border-white/10">
                     <div className="flex items-center gap-2">
                       <Database className="size-4 text-cyan-500" />
                       <span className="text-sm font-semibold text-slate-800 dark:text-slate-100">
@@ -278,7 +286,7 @@ export default function ScrollBuildSection() {
                       online
                     </div>
                   </div>
-                  <div className="space-y-2 p-5">
+                  <div className="space-y-2 p-3">
                     {[
                       ["Baza danych", "Turso / libSQL"],
                       ["Pliki", "Vercel Blob"],
@@ -286,7 +294,7 @@ export default function ScrollBuildSection() {
                     ].map(([label, value]) => (
                       <div
                         key={label}
-                        className="flex items-center justify-between rounded-lg border border-slate-200 px-3 py-2 dark:border-white/[0.07]"
+                        className="flex items-center justify-between rounded-lg border border-slate-200 px-3 py-1 dark:border-white/[0.07]"
                       >
                         <span className="text-[11px] text-slate-500 dark:text-slate-500">
                           {label}

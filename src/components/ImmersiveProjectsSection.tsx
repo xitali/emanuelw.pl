@@ -14,6 +14,7 @@ import {
   useReducedMotion,
   useScroll,
   useSpring,
+  useTransform,
 } from "framer-motion";
 import {
   ArrowDownRight,
@@ -356,9 +357,17 @@ export default function ImmersiveProjectsSection({
     projectAccents[safeActiveIndex % projectAccents.length] ??
     projectAccents[0];
 
-  const { scrollYProgress } = useScroll({
-    target: stageRef,
-    offset: ["start start", "end end"],
+  const { scrollY } = useScroll();
+  const scrollYProgress = useTransform(scrollY, (latestScrollY) => {
+    const stage = stageRef.current;
+    if (!stage || typeof window === "undefined") return 0;
+
+    const stageRect = stage.getBoundingClientRect();
+    const start = stageRect.top + latestScrollY;
+    const end = start + stageRect.height - window.innerHeight;
+    if (end <= start) return latestScrollY >= start ? 1 : 0;
+
+    return Math.min(1, Math.max(0, (latestScrollY - start) / (end - start)));
   });
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
