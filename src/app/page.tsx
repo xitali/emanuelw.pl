@@ -5,18 +5,16 @@ import {
   getPageVisitsCount,
   getTestimonials,
 } from "@/lib/turso";
-import Navbar from "@/components/ProfessionalNavbar";
-import BackgroundGlow from "@/components/BackgroundGlow";
-import HeroSection from "@/components/ProfessionalHeroSection";
-import ProjectsSection from "@/components/ImmersiveProjectsSection";
-import ServicesSection from "@/components/ProfessionalServicesSection";
-import TechStackSection from "@/components/ProfessionalTechStackSection";
+import Navbar from "@/components/portfolio/PortfolioNav";
+import ProductStory, { TechnologyDetails } from "@/components/portfolio/ProductStory";
+import ProjectsSection from "@/components/portfolio/ProjectShowcase";
+import AboutSection from "@/components/portfolio/AboutSection";
+import ServicePaths from "@/components/portfolio/ServicePaths";
 import ContactSection from "@/components/ContactSection";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import Footer from "@/components/Footer";
 import VisitTracker from "@/components/VisitTracker";
 import HomeStructuredData from "@/components/HomeStructuredData";
-import ScrollBuildSection from "@/components/ScrollBuildSection";
 
 // High performance revalidation tag caching
 export const revalidate = 3600;
@@ -34,33 +32,17 @@ export default async function HomePage() {
   return (
     <>
       <HomeStructuredData services={services} settings={settings} />
-    <main className="relative min-h-screen text-slate-900 dark:text-slate-100 overflow-x-clip selection:bg-cyan-500/30 selection:text-cyan-900 dark:selection:text-cyan-200">
+    <main id="main-content" className="portfolio-home dark relative min-h-screen overflow-x-clip" tabIndex={-1}>
       <VisitTracker />
-      <BackgroundGlow />
       <Navbar />
       
       <div className="relative z-10">
-        <HeroSection
-          email={settings.personal_email}
-          projectCount={projects.length}
-          featuredProject={
-            projects[0]
-              ? {
-                  title: projects[0].title,
-                  image: projects[0].images?.[0] ?? null,
-                  type:
-                    projects[0].project_type ||
-                    projects[0].category ||
-                    "Produkt cyfrowy",
-                }
-              : undefined
-          }
-        />
-        <ScrollBuildSection />
+        <ProductStory testimonial={testimonials[0]} />
         <ProjectsSection initialProjects={projects} />
-        <ServicesSection initialServices={services} />
-        <TechStackSection />
+        <ServicePaths services={services} />
         <TestimonialsSection testimonials={testimonials} />
+        <AboutSection />
+        <TechnologyDetails />
         <ContactSection settings={settings} />
       </div>
 

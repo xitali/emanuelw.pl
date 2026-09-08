@@ -4,6 +4,7 @@ import { submitContactMessage } from "@/lib/turso";
 import { checkRateLimit } from "@/lib/rate-limit";
 import { getClientIp } from "@/lib/request";
 import { contactSchema } from "@/lib/validation";
+import { messageWithSource } from "@/lib/contact-sources";
 import { revalidatePath } from "next/cache";
 import { headers } from "next/headers";
 import { after } from "next/server";
@@ -17,6 +18,7 @@ export async function sendContactMessageAction(formData: FormData) {
     subject: formData.get("subject"),
     message: formData.get("message"),
     website: formData.get("website"),
+    source: formData.get("source") ?? "",
   });
 
   if (!validation.success) {
@@ -56,6 +58,7 @@ export async function sendContactMessageAction(formData: FormData) {
     const savedMessage = await submitContactMessage({
       ...validData,
       subject: validData.subject || "Kontakt z portfolio",
+      message: messageWithSource(validData.message, validData.source),
     });
     after(async () => {
       await Promise.allSettled([

@@ -1,3 +1,4 @@
+import PublicPageShell from "@/components/portfolio/PublicPageShell";
 import type { Metadata } from "next";
 import Link from "next/link";
 
@@ -10,13 +11,13 @@ export const metadata: Metadata = {
 
 export default function PrivacyPolicyPage() {
   return (
-    <main className="min-h-screen bg-slate-50 px-4 py-16 text-slate-800 dark:bg-[#060913] dark:text-slate-200">
-      <article className="mx-auto max-w-3xl space-y-8 rounded-3xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-950 sm:p-10">
+    <PublicPageShell><main id="main-content" className="portfolio-subpage portfolio-legal">
+      <article className="portfolio-legal-content space-y-8">
         <header className="space-y-3">
-          <p className="font-mono text-sm text-cyan-700 dark:text-cyan-300">
+          <p className="font-mono text-sm text-[var(--p-accent)] dark:text-[var(--p-accent)]">
             Ostatnia aktualizacja: 29 lipca 2026 r.
           </p>
-          <h1 className="text-3xl font-extrabold text-slate-950 dark:text-white sm:text-4xl">
+          <h1 className="text-3xl font-extrabold text-[var(--p-muted)] dark:text-white sm:text-4xl">
             Polityka prywatności
           </h1>
         </header>
@@ -26,7 +27,7 @@ export default function PrivacyPolicyPage() {
           <p>
             Administratorem danych jest Emanuel Włoch. W sprawach dotyczących
             prywatności napisz na{" "}
-            <a className="text-cyan-700 underline dark:text-cyan-300" href="mailto:kontakt@emanuelwloch.pl">
+            <a className="text-[var(--p-accent)] underline dark:text-[var(--p-accent)]" href="mailto:kontakt@emanuelwloch.pl">
               kontakt@emanuelwloch.pl
             </a>
             .
@@ -85,11 +86,11 @@ export default function PrivacyPolicyPage() {
 
         <Link
           href="/"
-          className="inline-flex rounded-full bg-cyan-600 px-5 py-3 font-semibold text-white hover:bg-cyan-500"
+          className="inline-flex rounded-[var(--p-radius)] bg-[var(--p-surface)] px-5 py-3 font-semibold text-white hover:bg-[var(--p-surface)]"
         >
           Wróć na stronę główną
         </Link>
       </article>
-    </main>
+    </main></PublicPageShell>
   );
 }

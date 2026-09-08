@@ -1,10 +1,11 @@
+import { projectLabel } from "@/lib/project-labels";
+import ProjectMedia from "@/components/portfolio/ProjectMedia";
+import PublicPageShell from "@/components/portfolio/PublicPageShell";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound, permanentRedirect } from "next/navigation";
 import { ArrowLeft, ArrowRight, Check, Code2, ExternalLink, Gauge, Layers3, Quote, Target } from "lucide-react";
-import Footer from "@/components/Footer";
-import ProfessionalNavbar from "@/components/ProfessionalNavbar";
 import { getProjectById, getProjects } from "@/lib/turso";
 import {
   getProjectIdFromSegment,
@@ -91,8 +92,8 @@ function BulletList({ items }: { items: string[] }) {
   return (
     <ul className="grid gap-3 sm:grid-cols-2">
       {items.map((item) => (
-        <li key={item} className="flex items-start gap-3 rounded-xl border border-slate-200 bg-white p-4 text-sm leading-6 dark:border-white/9 dark:bg-white/[0.025]">
-          <Check className="mt-0.5 size-4 shrink-0 text-emerald-500 dark:text-emerald-300" />
+        <li key={item} className="flex items-start gap-3 rounded-[var(--p-radius)] border border-[var(--p-border)] bg-[var(--p-surface)] p-4 text-sm leading-6 dark:border-[var(--p-border)] dark:bg-[var(--p-surface)]">
+          <Check className="mt-0.5 size-4 shrink-0 text-[var(--p-accent)] dark:text-[var(--p-accent)]" />
           <span>{item}</span>
         </li>
       ))}
@@ -167,94 +168,89 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   };
 
   return (
-    <>
-      <ProfessionalNavbar />
-      <main className="min-h-screen bg-slate-50 text-slate-900 dark:bg-[#05070c] dark:text-white">
+    <PublicPageShell>
+      <main id="main-content" className="portfolio-subpage">
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(structuredData) }} />
         <article>
-          <header className="border-b border-white/10 bg-[#05070c] px-4 pb-16 pt-32 text-white sm:px-6 lg:px-8 lg:pb-20 lg:pt-40">
+          <header className="border-b border-[var(--p-border)] bg-[var(--p-surface)] px-4 pb-16 pt-32 text-white sm:px-6 lg:px-8 lg:pb-20 lg:pt-40">
             <div className="mx-auto max-w-[1280px]">
-              <nav aria-label="Okruszki" className="text-xs text-white/48">
-                <Link href="/" className="hover:text-cyan-200">Strona główna</Link> / <Link href="/#projekty" className="hover:text-cyan-200">Projekty</Link> / <span aria-current="page">{project.title}</span>
+              <nav aria-label="Okruszki" className="text-xs text-[var(--p-muted)]">
+                <Link href="/" className="hover:text-[var(--p-accent)]">Strona główna</Link> / <Link href="/#projekty" className="hover:text-[var(--p-accent)]">Projekty</Link> / <span aria-current="page">{project.title}</span>
               </nav>
-              <Link href="/#projekty" className="mt-9 inline-flex items-center gap-2 text-sm text-cyan-200/80"><ArrowLeft className="size-4" /> Wszystkie projekty</Link>
+              <Link href="/#projekty" className="mt-9 inline-flex items-center gap-2 text-sm text-[var(--p-accent)]"><ArrowLeft className="size-4" /> Wszystkie projekty</Link>
               <div className="mt-8 grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-end lg:gap-20">
                 <div>
-                  <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-cyan-200/65">Case study · {project.project_type || project.category || "projekt webowy"}</p>
+                  <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--p-accent)]">Realizacja · {projectLabel(project.project_type || project.category)}</p>
                   <h1 className="mt-5 text-[clamp(2.8rem,6vw,6rem)] font-medium leading-[0.9] tracking-[-0.055em]">{project.title}</h1>
                 </div>
-                <p className="text-base leading-8 text-white/62 sm:text-lg">{project.short_description}</p>
+                <p className="text-base leading-8 text-[var(--p-muted)] sm:text-lg">{project.short_description}</p>
               </div>
               <div className="mt-9 flex flex-wrap gap-2">
-                {project.technologies.slice(0, 8).map((technology) => <span key={technology} className="rounded-full border border-white/12 px-3 py-1.5 text-[10px] text-white/56">{technology}</span>)}
+                {project.technologies.slice(0, 8).map((technology) => <span key={technology} className="portfolio-tag">{technology}</span>)}
               </div>
             </div>
           </header>
 
           {project.images[0] && (
             <section className="px-4 py-10 sm:px-6 lg:px-8 lg:py-14" aria-label={`Główny podgląd projektu ${project.title}`}>
-              <div className="relative mx-auto aspect-video max-w-[1280px] overflow-hidden rounded-[1.75rem] border border-slate-200 bg-slate-950 dark:border-white/10">
-                <Image src={project.images[0]} alt="" fill sizes="(max-width: 1280px) 100vw, 1280px" className="scale-110 object-cover opacity-25 blur-2xl" aria-hidden="true" />
-                <Image src={project.images[0]} alt={`Podgląd projektu ${project.title}`} fill priority sizes="(max-width: 1280px) 100vw, 1280px" className="object-contain" />
-              </div>
+              <div className="mx-auto max-w-[1280px]"><ProjectMedia projectId={project.id} image={project.images[0]} title={project.title} priority /></div>
             </section>
           )}
 
           <section className="px-4 pb-20 sm:px-6 lg:px-8 lg:pb-24" aria-labelledby="summary-heading">
             <div className="mx-auto max-w-[1280px]">
               <h2 id="summary-heading" className="sr-only">Projekt w skrócie</h2>
-              <div className="grid gap-px overflow-hidden rounded-2xl border border-slate-200 bg-slate-200 dark:border-white/10 dark:bg-white/10 md:grid-cols-3">
+              <div className="grid gap-px overflow-hidden rounded-[var(--p-radius)] border border-[var(--p-border)] bg-[var(--p-surface)] dark:border-[var(--p-border)] dark:bg-[var(--p-surface)] md:grid-cols-3">
                 {[
                   ["Odbiorcy", project.target_audience || "Użytkownicy końcowi i klienci marki"],
-                  ["Zakres", project.project_type || project.category || "Produkt webowy"],
-                  ["Wdrożenie", project.hosting_platform || project.project_status || "Środowisko produkcyjne"],
-                ].map(([label, value]) => <div key={label} className="bg-white p-6 dark:bg-[#090c13]"><div className="font-mono text-[9px] uppercase tracking-[0.18em] text-slate-400 dark:text-white/32">{label}</div><p className="mt-3 text-sm font-medium">{value}</p></div>)}
+                  ["Zakres", projectLabel(project.project_type || project.category)],
+                  ["Wdrożenie", project.hosting_platform || projectLabel(project.project_status, "Środowisko produkcyjne")],
+                ].map(([label, value]) => <div key={label} className="bg-[var(--p-surface)] p-6 dark:bg-[var(--p-surface)]"><div className="font-mono text-[9px] uppercase tracking-[0.18em] text-[var(--p-muted)] dark:text-[var(--p-muted)]">{label}</div><p className="mt-3 text-sm font-medium">{value}</p></div>)}
               </div>
             </div>
           </section>
 
-          <section className="border-y border-slate-200 bg-white px-4 py-20 dark:border-white/10 dark:bg-[#080b12] sm:px-6 lg:px-8 lg:py-24">
+          <section className="border-y border-[var(--p-border)] bg-[var(--p-surface)] px-4 py-20 dark:border-[var(--p-border)] dark:bg-[var(--p-surface)] sm:px-6 lg:px-8 lg:py-24">
             <div className="mx-auto grid max-w-[1280px] gap-14 lg:grid-cols-[0.7fr_1.3fr] lg:gap-20">
-              <div><p className="font-mono text-[10px] uppercase tracking-[0.2em] text-cyan-700 dark:text-cyan-300/70">01 · Kontekst</p><h2 className="mt-4 text-4xl font-semibold tracking-[-0.045em] sm:text-5xl">Problem i cel projektu</h2></div>
+              <div><p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--p-accent)] dark:text-[var(--p-accent)]">01 · Kontekst</p><h2 className="mt-4 text-4xl font-semibold tracking-[-0.045em] sm:text-5xl">Problem i cel projektu</h2></div>
               <div className="space-y-9">
-                <p className="whitespace-pre-line text-base leading-8 text-slate-600 dark:text-white/58 sm:text-lg">{project.detailed_description || project.short_description}</p>
-                {project.main_challenge && <div className="rounded-2xl border border-amber-200 bg-amber-50 p-6 dark:border-amber-300/15 dark:bg-amber-300/[0.05]"><div className="flex items-center gap-2 text-sm font-semibold"><Target className="size-4 text-amber-600 dark:text-amber-300" /> Główne wyzwanie</div><p className="mt-4 whitespace-pre-line text-sm leading-7 text-slate-600 dark:text-white/54">{project.main_challenge}</p></div>}
+                <p className="whitespace-pre-line text-base leading-8 text-[var(--p-muted)] dark:text-[var(--p-muted)] sm:text-lg">{project.detailed_description || project.short_description}</p>
+                {project.main_challenge && <div className="rounded-[var(--p-radius)] border border-[var(--p-border)] bg-[var(--p-surface)] p-6 dark:border-[var(--p-border)] dark:bg-[var(--p-surface)]"><div className="flex items-center gap-2 text-sm font-semibold"><Target className="size-4 text-[var(--p-accent)] dark:text-[var(--p-accent)]" /> Główne wyzwanie</div><p className="mt-4 whitespace-pre-line text-sm leading-7 text-[var(--p-muted)] dark:text-[var(--p-muted)]">{project.main_challenge}</p></div>}
               </div>
             </div>
           </section>
 
           <section className="px-4 py-20 sm:px-6 lg:px-8 lg:py-24" aria-labelledby="solution-heading">
             <div className="mx-auto max-w-[1280px]">
-              <div className="grid gap-10 lg:grid-cols-[0.7fr_1.3fr] lg:gap-20"><div><p className="font-mono text-[10px] uppercase tracking-[0.2em] text-cyan-700 dark:text-cyan-300/70">02 · Realizacja</p><h2 id="solution-heading" className="mt-4 text-4xl font-semibold tracking-[-0.045em] sm:text-5xl">Rozwiązanie</h2></div><div>{project.innovation && <p className="mb-8 whitespace-pre-line text-base leading-8 text-slate-600 dark:text-white/58 sm:text-lg">{project.innovation}</p>}{project.key_features && project.key_features.length > 0 && <BulletList items={project.key_features} />}</div></div>
+              <div className="grid gap-10 lg:grid-cols-[0.7fr_1.3fr] lg:gap-20"><div><p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--p-accent)] dark:text-[var(--p-accent)]">02 · Realizacja</p><h2 id="solution-heading" className="mt-4 text-4xl font-semibold tracking-[-0.045em] sm:text-5xl">Rozwiązanie</h2></div><div>{project.innovation && <p className="mb-8 whitespace-pre-line text-base leading-8 text-[var(--p-muted)] dark:text-[var(--p-muted)] sm:text-lg">{project.innovation}</p>}{project.key_features && project.key_features.length > 0 && <BulletList items={project.key_features} />}</div></div>
             </div>
           </section>
 
-          <section className="border-y border-slate-200 bg-white px-4 py-20 dark:border-white/10 dark:bg-[#080b12] sm:px-6 lg:px-8 lg:py-24" aria-labelledby="architecture-heading">
+          <section className="border-y border-[var(--p-border)] bg-[var(--p-surface)] px-4 py-20 dark:border-[var(--p-border)] dark:bg-[var(--p-surface)] sm:px-6 lg:px-8 lg:py-24" aria-labelledby="architecture-heading">
             <div className="mx-auto max-w-[1280px]">
-              <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] text-cyan-700 dark:text-cyan-300/70"><Layers3 className="size-3.5" /> 03 · Architektura</div>
+              <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--p-accent)] dark:text-[var(--p-accent)]"><Layers3 className="size-3.5" /> 03 · Architektura</div>
               <h2 id="architecture-heading" className="mt-4 text-4xl font-semibold tracking-[-0.045em] sm:text-5xl">Technologie dobrane do celu</h2>
-              {techGroups.length > 0 ? <div className="mt-10 grid gap-4 md:grid-cols-3">{techGroups.map((group) => <section key={group.label} className="rounded-2xl border border-slate-200 p-6 dark:border-white/10"><h3 className="text-sm font-semibold">{group.label}</h3><div className="mt-5 flex flex-wrap gap-2">{group.items.map((item) => <span key={item} className="rounded-full bg-slate-100 px-3 py-1.5 text-[10px] dark:bg-white/[0.05]">{item}</span>)}</div></section>)}</div> : <div className="mt-8 flex flex-wrap gap-2">{project.technologies.map((item) => <span key={item} className="rounded-full border border-slate-200 px-3 py-1.5 text-xs dark:border-white/10">{item}</span>)}</div>}
+              {techGroups.length > 0 ? <div className="mt-10 grid gap-4 md:grid-cols-3">{techGroups.map((group) => <section key={group.label} className="rounded-[var(--p-radius)] border border-[var(--p-border)] p-6 dark:border-[var(--p-border)]"><h3 className="text-sm font-semibold">{group.label}</h3><div className="mt-5 flex flex-wrap gap-2">{group.items.map((item) => <span key={item} className="portfolio-tag">{item}</span>)}</div></section>)}</div> : <div className="mt-8 flex flex-wrap gap-2">{project.technologies.map((item) => <span key={item} className="portfolio-tag">{item}</span>)}</div>}
             </div>
           </section>
 
           {((project.performance_metrics?.length ?? 0) > 0 || (project.technical_metrics?.length ?? 0) > 0 || project.accessibility_features) && (
             <section className="px-4 py-20 sm:px-6 lg:px-8 lg:py-24" aria-labelledby="quality-heading">
-              <div className="mx-auto max-w-[1280px]"><div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] text-cyan-700 dark:text-cyan-300/70"><Gauge className="size-3.5" /> 04 · Jakość techniczna</div><h2 id="quality-heading" className="mt-4 text-4xl font-semibold tracking-[-0.045em] sm:text-5xl">Wydajność, SEO i dostępność</h2><div className="mt-10 grid gap-4 lg:grid-cols-2">{project.performance_metrics && project.performance_metrics.length > 0 && <BulletList items={project.performance_metrics} />}{project.technical_metrics && project.technical_metrics.length > 0 && <BulletList items={project.technical_metrics} />}{project.accessibility_features && <p className="rounded-2xl border border-slate-200 bg-white p-6 text-sm leading-7 text-slate-600 dark:border-white/10 dark:bg-white/[0.025] dark:text-white/54 lg:col-span-2">{project.accessibility_features}</p>}</div></div>
+              <div className="mx-auto max-w-[1280px]"><div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--p-accent)] dark:text-[var(--p-accent)]"><Gauge className="size-3.5" /> 04 · Jakość techniczna</div><h2 id="quality-heading" className="mt-4 text-4xl font-semibold tracking-[-0.045em] sm:text-5xl">Wydajność, SEO i dostępność</h2><div className="mt-10 grid gap-4 lg:grid-cols-2">{project.performance_metrics && project.performance_metrics.length > 0 && <BulletList items={project.performance_metrics} />}{project.technical_metrics && project.technical_metrics.length > 0 && <BulletList items={project.technical_metrics} />}{project.accessibility_features && <p className="rounded-[var(--p-radius)] border border-[var(--p-border)] bg-[var(--p-surface)] p-6 text-sm leading-7 text-[var(--p-muted)] dark:border-[var(--p-border)] dark:bg-[var(--p-surface)] dark:text-[var(--p-muted)] lg:col-span-2">{project.accessibility_features}</p>}</div></div>
             </section>
           )}
 
-          <section className="border-y border-slate-200 bg-white px-4 py-20 dark:border-white/10 dark:bg-[#080b12] sm:px-6 lg:px-8 lg:py-24" aria-labelledby="result-heading">
-            <div className="mx-auto grid max-w-[1280px] gap-14 lg:grid-cols-[0.7fr_1.3fr] lg:gap-20"><div><p className="font-mono text-[10px] uppercase tracking-[0.2em] text-cyan-700 dark:text-cyan-300/70">05 · Efekt</p><h2 id="result-heading" className="mt-4 text-4xl font-semibold tracking-[-0.045em] sm:text-5xl">Rezultat</h2></div><div><p className="whitespace-pre-line text-base leading-8 text-slate-600 dark:text-white/58 sm:text-lg">{project.project_result || "Powstało responsywne, produkcyjne rozwiązanie realizujące uzgodniony zakres i przygotowane do dalszego rozwoju."}</p>{project.success_metrics && project.success_metrics.length > 0 && <div className="mt-8"><BulletList items={project.success_metrics} /></div>}{project.user_feedback?.[0] && <blockquote className="mt-8 rounded-2xl border border-cyan-200 bg-cyan-50 p-6 dark:border-cyan-300/15 dark:bg-cyan-300/[0.05]"><Quote className="size-5 text-cyan-600 dark:text-cyan-300" /><p className="mt-4 whitespace-pre-line text-sm leading-7 text-slate-600 dark:text-white/56">{project.user_feedback[0]}</p></blockquote>}</div></div>
+          <section className="border-y border-[var(--p-border)] bg-[var(--p-surface)] px-4 py-20 dark:border-[var(--p-border)] dark:bg-[var(--p-surface)] sm:px-6 lg:px-8 lg:py-24" aria-labelledby="result-heading">
+            <div className="mx-auto grid max-w-[1280px] gap-14 lg:grid-cols-[0.7fr_1.3fr] lg:gap-20"><div><p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--p-accent)] dark:text-[var(--p-accent)]">05 · Efekt</p><h2 id="result-heading" className="mt-4 text-4xl font-semibold tracking-[-0.045em] sm:text-5xl">Rezultat</h2></div><div><p className="whitespace-pre-line text-base leading-8 text-[var(--p-muted)] dark:text-[var(--p-muted)] sm:text-lg">{project.project_result || "Powstało responsywne, produkcyjne rozwiązanie realizujące uzgodniony zakres i przygotowane do dalszego rozwoju."}</p>{project.success_metrics && project.success_metrics.length > 0 && <div className="mt-8"><BulletList items={project.success_metrics} /></div>}{project.user_feedback?.[0] && <blockquote className="mt-8 rounded-[var(--p-radius)] border border-[var(--p-border)] bg-[var(--p-surface)] p-6 dark:border-[var(--p-border)] dark:bg-[var(--p-surface)]"><Quote className="size-5 text-[var(--p-accent)] dark:text-[var(--p-accent)]" /><p className="mt-4 whitespace-pre-line text-sm leading-7 text-[var(--p-muted)] dark:text-[var(--p-muted)]">{project.user_feedback[0]}</p></blockquote>}</div></div>
           </section>
 
-          {project.images.length > 1 && <section className="px-4 py-20 sm:px-6 lg:px-8" aria-labelledby="gallery-heading"><div className="mx-auto max-w-[1280px]"><h2 id="gallery-heading" className="text-3xl font-semibold tracking-[-0.04em] sm:text-5xl">Widoki projektu</h2><div className="mt-9 grid gap-4 md:grid-cols-2">{project.images.slice(1).map((image, index) => <div key={`${image}-${index}`} className="relative aspect-video overflow-hidden rounded-2xl border border-slate-200 bg-slate-950 dark:border-white/10"><Image src={image} alt={`Widok ${index + 2} projektu ${project.title}`} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-contain" /></div>)}</div></div></section>}
+          {project.images.length > 1 && <section className="px-4 py-20 sm:px-6 lg:px-8" aria-labelledby="gallery-heading"><div className="mx-auto max-w-[1280px]"><h2 id="gallery-heading" className="text-3xl font-semibold tracking-[-0.04em] sm:text-5xl">Widoki projektu</h2><div className="mt-9 grid gap-4 md:grid-cols-2">{project.images.slice(1).map((image, index) => <div key={`${image}-${index}`} className="relative aspect-video overflow-hidden rounded-[var(--p-radius)] border border-[var(--p-border)] bg-[var(--p-surface)] dark:border-[var(--p-border)]"><Image src={image} alt={`Widok ${index + 2} projektu ${project.title}`} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-contain" /></div>)}</div></div></section>}
 
-          <section className="border-y border-slate-200 bg-white px-4 py-20 dark:border-white/10 dark:bg-[#080b12] sm:px-6 lg:px-8" aria-labelledby="case-faq-heading"><div className="mx-auto grid max-w-[1280px] gap-10 lg:grid-cols-[0.55fr_1.45fr] lg:gap-20"><h2 id="case-faq-heading" className="text-4xl font-semibold tracking-[-0.045em] sm:text-5xl">Pytania o realizację</h2><div className="divide-y divide-slate-200 overflow-hidden rounded-2xl border border-slate-200 dark:divide-white/10 dark:border-white/10">{faq.map((item) => <details key={item.question} className="group"><summary className="cursor-pointer list-none p-5 font-semibold sm:p-6">{item.question}</summary><p className="whitespace-pre-line px-5 pb-6 text-sm leading-7 text-slate-600 dark:text-white/54 sm:px-6">{item.answer}</p></details>)}</div></div></section>
+          <section className="border-y border-[var(--p-border)] bg-[var(--p-surface)] px-4 py-20 dark:border-[var(--p-border)] dark:bg-[var(--p-surface)] sm:px-6 lg:px-8" aria-labelledby="case-faq-heading"><div className="mx-auto grid max-w-[1280px] gap-10 lg:grid-cols-[0.55fr_1.45fr] lg:gap-20"><h2 id="case-faq-heading" className="text-4xl font-semibold tracking-[-0.045em] sm:text-5xl">Pytania o realizację</h2><div className="divide-y divide-slate-200 overflow-hidden rounded-[var(--p-radius)] border border-[var(--p-border)] dark:divide-white/10 dark:border-[var(--p-border)]">{faq.map((item) => <details key={item.question} className="group"><summary className="cursor-pointer list-none p-5 font-semibold sm:p-6">{item.question}</summary><p className="whitespace-pre-line px-5 pb-6 text-sm leading-7 text-[var(--p-muted)] dark:text-[var(--p-muted)] sm:px-6">{item.answer}</p></details>)}</div></div></section>
 
-          <section className="px-4 py-20 sm:px-6 lg:px-8"><div className="mx-auto max-w-[1280px] rounded-[2rem] bg-[#070910] p-8 text-white sm:p-10 lg:flex lg:items-end lg:justify-between"><div><p className="font-mono text-[10px] uppercase tracking-[0.2em] text-cyan-200/65">Podobny cel?</p><h2 className="mt-4 max-w-3xl text-3xl font-semibold tracking-[-0.04em] sm:text-5xl">Zbudujmy następny case study.</h2><div className="mt-5 flex flex-wrap gap-4 text-xs text-white/48"><Link href="/uslugi" className="hover:text-cyan-200">Zobacz usługi</Link>{project.project_url && <a href={project.project_url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 hover:text-cyan-200">Działający projekt <ExternalLink className="size-3" /></a>}{project.repository_url && <a href={project.repository_url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 hover:text-cyan-200">Repozytorium <Code2 className="size-3" /></a>}</div></div><Link href="/#kontakt" className="mt-8 inline-flex min-h-12 shrink-0 items-center gap-2 rounded-full bg-white px-6 text-sm font-semibold text-black lg:mt-0">Omów swój projekt <ArrowRight className="size-4" /></Link></div></section>
+          <section className="px-4 py-20 sm:px-6 lg:px-8"><div className="mx-auto max-w-[1280px] rounded-[var(--p-radius)] bg-[var(--p-surface)] p-8 text-white sm:p-10 lg:flex lg:items-end lg:justify-between"><div><p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--p-accent)]">Podobny cel?</p><h2 className="mt-4 max-w-3xl text-3xl font-semibold tracking-[-0.04em] sm:text-5xl">Porozmawiajmy o Twojej firmie.</h2><div className="mt-5 flex flex-wrap gap-4 text-xs text-[var(--p-muted)]"><Link href="/uslugi" className="hover:text-[var(--p-accent)]">Zobacz usługi</Link>{project.project_url && <a href={project.project_url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 hover:text-[var(--p-accent)]">Działający projekt <ExternalLink className="size-3" /></a>}{project.repository_url && <a href={project.repository_url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 hover:text-[var(--p-accent)]">Repozytorium <Code2 className="size-3" /></a>}</div></div><Link href="/#kontakt" className="portfolio-button mt-8 shrink-0 lg:mt-0">Omów swój projekt <ArrowRight className="size-4" /></Link></div></section>
         </article>
       </main>
-      <Footer />
-    </>
+    </PublicPageShell>
   );
 }

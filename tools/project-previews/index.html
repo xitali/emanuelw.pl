@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="pl"><head><meta charset="UTF-8"><meta name="viewport" content="width=1280,height=800"><title>Podgląd realizacji</title><script src="gsap.min.js"></script>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#13191d}#root{position:relative;width:1280px;height:800px;overflow:hidden;background:radial-gradient(ellipse at 50% 10%,#334956,#13191d 72%)}.clip{position:absolute;inset:0;perspective:1600px}.screen{position:absolute;left:105px;top:__TOP__px;width:1070px;height:__FRAME_HEIGHT__px;border:1px solid #93b7cd66;border-radius:12px;overflow:hidden;background:#12171a;box-shadow:0 32px 80px #0008;transform-style:preserve-3d}.bar{height:30px;background:#20282e;display:flex;align-items:center;gap:6px;padding:0 14px}.bar i{width:5px;height:5px;border-radius:50%;background:#96a4ae}.image{height:__IMAGE_HEIGHT__px;overflow:hidden}.image img{width:100%;height:auto;display:block}.sheen{position:absolute;inset:0;background:linear-gradient(110deg,transparent 35%,#e2f5ff14 48%,transparent 61%);pointer-events:none}.line{position:absolute;left:50px;right:50px;bottom:28px;height:1px;background:#acd1e824}
+</style></head><body><div id="root" data-composition-id="project" data-width="1280" data-height="800" data-duration="5" data-fps="24"><section id="screen-scene" class="clip" data-start="0" data-duration="5"><div class="screen"><div class="bar"><i></i><i></i><i></i></div><div class="image"><img src="screen.png" alt="Podgląd strony"></div><div class="sheen" data-layout-allow-overflow></div></div><div class="line"></div></section></div>
+<script>
+const tl=gsap.timeline({paused:true});
+tl.fromTo('.screen',{rotationY:-7,rotationX:4,rotationZ:-1.2,y:8,scale:.96},{rotationY:7,rotationX:1,rotationZ:1.2,y:-8,scale:1,duration:2.5,ease:'sine.inOut'},0);
+tl.to('.screen',{rotationY:-7,rotationX:4,rotationZ:-1.2,y:8,scale:.96,duration:2.5,ease:'sine.inOut'},2.5);
+tl.fromTo('.sheen',{x:-650},{x:650,duration:5,ease:'sine.inOut'},0);
+window.__timelines['project']=tl;
+</script></body></html>

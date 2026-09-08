@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import dynamic from "next/dynamic";
+import ServicesArtwork from "./ServicesArtwork";
 import Link from "next/link";
 import NumberFlow from "@number-flow/react";
 import { motion, useReducedMotion } from "framer-motion";
@@ -21,18 +21,9 @@ import {
 import { openContactForm } from "@/lib/contact-prefill";
 import type { Service } from "@/types";
 
-const ServicesArtwork = dynamic(() => import("./ServicesArtwork"), {
-  ssr: false,
-  loading: () => (
-    <div
-      aria-hidden="true"
-      className="absolute inset-0 animate-pulse bg-[radial-gradient(circle_at_65%_25%,rgba(34,211,238,.24),transparent_30%),radial-gradient(circle_at_30%_70%,rgba(139,92,246,.28),transparent_36%),#070910]"
-    />
-  ),
-});
-
 interface ServicesSectionProps {
   initialServices: Service[];
+  sectionId?: string;
 }
 
 const projectTypes = [
@@ -91,6 +82,7 @@ function formatPrice(value: number) {
 
 export default function ProfessionalServicesSection({
   initialServices,
+  sectionId = "uslugi",
 }: ServicesSectionProps) {
   const shouldReduceMotion = Boolean(useReducedMotion());
   const [projectType, setProjectType] = useState<ProjectType>("landing");
@@ -143,19 +135,19 @@ export default function ProfessionalServicesSection({
 
   return (
     <section
-      id="uslugi"
+      id={sectionId}
       aria-labelledby="services-heading"
-      className="relative z-10 overflow-hidden border-t border-slate-200 bg-slate-50 py-24 text-slate-950 dark:border-white/[0.07] dark:bg-[#05070c] dark:text-white lg:py-28"
+      className="relative z-10 overflow-hidden border-t border-[var(--p-border)] bg-[var(--p-surface)] py-24 text-[var(--p-muted)] dark:border-[var(--p-border)] dark:bg-[var(--p-surface)] dark:text-white lg:py-28"
     >
       <div
         aria-hidden="true"
-        className="absolute left-[-16rem] top-[22rem] size-[34rem] rounded-full bg-cyan-400/[0.07] blur-[150px]"
+        className="absolute left-[-16rem] top-[22rem] size-[34rem] rounded-[var(--p-radius)] bg-[var(--p-surface)] blur-[150px]"
       />
 
       <div className="relative mx-auto max-w-[1500px] px-4 sm:px-6 lg:px-8">
-        <header className="grid gap-8 border-b border-slate-200 pb-12 dark:border-white/10 lg:grid-cols-[0.9fr_0.7fr] lg:items-end lg:gap-20 lg:pb-16">
+        <header className="grid gap-8 border-b border-[var(--p-border)] pb-12 dark:border-[var(--p-border)] lg:grid-cols-[0.9fr_0.7fr] lg:items-end lg:gap-20 lg:pb-16">
           <div>
-            <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] text-cyan-700 dark:text-cyan-200/70">
+            <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--p-accent)] dark:text-[var(--p-accent)]">
               <Sparkles className="size-3.5" />
               Projekt, kod i wdrożenie
             </div>
@@ -164,21 +156,21 @@ export default function ProfessionalServicesSection({
               className="mt-5 max-w-4xl text-[clamp(2.85rem,5.5vw,5.75rem)] font-medium leading-[0.88] tracking-[-0.055em]"
             >
               Usługi, które
-              <span className="block text-slate-400 dark:text-white/32">
+              <span className="block text-[var(--p-muted)] dark:text-[var(--p-muted)]">
                 dowożą rezultat.
               </span>
             </h2>
           </div>
 
           <div className="max-w-xl lg:justify-self-end">
-            <p className="text-base leading-relaxed text-slate-600 dark:text-white/62 sm:text-lg">
+            <p className="text-base leading-relaxed text-[var(--p-muted)] dark:text-[var(--p-muted)] sm:text-lg">
               Łączę projektowanie, frontend i zaplecze w jeden spójny proces.
               Dostajesz działający produkt, jasny zakres i rozwiązania dobrane
               do realnego celu.
             </p>
             <Link
               href="/uslugi"
-              className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-cyan-700 transition-colors hover:text-cyan-600 dark:text-cyan-300 dark:hover:text-cyan-200"
+              className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--p-accent)] transition-colors hover:text-[var(--p-accent)] dark:text-[var(--p-accent)] dark:hover:text-[var(--p-accent)]"
             >
               Pełna oferta i odpowiedzi na pytania
               <ArrowRight className="size-4" />
@@ -192,18 +184,18 @@ export default function ProfessionalServicesSection({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: shouldReduceMotion ? 0 : 0.7 }}
-            className="relative min-h-[430px] overflow-hidden rounded-[2rem] border border-white/12 bg-[#070910] text-white shadow-[0_38px_100px_-50px_rgba(15,23,42,.8)] lg:sticky lg:top-24 lg:min-h-[560px]"
+            className="relative min-h-[430px] overflow-hidden rounded-[var(--p-radius)] border border-[var(--p-border)] bg-[var(--p-surface)] text-white shadow-[0_38px_100px_-50px_rgba(15,23,42,.8)] lg:sticky lg:top-24 lg:min-h-[560px]"
           >
             <ServicesArtwork />
-            <div className="absolute inset-x-0 top-0 z-10 flex items-center justify-between p-6 font-mono text-[9px] uppercase tracking-[0.18em] text-white/60">
+            <div className="absolute inset-x-0 top-0 z-10 flex items-center justify-between p-6 font-mono text-[9px] uppercase tracking-[0.18em] text-[var(--p-muted)]">
               <span>Od pomysłu do produkcji</span>
               <span className="flex items-center gap-2">
-                <span className="size-1.5 rounded-full bg-emerald-300" />
+                <span className="size-1.5 rounded-[var(--p-radius)] bg-[var(--p-surface)]" />
                 Dostępny
               </span>
             </div>
             <div className="absolute inset-x-0 bottom-0 z-10 p-6 sm:p-7">
-              <p className="max-w-sm text-sm leading-relaxed text-white/64">
+              <p className="max-w-sm text-sm leading-relaxed text-[var(--p-muted)]">
                 Każdy etap ma konkretny cel, wynik i miejsce na Twoją decyzję.
               </p>
             </div>
@@ -227,32 +219,32 @@ export default function ProfessionalServicesSection({
                     duration: shouldReduceMotion ? 0 : 0.55,
                     delay: shouldReduceMotion ? 0 : index * 0.06,
                   }}
-                  className="group relative overflow-hidden rounded-[1.65rem] border border-slate-200 bg-white p-6 shadow-[0_22px_60px_-45px_rgba(15,23,42,.5)] transition-colors hover:border-cyan-300/70 dark:border-white/10 dark:bg-white/[0.035] dark:shadow-none dark:hover:border-cyan-300/25 sm:p-7"
+                  className="group relative overflow-hidden rounded-[var(--p-radius)] border border-[var(--p-border)] bg-[var(--p-surface)] p-6 shadow-[0_22px_60px_-45px_rgba(15,23,42,.5)] transition-colors hover:border-[var(--p-border)] dark:border-[var(--p-border)] dark:bg-[var(--p-surface)] dark:shadow-none dark:hover:border-[var(--p-border)] sm:p-7"
                 >
                   <div
                     aria-hidden="true"
-                    className="absolute -right-16 -top-20 size-44 rounded-full bg-gradient-to-br from-cyan-300/10 to-violet-500/10 blur-3xl transition-transform duration-700 group-hover:scale-125"
+                    className="absolute -right-16 -top-20 size-44 rounded-[var(--p-radius)] bg-gradient-to-br from-cyan-300/10 to-violet-500/10 blur-3xl transition-transform duration-700 group-hover:scale-125"
                   />
 
                   <div className="relative grid gap-6 sm:grid-cols-[3.25rem_1fr] xl:grid-cols-[3.25rem_1fr_auto] xl:items-start">
-                    <div className="grid size-12 place-items-center rounded-2xl border border-cyan-200 bg-cyan-50 text-cyan-700 dark:border-cyan-300/18 dark:bg-cyan-300/8 dark:text-cyan-200">
+                    <div className="grid size-12 place-items-center rounded-[var(--p-radius)] border border-[var(--p-border)] bg-[var(--p-surface)] text-[var(--p-accent)] dark:border-[var(--p-border)] dark:bg-[var(--p-surface)] dark:text-[var(--p-accent)]">
                       <Icon className="size-5" />
                     </div>
 
                     <div className="min-w-0">
                       <div className="flex items-center gap-3">
-                        <span className="font-mono text-[9px] uppercase tracking-[0.17em] text-slate-400 dark:text-white/30">
+                        <span className="font-mono text-[9px] uppercase tracking-[0.17em] text-[var(--p-muted)] dark:text-[var(--p-muted)]">
                           0{index + 1}
                         </span>
-                        <span className="h-px w-8 bg-slate-200 dark:bg-white/10" />
-                        <span className="font-mono text-[9px] uppercase tracking-[0.17em] text-cyan-700 dark:text-cyan-200/65">
+                        <span className="h-px w-8 bg-[var(--p-surface)] dark:bg-[var(--p-surface)]" />
+                        <span className="font-mono text-[9px] uppercase tracking-[0.17em] text-[var(--p-accent)] dark:text-[var(--p-accent)]">
                           Usługa
                         </span>
                       </div>
                       <h3 className="mt-3 text-2xl font-semibold tracking-[-0.035em] sm:text-[1.7rem]">
                         {service.name}
                       </h3>
-                      <p className="mt-3 max-w-2xl text-sm leading-relaxed text-slate-600 dark:text-white/56">
+                      <p className="mt-3 max-w-2xl text-sm leading-relaxed text-[var(--p-muted)] dark:text-[var(--p-muted)]">
                         {service.full_description ||
                           service.short_description}
                       </p>
@@ -262,9 +254,9 @@ export default function ProfessionalServicesSection({
                           {features.map((feature) => (
                             <span
                               key={feature}
-                              className="inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-[10px] text-slate-600 dark:border-white/9 dark:bg-white/[0.035] dark:text-white/58"
+                              className="inline-flex items-center gap-1.5 rounded-[var(--p-radius)] border border-[var(--p-border)] bg-[var(--p-surface)] px-3 py-1.5 text-[10px] text-[var(--p-muted)] dark:border-[var(--p-border)] dark:bg-[var(--p-surface)] dark:text-[var(--p-muted)]"
                             >
-                              <Check className="size-3 text-emerald-500 dark:text-emerald-300" />
+                              <Check className="size-3 text-[var(--p-accent)] dark:text-[var(--p-accent)]" />
                               {feature}
                             </span>
                           ))}
@@ -272,14 +264,14 @@ export default function ProfessionalServicesSection({
                       )}
                     </div>
 
-                    <div className="flex items-end justify-between border-t border-slate-200 pt-5 dark:border-white/10 sm:col-start-2 xl:col-start-auto xl:flex-col xl:items-end xl:border-l xl:border-t-0 xl:pl-7 xl:pt-0">
+                    <div className="flex items-end justify-between border-t border-[var(--p-border)] pt-5 dark:border-[var(--p-border)] sm:col-start-2 xl:col-start-auto xl:flex-col xl:items-end xl:border-l xl:border-t-0 xl:pl-7 xl:pt-0">
                       <div className="xl:text-right">
-                        <div className="font-mono text-[9px] uppercase tracking-[0.16em] text-slate-400 dark:text-white/32">
+                        <div className="font-mono text-[9px] uppercase tracking-[0.16em] text-[var(--p-muted)] dark:text-[var(--p-muted)]">
                           Cena od
                         </div>
                         <div className="mt-1 text-xl font-semibold tracking-[-0.03em]">
                           {formatPrice(service.starting_price)}{" "}
-                          <span className="text-xs font-medium text-cyan-700 dark:text-cyan-300">
+                          <span className="text-xs font-medium text-[var(--p-accent)] dark:text-[var(--p-accent)]">
                             {service.currency}
                           </span>
                         </div>
@@ -287,7 +279,7 @@ export default function ProfessionalServicesSection({
                       <button
                         type="button"
                         onClick={() => selectService(service)}
-                        className="mt-4 inline-flex min-h-11 items-center gap-2 rounded-full border border-slate-300 px-4 text-xs font-semibold transition-colors hover:border-slate-950 hover:bg-slate-950 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 dark:border-white/15 dark:hover:border-white dark:hover:bg-white dark:hover:text-black"
+                        className="portfolio-button portfolio-button--secondary mt-4"
                       >
                         Zapytaj
                         <ArrowRight className="size-3.5" />
@@ -300,25 +292,25 @@ export default function ProfessionalServicesSection({
           </div>
         </div>
 
-        <div className="mt-16 overflow-hidden rounded-[2rem] border border-slate-200 bg-white shadow-[0_34px_90px_-58px_rgba(15,23,42,.6)] dark:border-white/10 dark:bg-[#090c13] dark:shadow-none lg:mt-20">
+        <div className="mt-16 overflow-hidden rounded-[var(--p-radius)] border border-[var(--p-border)] bg-[var(--p-surface)] shadow-[0_34px_90px_-58px_rgba(15,23,42,.6)] dark:border-[var(--p-border)] dark:bg-[var(--p-surface)] dark:shadow-none lg:mt-20">
           <div className="grid lg:grid-cols-[1.15fr_0.85fr]">
             <div className="p-6 sm:p-8 lg:p-10">
               <div className="flex items-center gap-3">
-                <span className="grid size-10 place-items-center rounded-xl border border-cyan-200 bg-cyan-50 text-cyan-700 dark:border-cyan-300/18 dark:bg-cyan-300/8 dark:text-cyan-200">
+                <span className="grid size-10 place-items-center rounded-[var(--p-radius)] border border-[var(--p-border)] bg-[var(--p-surface)] text-[var(--p-accent)] dark:border-[var(--p-border)] dark:bg-[var(--p-surface)] dark:text-[var(--p-accent)]">
                   <Calculator className="size-4.5" />
                 </span>
                 <div>
                   <h3 className="text-xl font-semibold tracking-[-0.03em]">
                     Szybka wycena projektu
                   </h3>
-                  <p className="mt-0.5 text-xs text-slate-500 dark:text-white/42">
+                  <p className="mt-0.5 text-xs text-[var(--p-muted)] dark:text-[var(--p-muted)]">
                     Wybierz zakres — wynik aktualizuje się automatycznie.
                   </p>
                 </div>
               </div>
 
               <fieldset className="mt-8">
-                <legend className="font-mono text-[9px] uppercase tracking-[0.18em] text-slate-500 dark:text-white/42">
+                <legend className="font-mono text-[9px] uppercase tracking-[0.18em] text-[var(--p-muted)] dark:text-[var(--p-muted)]">
                   Typ projektu
                 </legend>
                 <div className="mt-3 grid gap-2 sm:grid-cols-3">
@@ -341,7 +333,7 @@ export default function ProfessionalServicesSection({
               </fieldset>
 
               <fieldset className="mt-7">
-                <legend className="font-mono text-[9px] uppercase tracking-[0.18em] text-slate-500 dark:text-white/42">
+                <legend className="font-mono text-[9px] uppercase tracking-[0.18em] text-[var(--p-muted)] dark:text-[var(--p-muted)]">
                   Dodatkowe moduły
                 </legend>
                 <div className="mt-3 grid gap-2 sm:grid-cols-3">
@@ -367,7 +359,7 @@ export default function ProfessionalServicesSection({
                             <span className="block text-xs font-semibold">
                               {module.label}
                             </span>
-                            <span className="mt-1 block text-[10px] leading-relaxed text-slate-500 dark:text-white/42">
+                            <span className="mt-1 block text-[10px] leading-relaxed text-[var(--p-muted)] dark:text-[var(--p-muted)]">
                               {module.description}
                             </span>
                           </span>
@@ -388,13 +380,13 @@ export default function ProfessionalServicesSection({
               </fieldset>
             </div>
 
-            <div className="relative flex flex-col justify-between overflow-hidden border-t border-white/10 bg-[#070910] p-7 text-white sm:p-9 lg:border-l lg:border-t-0 lg:p-10">
+            <div className="relative flex flex-col justify-between overflow-hidden border-t border-[var(--p-border)] bg-[var(--p-surface)] p-7 text-white sm:p-9 lg:border-l lg:border-t-0 lg:p-10">
               <div
                 aria-hidden="true"
-                className="absolute -right-24 -top-24 size-72 rounded-full bg-gradient-to-br from-cyan-400/20 to-violet-500/18 blur-[90px]"
+                className="absolute -right-24 -top-24 size-72 rounded-[var(--p-radius)] bg-gradient-to-br from-cyan-400/20 to-violet-500/18 blur-[90px]"
               />
               <div className="relative">
-                <div className="font-mono text-[9px] uppercase tracking-[0.19em] text-cyan-200/65">
+                <div className="font-mono text-[9px] uppercase tracking-[0.19em] text-[var(--p-accent)]">
                   Orientacyjny budżet
                 </div>
                 <div
@@ -403,7 +395,7 @@ export default function ProfessionalServicesSection({
                   aria-label={`Orientacyjny budżet: około ${formatPrice(estimate)} PLN`}
                   className="mt-4 flex items-baseline gap-2 tracking-[-0.055em]"
                 >
-                  <span className="text-3xl text-white/40">~</span>
+                  <span className="text-3xl text-[var(--p-muted)]">~</span>
                   <span aria-hidden="true">
                     <NumberFlow
                       value={estimate}
@@ -411,11 +403,11 @@ export default function ProfessionalServicesSection({
                       className="text-[clamp(3.2rem,6vw,5.75rem)] font-medium leading-none"
                     />
                   </span>
-                  <span className="text-sm font-medium tracking-normal text-cyan-200/80">
+                  <span className="text-sm font-medium tracking-normal text-[var(--p-accent)]">
                     PLN
                   </span>
                 </div>
-                <p className="mt-5 max-w-sm text-xs leading-relaxed text-white/48">
+                <p className="mt-5 max-w-sm text-xs leading-relaxed text-[var(--p-muted)]">
                   To punkt startowy, nie automatyczna oferta. Dokładną cenę
                   podaję po krótkiej rozmowie i poznaniu zakresu.
                 </p>
@@ -424,7 +416,7 @@ export default function ProfessionalServicesSection({
               <button
                 type="button"
                 onClick={selectEstimate}
-                className="relative mt-10 inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-white px-5 text-sm font-semibold text-black transition-transform hover:scale-[1.015] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
+                className="portfolio-button mt-10"
               >
                 Wyślij ten zakres
                 <ArrowRight className="size-4" />

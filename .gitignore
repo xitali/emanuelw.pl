@@ -50,3 +50,5 @@ next-env.d.ts
 /android-admin/app/google-services.json
 /.tools/
 /EmanuelAdmin-*.apk
+
+/.debug/

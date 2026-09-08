@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { contactSources } from "./contact-sources";
 
 const optionalUrl = z
   .string()
@@ -23,6 +24,7 @@ const optionalUrl = z
   );
 
 export const contactSchema = z.object({
+  source: z.enum(contactSources).optional().default(""),
   name: z.string().trim().min(2, "Imię musi mieć co najmniej 2 znaki.").max(100),
   email: z.email("Podaj prawidłowy adres e-mail.").max(254),
   subject: z.string().trim().max(200).optional().default(""),
