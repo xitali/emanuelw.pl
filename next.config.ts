@@ -21,6 +21,16 @@ const contentSecurityPolicy = [
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "kamera\\.emanuelwloch\\.pl" }],
+        destination: "https://kamera-brama.tailcc6301.ts.net/",
+        permanent: false,
+      },
+    ];
+  },
   experimental: {
     serverActions: {
       bodySizeLimit: "1mb",
