@@ -146,6 +146,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               <Link href="/realizacje" className="mt-9 inline-flex items-center gap-2 text-sm text-[var(--p-accent)]"><ArrowLeft className="size-4" /> Wszystkie projekty</Link>
               <div className="mt-8 grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-end lg:gap-20">
                 <div>
+                  {project.project_status === "in-development" && <p className="portfolio-kicker">Wersja testowa / projekt w rozwoju</p>}
                   <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--p-accent)]">Realizacja · {projectLabel(project.project_type || project.category)}</p>
                   <h1 className="mt-5 text-[clamp(2.8rem,6vw,6rem)] font-medium leading-[0.9] tracking-[-0.055em]">{project.title}</h1>
                 </div>

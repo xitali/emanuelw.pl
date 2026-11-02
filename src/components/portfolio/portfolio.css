@@ -415,3 +415,5 @@ details[open] .detail-plus { transform: rotate(45deg); }
 .portfolio-catalog > p { color: var(--p-muted); line-height: 1.8; }
 .portfolio-filters a[aria-current="page"] { background: var(--p-text); color: var(--p-bg); }
 .showcase-card > .portfolio-text-link { margin-top: 20px; margin-right: 20px; }
+
+.project-release-label { margin-bottom: 14px; color: var(--p-accent); }

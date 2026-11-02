@@ -45,7 +45,7 @@ export default function ProjectMedia({ projectId, image, title, fallbackImage, o
     return () => { document.removeEventListener("visibilitychange", update); element.pause(); };
   }, [visible, paused, enabled]);
   const visual = <>
-    <Image src={preview && !posterFailed ? preview.poster : source} alt={alt || `Podgląd projektu ${title}`} fill priority={priority} sizes="(max-width: 767px) 92vw, (max-width: 1023px) 90vw, 65vw" className={preview ? "object-contain" : "object-cover object-top"} onError={() => { if (preview && !posterFailed) { setPosterFailed(true); return; } if (fallbackImage && source !== fallbackImage) setSource(fallbackImage); }} />
+    <Image src={preview && !posterFailed ? preview.poster : source} alt={alt || `Podgląd projektu ${title}`} fill priority={priority} sizes="(max-width: 767px) 92vw, (max-width: 1023px) 90vw, 65vw" className="object-contain" onError={() => { if (preview && !posterFailed) { setPosterFailed(true); return; } if (fallbackImage && source !== fallbackImage) setSource(fallbackImage); }} />
     {enabled && visible && <video ref={video} src={preview!.video} poster={preview!.poster} muted loop playsInline preload="none" aria-hidden="true" onError={() => setFailed(true)} />}
     {onOpen && <span className="project-media-open"><Plus size={18} /></span>}
   </>;

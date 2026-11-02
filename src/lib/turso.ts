@@ -98,7 +98,7 @@ export const getProjects = unstable_cache(
       return [];
     }
   },
-  ["projects-list"],
+  ["projects-list", "solidprint-release-2026-11-02"],
   { revalidate: 3600, tags: ["projects"] }
 );
 
