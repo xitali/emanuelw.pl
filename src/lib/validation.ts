@@ -94,6 +94,11 @@ export const mobileMessageDeleteSchema = z.object({
 });
 
 export const projectSchema = z.object({
+  image_alts: z.array(z.string().trim().min(1).max(500)).max(12).optional(),
+  preview_video: optionalUrl.optional(),
+  preview_poster: optionalUrl.optional(),
+  is_published: z.boolean().optional(),
+  sort_order: z.coerce.number().int().min(0).max(10000).optional(),
   main_challenge: z.string().trim().max(5000).optional(),
   innovation: z.string().trim().max(5000).optional(),
   project_result: z.string().trim().max(5000).optional(),
@@ -119,6 +124,10 @@ export const projectSchema = z.object({
   project_type: z.string().trim().min(2).max(50).default("web-app"),
   project_status: z.enum(["active", "in-development", "archived"]).default("active"),
   featured: z.boolean().default(false),
+}).superRefine((data, context) => {
+  if (data.image_alts?.length && data.image_alts.length !== data.images.length) context.addIssue({ code: "custom", path: ["image_alts"], message: "Dodaj po jednym opisie dla każdego obrazu lub pozostaw listę opisów pustą." });
+  if (Boolean(data.preview_video) !== Boolean(data.preview_poster)) context.addIssue({ code: "custom", path: ["preview_poster"], message: "Film wymaga obrazu podglądu. Uzupełnij oba adresy." });
+  if (data.is_published && (!data.images.length || !data.project_result?.trim())) context.addIssue({ code: "custom", path: ["is_published"], message: "Przed publikacją dodaj okładkę i opis rzeczywistego rezultatu." });
 });
 
 export const testimonialSchema = z.object({

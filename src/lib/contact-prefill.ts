@@ -24,6 +24,7 @@ Dodatkowe informacje:
 };
 
 export function openContactForm(prefill: ContactPrefill) {
+  window.dispatchEvent(new Event("contact:cta"));
   window.dispatchEvent(
     new CustomEvent<ContactPrefill>(CONTACT_PREFILL_EVENT, {
       detail: prefill,

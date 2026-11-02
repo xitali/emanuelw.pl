@@ -100,7 +100,7 @@ export const servicePages: ServicePageData[] = [
       {
         question: "Ile kosztuje stworzenie strony internetowej?",
         answer:
-          "Najprostszy zakres strony firmowej w kalkulatorze zaczyna się od 600 zł. Dokładna cena zależy od liczby widoków, treści, CMS, formularzy i integracji, dlatego przed rozpoczęciem przygotowuję konkretny zakres.",
+          "Najprostszy zakres strony firmowej w kalkulatorze zaczyna się od 600 zł netto. Dokładna cena zależy od liczby widoków, treści, CMS, formularzy i integracji, dlatego przed rozpoczęciem przygotowuję konkretny zakres.",
       },
       {
         question: "Ile trwa wykonanie strony firmowej?",
@@ -220,7 +220,7 @@ export const servicePages: ServicePageData[] = [
       {
         question: "Ile kosztuje aplikacja webowa?",
         answer:
-          "Kalkulator pokazuje punkt startowy od 1200 zł dla podstawowego zakresu. Rzeczywisty budżet zależy od liczby ról, ekranów, integracji, modelu danych i wymagań bezpieczeństwa.",
+          "Kalkulator pokazuje punkt startowy od 1200 zł netto dla podstawowego zakresu. Rzeczywisty budżet zależy od liczby ról, ekranów, integracji, modelu danych i wymagań bezpieczeństwa.",
       },
       {
         question: "Czy możesz stworzyć najpierw MVP?",
@@ -330,7 +330,7 @@ export const servicePages: ServicePageData[] = [
       {
         question: "Ile kosztuje stworzenie sklepu internetowego?",
         answer:
-          "Kalkulator pokazuje punkt startowy od 1800 zł. Dokładny koszt zależy od liczby produktów, wariantów, płatności, dostawy, panelu i integracji zewnętrznych.",
+          "Kalkulator pokazuje punkt startowy od 1800 zł netto. Dokładny koszt zależy od liczby produktów, wariantów, płatności, dostawy, panelu i integracji zewnętrznych.",
       },
       {
         question: "Czy sklep będzie działał na telefonie?",
@@ -580,7 +580,7 @@ export const servicePages: ServicePageData[] = [
       {
         question: "Ile kosztuje strona dla lokalnej firmy?",
         answer:
-          "Punkt startowy prostego zakresu w kalkulatorze wynosi 600 zł. Ostateczna wycena zależy od treści, liczby usług, formularzy, galerii, CMS i integracji.",
+          "Punkt startowy prostego zakresu w kalkulatorze wynosi 600 zł netto. Ostateczna wycena zależy od treści, liczby usług, formularzy, galerii, CMS i integracji.",
       },
       {
         question: "Czy możemy współpracować całkowicie zdalnie?",
@@ -680,7 +680,7 @@ export const servicePages: ServicePageData[] = [
       {
         question: "Ile kosztuje strona internetowa w Rzeszowie?",
         answer:
-          "Najprostszy zakres w kalkulatorze zaczyna się od 600 zł. Cena zależy od liczby usług i podstron, treści, formularzy, CMS, galerii oraz integracji.",
+          "Najprostszy zakres w kalkulatorze zaczyna się od 600 zł netto. Cena zależy od liczby usług i podstron, treści, formularzy, CMS, galerii oraz integracji.",
       },
       {
         question: "Czy strona będzie działać na telefonie?",

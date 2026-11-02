@@ -66,7 +66,7 @@ export default function ProjectModal({ project, onClose, dark = false }: Project
     }}>
       <div className="project-dialog-bar"><span className="portfolio-kicker">{selectedImage === null ? "EW / WYBRANA REALIZACJA" : "EW / GALERIA PROJEKTU"}</span><button type="button" onClick={dismiss} aria-label={selectedImage === null ? "Zamknij modal" : "Zamknij podgląd zdjęcia"} className="project-dialog-close"><X size={20} /></button></div>
       {selectedImage !== null && <div className="project-image-viewer">
-        <div className="project-image-full"><Image src={images[selectedImage]} alt={`${project.title} — zdjęcie ${selectedImage + 1} z ${images.length}`} fill sizes="(max-width: 767px) 95vw, 960px" className="object-contain" /></div>
+        <div className="project-image-full"><Image src={images[selectedImage]} alt={project.image_alts?.[selectedImage] || `${project.title} — zdjęcie ${selectedImage + 1} z ${images.length}`} fill sizes="(max-width: 767px) 95vw, 960px" className="object-contain" /></div>
         <div className="project-image-controls">{images.length > 1 && <button className="project-dialog-close" onClick={() => moveImage(-1)} aria-label="Poprzednie zdjęcie"><ChevronLeft size={20} /></button>}<span aria-live="polite">Zdjęcie {selectedImage + 1} z {images.length}</span>{images.length > 1 && <button className="project-dialog-close" onClick={() => moveImage(1)} aria-label="Następne zdjęcie"><ChevronRight size={20} /></button>}<a className="portfolio-text-link" href={images[selectedImage]} target="_blank" rel="noopener noreferrer">Oryginał <ArrowUpRight size={16} /></a></div>
       </div>}
       <div className="project-dialog-body" hidden={selectedImage !== null}>
@@ -75,10 +75,10 @@ export default function ProjectModal({ project, onClose, dark = false }: Project
           <h2 id="project-dialog-title">{project.title}</h2>
           <p>{project.short_description}</p>
         </header>
-        {images.length > 0 && <div className="project-dialog-gallery">{images.map((src, i) => <figure key={`${src}-${i}`}>{i === 0 ? <ProjectMedia projectId={project.id} image={src} title={project.title} onOpen={() => openImage(i)} /> : <button type="button" className="project-gallery-image" aria-label={`Powiększ zdjęcie ${i + 1}: ${project.title}`} onClick={() => openImage(i)}><Image src={src} alt={`${project.title} — ekran ${i + 1}`} fill sizes="(max-width: 767px) 90vw, 450px" className="object-contain" /><span className="project-gallery-zoom"><Maximize2 size={18} /></span></button>}</figure>)}</div>}
+        {images.length > 0 && <div className="project-dialog-gallery">{images.map((src, i) => <figure key={`${src}-${i}`}>{i === 0 ? <ProjectMedia alt={project.image_alts?.[0]} previewVideo={project.preview_video} previewPoster={project.preview_poster} projectId={project.id} image={src} title={project.title} onOpen={() => openImage(i)} /> : <button type="button" className="project-gallery-image" aria-label={`Powiększ zdjęcie ${i + 1}: ${project.title}`} onClick={() => openImage(i)}><Image src={src} alt={project.image_alts?.[i] || `${project.title} — ekran ${i + 1}`} fill sizes="(max-width: 767px) 90vw, 450px" className="object-contain" /><span className="project-gallery-zoom"><Maximize2 size={18} /></span></button>}</figure>)}</div>}
         <div className="project-dialog-actions">
           <Link className="portfolio-button" href={getProjectPath(project)}>Pełny opis realizacji<ArrowUpRight size={16} /></Link>
-          {project.project_url && <a className="portfolio-text-link" href={project.project_url} target="_blank" rel="noopener noreferrer">Zobacz stronę<ArrowUpRight size={16} /></a>}
+          {project.project_url && <a data-live-project className="portfolio-text-link" href={project.project_url} target="_blank" rel="noopener noreferrer">Zobacz stronę<ArrowUpRight size={16} /></a>}
           {project.repository_url && <a className="portfolio-text-link" href={project.repository_url} target="_blank" rel="noopener noreferrer">Kod źródłowy<ArrowUpRight size={16} /></a>}
         </div>
         {project.detailed_description && <section className="project-dialog-section"><h3>O projekcie</h3><p>{project.detailed_description}</p></section>}

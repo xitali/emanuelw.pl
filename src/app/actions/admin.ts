@@ -38,6 +38,8 @@ async function requireAdmin() {
 
 function projectFromFormData(formData: FormData) {
   return projectSchema.safeParse({
+    is_published: formData.has("publishing_fields") ? formData.get("is_published") === "on" : undefined,
+    sort_order: formData.has("publishing_fields") ? formData.get("sort_order") ?? 0 : undefined,
     ...Object.fromEntries(caseTextFields.filter(key => formData.has(key)).map(key => [key, formData.get(key)])),
     ...Object.fromEntries(caseListFields.filter(key => formData.has(key)).map(key => [key, String(formData.get(key) || "").split(/\r?\n/).map(value => value.trim()).filter(Boolean)])),
     title: formData.get("title"),
@@ -118,7 +120,7 @@ export async function updateProjectAction(id: string, formData: FormData) {
   const validId = idSchema.safeParse(id);
   const validation = projectFromFormData(formData);
   if (!validId.success || !validation.success) {
-    return { success: false, error: "Nieprawidłowe dane projektu." };
+    return { success: false, error: !validation.success ? validation.error.issues[0]?.message || "Nieprawidłowe dane projektu." : "Nieprawidłowy identyfikator projektu." };
   }
 
   await updateProject(validId.data, validation.data);

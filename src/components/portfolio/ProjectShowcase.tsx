@@ -14,10 +14,10 @@ const ProjectModal = dynamic(() => import("@/components/ProjectModal"));
 
 export function ProjectCard({ project, index, onOpen, highlighted = false }: { project: Project; index: number; onOpen: () => void; highlighted?: boolean }) {
   return <article className={`showcase-card${index === 0 ? " showcase-featured" : ""}`}>
-    {project.images[0] ? <ProjectMedia projectId={project.id} image={project.images[0]} fallbackImage={project.images.find(src => src.startsWith("/projects/"))} title={project.title} onOpen={onOpen} /> : <button className="showcase-type-visual" onClick={onOpen}>{project.title}</button>}
+    {project.images[0] ? <ProjectMedia alt={project.image_alts?.[0]} previewVideo={project.preview_video} previewPoster={project.preview_poster} projectId={project.id} image={project.images[0]} fallbackImage={project.images.find(src => src.startsWith("/projects/"))} title={project.title} onOpen={onOpen} /> : <button className="showcase-type-visual" onClick={onOpen}>{project.title}</button>}
     <div className="showcase-caption"><div><p className="portfolio-kicker">{String(index + 1).padStart(2, "0")} / {projectLabel(project.project_type || project.category)}</p><h3><Link href={getProjectPath(project)}>{project.title}</Link></h3><p>{project.short_description}</p></div><Link className="showcase-arrow" href={getProjectPath(project)} aria-label={`Opis realizacji: ${project.title}`}><ArrowUpRight /></Link></div>
     {highlighted ? <><dl className="project-outcome">{project.main_challenge && <div><dt>Wyzwanie</dt><dd>{project.main_challenge}</dd></div>}{project.project_result && <div><dt>Rezultat</dt><dd>{project.project_result}</dd></div>}</dl><Link className="portfolio-text-link" href={getProjectPath(project)}>Opis realizacji <ArrowUpRight size={16} /></Link></> : <div className="portfolio-tags">{project.technologies.slice(0, 5).map((tech, i) => <span key={`${tech}-${i}`}>{tech}</span>)}</div>}
-  {project.project_url && <a href={project.project_url} className="portfolio-text-link" target="_blank" rel="noopener noreferrer">Zobacz na żywo <ArrowUpRight size={16} /></a>}
+  {project.project_url && <a data-live-project href={project.project_url} className="portfolio-text-link" target="_blank" rel="noopener noreferrer">Zobacz na żywo <ArrowUpRight size={16} /></a>}
   </article>;
 }
 

@@ -1,3 +1,4 @@
+import { slugify } from "@/lib/seo";
 import { caseTextFields, caseListFields } from "@/lib/project-case-fields";
 import "server-only";
 
@@ -50,10 +51,13 @@ export const getProjects = unstable_cache(
   async (): Promise<Project[]> => {
     try {
       const result = await turso.execute(
-        "SELECT * FROM projects ORDER BY featured DESC, created_at DESC",
+        "SELECT * FROM projects WHERE is_published = 1 ORDER BY sort_order ASC, featured DESC, created_at DESC",
       );
       return result.rows.map((row) => ({
         id: String(row.id || ''),
+        slug: row.slug ? String(row.slug) : undefined,
+        is_published: Number(row.is_published) === 1,
+        sort_order: Number(row.sort_order || 0),
         title: String(row.title || ''),
         short_description: String(row.short_description || ''),
         detailed_description: String(row.detailed_description || ''),
@@ -62,6 +66,9 @@ export const getProjects = unstable_cache(
         backend_technologies: safeParseJsonArray(row.backend_technologies),
         tools_and_services: safeParseJsonArray(row.tools_and_services),
         images: safeParseJsonArray(row.images),
+        image_alts: safeParseJsonArray(row.image_alts),
+        preview_video: row.preview_video ? String(row.preview_video) : undefined,
+        preview_poster: row.preview_poster ? String(row.preview_poster) : undefined,
         project_url: row.project_url ? String(row.project_url) : undefined,
         repository_url: row.repository_url ? String(row.repository_url) : undefined,
         category: row.category ? String(row.category) : undefined,
@@ -97,13 +104,16 @@ export const getProjects = unstable_cache(
 
 export async function getAdminProjects(): Promise<Project[]> {
   const result = await turso.execute(
-    "SELECT * FROM projects ORDER BY featured DESC, created_at DESC",
+    "SELECT * FROM projects ORDER BY sort_order ASC, featured DESC, created_at DESC",
   );
 
   return result.rows.map((row) => ({
     ...Object.fromEntries(caseTextFields.map(field => [field, String(row[field] || "")])),
     ...Object.fromEntries(caseListFields.map(field => [field, safeParseJsonArray(row[field])])),
     id: String(row.id || ""),
+    slug: row.slug ? String(row.slug) : undefined,
+    is_published: Number(row.is_published) === 1,
+    sort_order: Number(row.sort_order || 0),
     title: String(row.title || ""),
     short_description: String(row.short_description || ""),
     detailed_description: String(row.detailed_description || ""),
@@ -199,11 +209,10 @@ export async function submitContactMessage(data: {
 }) {
   const id = crypto.randomUUID();
   const createdAt = new Date().toISOString();
-  await turso.execute({
-    sql: `INSERT INTO contact_messages (id, name, email, subject, message, status, created_at)
-          VALUES (?, ?, ?, ?, ?, 'unread', ?)`,
-    args: [id, data.name, data.email, data.subject, data.message, createdAt],
-  });
+  await turso.batch([
+    { sql: `INSERT INTO contact_messages (id, name, email, subject, message, status, created_at) VALUES (?, ?, ?, ?, ?, 'unread', ?)`, args: [id, data.name, data.email, data.subject, data.message, createdAt] },
+    { sql: "INSERT INTO email_outbox (message_id,created_at) VALUES (?, ?)", args: [id, createdAt] },
+  ], "write");
   return { id, success: true };
 }
 
@@ -366,95 +375,42 @@ export async function updateServicePrice(id: string, priceFrom: number) {
 
 // ---------------- PROJECT CRUD OPERATIONS ---------------- //
 
-async function saveCaseFields(id: string, data: Partial<Project>) {
-  const fields = [...caseTextFields, ...caseListFields].filter(field => data[field] !== undefined);
-  if (!fields.length) return;
-  await turso.execute({
-    sql: `UPDATE projects SET ${fields.map(field => `${field} = ?`).join(", ")} WHERE id = ?`,
-    args: [...fields.map(field => Array.isArray(data[field]) ? JSON.stringify(data[field]) : String(data[field] || "")), id],
-  });
+function projectColumns(data: Partial<Project>) {
+  const scalar = ["title", "short_description", "detailed_description", "project_url", "repository_url", "category", "project_type", "project_status", "completion_date", "sort_order", ...caseTextFields] as const;
+  const lists = ["technologies", "images", ...caseListFields] as const;
+  const values: Record<string, string | number> = {};
+  for (const field of scalar) if (data[field] !== undefined) values[field] = data[field] as string | number;
+  for (const field of lists) if (data[field] !== undefined) values[field] = JSON.stringify(data[field]);
+  for (const field of ["featured", "is_published"] as const) if (data[field] !== undefined) values[field] = data[field] ? 1 : 0;
+  return values;
 }
-
 
 export async function createProject(projectData: Partial<Project>) {
   const id = crypto.randomUUID();
-  const createdAt = new Date().toISOString();
-  
-  await turso.execute({
-    sql: `INSERT INTO projects (
-      id, title, short_description, detailed_description, technologies, 
-      images, project_url, repository_url, category, project_type, 
-      featured, project_status, completion_date, created_at, updated_at
-    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-    args: [
-      id,
-      projectData.title || "Nowy Projekt",
-      projectData.short_description || "",
-      projectData.detailed_description || "",
-      JSON.stringify(projectData.technologies || []),
-      JSON.stringify(projectData.images || []),
-      projectData.project_url || "",
-      projectData.repository_url || "",
-      projectData.category || "web",
-      projectData.project_type || "web-app",
-      projectData.featured ? "1" : "0",
-      projectData.project_status || "active",
-      projectData.completion_date || new Date().toISOString().split("T")[0],
-      createdAt,
-      createdAt
-    ],
-  });
-
-  await saveCaseFields(id, projectData);
+  const tx = await turso.transaction("write");
+  try {
+    const base = slugify(projectData.title || "projekt") || "projekt";
+    let slug = base, suffix = 2;
+    while ((await tx.execute({ sql: "SELECT 1 FROM projects WHERE slug = ?", args: [slug] })).rows.length) slug = `${base}-${suffix++}`;
+    const now = new Date().toISOString();
+    const values = { ...projectColumns(projectData), id, slug, created_at: now, updated_at: now };
+    await tx.execute({ sql: `INSERT INTO projects (${Object.keys(values).join(", ")}) VALUES (${Object.keys(values).map(() => "?").join(", ")})`, args: Object.values(values) });
+    await tx.commit();
+  } catch (error) { await tx.rollback(); throw error; }
+  finally { tx.close(); }
   revalidatePath("/");
   return { id, success: true };
 }
 
 export async function updateProject(id: string, projectData: Partial<Project>) {
-  const updatedAt = new Date().toISOString();
-  
-  await turso.execute({
-    sql: `UPDATE projects SET
-      title = ?,
-      short_description = ?,
-      detailed_description = ?,
-      technologies = ?,
-      images = ?,
-      project_url = ?,
-      repository_url = ?,
-      category = ?,
-      project_type = ?,
-      featured = ?,
-      project_status = ?,
-      updated_at = ?
-    WHERE id = ?`,
-    args: [
-      projectData.title || "",
-      projectData.short_description || "",
-      projectData.detailed_description || "",
-      JSON.stringify(projectData.technologies || []),
-      JSON.stringify(projectData.images || []),
-      projectData.project_url || "",
-      projectData.repository_url || "",
-      projectData.category || "web",
-      projectData.project_type || "web-app",
-      projectData.featured ? "1" : "0",
-      projectData.project_status || "active",
-      updatedAt,
-      id
-    ],
-  });
-
-  await saveCaseFields(id, projectData);
+  const values = { ...projectColumns(projectData), updated_at: new Date().toISOString() };
+  await turso.execute({ sql: `UPDATE projects SET ${Object.keys(values).map(field => `${field} = ?`).join(", ")} WHERE id = ?`, args: [...Object.values(values), id] });
   revalidatePath("/");
   return { success: true };
 }
 
 export async function deleteProject(id: string) {
-  await turso.execute({
-    sql: "DELETE FROM projects WHERE id = ?",
-    args: [id],
-  });
+  await turso.execute({ sql: "DELETE FROM projects WHERE id = ?", args: [id] });
   revalidatePath("/");
   return { success: true };
 }
@@ -552,5 +508,5 @@ export async function getPageVisitsStats() {
 
 export async function getProjectById(id: string): Promise<Project | null> {
   const projects = await getProjects();
-  return projects.find((project) => project.id === id) ?? null;
+  return projects.find((project) => project.id === id || project.slug === id) ?? null;
 }

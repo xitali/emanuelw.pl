@@ -54,7 +54,7 @@ export default function PrivacyPolicyPage() {
           <h2 className="text-xl font-bold">Statystyki i dane techniczne</h2>
           <p>
             Strona zapisuje wyłącznie dzienną, zbiorczą liczbę odsłon
-            poszczególnych podstron. Nowe wpisy statystyczne nie zawierają
+            poszczególnych podstron oraz zagregowane kliknięcia kontaktu i linków do realizacji. Nie zapisujemy parametrów adresu ani unikalnych identyfikatorów odwiedzających. Nowe wpisy statystyczne nie zawierają
             adresu IP, identyfikatora użytkownika ani informacji o
             przeglądarce. Motyw jasny lub ciemny może być zapamiętany lokalnie
             w przeglądarce.
@@ -65,7 +65,7 @@ export default function PrivacyPolicyPage() {
           <h2 className="text-xl font-bold">Odbiorcy i okres przechowywania</h2>
           <p>
             Dostawcami infrastruktury są Vercel (hosting i pliki) oraz Turso
-            (baza danych). Dane formularza są przechowywane do 12 miesięcy od
+            (baza danych). Do powiadomień i potwierdzeń może być używana poczta administratora. Dane formularza są przechowywane do 12 miesięcy od
             zakończenia korespondencji, chyba że prawo lub ustalenie, obrona
             albo dochodzenie roszczeń wymaga dłuższego okresu. Dostawcy mogą
             przetwarzać dane poza EOG na podstawie mechanizmów przewidzianych w

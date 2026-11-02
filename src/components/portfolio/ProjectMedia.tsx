@@ -13,7 +13,8 @@ const getReducedMotion = () => matchMedia("(prefers-reduced-motion: reduce)").ma
 const serverReducedMotion = () => true;
 const previews: Record<string, { source: string; video: string; poster: string }> = previewManifest;
 
-export default function ProjectMedia({ projectId, image, title, fallbackImage, onOpen, priority = false }: {
+export default function ProjectMedia({ projectId, image, title, fallbackImage, onOpen, priority = false, alt, previewVideo, previewPoster }: {
+  alt?: string; previewVideo?: string; previewPoster?: string;
   projectId: string; image: string; title: string; fallbackImage?: string; onOpen?: () => void; priority?: boolean;
 }) {
   const root = useRef<HTMLDivElement>(null);
@@ -25,7 +26,7 @@ export default function ProjectMedia({ projectId, image, title, fallbackImage, o
   const [source, setSource] = useState(image);
   const reduced = useSyncExternalStore(subscribeMotion, getReducedMotion, serverReducedMotion);
   const entry = previews[projectId];
-  const preview = entry?.source === image ? entry : undefined;
+  const preview = previewVideo && previewPoster ? { source: image, video: previewVideo, poster: previewPoster } : entry?.source === image ? entry : undefined;
   const enabled = Boolean(preview && !reduced && !failed);
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => setVisible(entry.isIntersecting), { threshold: 0.15 });
@@ -44,7 +45,7 @@ export default function ProjectMedia({ projectId, image, title, fallbackImage, o
     return () => { document.removeEventListener("visibilitychange", update); element.pause(); };
   }, [visible, paused, enabled]);
   const visual = <>
-    <Image src={preview && !posterFailed ? preview.poster : source} alt={`Podgląd projektu ${title}`} fill priority={priority} sizes="(max-width: 767px) 92vw, (max-width: 1023px) 90vw, 65vw" className={preview ? "object-contain" : "object-cover object-top"} onError={() => { if (preview && !posterFailed) { setPosterFailed(true); return; } if (fallbackImage && source !== fallbackImage) setSource(fallbackImage); }} />
+    <Image src={preview && !posterFailed ? preview.poster : source} alt={alt || `Podgląd projektu ${title}`} fill priority={priority} sizes="(max-width: 767px) 92vw, (max-width: 1023px) 90vw, 65vw" className={preview ? "object-contain" : "object-cover object-top"} onError={() => { if (preview && !posterFailed) { setPosterFailed(true); return; } if (fallbackImage && source !== fallbackImage) setSource(fallbackImage); }} />
     {enabled && visible && <video ref={video} src={preview!.video} poster={preview!.poster} muted loop playsInline preload="none" aria-hidden="true" onError={() => setFailed(true)} />}
     {onOpen && <span className="project-media-open"><Plus size={18} /></span>}
   </>;

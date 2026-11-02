@@ -17,12 +17,13 @@ export function slugify(value: string): string {
     .slice(0, 80);
 }
 
-export function getProjectSegment(project: Pick<Project, "id" | "title">) {
+export function getProjectSegment(project: Pick<Project, "id" | "title" | "slug">) {
+  if (project.slug) return project.slug;
   const slug = slugify(project.title) || "projekt";
   return `${slug}-${project.id}`;
 }
 
-export function getProjectPath(project: Pick<Project, "id" | "title">) {
+export function getProjectPath(project: Pick<Project, "id" | "title" | "slug">) {
   return `/projekty/${getProjectSegment(project)}`;
 }
 

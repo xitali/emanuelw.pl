@@ -1,3 +1,5 @@
+import ConversionSummary from "@/components/ConversionSummary";
+import EmailStatus from "@/components/EmailStatus";
 import { verifyAdminSession } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { getContactMessages, getPageVisitsCount, getAdminProjects, getServices, getTestimonials, getPageVisitsStats } from "@/lib/turso";
@@ -29,7 +31,7 @@ export default async function AdminPage({ searchParams }: AdminPageProps) {
   ]);
 
   return (
-    <AdminDashboardClient
+    <><EmailStatus /><ConversionSummary /><AdminDashboardClient
       messages={messages}
       visitsCount={visitsCount}
       projects={projects}
@@ -38,6 +40,6 @@ export default async function AdminPage({ searchParams }: AdminPageProps) {
       analytics={analytics}
       initialTab={params.tab === "messages" ? "messages" : "projects"}
       initialMessageId={params.message}
-    />
+    /></>
   );
 }

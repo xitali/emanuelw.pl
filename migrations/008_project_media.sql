@@ -1,0 +1,3 @@
+ALTER TABLE projects ADD COLUMN image_alts TEXT NOT NULL DEFAULT '[]';
+ALTER TABLE projects ADD COLUMN preview_video TEXT NOT NULL DEFAULT '';
+ALTER TABLE projects ADD COLUMN preview_poster TEXT NOT NULL DEFAULT '';

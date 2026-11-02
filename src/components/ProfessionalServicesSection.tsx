@@ -115,7 +115,7 @@ export default function ProfessionalServicesSection({
   function selectService(service: Service) {
     openContactForm({
       subject: `Zapytanie o usługę: ${service.name}`,
-      message: `Dzień dobry,\n\nJestem zainteresowany/a usługą „${service.name}” (cena od ${formatPrice(service.starting_price)} ${service.currency}). Proszę o kontakt w celu omówienia szczegółów.\n\nOpis mojego projektu / dodatkowe wymagania:\n- `,
+      message: `Dzień dobry,\n\nJestem zainteresowany/a usługą „${service.name}” (cena od ${formatPrice(service.starting_price)} ${service.currency} netto). Proszę o kontakt w celu omówienia szczegółów.\n\nOpis mojego projektu / dodatkowe wymagania:\n- `,
       badge: "Wybrana usługa została wpisana w formularzu.",
     });
   }
@@ -127,8 +127,8 @@ export default function ProfessionalServicesSection({
       .join(", ");
 
     openContactForm({
-      subject: `Wycena projektu: ${activeProject.label} (~${formatPrice(estimate)} PLN)`,
-      message: `Dzień dobry,\n\nInteresuje mnie projekt typu „${activeProject.label}”.\nWybrane moduły: ${modules || "bez dodatkowych modułów"}.\nOrientacyjny budżet: około ${formatPrice(estimate)} PLN.\n\nProszę o bezpłatną konsultację i dokładną wycenę.\n\nOpis moich potrzeb:\n- `,
+      subject: `Wycena projektu: ${activeProject.label} (~${formatPrice(estimate)} PLN netto)`,
+      message: `Dzień dobry,\n\nInteresuje mnie projekt typu „${activeProject.label}”.\nWybrane moduły: ${modules || "bez dodatkowych modułów"}.\nOrientacyjny budżet: około ${formatPrice(estimate)} PLN netto.\n\nProszę o bezpłatną konsultację i dokładną wycenę.\n\nOpis moich potrzeb:\n- `,
       badge: "Parametry wyceny zostały wpisane w formularzu.",
     });
   }
@@ -272,7 +272,7 @@ export default function ProfessionalServicesSection({
                         <div className="mt-1 text-xl font-semibold tracking-[-0.03em]">
                           {formatPrice(service.starting_price)}{" "}
                           <span className="text-xs font-medium text-[var(--p-accent)] dark:text-[var(--p-accent)]">
-                            {service.currency}
+                            {service.currency} netto
                           </span>
                         </div>
                       </div>
@@ -392,7 +392,7 @@ export default function ProfessionalServicesSection({
                 <div
                   role="status"
                   aria-live="polite"
-                  aria-label={`Orientacyjny budżet: około ${formatPrice(estimate)} PLN`}
+                  aria-label={`Orientacyjny budżet: około ${formatPrice(estimate)} PLN netto`}
                   className="mt-4 flex items-baseline gap-2 tracking-[-0.055em]"
                 >
                   <span className="text-3xl text-[var(--p-muted)]">~</span>
@@ -404,7 +404,7 @@ export default function ProfessionalServicesSection({
                     />
                   </span>
                   <span className="text-sm font-medium tracking-normal text-[var(--p-accent)]">
-                    PLN
+                    PLN netto
                   </span>
                 </div>
                 <p className="mt-5 max-w-sm text-xs leading-relaxed text-[var(--p-muted)]">

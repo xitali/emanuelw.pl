@@ -1,5 +1,6 @@
 "use server";
 
+import { deliverLeadEmails } from "@/lib/email";
 import { submitContactMessage } from "@/lib/turso";
 import { checkRateLimit } from "@/lib/rate-limit";
 import { getClientIp } from "@/lib/request";
@@ -67,6 +68,7 @@ export async function sendContactMessageAction(formData: FormData) {
           id: savedMessage.id,
         }),
         notifyAndroidAboutContactMessage(savedMessage.id),
+        deliverLeadEmails(),
       ]);
     });
     revalidatePath("/admin");

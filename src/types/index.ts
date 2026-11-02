@@ -1,4 +1,10 @@
 export interface Project {
+  image_alts?: string[];
+  preview_video?: string;
+  preview_poster?: string;
+  slug?: string;
+  is_published?: boolean | number;
+  sort_order?: number;
   id: string;
   title: string;
   short_description: string;

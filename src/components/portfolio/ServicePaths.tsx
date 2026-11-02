@@ -20,7 +20,7 @@ export default function ServicePaths({ services }: { services: Service[] }) {
       <button className="portfolio-button" onClick={() => openContactForm({ subject: path.title, message: `Interesuje mnie: ${path.title.toLowerCase()}.\nCel projektu: \nPlanowany termin: `, badge: "Wybrana usługa została wpisana do formularza." })}>Omów projekt <ArrowUpRight size={17} /></button>
       <Link className="portfolio-text-link" href={path.href}>Zakres i pytania <ArrowUpRight size={15} /></Link>
     </article>)}</div>
-    <ol className="service-steps"><li><strong>01 / Rozmowa</strong><span>Poznaję firmę, odbiorców i cel.</span></li><li><strong>02 / Zakres i wycena</strong><span>Ustalamy elementy projektu i termin.</span></li><li><strong>03 / Realizacja</strong><span>Oceniasz projekt i kolejne etapy.</span></li><li><strong>04 / Przekazanie</strong><span>Testy, wdrożenie i omówienie obsługi.</span></li></ol>
+    <p className="service-price-note">Wszystkie podane ceny i orientacyjne wyceny są cenami netto. Ostateczny zakres i kwotę ustalamy przed rozpoczęciem prac.</p><ol className="service-steps"><li><strong>01 / Rozmowa</strong><span>Poznaję firmę, odbiorców i cel.</span></li><li><strong>02 / Zakres i wycena</strong><span>Ustalamy elementy projektu i termin.</span></li><li><strong>03 / Realizacja</strong><span>Oceniasz projekt i kolejne etapy.</span></li><li><strong>04 / Przekazanie</strong><span>Testy, wdrożenie i omówienie obsługi.</span></li></ol>
     <details className="service-more"><summary>Pozostałe usługi i orientacyjna wycena <span aria-hidden="true">+</span></summary><ProfessionalServicesSection initialServices={services} sectionId="szczegoly-uslug" /></details>
   </section>;
 }

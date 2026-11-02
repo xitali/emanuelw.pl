@@ -1,3 +1,4 @@
+import ConversionTracker from "@/components/ConversionTracker";
 import type { Metadata } from "next";
 export const metadata: Metadata = { alternates: { canonical: "/" } };
 import {
@@ -33,7 +34,7 @@ export default async function HomePage() {
     <>
       <HomeStructuredData services={services} settings={settings} />
     <main id="main-content" className="portfolio-home dark relative min-h-screen overflow-x-clip" tabIndex={-1}>
-      <VisitTracker />
+      <VisitTracker /><ConversionTracker />
       <Navbar />
       
       <div className="relative z-10">

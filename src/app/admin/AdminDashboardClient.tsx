@@ -68,15 +68,12 @@ export default function AdminDashboardClient({ messages, visitsCount, projects, 
 
     setUploadingImage(true);
     try {
-      const uploadData = new FormData();
-      uploadData.append("file", file);
-
-      const res = await fetch("/api/upload", {
-        method: "POST",
-        body: uploadData,
-      });
-
-      const data = await res.json();
+      if (file.size > 10 * 1024 * 1024) throw new Error("Obraz przekracza 10 MB.");
+      const extension = ({ "image/jpeg": "jpg", "image/png": "png", "image/webp": "webp", "image/avif": "avif" } as Record<string, string>)[file.type];
+      if (!extension) throw new Error("Wybierz JPG, PNG, WebP lub AVIF.");
+      const { upload } = await import("@vercel/blob/client");
+      const blob = await upload(`projects/${crypto.randomUUID()}.${extension}`, file, { access: "public", handleUploadUrl: "/api/upload/direct", contentType: file.type });
+      const data = { success: true, url: blob.url };
       if (data.success && data.url) {
         const input = formElement.querySelector(`input[name="${targetInputName}"]`) as HTMLInputElement | null;
         if (input) {
@@ -86,11 +83,11 @@ export default function AdminDashboardClient({ messages, visitsCount, projects, 
         setActionStatus("Przesłano zdjęcie z komputera!");
         setTimeout(() => setActionStatus(null), 3000);
       } else {
-        alert(data.error || "Wystąpił błąd podczas przesyłania pliku.");
+        alert("Wystąpił błąd podczas przesyłania pliku.");
       }
     } catch (err) {
       console.error(err);
-      alert("Błąd połączenia z serwerem podczas przesyłania.");
+      alert(err instanceof Error ? err.message : "Błąd połączenia z serwerem podczas przesyłania.");
     } finally {
       setUploadingImage(false);
     }
