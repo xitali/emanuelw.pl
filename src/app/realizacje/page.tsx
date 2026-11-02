@@ -1,0 +1,19 @@
+import type { Metadata } from "next";
+import { getProjects } from "@/lib/turso";
+import PublicPageShell from "@/components/portfolio/PublicPageShell";
+import ProjectCatalog from "@/components/portfolio/ProjectCatalog";
+
+export const metadata: Metadata = {
+  title: "Realizacje — strony internetowe, sklepy i aplikacje",
+  description: "Zobacz wykonane strony i aplikacje: zakres, rozwiązania, zdjęcia oraz linki do działających projektów.",
+  alternates: { canonical: "/realizacje" },
+};
+
+export default async function ProjectsPage({ searchParams }: { searchParams: Promise<{ kategoria?: string }> }) {
+  const { kategoria } = await searchParams;
+  const category = ["web", "e-commerce", "mobile"].includes(kategoria || "") ? kategoria! : "all";
+  return <PublicPageShell><main id="main-content" className="portfolio-subpage"><section className="portfolio-container portfolio-catalog">
+    <p className="portfolio-kicker">PORTFOLIO / EMANUEL WŁOCH</p><h1>Strony i aplikacje.<br />Zobacz realizacje.</h1><p>Różne firmy i potrzeby. Poznaj zakres prac, zastosowane rozwiązania i gotowe projekty.</p>
+    <ProjectCatalog projects={await getProjects()} category={category} />
+  </section></main></PublicPageShell>;
+}

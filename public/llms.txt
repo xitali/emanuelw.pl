@@ -34,3 +34,6 @@
 ## Kontakt
 
 - [Formularz kontaktowy](https://emanuelwloch.pl/#kontakt)
+
+## Wszystkie realizacje
+- https://emanuelwloch.pl/realizacje — lista stron i aplikacji z kategoriami i opisami projektów.

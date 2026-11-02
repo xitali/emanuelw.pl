@@ -19,6 +19,7 @@ export async function sendContactMessageAction(formData: FormData) {
     message: formData.get("message"),
     website: formData.get("website"),
     source: formData.get("source") ?? "",
+    from_project: formData.get("from_project") ?? "",
   });
 
   if (!validation.success) {
@@ -58,7 +59,7 @@ export async function sendContactMessageAction(formData: FormData) {
     const savedMessage = await submitContactMessage({
       ...validData,
       subject: validData.subject || "Kontakt z portfolio",
-      message: messageWithSource(validData.message, validData.source),
+      message: messageWithSource(validData.message, validData.source) + (validData.from_project ? `\n\nProjekt wskazany w formularzu: ${validData.from_project}` : ""),
     });
     after(async () => {
       await Promise.allSettled([

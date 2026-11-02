@@ -9,6 +9,7 @@ const visitSchema = z.object({
 });
 
 export async function POST(request: Request) {
+  if (/bot|crawl|spider|headless|lighthouse/i.test(request.headers.get("user-agent") || "")) return NextResponse.json({ success: true });
   try {
     const body = await request.json();
     const validation = visitSchema.safeParse(body);

@@ -6,7 +6,7 @@ import type { Project } from "../src/types";
 
 describe("wyróżnione realizacje", () => {
   it("uzupełnia wybór dostępnymi projektami bez duplikowania ani modyfikowania danych", () => {
-    const projects = ["a", "09e837ed-2206-49b7-9b81-21c6222a18f5", "b", "c"].map(id => ({ id }) as Project);
+    const projects = ["a", "09e837ed-2206-49b7-9b81-21c6222a18f5", "b", "c"].map((id, index) => ({ id, featured: index === 1 }) as Project);
     expect(selectProjectHighlights(projects).map(p => p.id)).toEqual([projects[1].id, "a", "b"]);
     expect(projects.map(p => p.id)).toEqual(["a", projects[1].id, "b", "c"]);
     expect(selectProjectHighlights([])).toEqual([]);

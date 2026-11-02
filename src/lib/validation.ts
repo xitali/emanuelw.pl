@@ -24,6 +24,7 @@ const optionalUrl = z
   );
 
 export const contactSchema = z.object({
+  from_project: z.union([z.uuid(), z.literal("")]).optional().default(""),
   source: z.enum(contactSources).optional().default(""),
   name: z.string().trim().min(2, "Imię musi mieć co najmniej 2 znaki.").max(100),
   email: z.email("Podaj prawidłowy adres e-mail.").max(254),
@@ -93,6 +94,20 @@ export const mobileMessageDeleteSchema = z.object({
 });
 
 export const projectSchema = z.object({
+  main_challenge: z.string().trim().max(5000).optional(),
+  innovation: z.string().trim().max(5000).optional(),
+  project_result: z.string().trim().max(5000).optional(),
+  target_audience: z.string().trim().max(5000).optional(),
+  hosting_platform: z.string().trim().max(5000).optional(),
+  accessibility_features: z.string().trim().max(5000).optional(),
+  key_features: z.array(z.string().trim().min(1).max(1000)).max(30).optional(),
+  performance_metrics: z.array(z.string().trim().min(1).max(1000)).max(30).optional(),
+  success_metrics: z.array(z.string().trim().min(1).max(1000)).max(30).optional(),
+  user_feedback: z.array(z.string().trim().min(1).max(1000)).max(30).optional(),
+  technical_metrics: z.array(z.string().trim().min(1).max(1000)).max(30).optional(),
+  frontend_technologies: z.array(z.string().trim().min(1).max(1000)).max(30).optional(),
+  backend_technologies: z.array(z.string().trim().min(1).max(1000)).max(30).optional(),
+  tools_and_services: z.array(z.string().trim().min(1).max(1000)).max(30).optional(),
   title: z.string().trim().min(2).max(120),
   short_description: z.string().trim().min(10).max(300),
   detailed_description: z.string().trim().max(5000).optional().default(""),

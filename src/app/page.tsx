@@ -1,8 +1,9 @@
+import type { Metadata } from "next";
+export const metadata: Metadata = { alternates: { canonical: "/" } };
 import {
   getProjects,
   getServices,
   getPublicSiteSettings,
-  getPageVisitsCount,
   getTestimonials,
 } from "@/lib/turso";
 import Navbar from "@/components/portfolio/PortfolioNav";
@@ -21,11 +22,10 @@ export const revalidate = 3600;
 
 export default async function HomePage() {
   // Parallel cached data fetching from Turso DB (< 15ms response)
-  const [projects, services, settings, visitCount, testimonials] = await Promise.all([
+  const [projects, services, settings, testimonials] = await Promise.all([
     getProjects(),
     getServices(),
     getPublicSiteSettings(),
-    getPageVisitsCount(),
     getTestimonials(),
   ]);
 
@@ -46,7 +46,7 @@ export default async function HomePage() {
         <ContactSection settings={settings} />
       </div>
 
-      <Footer visitCount={visitCount} />
+      <Footer />
     </main>
     </>
   );

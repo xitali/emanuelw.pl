@@ -1,5 +1,6 @@
 "use client";
 
+import ProjectCaseFields from "@/components/ProjectCaseFields";
 import { useEffect, useState } from "react";
 import { Project, ContactMessage, Service, Testimonial } from "@/types";
 import { createProjectAction, updateProjectAction, deleteProjectAction, deleteMessageAction, logoutAdminAction, updateServicePriceAction, createTestimonialAction, deleteTestimonialAction } from "@/app/actions/admin";
@@ -99,7 +100,8 @@ export default function AdminDashboardClient({ messages, visitsCount, projects, 
     e.preventDefault();
     setLoading(true);
     const formData = new FormData(e.currentTarget);
-    await createProjectAction(formData);
+    const result = await createProjectAction(formData);
+    if (!result.success) { setLoading(false); alert(result.error); return; }
     setLoading(false);
     setIsAddModalOpen(false);
     setActionStatus("Dodano nowy projekt do Turso DB!");
@@ -111,7 +113,8 @@ export default function AdminDashboardClient({ messages, visitsCount, projects, 
     if (!editingProject) return;
     setLoading(true);
     const formData = new FormData(e.currentTarget);
-    await updateProjectAction(editingProject.id, formData);
+    const result = await updateProjectAction(editingProject.id, formData);
+    if (!result.success) { setLoading(false); alert(result.error); return; }
     setLoading(false);
     setEditingProject(null);
     setActionStatus("Zaktualizowano projekt!");
@@ -560,7 +563,8 @@ export default function AdminDashboardClient({ messages, visitsCount, projects, 
               </div>
               <div>
                 <label className="block text-slate-700 dark:text-slate-300 mb-1 font-mono font-semibold">Technologie (oddzielone przecinkami)</label>
-                <input type="text" name="technologies" placeholder="Next.js 16, TypeScript, Turso, Tailwind" className="w-full p-3 rounded-xl bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-white font-sans" />
+                <ProjectCaseFields />
+                 <input type="text" name="technologies" placeholder="Next.js 16, TypeScript, Turso, Tailwind" className="w-full p-3 rounded-xl bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-white font-sans" />
               </div>
               <div>
                 <label className="block text-slate-700 dark:text-slate-300 mb-1 font-mono font-semibold">Adresy Obrazów (URL lub wgraj z komputera)</label>
@@ -653,7 +657,8 @@ export default function AdminDashboardClient({ messages, visitsCount, projects, 
               </div>
               <div>
                 <label className="block text-slate-700 dark:text-slate-300 mb-1 font-mono font-semibold">Technologie (oddzielone przecinkami)</label>
-                <input type="text" name="technologies" defaultValue={Array.isArray(editingProject.technologies) ? editingProject.technologies.join(", ") : (editingProject.technologies || "")} className="w-full p-3 rounded-xl bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-white font-sans" />
+                <ProjectCaseFields project={editingProject} />
+                 <input type="text" name="technologies" defaultValue={Array.isArray(editingProject.technologies) ? editingProject.technologies.join(", ") : (editingProject.technologies || "")} className="w-full p-3 rounded-xl bg-slate-100 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-white font-sans" />
               </div>
               <div>
                 <label className="block text-slate-700 dark:text-slate-300 mb-1 font-mono font-semibold">Adresy Obrazów (URL lub wgraj z komputera)</label>

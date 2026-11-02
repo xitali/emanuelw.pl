@@ -1,3 +1,4 @@
+import { caseTextFields, caseListFields } from "@/lib/project-case-fields";
 import "server-only";
 
 import { createClient } from "@libsql/client";
@@ -91,7 +92,7 @@ export const getProjects = unstable_cache(
     }
   },
   ["projects-list"],
-  { revalidate: 3600 }
+  { revalidate: 3600, tags: ["projects"] }
 );
 
 export async function getAdminProjects(): Promise<Project[]> {
@@ -100,6 +101,8 @@ export async function getAdminProjects(): Promise<Project[]> {
   );
 
   return result.rows.map((row) => ({
+    ...Object.fromEntries(caseTextFields.map(field => [field, String(row[field] || "")])),
+    ...Object.fromEntries(caseListFields.map(field => [field, safeParseJsonArray(row[field])])),
     id: String(row.id || ""),
     title: String(row.title || ""),
     short_description: String(row.short_description || ""),
@@ -363,6 +366,16 @@ export async function updateServicePrice(id: string, priceFrom: number) {
 
 // ---------------- PROJECT CRUD OPERATIONS ---------------- //
 
+async function saveCaseFields(id: string, data: Partial<Project>) {
+  const fields = [...caseTextFields, ...caseListFields].filter(field => data[field] !== undefined);
+  if (!fields.length) return;
+  await turso.execute({
+    sql: `UPDATE projects SET ${fields.map(field => `${field} = ?`).join(", ")} WHERE id = ?`,
+    args: [...fields.map(field => Array.isArray(data[field]) ? JSON.stringify(data[field]) : String(data[field] || "")), id],
+  });
+}
+
+
 export async function createProject(projectData: Partial<Project>) {
   const id = crypto.randomUUID();
   const createdAt = new Date().toISOString();
@@ -392,6 +405,7 @@ export async function createProject(projectData: Partial<Project>) {
     ],
   });
 
+  await saveCaseFields(id, projectData);
   revalidatePath("/");
   return { id, success: true };
 }
@@ -431,6 +445,7 @@ export async function updateProject(id: string, projectData: Partial<Project>) {
     ],
   });
 
+  await saveCaseFields(id, projectData);
   revalidatePath("/");
   return { success: true };
 }

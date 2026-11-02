@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     telephone: false,
   },
   alternates: {
-    canonical: "https://emanuelwloch.pl",
+
   },
   openGraph: {
     title: "Emanuel Włoch – Strony internetowe i aplikacje | Jarosław",

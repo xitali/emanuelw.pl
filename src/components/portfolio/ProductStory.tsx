@@ -52,8 +52,8 @@ export default function ProductStory({ testimonial }: { testimonial?: Testimonia
         <div className="product-stage-grid" aria-hidden="true" />
         <div className="product-hero-copy">
           <p className="portfolio-kicker"><span className="status-dot" /> STRONY I APLIKACJE / JAROSŁAW, PL</p>
-          <h1>Buduj zaufanie.<br /><span>Rozwijaj firmę.</span></h1>
-          <p className="product-intro">Projektuję strony, sklepy i aplikacje dla firm.<br className="desktop-break" /> Pomagam pokazać ofertę, ułatwić zakup<br className="desktop-break" /> i usprawnić codzienną pracę.</p>
+          <h1>Strony internetowe<br /><span>i aplikacje dla firm.</span></h1>
+          <p className="product-intro">Działam z Jarosławia, współpracuję w całej Polsce.<br className="desktop-break" /> Pomagam pokazać ofertę, ułatwić zakup<br className="desktop-break" /> i usprawnić codzienną pracę.</p>
           <div className="portfolio-actions"><a className="portfolio-button" href="#kontakt">Omów projekt <ArrowUpRight size={18} /></a><a className="portfolio-text-link" href="#projekty">Zobacz realizacje <ArrowUpRight size={16} /></a></div>
           {testimonial && <figure className="hero-proof"><blockquote>„{testimonial.content.split(/(?<=[.!?])\s/)[0]}”</blockquote><figcaption>{testimonial.client_name}{testimonial.company ? ` · ${testimonial.company}` : ""}<a href="#opinie">Przeczytaj opinie <ArrowUpRight size={13} /></a></figcaption></figure>}
         </div>

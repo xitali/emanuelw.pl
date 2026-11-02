@@ -26,6 +26,16 @@ export default function HomeStructuredData({
     "@context": "https://schema.org",
     "@graph": [
       {
+        "@type": "ProfessionalService",
+        "@id": `${SITE_URL}/#service`,
+        name: "Emanuel Włoch — strony internetowe i aplikacje",
+        url: SITE_URL,
+        areaServed: ["Jarosław", "Rzeszów", "Podkarpackie", "Polska"],
+        founder: { "@id": personId },
+        email: settings.personal_email,
+        telephone: settings.personal_phone,
+      },
+      {
         "@type": "WebSite",
         "@id": websiteId,
         url: SITE_URL,

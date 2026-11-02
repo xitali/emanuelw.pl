@@ -44,7 +44,9 @@ export default function ContactSection({ settings }: { settings: PublicSiteSetti
     setStatusMsg(null);
     const form = event.currentTarget;
     try {
-      const result = await sendContactMessageAction(new FormData(form));
+      const data = new FormData(form);
+      data.set("from_project", new URLSearchParams(window.location.search).get("projekt") || "");
+      const result = await sendContactMessageAction(data);
       if (result.success) {
         setStatusMsg({ type: "success", text: result.message || "Dziękuję za wiadomość. Odezwę się na podany adres." });
         form.reset(); setSubject(""); setMessage(""); setAutoFilledBadge(null);

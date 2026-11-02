@@ -25,8 +25,10 @@ import {
   testimonialSchema,
 } from "@/lib/validation";
 import { redirect } from "next/navigation";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, updateTag } from "next/cache";
 import { headers } from "next/headers";
+
+import { caseTextFields, caseListFields } from "@/lib/project-case-fields";
 
 async function requireAdmin() {
   if (!(await verifyAdminSession())) {
@@ -36,6 +38,8 @@ async function requireAdmin() {
 
 function projectFromFormData(formData: FormData) {
   return projectSchema.safeParse({
+    ...Object.fromEntries(caseTextFields.filter(key => formData.has(key)).map(key => [key, formData.get(key)])),
+    ...Object.fromEntries(caseListFields.filter(key => formData.has(key)).map(key => [key, String(formData.get(key) || "").split(/\r?\n/).map(value => value.trim()).filter(Boolean)])),
     title: formData.get("title"),
     short_description: formData.get("short_description"),
     detailed_description: formData.get("detailed_description"),
@@ -100,6 +104,10 @@ export async function createProjectAction(formData: FormData) {
 
   await createProject(validation.data);
 
+  updateTag("projects");
+  revalidatePath("/realizacje");
+  revalidatePath("/projekty/[id]", "page");
+  revalidatePath("/sitemap.xml");
   revalidatePath("/admin");
   revalidatePath("/");
   return { success: true };
@@ -115,6 +123,10 @@ export async function updateProjectAction(id: string, formData: FormData) {
 
   await updateProject(validId.data, validation.data);
 
+  updateTag("projects");
+  revalidatePath("/realizacje");
+  revalidatePath("/projekty/[id]", "page");
+  revalidatePath("/sitemap.xml");
   revalidatePath("/admin");
   revalidatePath("/");
   return { success: true };
@@ -123,6 +135,10 @@ export async function updateProjectAction(id: string, formData: FormData) {
 export async function deleteProjectAction(id: string) {
   await requireAdmin();
   await deleteProject(idSchema.parse(id));
+  updateTag("projects");
+  revalidatePath("/realizacje");
+  revalidatePath("/projekty/[id]", "page");
+  revalidatePath("/sitemap.xml");
   revalidatePath("/admin");
   revalidatePath("/");
   return { success: true };

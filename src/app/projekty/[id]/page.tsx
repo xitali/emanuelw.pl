@@ -15,7 +15,6 @@ import {
   SITE_URL,
   toAbsoluteUrl,
 } from "@/lib/seo";
-import type { Project } from "@/types";
 
 interface ProjectPageProps {
   params: Promise<{ id: string }>;
@@ -24,29 +23,6 @@ interface ProjectPageProps {
 function compactDescription(value: string) {
   const normalized = value.replace(/\s+/g, " ").trim();
   return normalized.length <= 158 ? normalized : `${normalized.slice(0, 155).trimEnd()}…`;
-}
-
-function createProjectFaq(project: Project) {
-  return [
-    {
-      question: `Jaki był cel projektu ${project.title}?`,
-      answer: project.detailed_description || project.short_description,
-    },
-    {
-      question: `Jakie było główne wyzwanie w projekcie ${project.title}?`,
-      answer: project.main_challenge || "Najważniejszym zadaniem było połączenie czytelnego interfejsu, wydajności i funkcji potrzebnych użytkownikom w jednym spójnym wdrożeniu.",
-    },
-    {
-      question: `Jakie technologie wykorzystano w projekcie ${project.title}?`,
-      answer: project.technologies.length > 0
-        ? `W projekcie wykorzystano: ${project.technologies.join(", ")}.`
-        : "Technologie zostały dobrane do wymagań produktu, bezpieczeństwa i dalszego utrzymania.",
-    },
-    {
-      question: `Jaki był rezultat projektu ${project.title}?`,
-      answer: project.project_result || "Powstało responsywne, produkcyjne rozwiązanie realizujące uzgodniony zakres i przygotowane do dalszego rozwoju.",
-    },
-  ];
 }
 
 export async function generateStaticParams() {
@@ -111,7 +87,6 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
   const projectUrl = `${SITE_URL}${getProjectPath(project)}`;
   const images = project.images.map((image) => toAbsoluteUrl(image)).filter((image): image is string => Boolean(image));
-  const faq = createProjectFaq(project);
   const techGroups = [
     { label: "Frontend", items: project.frontend_technologies ?? [] },
     { label: "Backend", items: project.backend_technologies ?? [] },
@@ -147,20 +122,11 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         breadcrumb: { "@id": `${projectUrl}#breadcrumb` },
       },
       {
-        "@type": "FAQPage",
-        "@id": `${projectUrl}#faq`,
-        mainEntity: faq.map((item) => ({
-          "@type": "Question",
-          name: item.question,
-          acceptedAnswer: { "@type": "Answer", text: item.answer },
-        })),
-      },
-      {
         "@type": "BreadcrumbList",
         "@id": `${projectUrl}#breadcrumb`,
         itemListElement: [
           { "@type": "ListItem", position: 1, name: "Strona główna", item: SITE_URL },
-          { "@type": "ListItem", position: 2, name: "Projekty", item: `${SITE_URL}/#projekty` },
+          { "@type": "ListItem", position: 2, name: "Projekty", item: `${SITE_URL}/realizacje` },
           { "@type": "ListItem", position: 3, name: project.title, item: projectUrl },
         ],
       },
@@ -175,9 +141,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           <header className="border-b border-[var(--p-border)] bg-[var(--p-surface)] px-4 pb-16 pt-32 text-white sm:px-6 lg:px-8 lg:pb-20 lg:pt-40">
             <div className="mx-auto max-w-[1280px]">
               <nav aria-label="Okruszki" className="text-xs text-[var(--p-muted)]">
-                <Link href="/" className="hover:text-[var(--p-accent)]">Strona główna</Link> / <Link href="/#projekty" className="hover:text-[var(--p-accent)]">Projekty</Link> / <span aria-current="page">{project.title}</span>
+                <Link href="/" className="hover:text-[var(--p-accent)]">Strona główna</Link> / <Link href="/realizacje" className="hover:text-[var(--p-accent)]">Projekty</Link> / <span aria-current="page">{project.title}</span>
               </nav>
-              <Link href="/#projekty" className="mt-9 inline-flex items-center gap-2 text-sm text-[var(--p-accent)]"><ArrowLeft className="size-4" /> Wszystkie projekty</Link>
+              <Link href="/realizacje" className="mt-9 inline-flex items-center gap-2 text-sm text-[var(--p-accent)]"><ArrowLeft className="size-4" /> Wszystkie projekty</Link>
               <div className="mt-8 grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:items-end lg:gap-20">
                 <div>
                   <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--p-accent)]">Realizacja · {projectLabel(project.project_type || project.category)}</p>
@@ -240,15 +206,14 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             </section>
           )}
 
-          <section className="border-y border-[var(--p-border)] bg-[var(--p-surface)] px-4 py-20 dark:border-[var(--p-border)] dark:bg-[var(--p-surface)] sm:px-6 lg:px-8 lg:py-24" aria-labelledby="result-heading">
-            <div className="mx-auto grid max-w-[1280px] gap-14 lg:grid-cols-[0.7fr_1.3fr] lg:gap-20"><div><p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--p-accent)] dark:text-[var(--p-accent)]">05 · Efekt</p><h2 id="result-heading" className="mt-4 text-4xl font-semibold tracking-[-0.045em] sm:text-5xl">Rezultat</h2></div><div><p className="whitespace-pre-line text-base leading-8 text-[var(--p-muted)] dark:text-[var(--p-muted)] sm:text-lg">{project.project_result || "Powstało responsywne, produkcyjne rozwiązanie realizujące uzgodniony zakres i przygotowane do dalszego rozwoju."}</p>{project.success_metrics && project.success_metrics.length > 0 && <div className="mt-8"><BulletList items={project.success_metrics} /></div>}{project.user_feedback?.[0] && <blockquote className="mt-8 rounded-[var(--p-radius)] border border-[var(--p-border)] bg-[var(--p-surface)] p-6 dark:border-[var(--p-border)] dark:bg-[var(--p-surface)]"><Quote className="size-5 text-[var(--p-accent)] dark:text-[var(--p-accent)]" /><p className="mt-4 whitespace-pre-line text-sm leading-7 text-[var(--p-muted)] dark:text-[var(--p-muted)]">{project.user_feedback[0]}</p></blockquote>}</div></div>
-          </section>
+          {project.project_result && <section className="border-y border-[var(--p-border)] bg-[var(--p-surface)] px-4 py-20 dark:border-[var(--p-border)] dark:bg-[var(--p-surface)] sm:px-6 lg:px-8 lg:py-24" aria-labelledby="result-heading">
+            <div className="mx-auto grid max-w-[1280px] gap-14 lg:grid-cols-[0.7fr_1.3fr] lg:gap-20"><div><p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--p-accent)] dark:text-[var(--p-accent)]">05 · Efekt</p><h2 id="result-heading" className="mt-4 text-4xl font-semibold tracking-[-0.045em] sm:text-5xl">Rezultat</h2></div><div><p className="whitespace-pre-line text-base leading-8 text-[var(--p-muted)] dark:text-[var(--p-muted)] sm:text-lg">{project.project_result}</p>{project.success_metrics && project.success_metrics.length > 0 && <div className="mt-8"><BulletList items={project.success_metrics} /></div>}{project.user_feedback?.[0] && <blockquote className="mt-8 rounded-[var(--p-radius)] border border-[var(--p-border)] bg-[var(--p-surface)] p-6 dark:border-[var(--p-border)] dark:bg-[var(--p-surface)]"><Quote className="size-5 text-[var(--p-accent)] dark:text-[var(--p-accent)]" /><p className="mt-4 whitespace-pre-line text-sm leading-7 text-[var(--p-muted)] dark:text-[var(--p-muted)]">{project.user_feedback[0]}</p></blockquote>}</div></div>
+          </section>}
 
           {project.images.length > 1 && <section className="px-4 py-20 sm:px-6 lg:px-8" aria-labelledby="gallery-heading"><div className="mx-auto max-w-[1280px]"><h2 id="gallery-heading" className="text-3xl font-semibold tracking-[-0.04em] sm:text-5xl">Widoki projektu</h2><div className="mt-9 grid gap-4 md:grid-cols-2">{project.images.slice(1).map((image, index) => <div key={`${image}-${index}`} className="relative aspect-video overflow-hidden rounded-[var(--p-radius)] border border-[var(--p-border)] bg-[var(--p-surface)] dark:border-[var(--p-border)]"><Image src={image} alt={`Widok ${index + 2} projektu ${project.title}`} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-contain" /></div>)}</div></div></section>}
 
-          <section className="border-y border-[var(--p-border)] bg-[var(--p-surface)] px-4 py-20 dark:border-[var(--p-border)] dark:bg-[var(--p-surface)] sm:px-6 lg:px-8" aria-labelledby="case-faq-heading"><div className="mx-auto grid max-w-[1280px] gap-10 lg:grid-cols-[0.55fr_1.45fr] lg:gap-20"><h2 id="case-faq-heading" className="text-4xl font-semibold tracking-[-0.045em] sm:text-5xl">Pytania o realizację</h2><div className="divide-y divide-slate-200 overflow-hidden rounded-[var(--p-radius)] border border-[var(--p-border)] dark:divide-white/10 dark:border-[var(--p-border)]">{faq.map((item) => <details key={item.question} className="group"><summary className="cursor-pointer list-none p-5 font-semibold sm:p-6">{item.question}</summary><p className="whitespace-pre-line px-5 pb-6 text-sm leading-7 text-[var(--p-muted)] dark:text-[var(--p-muted)] sm:px-6">{item.answer}</p></details>)}</div></div></section>
 
-          <section className="px-4 py-20 sm:px-6 lg:px-8"><div className="mx-auto max-w-[1280px] rounded-[var(--p-radius)] bg-[var(--p-surface)] p-8 text-white sm:p-10 lg:flex lg:items-end lg:justify-between"><div><p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--p-accent)]">Podobny cel?</p><h2 className="mt-4 max-w-3xl text-3xl font-semibold tracking-[-0.04em] sm:text-5xl">Porozmawiajmy o Twojej firmie.</h2><div className="mt-5 flex flex-wrap gap-4 text-xs text-[var(--p-muted)]"><Link href="/uslugi" className="hover:text-[var(--p-accent)]">Zobacz usługi</Link>{project.project_url && <a href={project.project_url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 hover:text-[var(--p-accent)]">Działający projekt <ExternalLink className="size-3" /></a>}{project.repository_url && <a href={project.repository_url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 hover:text-[var(--p-accent)]">Repozytorium <Code2 className="size-3" /></a>}</div></div><Link href="/#kontakt" className="portfolio-button mt-8 shrink-0 lg:mt-0">Omów swój projekt <ArrowRight className="size-4" /></Link></div></section>
+          <section className="px-4 py-20 sm:px-6 lg:px-8"><div className="mx-auto max-w-[1280px] rounded-[var(--p-radius)] bg-[var(--p-surface)] p-8 text-white sm:p-10 lg:flex lg:items-end lg:justify-between"><div><p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--p-accent)]">Podobny cel?</p><h2 className="mt-4 max-w-3xl text-3xl font-semibold tracking-[-0.04em] sm:text-5xl">Porozmawiajmy o Twojej firmie.</h2><div className="mt-5 flex flex-wrap gap-4 text-xs text-[var(--p-muted)]"><Link href="/uslugi" className="hover:text-[var(--p-accent)]">Zobacz usługi</Link>{project.project_url && <a href={project.project_url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 hover:text-[var(--p-accent)]">Działający projekt <ExternalLink className="size-3" /></a>}{project.repository_url && <a href={project.repository_url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 hover:text-[var(--p-accent)]">Repozytorium <Code2 className="size-3" /></a>}</div></div><Link href={`/?projekt=${project.id}#kontakt`} className="portfolio-button mt-8 shrink-0 lg:mt-0">Omów swój projekt <ArrowRight className="size-4" /></Link></div></section>
         </article>
       </main>
     </PublicPageShell>

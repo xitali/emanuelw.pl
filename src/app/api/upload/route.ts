@@ -4,7 +4,7 @@ import { verifyAdminSession } from "@/lib/auth";
 import { checkRateLimit } from "@/lib/rate-limit";
 import { getClientIp } from "@/lib/request";
 
-const MAX_FILE_SIZE = 5 * 1024 * 1024;
+const MAX_FILE_SIZE = 4 * 1024 * 1024;
 const ALLOWED_TYPES = new Map([
   ["image/jpeg", "jpg"],
   ["image/png", "png"],
@@ -41,9 +41,9 @@ export async function POST(request: Request) {
   }
 
   const contentLength = Number(request.headers.get("content-length") ?? 0);
-  if (contentLength > MAX_FILE_SIZE + 512_000) {
+  if (contentLength > MAX_FILE_SIZE + 64_000) {
     return NextResponse.json(
-      { error: "Plik jest za duży. Maksymalny rozmiar to 5 MB." },
+      { error: "Plik jest za duży. Maksymalny rozmiar to 4 MB." },
       { status: 413 },
     );
   }
@@ -79,7 +79,7 @@ export async function POST(request: Request) {
     const extension = ALLOWED_TYPES.get(file.type);
     if (!extension || file.size === 0 || file.size > MAX_FILE_SIZE) {
       return NextResponse.json(
-        { error: "Dozwolone są obrazy JPG, PNG, WebP i AVIF do 5 MB." },
+        { error: "Dozwolone są obrazy JPG, PNG, WebP i AVIF do 4 MB." },
         { status: 400 },
       );
     }
