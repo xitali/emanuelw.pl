@@ -9,7 +9,12 @@ import type { Testimonial } from "@/types";
 import { useMotionPaused } from "@/lib/motion/preference";
 
 const Scene = dynamic(() => import("./three/ExplodedScene"), { ssr: false, loading: () => <StaticProduct /> });
-
+export const deliveryStages = [
+  { title: "Cel", description: "Ustalamy, co klient ma znaleźć i jaki krok wykonać.", detail: "Oferta, odbiorcy i kierunek" },
+  { title: "Projekt", description: "Układam treści i projektuję czytelną drogę do kontaktu.", detail: "Treść, układ i doświadczenie" },
+  { title: "Realizacja", description: "Łączę projekt, formularze i zarządzanie w działającą stronę.", detail: "Interfejs i potrzebne funkcje" },
+  { title: "Wdrożenie", description: "Sprawdzam widok na telefonie, publikuję i omawiam obsługę.", detail: "Testy, publikacja i przekazanie" },
+];
 export default function ProductStory({ testimonial }: { testimonial?: Testimonial }) {
   const section = useRef<HTMLElement>(null);
   const stage = useRef<HTMLDivElement>(null);
@@ -18,6 +23,7 @@ export default function ProductStory({ testimonial }: { testimonial?: Testimonia
   const [active, setActive] = useState(true);
   const [compact, setCompact] = useState(false);
   const [reduced, setReduced] = useState(false);
+  const [phase, setPhase] = useState(0);
   const [paused, setPaused] = useMotionPaused();
   useEffect(() => {
     const mobile = matchMedia("(max-width: 1023px)");
@@ -25,14 +31,13 @@ export default function ProductStory({ testimonial }: { testimonial?: Testimonia
     let cleanup: (() => void) | undefined;
     let frame = 0;
     const setup = () => {
-      cleanup?.();
-      cancelAnimationFrame(frame);
+      cleanup?.(); cancelAnimationFrame(frame);
       const reduce = motion.matches || paused;
       setCompact(mobile.matches); setReduced(reduce);
-      Object.assign(state, { progress: 0, explosion: reduce ? 0.65 : 0, turn: 0, zoom: 0, retreat: 0 });
-      // Measure only after React commits the compact/reduced layout.
+      Object.assign(state, { progress: reduce ? 1 : 0, explosion: 0, turn: 0, zoom: 0, retreat: 0 });
+      setPhase(reduce ? 3 : 0);
       frame = requestAnimationFrame(() => {
-        if (section.current && !reduce) cleanup = createScrollTimeline(section.current, state);
+        if (section.current && !reduce) cleanup = createScrollTimeline(section.current, state, mobile.matches, setPhase);
         state.invalidate();
       });
     };
@@ -47,39 +52,30 @@ export default function ProductStory({ testimonial }: { testimonial?: Testimonia
     document.addEventListener("visibilitychange", visibility);
     return () => { cancelAnimationFrame(frame); cleanup?.(); observer.disconnect(); mobile.removeEventListener("change", setup); motion.removeEventListener("change", setup); document.removeEventListener("visibilitychange", visibility); };
   }, [state, paused]);
-  return <>
-    <section ref={section} className={`product-story${reduced ? " is-reduced" : ""}`} aria-label="Od pomysłu do kompletnego produktu">
-      <div ref={stage} className="product-stage">
-        <div className="product-stage-grid" aria-hidden="true" />
-        <div className="product-hero-copy">
-          <p className="portfolio-kicker"><span className="status-dot" /> STRONY I APLIKACJE / JAROSŁAW, PL</p>
-          <h1>Strony internetowe<br /><span>i aplikacje dla firm.</span></h1>
-          <p className="product-intro">Działam z Jarosławia, współpracuję w całej Polsce.<br className="desktop-break" /> Pomagam pokazać ofertę, ułatwić zakup<br className="desktop-break" /> i usprawnić codzienną pracę.</p>
-          <div className="portfolio-actions"><a className="portfolio-button" href="#kontakt">Omów projekt <IconArrowUpRight size={18} /></a><a className="portfolio-text-link" href="#projekty">Zobacz realizacje <IconArrowUpRight size={16} /></a></div>
-          {testimonial && <figure className="hero-proof"><blockquote>„{testimonial.content.split(/(?<=[.!?])\s/)[0]}”</blockquote><figcaption>{testimonial.client_name}{testimonial.company ? ` · ${testimonial.company}` : ""}<a href="#opinie">Przeczytaj opinie <IconArrowUpRight size={13} /></a></figcaption></figure>}
-        </div>
-        <div className="product-visual" aria-hidden="true">
-          <div className="product-orbit" /><div className="product-orbit orbit-two" />
-          <div className="product-canvas">{ready ? <Scene state={state} active={active} compact={compact} reduced={reduced} /> : <StaticProduct />}</div>
-          <span className="product-annotation">EW — PRODUKT CYFROWY<br /><small>PROJEKTOWANIE I TECHNOLOGIA</small></span>
-          <span className="product-crosshair">+</span>
-        </div>
-        <div className="product-story-copy">
-          <p className="portfolio-kicker">POD POWIERZCHNIĄ / 01—07</p>
-          <h2>Każda warstwa.<br /><span>Ma znaczenie.</span></h2>
-          <p>To, co widzisz, to dopiero początek.<br />Za interfejsem stoi cały system.</p>
-          <ol>{productLayers.map((layer, index) => { const LayerIcon = layerIcons[layer.id as keyof typeof layerIcons]; return <li key={layer.id}><LayerIcon size={18} /><span>{String(index + 1).padStart(2, "0")}</span><div><strong>{layer.label}</strong><small>{layer.technologies.join(" · ")}</small></div></li>; })}</ol>
-        </div>
-        <div className="product-finale"><p className="portfolio-kicker">WSZYSTKO DZIAŁA RAZEM</p><h2>Od warstw<br />do rezultatów.</h2><a href="#projekty" className="portfolio-text-link">Zobacz, co z tego powstaje <IconArrowDown size={18} /></a></div>
-        <div className="product-stage-footer"><a href="#technologie"><IconArrowDown size={15} /><span>PRZEWIŃ. ZAJRZYJ GŁĘBIEJ.</span></a><span className="product-footer-note">PROJEKT → KOD → WDROŻENIE</span><button className="motion-toggle" aria-pressed={paused} onClick={() => setPaused(!paused)}>{paused ? "Włącz animacje" : "Ogranicz ruch"}</button><span className="story-meter" aria-hidden="true"><i /></span></div>
+  return <section ref={section} className={`product-story offer-story${reduced ? " is-reduced" : ""}`} aria-label="Od celu do działającej strony">
+    <div ref={stage} className="product-stage">
+      <div className="product-stage-grid" aria-hidden="true" />
+      <div className="product-hero-copy">
+        <p className="portfolio-kicker"><span className="status-dot" /> STRONY DLA FIRM / JAROSŁAW I CAŁA POLSKA</p>
+        <h1>Strona, która jasno<br />pokazuje ofertę<br /><span>i ułatwia kontakt.</span></h1>
+        <p className="product-intro">Projektuję i tworzę strony dla firm.<br />Od ustalenia celu po działający produkt i wdrożenie.<br />Sklep lub aplikację dopasuję do Twojego procesu.</p>
+        <div className="portfolio-actions"><a className="portfolio-button" href="#kontakt">Omów projekt <IconArrowUpRight size={18} /></a><a className="portfolio-text-link" href="#projekty">Zobacz realizacje <IconArrowUpRight size={16} /></a></div>
+        <p className="hero-scope-note">Jasny zakres przed startem. Bezpośrednia współpraca ze mną.</p>
+        {testimonial && <figure className="hero-proof"><blockquote>„{testimonial.content.split(/(?<=[.!?])\s/)[0]}”</blockquote><figcaption>{testimonial.client_name}{testimonial.company ? ` · ${testimonial.company}` : ""}<a href="#opinie">Przeczytaj opinie <IconArrowUpRight size={13} /></a></figcaption></figure>}
       </div>
-    </section>
-  </>;
+      <div className="product-visual" aria-hidden="true">
+        <div className="product-orbit" /><div className="product-orbit orbit-two" />
+        <div className="product-canvas">{ready && !reduced ? <Scene state={state} active={active} compact={compact} reduced={reduced} /> : <StaticProduct />}</div>
+        <div className="delivery-caption"><span>0{phase + 1} / OD POMYSŁU DO PUBLIKACJI</span><strong>{deliveryStages[phase].title}</strong><small>{deliveryStages[phase].detail}</small></div>
+      </div>
+      <ol className="delivery-stages" aria-label="Etapy powstawania strony">{deliveryStages.map((step, index) => <li key={step.title} className={phase === index ? "is-current" : ""} aria-current={phase === index ? "step" : undefined}><span>0{index + 1}</span><div><strong>{step.title}</strong><p>{step.description}</p></div></li>)}</ol>
+      <div className="product-stage-footer"><a href="#uslugi"><IconArrowDown size={15} /><span>POZNAJ MOJĄ OFERTĘ</span></a><span className="product-footer-note">CEL → PROJEKT → REALIZACJA → WDROŻENIE</span><button className="motion-toggle" aria-pressed={paused} onClick={() => setPaused(!paused)}>{paused ? "Włącz animacje" : "Ogranicz ruch"}</button></div>
+    </div>
+  </section>;
 }
-
 export function TechnologyDetails() {
-  return <section id="technologie" className="portfolio-stack portfolio-container" aria-labelledby="stack-heading">
-      <div><p className="portfolio-kicker">02 / WARSZTAT</p><h2 id="stack-heading">Spójność.<br /><span>Na każdym poziomie.</span></h2><p>Dobieram narzędzia do potrzeb produktu.<br />Od doświadczenia użytkownika po wdrożenie.</p></div>
-      <div className="stack-details" data-stagger>{productLayers.map((layer, i) => { const LayerIcon = layerIcons[layer.id as keyof typeof layerIcons]; return <details key={layer.id} open={i === 0}><summary><span>0{i + 1}</span><LayerIcon size={20} />{layer.label}<span className="detail-plus">+</span></summary><p>{layer.description}</p><div className="portfolio-tags">{layer.technologies.map(tech => <span key={tech}>{tech}</span>)}</div></details>; })}</div>
-    </section>;
+  return <section id="technologie" className="portfolio-stack" aria-labelledby="stack-heading">
+    <div><p className="portfolio-kicker">WARSZTAT</p><h2 id="stack-heading">Technologia wspiera<br /><span>Twój cel.</span></h2><p>Dobieram narzędzia do potrzeb produktu.<br />Od doświadczenia użytkownika po wdrożenie.</p></div>
+    <div className="stack-details">{productLayers.map((layer, i) => { const LayerIcon = layerIcons[layer.id as keyof typeof layerIcons]; return <details key={layer.id} open={i === 0}><summary><span>0{i + 1}</span><LayerIcon size={20} />{layer.label}<span className="detail-plus">+</span></summary><p>{layer.description}</p><div className="portfolio-tags">{layer.technologies.map(tech => <span key={tech}>{tech}</span>)}</div></details>; })}</div>
+  </section>;
 }

@@ -31,8 +31,8 @@ export const metadata: Metadata = {
     template: "%s | Emanuel Włoch",
   },
   description:
-    "Projektuję szybkie strony internetowe, sklepy i aplikacje webowe dla firm z Jarosławia, Podkarpacia i całej Polski. Zobacz realizacje i omów swój projekt.",
-  applicationName: "Portfolio Emanuela Włocha",
+    "Projektuję szybkie strony internetowe, sklepy i aplikacje webowe dla firm z Jarosławia, Podkarpacia i całej Polski. Od ustalenia celu po projekt, realizację i wdrożenie. Omów swój projekt.",
+  applicationName: "Emanuel Włoch — strony dla firm",
   category: "technology",
   authors: [{ name: "Emanuel Włoch", url: "https://emanuelwloch.pl" }],
   creator: "Emanuel Włoch",
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     description:
       "Szybkie strony internetowe, sklepy i aplikacje webowe dla firm z Jarosławia, Podkarpacia i całej Polski.",
     url: "https://emanuelwloch.pl",
-    siteName: "Emanuel Włoch – Web Development",
+    siteName: "Emanuel Włoch — strony dla firm",
     locale: "pl_PL",
     type: "website",
     images: [
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
         width: 1200,
         height: 630,
         type: "image/jpeg",
-        alt: "Emanuel Włoch Full-Stack Software Engineer",
+        alt: "Emanuel Włoch — strony internetowe dla firm",
       },
     ],
   },

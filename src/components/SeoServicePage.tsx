@@ -353,7 +353,7 @@ export default function SeoServicePage({ data }: { data: ServicePageData }) {
                   {data.related.map((item) => <Link key={item.href} href={item.href} className="hover:text-[var(--p-accent)]">{item.label}</Link>)}
                 </div>
               </div>
-              <Link href="/#kontakt" className="portfolio-button mt-8 shrink-0 lg:mt-0">Przejdź do formularza <ArrowRight className="size-4" /></Link>
+              <Link href="/#kontakt" className="portfolio-button mt-8 shrink-0 lg:mt-0">Omów projekt <ArrowRight className="size-4" /></Link>
             </div>
           </section>
         </article>

@@ -122,7 +122,7 @@ export default function ServicesPage() {
         <section className="px-4 py-20 sm:px-6 lg:px-8">
           <div className="mx-auto max-w-[1280px] rounded-[var(--p-radius)] bg-[var(--p-surface)] p-8 text-white sm:p-10 lg:flex lg:items-end lg:justify-between">
             <div><p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--p-accent)]">Nie wiesz, co wybrać?</p><h2 className="mt-4 max-w-3xl text-3xl font-semibold tracking-[-0.04em] sm:text-5xl">Opisz problem, a dobiorę zakres.</h2></div>
-            <Link href="/#kontakt" className="portfolio-button mt-8 lg:mt-0">Przejdź do formularza <ArrowRight className="size-4" /></Link>
+            <Link href="/#kontakt" className="portfolio-button mt-8 lg:mt-0">Omów projekt <ArrowRight className="size-4" /></Link>
           </div>
         </section>
       </main>

@@ -18,7 +18,7 @@ import Footer from "@/components/Footer";
 import VisitTracker from "@/components/VisitTracker";
 import HomeStructuredData from "@/components/HomeStructuredData";
 import MotionLayer from "@/components/portfolio/motion/MotionLayer";
-import TechMarquee from "@/components/portfolio/TechMarquee";
+import DeliveryProcess from "@/components/portfolio/DeliveryProcess";
 
 // High performance revalidation tag caching
 export const revalidate = 3600;
@@ -41,12 +41,12 @@ export default async function HomePage() {
       
       <div className="relative z-10">
         <ProductStory testimonial={testimonials[0]} />
-        <TechMarquee />
-        <ProjectsSection initialProjects={projects} />
         <ServicePaths services={services} />
+        <ProjectsSection initialProjects={projects} />
+        <DeliveryProcess />
         <TestimonialsSection testimonials={testimonials} />
         <AboutSection />
-        <TechnologyDetails />
+        <details className="technology-disclosure portfolio-container"><summary>Jakich technologii używam? <span aria-hidden="true">+</span></summary><TechnologyDetails /></details>
         <ContactSection settings={settings} />
       </div>
 

@@ -8,9 +8,9 @@ import { serializeJsonLd, SITE_URL } from "@/lib/seo";
 const USEME_URL = "https://useme.com/pl/roles/contractor/emanuel-wloch%2C525723/";
 
 export const metadata: Metadata = {
-  title: "O mnie — Emanuel Włoch, Full-Stack Developer",
+  title: "O mnie — Emanuel Włoch, strony i aplikacje dla firm",
   description:
-    "Poznaj Emanuela Włocha — full-stack developera z Jarosławia. Next.js, React, TypeScript, backend, bazy danych i wdrożenia produkcyjne.",
+    "Poznaj wykonawcę swojej strony. Emanuel Włoch z Jarosławia: bezpośrednia współpraca, projektowanie, tworzenie stron i aplikacji oraz wdrożenie.",
   alternates: { canonical: "/o-mnie" },
   openGraph: {
     title: "Emanuel Włoch — Full-Stack Developer z Jarosławia",

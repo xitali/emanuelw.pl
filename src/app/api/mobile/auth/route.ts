@@ -4,7 +4,7 @@ import {
 } from "@/lib/auth";
 import { checkRateLimit } from "@/lib/rate-limit";
 import { getClientIp } from "@/lib/request";
-import { verifyAdminPassword } from "@/lib/turso";
+import { authenticateAdmin } from "@/lib/turso";
 import { mobileLoginSchema } from "@/lib/validation";
 
 export const runtime = "nodejs";
@@ -44,14 +44,15 @@ export async function POST(request: Request) {
     );
   }
 
-  if (!(await verifyAdminPassword(validation.data.password))) {
+  const credential = await authenticateAdmin(validation.data.password);
+  if (!credential) {
     return Response.json(
       { success: false, error: "Nieprawidłowe hasło administratora." },
       { status: 401 },
     );
   }
 
-  const token = await createMobileAdminToken();
+  const token = await createMobileAdminToken(credential);
   return Response.json(
     {
       success: true,

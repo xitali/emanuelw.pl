@@ -13,6 +13,14 @@ describe("wyróżnione realizacje", () => {
   });
 });
 
+describe("kolejność dowodów wykonania", () => {
+  it("pokazuje gotowe wyróżnione realizacje przed wersją testową", () => {
+    const projects = [{ id: "test", featured: true, project_status: "in-development" }, { id: "live", featured: true, project_status: "active" }] as Project[];
+    expect(selectProjectHighlights(projects).map(p => p.id)).toEqual(["live", "test"]);
+    expect(projects[0].id).toBe("test");
+  });
+});
+
 describe("źródło kontaktu", () => {
   const message = { name: "Jan Kowalski", email: "jan@example.com", message: "Proszę o kontakt w sprawie strony." };
   it("pozostawia źródło opcjonalne i zachowuje oryginalną treść", () => {

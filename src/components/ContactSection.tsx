@@ -61,8 +61,8 @@ export default function ContactSection({ settings }: { settings: PublicSiteSetti
   return <section id="kontakt" className="portfolio-contact" aria-labelledby="contact-heading">
     <div className="portfolio-container">
       <header className="portfolio-section-heading">
-        <div><p className="portfolio-kicker">04 / KONTAKT</p><h2 id="contact-heading">Masz pomysł?<br /><span>Zbudujmy go razem.</span></h2></div>
-        <p>Wystarczy krótki opis pomysłu.<br />Nie musisz znać technologii ani mieć gotowej specyfikacji.</p>
+        <div><p className="portfolio-kicker">04 / KONTAKT</p><h2 id="contact-heading">Porozmawiajmy<br /><span>o Twojej firmie.</span></h2></div>
+        <p>Opisz ofertę firmy i to, co chcesz poprawić.<br />Nie musisz znać technologii ani mieć gotowej specyfikacji.</p>
       </header>
       <div className="contact-layout">
         <div className="contact-info" data-stagger>

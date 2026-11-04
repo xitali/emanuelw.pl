@@ -2,6 +2,7 @@
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Component, useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 import { Group } from "three";
+import { deliveryPose } from "./delivery-pose";
 import FragmentScreen from "./FragmentScreen";
 import { type SceneState } from "./layers";
 import { SceneCamera, SceneLighting } from "./SceneCamera";
@@ -14,7 +15,8 @@ function Product({ state, compact, reduced }: { state: SceneState; compact: bool
   useFrame(({ clock }) => {
     if (!root.current) return;
     const float = reduced || compact ? 0 : Math.sin(clock.elapsedTime * 0.65) * 0.045;
-    root.current.rotation.set(-0.16 + state.explosion * 0.06, (-0.42 + state.turn * 0.23) * (1 - state.explosion * 0.7), (-0.075 + state.turn * 0.035) * (1 - state.explosion));
+    const pose = deliveryPose(state.progress);
+    root.current.rotation.set(-0.12 + pose.spread * 0.1, -0.22 + pose.turn, -0.035 * (1 - pose.phone));
     root.current.position.y = float;
   });
   return <>

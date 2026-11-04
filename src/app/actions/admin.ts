@@ -1,7 +1,7 @@
 "use server";
 
 import {
-  verifyAdminPassword,
+  authenticateAdmin,
   createProject,
   updateProject,
   deleteProject,
@@ -80,12 +80,12 @@ export async function loginAdminAction(formData: FormData) {
     };
   }
 
-  const isValid = await verifyAdminPassword(password);
-  if (!isValid) {
+  const credential = await authenticateAdmin(password);
+  if (!credential) {
     return { success: false, error: "Nieprawidłowe hasło administratora." };
   }
 
-  await createAdminSession();
+  await createAdminSession(credential);
   redirect("/admin");
 }
 

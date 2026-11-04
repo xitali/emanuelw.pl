@@ -16,12 +16,12 @@ export function createScreenTexture() {
   ctx.fillText("EW / PRODUKT CYFROWY", 40, 45);
   ctx.fillStyle = "#a6cce2"; ctx.font = "16px monospace"; ctx.fillText("POMYSŁ → WDROŻENIE", 780, 44);
   ctx.fillStyle = "#a4b7c3"; ctx.font = "17px monospace"; ctx.fillText("KAŻDY DETAL MA CEL", 50, 145);
-  ctx.fillStyle = "#f0f1ec"; ctx.font = "500 58px sans-serif";
-  ctx.fillText("Jeden produkt.", 50, 228); ctx.fillText("Każda warstwa.", 50, 300);
+  ctx.fillStyle = "#f0f1ec"; ctx.font = "500 49px sans-serif";
+  ctx.fillText("Twoja oferta.", 50, 228); ctx.fillText("Czytelny przekaz.", 50, 300);
   ctx.font = "18px sans-serif"; ctx.fillStyle = "#9caeb9";
-  ctx.fillText("Interfejs. Logika. Infrastruktura.", 50, 346);
+  ctx.fillText("Dobra strona prowadzi do kontaktu.", 50, 346);
   ctx.fillStyle = "#c4dfef"; ctx.beginPath(); ctx.roundRect(50, 387, 204, 48, 24); ctx.fill();
-  ctx.fillStyle = "#172530"; ctx.font = "17px sans-serif"; ctx.fillText("Poznaj szczegóły  ↗", 69, 418);
+  ctx.fillStyle = "#172530"; ctx.font = "17px sans-serif"; ctx.fillText("Omów projekt  ↗", 69, 418);
   for (let i = 0; i < 5; i++) {
     const x = 665 + i * 13, y = 195 + i * 32;
     ctx.fillStyle = i === 4 ? "#96c5df" : `rgba(155,190,211,${0.1 + i * 0.035})`;
@@ -58,4 +58,18 @@ export function createLayerTexture(label: string, index: number) {
   ctx.font = "9px monospace"; ctx.fillStyle = "#8babbc"; ctx.fillText("EW / SYSTEM ARCHITECTURE", 24, 306);
   const texture = new CanvasTexture(canvas); texture.colorSpace = SRGBColorSpace;
   return texture;
+}
+
+export function createPhoneTexture() {
+  const canvas = document.createElement("canvas"); canvas.width = 320; canvas.height = 640;
+  const ctx = canvas.getContext("2d")!;
+  ctx.fillStyle = "#10171c"; ctx.fillRect(0, 0, 320, 640);
+  ctx.fillStyle = "#acd1e8"; ctx.font = "bold 24px sans-serif"; ctx.fillText("ew /", 24, 45);
+  ctx.font = "36px sans-serif"; ctx.fillStyle = "#efefea";
+  ctx.fillText("Twoja oferta.", 24, 150); ctx.fillText("Na telefonie.", 24, 195);
+  ctx.fillStyle = "#54798b"; ctx.fillRect(24, 240, 272, 155);
+  ctx.fillStyle = "#c4dfef"; ctx.fillRect(24, 440, 272, 60);
+  ctx.fillStyle = "#172530"; ctx.font = "22px sans-serif"; ctx.fillText("Omów projekt ↗", 65, 479);
+  ctx.fillStyle = "#a0a7ab"; ctx.font = "18px sans-serif"; ctx.fillText("Czytelnie. Na każdym ekranie.", 24, 560);
+  const texture = new CanvasTexture(canvas); texture.colorSpace = SRGBColorSpace; return texture;
 }

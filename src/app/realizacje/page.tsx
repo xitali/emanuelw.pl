@@ -13,7 +13,7 @@ export default async function ProjectsPage({ searchParams }: { searchParams: Pro
   const { kategoria } = await searchParams;
   const category = ["web", "e-commerce", "mobile"].includes(kategoria || "") ? kategoria! : "all";
   return <PublicPageShell><main id="main-content" className="portfolio-subpage"><section className="portfolio-container portfolio-catalog">
-    <p className="portfolio-kicker">PORTFOLIO / EMANUEL WŁOCH</p><h1>Strony i aplikacje.<br />Zobacz realizacje.</h1><p>Różne firmy i potrzeby. Poznaj zakres prac, zastosowane rozwiązania i gotowe projekty.</p>
+    <p className="portfolio-kicker">REALIZACJE / EMANUEL WŁOCH</p><h1>Strony i aplikacje.<br />Zobacz realizacje.</h1><p>Sprawdź, jak przekładam potrzeby firm na działające strony i aplikacje. Każdy opis pokazuje zakres prac, rozwiązania i podgląd realizacji.</p>
     <ProjectCatalog projects={await getProjects()} category={category} />
   </section></main></PublicPageShell>;
 }

@@ -14,13 +14,13 @@ const paths = [
 
 export default function ServicePaths({ services }: { services: Service[] }) {
   return <section id="uslugi" className="service-paths portfolio-container" aria-labelledby="paths-heading">
-    <header className="portfolio-section-heading"><div><p className="portfolio-kicker">OFERTA DOPASOWANA DO CELU</p><h2 id="paths-heading">Czego potrzebuje<br /><span>Twoja firma?</span></h2></div><p>Najpierw cel i zakres.<br />Potem projekt, kod i wdrożenie.</p></header>
-    <div className="service-path-grid" data-stagger>{paths.map((path, i) => <article key={path.href} className="service-path-card" data-spotlight>
+    <header className="portfolio-section-heading"><div><p className="portfolio-kicker">OFERTA DOPASOWANA DO CELU</p><h2 id="paths-heading">Pokaż ofertę.<br /><span>Ułatw kolejny krok.</span></h2></div><p>Najpierw cel i zakres.<br />Potem projekt, kod i wdrożenie.</p></header>
+    <div className="service-path-grid" data-stagger>{paths.map((path, i) => <article key={path.href} className={`service-path-card${i === 0 ? " service-path-card--primary" : ""}`} data-spotlight>
       <span className="ew-icon-badge"><path.Icon /></span><p className="portfolio-kicker">0{i + 1} / {path.title}</p><h3>{path.goal}</h3><p>{path.description}</p><p className="service-path-scope">{path.scope}</p>
       <button className="portfolio-button" onClick={() => openContactForm({ subject: path.title, message: `Interesuje mnie: ${path.title.toLowerCase()}.\nCel projektu: \nPlanowany termin: `, badge: "Wybrana usługa została wpisana do formularza." })}>Omów projekt <ArrowUpRight size={17} /></button>
       <Link className="portfolio-text-link" href={path.href}>Zakres i pytania <ArrowUpRight size={15} /></Link>
     </article>)}</div>
-    <p className="service-price-note">Wszystkie podane ceny i orientacyjne wyceny są cenami netto. Ostateczny zakres i kwotę ustalamy przed rozpoczęciem prac.</p><ol className="service-steps" data-stagger><li><strong>01 / Rozmowa</strong><span>Poznaję firmę, odbiorców i cel.</span></li><li><strong>02 / Zakres i wycena</strong><span>Ustalamy elementy projektu i termin.</span></li><li><strong>03 / Realizacja</strong><span>Oceniasz projekt i kolejne etapy.</span></li><li><strong>04 / Przekazanie</strong><span>Testy, wdrożenie i omówienie obsługi.</span></li></ol>
+    <p className="service-price-note">Wszystkie podane ceny i orientacyjne wyceny są cenami netto. Ostateczny zakres i kwotę ustalamy przed rozpoczęciem prac.</p>
     <details className="service-more"><summary>Pozostałe usługi i orientacyjna wycena <span aria-hidden="true">+</span></summary><ProfessionalServicesSection initialServices={services} sectionId="szczegoly-uslug" /></details>
   </section>;
 }

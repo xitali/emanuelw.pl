@@ -3,6 +3,7 @@ import "server-only";
 import { cookies } from "next/headers";
 import { SignJWT, jwtVerify } from "jose";
 import { getJwtSecret } from "@/lib/env";
+import { isAdminCredentialCurrent, type AdminCredential } from "@/lib/turso";
 
 const COOKIE_NAME =
   process.env.NODE_ENV === "production"
@@ -14,10 +15,10 @@ const MOBILE_AUDIENCE = "emanuelwloch.pl/android-admin";
 const SESSION_SECONDS = 60 * 60 * 8;
 export const MOBILE_SESSION_SECONDS = 60 * 60 * 24 * 30;
 
-export async function createAdminSession() {
-  const token = await new SignJWT({ role: "admin" })
+export async function createAdminSession(credential: AdminCredential) {
+  const token = await new SignJWT({ role: "admin", cv: credential.credentialVersion })
     .setProtectedHeader({ alg: "HS256" })
-    .setSubject("admin")
+    .setSubject(credential.id)
     .setIssuer(ISSUER)
     .setAudience(AUDIENCE)
     .setJti(crypto.randomUUID())
@@ -47,16 +48,16 @@ export async function verifyAdminSession(): Promise<boolean> {
       issuer: ISSUER,
       audience: AUDIENCE,
     });
-    return verified.payload.role === "admin" && verified.payload.sub === "admin";
+    return verified.payload.role === "admin" && await credentialIsCurrent(verified.payload);
   } catch {
     return false;
   }
 }
 
-export async function createMobileAdminToken(): Promise<string> {
-  return new SignJWT({ role: "admin", client: "android" })
+export async function createMobileAdminToken(credential: AdminCredential): Promise<string> {
+  return new SignJWT({ role: "admin", client: "android", cv: credential.credentialVersion })
     .setProtectedHeader({ alg: "HS256" })
-    .setSubject("admin")
+    .setSubject(credential.id)
     .setIssuer(ISSUER)
     .setAudience(MOBILE_AUDIENCE)
     .setJti(crypto.randomUUID())
@@ -82,7 +83,7 @@ export async function verifyMobileAdminToken(
     return (
       verified.payload.role === "admin" &&
       verified.payload.client === "android" &&
-      verified.payload.sub === "admin"
+      await credentialIsCurrent(verified.payload)
     );
   } catch {
     return false;
@@ -93,4 +94,9 @@ export async function logoutAdminSession() {
   const cookieStore = await cookies();
   cookieStore.delete(COOKIE_NAME);
   cookieStore.delete("admin_token");
+}
+
+async function credentialIsCurrent(payload: { sub?: string; cv?: unknown }): Promise<boolean> {
+  if (!payload.sub || !Number.isSafeInteger(payload.cv) || Number(payload.cv) < 0) return false;
+  return isAdminCredentialCurrent(payload.sub, Number(payload.cv));
 }

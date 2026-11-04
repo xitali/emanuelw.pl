@@ -11,6 +11,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "check": "npm run lint && npm run typecheck && npm run test && npm run build",
+    "admin:reset": "node --env-file=.env.local scripts/reset-admin-password.mjs",
     "db:migrate": "node --env-file=.env.local scripts/migrate.mjs",
     "db:repair": "node --env-file=.env.local scripts/repair-production-data.mjs",
     "firebase:import": "node scripts/import-firebase-service-account.mjs",
