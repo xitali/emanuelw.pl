@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { ArrowUpRight, Menu, X } from "lucide-react";
+import { BrandMark, IconArrowUpRight, IconMenu } from "./icons";
 
 const links = [["Projekty", "#projekty"], ["Technologie", "#technologie"], ["O mnie", "#o-mnie"], ["Usługi", "#uslugi"]];
 export default function PortfolioNav({ home = true }: { home?: boolean }) {
@@ -18,11 +18,11 @@ export default function PortfolioNav({ home = true }: { home?: boolean }) {
   }, [open]);
   return <header className="portfolio-nav" ref={header}>
     <a className="portfolio-skip" href="#main-content">Przejdź do treści</a>
-    <Link className="portfolio-wordmark" href="/" aria-label="Emanuel Włoch — strona główna">ew<span> / </span><small>Emanuel Włoch</small></Link>
+    <Link className="portfolio-wordmark" href="/" aria-label="Emanuel Włoch — strona główna"><BrandMark size={30} /><span className="wordmark-text">ew<span> / </span><small>Emanuel Włoch</small></span></Link>
     <nav id="portfolio-menu" aria-label="Główna nawigacja" className={open ? "is-open" : ""}>
       {links.map(([label, href]) => <a key={href} href={href === "#projekty" ? "/realizacje" : home ? href : `/${href}`} onClick={() => setOpen(false)}>{label}</a>)}
-      <a className="portfolio-button portfolio-button--secondary nav-contact" href={home ? "#kontakt" : "/#kontakt"} onClick={() => setOpen(false)}>Porozmawiajmy <ArrowUpRight size={15} /></a>
+      <a className="portfolio-button portfolio-button--secondary nav-contact" href={home ? "#kontakt" : "/#kontakt"} onClick={() => setOpen(false)}>Porozmawiajmy <IconArrowUpRight size={15} /></a>
     </nav>
-    <button ref={button} className="portfolio-menu-toggle" aria-label={open ? "Zamknij menu" : "Otwórz menu"} aria-expanded={open} aria-controls="portfolio-menu" onClick={() => setOpen(!open)}>{open ? <X /> : <Menu />}</button>
+    <button ref={button} className="portfolio-menu-toggle" aria-label={open ? "Zamknij menu" : "Otwórz menu"} aria-expanded={open} aria-controls="portfolio-menu" onClick={() => setOpen(!open)}><IconMenu /></button>
   </header>;
 }

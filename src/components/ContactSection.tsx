@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { sendContactMessageAction } from "@/app/actions/contact";
-import { ArrowUpRight, ArrowRight, CheckCircle2, AlertCircle } from "lucide-react";
+import { IconAlert, IconArrowUpRight as ArrowUpRight, IconCheck, IconFacebook, IconGithub, IconInstagram, IconMail, IconPhone, IconPin, IconSend } from "./portfolio/icons";
 import type { PublicSiteSettings } from "@/types";
 import Link from "next/link";
 import { CONTACT_PREFILL_EVENT, type ContactPrefill } from "@/lib/contact-prefill";
@@ -17,10 +17,10 @@ export default function ContactSection({ settings }: { settings: PublicSiteSetti
   const email = settings.personal_email || "kontakt@emanuelwloch.pl";
   const phone = settings.personal_phone || "+48 725 403 682";
   const socials = [
-    ["GitHub", settings.social_github || "https://github.com/xitali"],
-    ["Instagram", settings.social_instagram || "https://www.instagram.com/mrmun1o"],
-    ["Facebook", settings.social_facebook || "https://facebook.com/emanuel.wloch"],
-  ];
+    ["GitHub", settings.social_github || "https://github.com/xitali", IconGithub],
+    ["Instagram", settings.social_instagram || "https://www.instagram.com/mrmun1o", IconInstagram],
+    ["Facebook", settings.social_facebook || "https://facebook.com/emanuel.wloch", IconFacebook],
+  ] as const;
 
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout>;
@@ -65,17 +65,17 @@ export default function ContactSection({ settings }: { settings: PublicSiteSetti
         <p>Wystarczy krótki opis pomysłu.<br />Nie musisz znać technologii ani mieć gotowej specyfikacji.</p>
       </header>
       <div className="contact-layout">
-        <div className="contact-info">
+        <div className="contact-info" data-stagger>
           <p className="portfolio-kicker">BEZPOŚREDNIO</p>
-          <a className="contact-email" href={`mailto:${email}`}>{email}<ArrowUpRight size={22} /></a>
-          <a className="contact-phone" href={`tel:${phone.replace(/\s+/g, "")}`}>{phone}<ArrowUpRight size={16} /></a>
-          <div className="contact-location"><p className="portfolio-kicker">LOKALIZACJA</p><p>Jarosław, Podkarpackie<br /><span>Współpraca zdalna w całej Polsce</span></p></div>
-          <nav className="contact-socials" aria-label="Profile społecznościowe">{socials.map(([label, url]) => <a key={label} href={url} target="_blank" rel="noopener noreferrer">{label}<ArrowUpRight size={14} /></a>)}</nav>
+          <a className="contact-email" href={`mailto:${email}`}><IconMail size={26} />{email}<ArrowUpRight size={22} /></a>
+          <a className="contact-phone" href={`tel:${phone.replace(/\s+/g, "")}`}><IconPhone size={20} />{phone}<ArrowUpRight size={16} /></a>
+          <div className="contact-location"><p className="portfolio-kicker">LOKALIZACJA</p><p className="contact-line"><IconPin size={22} /><span>Jarosław, Podkarpackie<br /><span>Współpraca zdalna w całej Polsce</span></span></p></div>
+          <nav className="contact-socials" aria-label="Profile społecznościowe">{socials.map(([label, url, Glyph]) => <a key={label} href={url} target="_blank" rel="noopener noreferrer"><Glyph />{label}<ArrowUpRight size={14} /></a>)}</nav>
         </div>
-        <form onSubmit={handleSubmit} className="contact-form" aria-label="Napisz wiadomość" aria-busy={loading}>
+        <form onSubmit={handleSubmit} className="contact-form" data-reveal data-spotlight aria-label="Napisz wiadomość" aria-busy={loading}>
           <p className="portfolio-kicker">O TWOIM PROJEKCIE</p>
           {autoFilledBadge && <p className="contact-notice" role="status">{autoFilledBadge}</p>}
-          {statusMsg && <div className={`contact-notice is-${statusMsg.type}`} role={statusMsg.type === "error" ? "alert" : "status"}>{statusMsg.type === "success" ? <CheckCircle2 size={18} /> : <AlertCircle size={18} />}<span>{statusMsg.text}</span></div>}
+          {statusMsg && <div className={`contact-notice is-${statusMsg.type}`} role={statusMsg.type === "error" ? "alert" : "status"}>{statusMsg.type === "success" ? <IconCheck size={20} /> : <IconAlert size={20} />}<span>{statusMsg.text}</span></div>}
           <div className="contact-field-row">
             <div className="contact-field"><label htmlFor="contact-name">Imię i nazwisko <span>*</span></label><input id="contact-name" name="name" autoComplete="name" required placeholder="Jan Kowalski" /></div>
             <div className="contact-field"><label htmlFor="contact-email">Adres e-mail <span>*</span></label><input id="contact-email" name="email" type="email" autoComplete="email" required placeholder="jan@firma.pl" /></div>
@@ -84,7 +84,7 @@ export default function ContactSection({ settings }: { settings: PublicSiteSetti
           <div className="contact-field"><label htmlFor="contact-message">Wiadomość <span>*</span></label><textarea id="contact-message" name="message" rows={5} required value={message} onChange={e => setMessage(e.target.value)} placeholder="Opisz swój pomysł, zakres i planowany termin." /></div>
           <div className="contact-field"><label htmlFor="contact-source">Skąd o mnie wiesz? <span>opcjonalnie</span></label><select id="contact-source" name="source" defaultValue="">{contactSources.map(source => <option key={source} value={source}>{source || "Wybierz, jeśli chcesz"}</option>)}</select></div>
           <div className="contact-honeypot" aria-hidden="true"><label htmlFor="contact-website">Strona internetowa</label><input id="contact-website" name="website" tabIndex={-1} autoComplete="off" /></div>
-          <div className="contact-form-footer"><p>Wysyłając wiadomość, potwierdzasz zapoznanie się z <Link href="/polityka-prywatnosci">polityką prywatności</Link>.</p><button type="submit" className="portfolio-button" disabled={loading}>{loading ? "Wysyłanie…" : "Wyślij wiadomość"}<ArrowRight size={17} /></button></div>
+          <div className="contact-form-footer"><p>Wysyłając wiadomość, potwierdzasz zapoznanie się z <Link href="/polityka-prywatnosci">polityką prywatności</Link>.</p><button type="submit" className="portfolio-button" disabled={loading}>{loading ? "Wysyłanie…" : "Wyślij wiadomość"}<IconSend size={17} /></button></div>
         </form>
       </div>
     </div>

@@ -17,6 +17,8 @@ import TestimonialsSection from "@/components/TestimonialsSection";
 import Footer from "@/components/Footer";
 import VisitTracker from "@/components/VisitTracker";
 import HomeStructuredData from "@/components/HomeStructuredData";
+import MotionLayer from "@/components/portfolio/motion/MotionLayer";
+import TechMarquee from "@/components/portfolio/TechMarquee";
 
 // High performance revalidation tag caching
 export const revalidate = 3600;
@@ -34,11 +36,12 @@ export default async function HomePage() {
     <>
       <HomeStructuredData services={services} settings={settings} />
     <main id="main-content" className="portfolio-home dark relative min-h-screen overflow-x-clip" tabIndex={-1}>
-      <VisitTracker /><ConversionTracker />
+      <VisitTracker /><ConversionTracker /><MotionLayer />
       <Navbar />
       
       <div className="relative z-10">
         <ProductStory testimonial={testimonials[0]} />
+        <TechMarquee />
         <ProjectsSection initialProjects={projects} />
         <ServicePaths services={services} />
         <TestimonialsSection testimonials={testimonials} />

@@ -49,7 +49,7 @@ export default function ProjectMedia({ projectId, image, title, fallbackImage, o
     {enabled && visible && <video ref={video} src={preview!.video} poster={preview!.poster} muted loop playsInline preload="none" aria-hidden="true" onError={() => setFailed(true)} />}
     {onOpen && <span className="project-media-open"><Plus size={18} /></span>}
   </>;
-  return <div ref={root} className="project-media">
+  return <div ref={root} className="project-media" data-tilt data-spotlight>
     {onOpen ? <button type="button" className="project-media-trigger" onClick={onOpen} aria-label={`Podgląd projektu: ${title}`}>{visual}</button> : visual}
     {enabled && <button type="button" className="project-media-control" onClick={() => setPaused(value => !value)} aria-label={`${paused ? "Odtwórz" : "Zatrzymaj"} animację: ${title}`} aria-pressed={paused}>{paused ? <Play size={15} /> : <Pause size={15} />}</button>}
   </div>;
