@@ -10,3 +10,5 @@ W katalogach vertical/composition i landscape/composition pełnego projektu loka
 Kontrola obu kadrów: zero błędów i ostrzeżeń, po 42 sprawdzone elementy tekstowe. Każdy film: 660 klatek /22 s. Kontrola audio techniczna: strumień obecny, identyczny miks w obu formatach, brak przesterowania. Odsłuch słuchowy nie jest potwierdzony w tym środowisku.
 
 Publiczne filmy i plakaty: published-media.json. Pełna historia materiałów i lokalne media pozostają poza repozytorium. Użyj aktualnych plików z katalogu delivery. Credit muzyki pozostaje w opisie publikacji.
+
+Aktualizacja 05.11.2026: reklama wprost komunikuje strony dla firm i aplikacje webowe w intro, scenie procesu oraz finale. Publikowana wersja nie korzysta z niepotwierdzonych liczb obecnych w osobnych szkicach brag-output. Przegląd paczki i rekomendacje projektów: ../../docs/PRZEGLAD_CLAUDE_I_PORTFOLIO.md.

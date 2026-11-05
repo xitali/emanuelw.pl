@@ -6,3 +6,5 @@ Kompozycja: intro, process, work, proof, outro; osobne podkompozycje, seekowalne
 Muzyka: lokalny Vol1 i CC0 SFX Kenney; opis licencji osobno. Ruch oparty na rzeczywistych cues i RMS; bez lektora. Brak statystyk i deklaracji wyników.
 Dostawa: MP4/JPG dla obu formatów, plakat jako klatka0, źródła, share-copy.txt, ASSET-LICENSES.md. Film poziomy na stronie controls/playsInline/preload=none.
 Kontrola: oba check przechodzą bez błędów i ostrzeżeń;42 sprawdzone elementy tekstowe w każdym formacie. Odsłuch słuchowy niepotwierdzony w tym środowisku, przeprowadzono techniczną kontrolę dźwięku.
+
+Oferta wprost: strony dla firm i aplikacje webowe w pierwszej scenie, w scenie procesu i w finale. Solid Print pokazany jako przykład aplikacji pracowni, z etykietą wersji testowej.

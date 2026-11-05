@@ -12,9 +12,9 @@
 
 ## Storyboard
 - 0–3 s: Klient szuka usługi. Pokaż mu swoją firmę. Centralny tytuł; prawdziwe kompletne ekrany wchodzą z ruchem perspektywicznym.
-- 3–8 s: Od pierwszego wrażenia do konkretnej rozmowy. Jeden kompletny ekran nowego hero z najazdem kamery. Cel, Projekt, Realizacja, Wdrożenie ujawniane kolejno i pozostają czytelne.
+- 3–8 s: Strony dla firm. Aplikacje webowe. Jeden kompletny ekran nowego hero z najazdem kamery. Cel, Projekt, Realizacja, Wdrożenie ujawniane kolejno i pozostają czytelne.
 - 8–12 s: Pokaż ofertę. Ułatw kontakt. VIP Transfery, komputer i telefon; kursor kieruje się do prawdziwego CTA, subtelny klik.
-- 12–16 s: Pomysł zamieniam w działającą stronę. Solid Print — wersja testowa / projekt w rozwoju. Duży ekran, czytelny podpis statusu.
+- 12–16 s: Aplikacje dopasowane do Twojej firmy. Solid Print — wersja testowa / projekt w rozwoju. Duży ekran, czytelny podpis statusu.
 - 16–22 s: Twoja firma. Moja realizacja. Prawdziwy portret, Emanuel Włoch, emanuelwloch.pl, Omów projekt. Portret, hasło, adres i nazwisko wchodzą sekwencyjnie; końcówka pozostaje czytelna.
 
 ## LOOK
@@ -25,3 +25,5 @@ Muzyka na -19 LUFS przed miksem, fade-in0.15s i fade-out1.6s. Rzeczywiste RMS mo
 
 ## Dostawa
 Pion1080x1920 i oddzielna adaptacja1920x1080, H264/AAC,30fps,22s. Poster to czytelna klatka19.5s z portretem, wstawiona także w klatkę0 filmu. Publiczne pliki w published-media.json, pełne źródła w lokalnym katalogu produkcji.
+
+Oferta wprost: strony dla firm i aplikacje webowe w pierwszej scenie, w scenie procesu i w finale. Solid Print pokazany jako przykład aplikacji pracowni, z etykietą wersji testowej.
