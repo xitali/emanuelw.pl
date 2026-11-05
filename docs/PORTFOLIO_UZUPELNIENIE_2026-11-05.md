@@ -24,3 +24,5 @@ Cache listy projektów uwzględnia identyfikator bazy, aby lokalny podgląd i pr
 Źródło opisów: content/portfolio-projects.json. Kontrolowana publikacja: scripts/publish-portfolio-projects.mjs. Domyślnie tylko podgląd, --apply wykonuje transakcję. Przed publikacją wymaga dostępności wszystkich obrazów na domenie i zapisuje lokalną kopię poprzednich czterech rekordów w .debug. Istniejące identyfikatory są zachowywane. Tryb --local-preview działa wyłącznie na osobnej bazie podglądu.
 
 Lokalnie: lint, typy, 72 testy w 19 plikach i build zakończone powodzeniem. Galeria oraz filtr sprawdzone w przeglądarce. Weryfikacja produkcji jest osobnym krokiem po wdrożeniu.
+
+Obrazy wdrożono przed zmianą katalogu. Następnie opublikowano trzy nowe wpisy i zaktualizowano istniejący Solid Print w jednej transakcji. Katalog zawiera 12 realizacji. Zmieniono wersję cache po publikacji, aby od razu zbudować strony nowych projektów oraz aktualny sitemap.
