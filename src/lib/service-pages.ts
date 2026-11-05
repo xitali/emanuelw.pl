@@ -34,43 +34,43 @@ export const servicePages: ServicePageData[] = [
     eyebrow: "Strony firmowe i landing pages",
     title: "Tworzenie stron internetowych, które wspierają sprzedaż",
     lead:
-      "Projektuję i wdrażam strony firmowe, landing pages oraz serwisy, które jasno prezentują ofertę, szybko działają i prowadzą użytkownika do kontaktu.",
+      "Potrzebujesz nowej strony lub chcesz poprawić obecną? Przygotuję dla Ciebie stronę, na której pokażesz ofertę i ułatwisz klientom kontakt.",
     directAnswer:
-      "Dobra strona firmowa powinna w kilka sekund wyjaśnić, czym zajmuje się firma, komu pomaga i co użytkownik ma zrobić dalej. W ramach realizacji przygotowuję strukturę informacji, responsywny interfejs, SEO techniczne, formularze oraz publikację na docelowej domenie.",
+      "Co oferujesz i dlaczego klient ma wybrać właśnie Ciebie? Pomogę Ci jasno to pokazać. Dostaniesz projekt dopasowany do telefonu, uporządkowaną ofertę, formularz kontaktowy i gotową stronę pod Twoją domeną. Zadbam też o techniczne przygotowanie do Google.",
     serviceType: "Projektowanie i tworzenie stron internetowych",
     areas: ["Jarosław", "Rzeszów", "Podkarpackie", "Polska"],
     idealFor: [
-      "firm usługowych potrzebujących profesjonalnej obecności w sieci",
-      "marek, których obecna strona jest wolna lub nieczytelna",
-      "nowych usług i kampanii wymagających dedykowanego landing page’a",
+      "Prowadzisz firmę usługową i chcesz pokazać ją w internecie.",
+      "Masz stronę, która ładuje się zbyt długo lub trudno znaleźć na niej ofertę.",
+      "Wprowadzasz nową usługę lub potrzebujesz strony do kampanii.",
     ],
     benefits: [
       {
         title: "Czytelna oferta",
         description:
-          "Porządkuję treść i hierarchię strony tak, aby klient szybko zrozumiał wartość usługi.",
+          "Pomogę Ci pokazać, co oferujesz, komu pomagasz i jak można się z Tobą skontaktować.",
       },
       {
-        title: "SEO od podstaw",
+        title: "Przygotowanie do Google",
         description:
-          "Przygotowuję metadane, semantyczne nagłówki, canonicale, sitemapę i dane strukturalne.",
+          "Przygotuję Twoją stronę do odczytania przez Google: od tytułów podstron po mapę strony i dane o firmie.",
       },
       {
         title: "Szybkość na telefonie",
         description:
-          "Optymalizuję obrazy, kod oraz sposób ładowania treści z myślą o Core Web Vitals.",
+          "Zadbam o zdjęcia i ładowanie treści, żeby Twoi klienci wygodnie korzystali ze strony na telefonie.",
       },
       {
         title: "Gotowe wdrożenie",
         description:
-          "Pomagam z domeną, HTTPS, hostingiem, analityką i uruchomieniem wersji produkcyjnej.",
+          "Pomogę Ci z adresem strony i hostingiem. Opublikuję stronę i pokażę Ci, jak z niej korzystać.",
       },
     ],
     deliverables: [
-      "architektura informacji i plan sekcji",
-      "indywidualny, responsywny interfejs",
+      "plan treści i sekcji Twojej strony",
+      "projekt Twojej strony dopasowany do telefonu i komputera",
       "formularz kontaktowy z walidacją",
-      "SEO techniczne i dane strukturalne",
+      "techniczne przygotowanie Twojej strony do Google",
       "optymalizacja obrazów oraz wydajności",
       "publikacja i instrukcja dalszej obsługi",
     ],
@@ -78,22 +78,22 @@ export const servicePages: ServicePageData[] = [
       {
         title: "Rozpoznanie celu",
         description:
-          "Ustalam odbiorców, ofertę, najważniejsze działania użytkownika i materiały wejściowe.",
+          "Opowiedz, co oferujesz, do kogo chcesz dotrzeć i do czego potrzebujesz strony.",
       },
       {
         title: "Struktura i projekt",
         description:
-          "Buduję kolejność informacji oraz kierunek wizualny, który pasuje do marki.",
+          "Zobaczysz propozycję wyglądu i układu Twojej strony. Powiesz mi, co chcesz zmienić.",
       },
       {
         title: "Kod i testy",
         description:
-          "Wdrażam stronę, sprawdzam telefony, dostępność, formularze i najważniejsze ścieżki.",
+          "Dostaniesz wersję testową. Sprawdzę jej działanie na telefonie, formularze i nawigację.",
       },
       {
         title: "Publikacja",
         description:
-          "Konfiguruję produkcję, domenę i narzędzia potrzebne do dalszego rozwoju strony.",
+          "Uruchomię stronę pod Twoją domeną i wyjaśnię Ci, jak wprowadzać kolejne zmiany.",
       },
     ],
     faq: [
@@ -146,46 +146,46 @@ export const servicePages: ServicePageData[] = [
     metaTitle: "Tworzenie aplikacji webowych i paneli",
     metaDescription:
       "Tworzę dedykowane aplikacje webowe, panele administracyjne i MVP: frontend, backend, baza danych, autoryzacja, testy i wdrożenie.",
-    eyebrow: "Dedykowane systemy i MVP",
+    eyebrow: "Aplikacja do Twoich zadań",
     title: "Aplikacje webowe dopasowane do procesu Twojej firmy",
     lead:
-      "Buduję aplikacje, panele i narzędzia, które zastępują ręczną pracę, porządkują dane albo uruchamiają nowy produkt cyfrowy.",
+      "Chcesz uporządkować zamówienia, rezerwacje lub pracę zespołu? Stworzę dla Ciebie aplikację dopasowaną do tego, jak działa Twoja firma.",
     directAnswer:
-      "Aplikacja webowa działa w przeglądarce, ale może obsługiwać logowanie, role użytkowników, bazę danych, płatności, raporty i automatyzacje. Projekt prowadzę od ustalenia modelu danych i kluczowych scenariuszy po bezpieczne wdrożenie produkcyjne.",
+      "Aplikację otworzysz w przeglądarce na komputerze lub telefonie. Możesz w niej obsługiwać klientów, rezerwacje, dane i zadania zespołu. Najpierw opowiesz mi, jak dziś pracujesz. Potem wybierzemy potrzebne funkcje, a ja zaprojektuję i uruchomię rozwiązanie.",
     serviceType: "Projektowanie i tworzenie aplikacji webowych",
     areas: ["Jarosław", "Rzeszów", "Podkarpackie", "Polska"],
     idealFor: [
-      "firm zastępujących arkusze dedykowanym panelem",
-      "produktów potrzebujących działającego MVP",
-      "zespołów rozwijających istniejącą aplikację lub API",
+      "Chcesz zastąpić arkusze i ręczne zadania jednym panelem.",
+      "Chcesz sprawdzić pomysł na aplikację w podstawowej, działającej wersji.",
+      "Masz aplikację i potrzebujesz nowych funkcji lub połączenia z innym systemem.",
     ],
     benefits: [
       {
-        title: "Proces przed ekranami",
+        title: "Twoja codzienna praca",
         description:
-          "Najpierw opisuję role, dane i scenariusze, dzięki czemu interfejs wynika z realnej pracy użytkownika.",
+          "Pokaż mi, jak pracujesz. Ustalimy, które zadania aplikacja ma ułatwić Tobie i Twojemu zespołowi.",
       },
       {
-        title: "Frontend i backend",
+        title: "Cała aplikacja u jednego wykonawcy",
         description:
-          "Jedna spójna implementacja obejmuje interfejs, logikę, bazę danych i integracje.",
+          "Otrzymasz zarówno ekrany aplikacji, jak i działające zaplecze. Nie musisz szukać osobnego wykonawcy do każdej części.",
       },
       {
-        title: "Bezpieczne granice",
+        title: "Dostęp pod kontrolą",
         description:
-          "Walidacja, autoryzacja, limity żądań i kontrola dostępu są częścią architektury.",
+          "Ustalimy, kto ma dostęp do danych i funkcji. Zabezpieczę logowanie i sprawdzę dane przesyłane do aplikacji.",
       },
       {
         title: "Rozwój bez przepisywania",
         description:
-          "Buduję moduły i schemat danych z myślą o kolejnych funkcjach, a nie jednorazowym demo.",
+          "Możesz zacząć od najważniejszych funkcji. Przygotuję aplikację tak, żeby dało się ją później rozwijać.",
       },
     ],
     deliverables: [
-      "mapa ról i scenariuszy użytkownika",
-      "model danych i architektura aplikacji",
+      "opis tego, kto i do czego będzie używał Twojej aplikacji",
+      "plan danych i działania Twojej aplikacji",
       "responsywny interfejs użytkownika",
-      "backend, API i integracje",
+      "zaplecze aplikacji i połączenia z potrzebnymi systemami",
       "logowanie oraz kontrola dostępu",
       "testy, wdrożenie i dokumentacja zakresu",
     ],
@@ -193,22 +193,22 @@ export const servicePages: ServicePageData[] = [
       {
         title: "Analiza procesu",
         description:
-          "Rozbijam pomysł na użytkowników, dane, reguły biznesowe i najważniejsze rezultaty.",
+          "Opowiedz, kto będzie korzystać z Twojej aplikacji i jakie zadania ma w niej wykonywać.",
       },
       {
-        title: "Zakres MVP",
+        title: "Funkcje na początek",
         description:
-          "Oddzielam funkcje konieczne na start od elementów, które można bezpiecznie dodać później.",
+          "Wspólnie wybierzemy funkcje potrzebne na start i te, które możesz zamówić później.",
       },
       {
-        title: "Iteracyjne wdrożenie",
+        title: "Regularne podglądy",
         description:
-          "Pokazuję działające etapy, testuję założenia i regularnie zbieram decyzje.",
+          "Regularnie zobaczysz działające fragmenty aplikacji i powiesz mi, co wymaga dopracowania.",
       },
       {
-        title: "Produkcja i rozwój",
+        title: "Uruchomienie i rozwój",
         description:
-          "Uruchamiam aplikację, monitoruję krytyczne ścieżki i planuję kolejne wersje.",
+          "Uruchomię Twoją aplikację, sprawdzę kluczowe zadania i omówię z Tobą dalszy rozwój.",
       },
     ],
     faq: [
@@ -225,7 +225,7 @@ export const servicePages: ServicePageData[] = [
       {
         question: "Czy możesz stworzyć najpierw MVP?",
         answer:
-          "Tak. MVP powinno rozwiązywać jeden konkretny problem i pozwalać zebrać informacje od użytkowników bez budowania wszystkich przyszłych funkcji.",
+          "Tak. Zaczniemy od podstawowej wersji aplikacji, czyli MVP. Sprawdzisz, czy rozwiązuje Twój problem, zanim zamówisz kolejne funkcje.",
       },
       {
         question: "Czy aplikacja otrzyma panel administratora?",
@@ -264,36 +264,36 @@ export const servicePages: ServicePageData[] = [
     eyebrow: "E-commerce i sprzedaż online",
     title: "Sklepy internetowe z prostą ścieżką do zakupu",
     lead:
-      "Tworzę e-commerce, który czytelnie prezentuje produkty, ogranicza tarcie przy zakupie i jest przygotowany do mierzenia najważniejszych działań klientów.",
+      "Chcesz zacząć sprzedawać online lub zmienić obecny sklep? Przygotuję dla Ciebie czytelny katalog, wygodne zakupy i panel do obsługi zamówień.",
     directAnswer:
-      "Sklep internetowy to nie tylko katalog produktów. Potrzebuje logicznych kategorii, wygodnego koszyka, bezpiecznych płatności, obsługi zamówień, SEO technicznego i dobrego działania na telefonie. Zakres dobieram do sposobu sprzedaży oraz liczby produktów.",
+      "Powiedz, co sprzedajesz, ile masz produktów i jak wysyłasz zamówienia. Na tej podstawie dobierzemy katalog, płatności, dostawę i sposób zarządzania. Twój klient wygodnie zrobi zakupy również na telefonie.",
     serviceType: "Projektowanie i tworzenie sklepów internetowych",
     areas: ["Jarosław", "Rzeszów", "Podkarpackie", "Polska"],
     idealFor: [
-      "marek rozpoczynających sprzedaż bezpośrednią",
-      "firm modernizujących wolny lub nieczytelny sklep",
-      "nietypowych procesów zakupowych wymagających dedykowanej logiki",
+      "Zaczynasz sprzedawać swoje produkty w internecie.",
+      "Chcesz poprawić sklep, który jest wolny lub trudny w obsłudze.",
+      "Potrzebujesz zakupów dopasowanych do specyfiki swoich produktów.",
     ],
     benefits: [
       {
         title: "Zakup bez przeszkód",
         description:
-          "Projektuję katalog, kartę produktu i koszyk tak, aby klient zawsze wiedział, co zrobić dalej.",
+          "Twoi klienci łatwo znajdą produkt, poznają jego cenę i przejdą do zamówienia.",
       },
       {
         title: "Bezpieczne płatności",
         description:
-          "Integruję sprawdzonych operatorów płatności bez przechowywania danych kart w aplikacji.",
+          "Wybierzesz operatora płatności, którego połączę z Twoim sklepem. Dane kart obsłuży operator.",
       },
       {
         title: "SEO produktów",
         description:
-          "Dbam o indeksowalne kategorie, unikalne adresy, metadane oraz poprawną strukturę informacji.",
+          "Przygotuję kategorie i karty Twoich produktów tak, żeby Google mogło je odczytać i indeksować.",
       },
       {
         title: "Panel i automatyzacje",
         description:
-          "Ułatwiam zarządzanie ofertą i mogę połączyć sklep z powiadomieniami lub innymi systemami.",
+          "Z panelu zmienisz produkty i ceny. Jeśli potrzebujesz, połączę sklep z Twoim magazynem lub powiadomieniami.",
       },
     ],
     deliverables: [
@@ -308,22 +308,22 @@ export const servicePages: ServicePageData[] = [
       {
         title: "Model sprzedaży",
         description:
-          "Ustalam produkty, warianty, dostawę, płatności, dokumenty i sposób realizacji zamówień.",
+          "Co chcesz sprzedawać i jak realizujesz zamówienia? Wybierzemy odpowiednie płatności i dostawę.",
       },
       {
         title: "Ścieżka klienta",
         description:
-          "Projektuję odnajdywanie produktu, decyzję zakupową i finalizację zamówienia.",
+          "Zobaczysz, jak Twój klient wybierze produkt, doda go do koszyka i złoży zamówienie.",
       },
       {
         title: "Integracje i testy",
         description:
-          "Wdrażam logikę sklepu oraz sprawdzam płatności, błędy, wiadomości i zachowanie na telefonach.",
+          "Przed startem sprawdzę Twój sklep: zamówienia, płatności, wiadomości i widok na telefonie.",
       },
       {
         title: "Uruchomienie sprzedaży",
         description:
-          "Publikuję sklep i przekazuję sposób obsługi produktów oraz zamówień.",
+          "Uruchomię Twój sklep i pokażę Ci, jak dodawać produkty oraz obsługiwać zamówienia.",
       },
     ],
     faq: [
@@ -379,36 +379,36 @@ export const servicePages: ServicePageData[] = [
     eyebrow: "Next.js, React i TypeScript",
     title: "Next.js developer od interfejsu po produkcyjne wdrożenie",
     lead:
-      "Buduję oraz modernizuję aplikacje w Next.js. Łączę Server Components, warstwę danych, bezpieczeństwo i wydajny interfejs w jedną architekturę.",
+      "Masz aplikację w Next.js i potrzebujesz nowych funkcji lub poprawek? Sprawdzę jej kod, wyjaśnię problemy i zaproponuję kolejność prac. Mogę też zbudować dla Ciebie nowy projekt.",
     directAnswer:
       "Pomagam zarówno przy nowej aplikacji Next.js, jak i przy istniejącym kodzie wymagającym audytu, migracji lub poprawy wydajności. Pracuję z aktualnym App Routerem, TypeScript, walidacją danych, relacyjnymi bazami i wdrożeniami Vercel.",
     serviceType: "Tworzenie i rozwój aplikacji Next.js",
     areas: ["Polska", "współpraca zdalna"],
     idealFor: [
-      "produktów budowanych od początku w Next.js",
-      "aplikacji wymagających migracji do App Routera",
-      "zespołów potrzebujących audytu architektury lub wydajności",
+      "Chcesz zbudować nową aplikację w Next.js.",
+      "Masz starszą aplikację Next.js i chcesz ją zaktualizować.",
+      "Potrzebujesz sprawdzenia kodu, szybkości lub bezpieczeństwa aplikacji.",
     ],
     benefits: [
       {
         title: "Aktualne API",
         description:
-          "Implementację opieram na dokumentacji wersji używanej w projekcie, a nie na starych wzorcach frameworka.",
+          "Sprawdzę wersję i dokumentację narzędzi w Twoim projekcie, żeby zmiany pasowały do obecnego kodu.",
       },
       {
         title: "Rozsądny rendering",
         description:
-          "Rozdzielam kod serwerowy i kliencki tak, aby ograniczyć JavaScript bez utraty interaktywności.",
+          "Dobiorę sposób ładowania Twojej aplikacji, żeby nie pobierała niepotrzebnego kodu.",
       },
       {
         title: "Granice bezpieczeństwa",
         description:
-          "Waliduję wejście, chronię sesje i sprawdzam autoryzację po stronie serwera.",
+          "Sprawdzę, czy dostęp do danych w Twojej aplikacji mają tylko uprawnione osoby.",
       },
       {
         title: "Produkcja pod kontrolą",
         description:
-          "Weryfikuję lint, typy, testy, build, cache i zachowanie aplikacji po wdrożeniu.",
+          "Przed publikacją sprawdzę kod i testy Twojej aplikacji. Po wdrożeniu skontroluję najważniejsze funkcje.",
       },
     ],
     deliverables: [
@@ -416,29 +416,29 @@ export const servicePages: ServicePageData[] = [
       "aplikacja Next.js z TypeScript",
       "Server Components i Route Handlers",
       "integracja bazy danych oraz walidacji",
-      "optymalizacja Core Web Vitals",
+      "optymalizacja Wygodne korzystanie na telefonie",
       "testy, CI i wdrożenie produkcyjne",
     ],
     process: [
       {
         title: "Diagnoza",
         description:
-          "Sprawdzam wersję Next.js, strukturę routingu, granice serwer/klient, dane i ryzyka wdrożeniowe.",
+          "Pokaż mi swój projekt i opisz problem. Sprawdzę kod i przedstawię Ci wnioski.",
       },
       {
         title: "Plan techniczny",
         description:
-          "Układam zmiany w małe etapy, które można zweryfikować bez destabilizowania produktu.",
+          "Dostaniesz plan poprawek z podziałem na etapy. Ustalimy, od czego zacząć.",
       },
       {
         title: "Implementacja",
         description:
-          "Wdrażam rozwiązanie zgodnie z dokumentacją konkretnej wersji frameworka.",
+          "Zobaczysz postępy na wersji testowej. Wyjaśnię Ci, co zostało zmienione i dlaczego.",
       },
       {
         title: "Kontrola produkcji",
         description:
-          "Uruchamiam testy i build, a po publikacji sprawdzam prawdziwe ścieżki użytkownika.",
+          "Po testach opublikuję zmiany i sprawdzę najważniejsze zadania w Twojej aplikacji.",
       },
     ],
     faq: [
@@ -463,7 +463,7 @@ export const servicePages: ServicePageData[] = [
           "Tak. Next.js wspiera renderowanie serwerowe, statyczne strony, metadane, sitemapę i dane strukturalne. O wyniku SEO nadal decydują także treść, intencja, linki i konkurencja.",
       },
       {
-        question: "Czy optymalizujesz Core Web Vitals?",
+        question: "Czy optymalizujesz Wygodne korzystanie na telefonie?",
         answer:
           "Tak. Analizuję obrazy, fonty, JavaScript, stabilność layoutu, sposób renderowania oraz rzeczywiste wąskie gardła zamiast optymalizować wynik bez kontekstu.",
       },
@@ -494,36 +494,36 @@ export const servicePages: ServicePageData[] = [
     eyebrow: "Jarosław i Podkarpacie",
     title: "Tworzenie stron internetowych w Jarosławiu",
     lead:
-      "Działam z Jarosławia i tworzę nowoczesne strony dla lokalnych firm, organizacji oraz usługodawców z Podkarpacia.",
+      "Prowadzisz firmę w Jarosławiu lub okolicy? Stworzę dla Ciebie stronę, na której jasno pokażesz ofertę i ułatwisz klientom kontakt.",
     directAnswer:
-      "Firma z Jarosławia może otrzymać kompletną stronę — od uporządkowania oferty i projektu interfejsu po domenę, publikację oraz przygotowanie do indeksowania w Google. Współpraca może przebiegać zdalnie, bez ograniczania obsługi do jednego miasta.",
+      "Opowiedz mi o swojej firmie i klientach, do których chcesz dotrzeć. Przygotuję projekt, pomogę uporządkować ofertę i uruchomię stronę pod Twoją domeną. Możemy uzgadniać wszystko zdalnie, a potrzebne decyzje wyjaśnię Ci na bieżąco.",
     serviceType: "Tworzenie stron internetowych w Jarosławiu",
     areas: ["Jarosław", "powiat jarosławski", "Podkarpackie", "Polska"],
     idealFor: [
-      "lokalnych usług i specjalistów",
-      "restauracji, organizacji oraz małych firm",
-      "marek chcących docierać do klientów z Jarosławia i regionu",
+      "Oferujesz usługi w Jarosławiu lub okolicy.",
+      "Prowadzisz lokalną firmę, restaurację lub organizację.",
+      "Chcesz dotrzeć do klientów z Jarosławia i regionu.",
     ],
     benefits: [
       {
         title: "Lokalny kontekst",
         description:
-          "Treść i strukturę dopasowuję do sposobu, w jaki klienci szukają usług w Jarosławiu i regionie.",
+          "Twoją ofertę przygotuję z myślą o tym, czego szukają klienci w Jarosławiu i okolicy.",
       },
       {
         title: "Wiarygodna prezentacja",
         description:
-          "Pokazuję ofertę, realizacje, obszar działania i dane kontaktowe bez sztucznego przeładowania frazami.",
+          "Pokażesz swoje usługi, realizacje i obszar działania. Klient łatwo znajdzie Twój kontakt.",
       },
       {
-        title: "Techniczne Local SEO",
+        title: "Twoja firma w Google",
         description:
-          "Wdrażam spójne metadane, dane strukturalne, sitemapę i treści odpowiadające lokalnej intencji.",
+          "Przygotuję tytuły podstron i dane o Twojej firmie, żeby wyszukiwarka mogła poprawnie odczytać ofertę.",
       },
       {
         title: "Obsługa po publikacji",
         description:
-          "Mogę pomóc w aktualizacjach, rozwoju treści i diagnozie problemów technicznych.",
+          "Potrzebujesz zmian po publikacji? Możesz wrócić do mnie z nową ofertą, treściami lub problemem technicznym.",
       },
     ],
     deliverables: [
@@ -538,22 +538,22 @@ export const servicePages: ServicePageData[] = [
       {
         title: "Oferta i rynek",
         description:
-          "Ustalam, z jaką usługą i na jakim obszarze firma chce docierać do klientów.",
+          "Jakie usługi chcesz promować i skąd mają pochodzić Twoi klienci?",
       },
       {
         title: "Treść oraz zaufanie",
         description:
-          "Porządkuję korzyści, realizacje, odpowiedzi na pytania i elementy potwierdzające wiarygodność.",
+          "Wspólnie wybierzemy, co pokazać na Twojej stronie: usługi, realizacje i odpowiedzi na pytania klientów.",
       },
       {
         title: "Projekt i wykonanie",
         description:
-          "Tworzę szybki interfejs działający na telefonie i przygotowany do wyszukiwania lokalnego.",
+          "Przygotuję Twoją stronę do wygodnej obsługi na telefonie i do obecności w Google.",
       },
       {
         title: "Publikacja i zgłoszenie",
         description:
-          "Uruchamiam domenę, sitemapę i pomagam przejść przez podstawowe działania w Search Console.",
+          "Uruchomię Twoją stronę i pomogę Ci zgłosić ją do Google.",
       },
     ],
     faq: [
@@ -605,70 +605,70 @@ export const servicePages: ServicePageData[] = [
     shortName: "Strony internetowe Rzeszów",
     metaTitle: "Tworzenie stron internetowych Rzeszów",
     metaDescription:
-      "Tworzenie stron internetowych dla firm z Rzeszowa. Responsywność, SEO techniczne, Core Web Vitals, formularze i wdrożenie.",
+      "Tworzenie stron internetowych dla firm z Rzeszowa. Responsywność, SEO techniczne, Wygodne korzystanie na telefonie, formularze i wdrożenie.",
     eyebrow: "Rzeszów i Podkarpacie",
     title: "Tworzenie stron internetowych dla firm z Rzeszowa",
     lead:
-      "Projektuję strony dla rzeszowskich firm i usługodawców, którzy potrzebują czytelnej oferty, szybkiego działania oraz solidnych podstaw SEO.",
+      "Prowadzisz firmę w Rzeszowie? Pomogę Ci pokazać usługi, realizacje i kontakt na stronie, którą wygodnie otworzą także klienci z telefonu.",
     directAnswer:
-      "Współpraca z firmą z Rzeszowa obejmuje analizę oferty, projekt strony, responsywne wdrożenie, formularze, SEO techniczne i publikację. Działam z Jarosławia, a cały proces może odbyć się zdalnie dla klienta z Rzeszowa lub dowolnego miejsca w Polsce.",
+      "Powiedz, jakie usługi chcesz pokazać i do kogo dotrzeć. Dostaniesz projekt, działającą stronę, formularz kontaktowy i przygotowanie do Google. Działam z Jarosławia — cały projekt dla Twojej firmy z Rzeszowa możemy przeprowadzić zdalnie.",
     serviceType: "Tworzenie stron internetowych dla firm z Rzeszowa",
     areas: ["Rzeszów", "Jarosław", "Podkarpackie", "Polska"],
     idealFor: [
-      "firm usługowych konkurujących na rynku rzeszowskim",
-      "lokali i specjalistów potrzebujących lepszej prezentacji oferty",
-      "marek rozwijających kampanie i widoczność organiczną",
+      "Oferujesz usługi klientom z Rzeszowa.",
+      "Chcesz lepiej pokazać swoją ofertę i dotychczasowe realizacje.",
+      "Przygotowujesz kampanię i potrzebujesz strony dla swojej oferty.",
     ],
     benefits: [
       {
-        title: "Treść zgodna z intencją",
+        title: "Odpowiedzi na pytania klientów",
         description:
-          "Strona odpowiada na pytania klientów z Rzeszowa zamiast jedynie powtarzać nazwę miasta.",
+          "Twoi klienci znajdą odpowiedzi o usługach, obszarze działania i sposobie współpracy.",
       },
       {
-        title: "Konwersja lokalnego ruchu",
+        title: "Prosta droga do kontaktu",
         description:
-          "Eksponuję ofertę, realizacje, kontakt i obszar obsługi w logicznej kolejności.",
+          "Pokażesz ofertę i realizacje, a klient łatwo przejdzie do telefonu lub wiadomości.",
       },
       {
-        title: "Core Web Vitals",
+        title: "Wygodne korzystanie na telefonie",
         description:
-          "Optymalizuję obrazy, fonty i kod, aby ograniczać opóźnienia oraz niestabilność layoutu.",
+          "Zadbam o ładowanie Twojej strony i stabilny układ, także na telefonie.",
       },
       {
         title: "Mierzalne działania",
         description:
-          "Mogę skonfigurować pomiar kliknięć telefonu, formularza lub przejść do mapy.",
+          "Jeśli chcesz, dodam pomiar kliknięć telefonu, formularza i mapy. Zobaczysz, z czego korzystają odwiedzający.",
       },
     ],
     deliverables: [
-      "analiza lokalnej oferty i konkurencyjnych intencji",
+      "omówienie Twojej oferty i potrzeb lokalnych klientów",
       "struktura strony oraz projekt responsywny",
       "sekcje usług, realizacji i FAQ",
       "formularz oraz czytelne dane kontaktowe",
-      "SEO techniczne i dane strukturalne",
+      "techniczne przygotowanie Twojej strony do Google",
       "publikacja, domena i podstawowa analityka",
     ],
     process: [
       {
         title: "Cel biznesowy",
         description:
-          "Ustalam, które usługi i działania klientów są najważniejsze dla firmy na rynku Rzeszowa.",
+          "Jakie usługi chcesz promować w Rzeszowie i do jakich klientów chcesz dotrzeć?",
       },
       {
         title: "Struktura odpowiedzi",
         description:
-          "Buduję treść wokół realnych pytań, obiekcji i powodów wyboru wykonawcy.",
+          "Pomogę Ci odpowiedzieć na pytania Twoich klientów i pokazać, dlaczego warto wybrać Twoją firmę.",
       },
       {
         title: "Projekt i testy",
         description:
-          "Wdrażam interfejs i testuję telefon, formularze, dostępność oraz szybkość.",
+          "Zobaczysz działającą stronę. Sprawdzę kontakt, wyświetlanie na telefonie i szybkość ładowania.",
       },
       {
         title: "Indeksowanie i rozwój",
         description:
-          "Publikuję stronę, udostępniam sitemapę i wskazuję dalsze działania contentowe.",
+          "Opublikuję Twoją stronę, przygotuję ją do Google i podpowiem, jakie treści warto dodać później.",
       },
     ],
     faq: [
@@ -695,7 +695,7 @@ export const servicePages: ServicePageData[] = [
       {
         question: "Czy pomagasz z Google Search Console?",
         answer:
-          "Tak. Mogę przygotować sitemapę, canonicale i stronę do weryfikacji, a właściciel domeny wykonuje działania wymagające zalogowania do swojego konta Google.",
+          "Tak. Przygotuję Twoją stronę do zgłoszenia i pomogę Ci przejść przez konfigurację. Czynności wymagające dostępu do Twojego konta Google wykonasz po swojej stronie.",
       },
       {
         question: "Czy mogę później sam zmieniać treści?",
@@ -705,7 +705,7 @@ export const servicePages: ServicePageData[] = [
       {
         question: "Co jest potrzebne do rozpoczęcia projektu?",
         answer:
-          "Na start wystarczy opis firmy, oferta, grupa klientów, cel strony i przykłady estetyki. Brakujące treści oraz materiały ustalamy podczas analizy.",
+          "Napisz, czym się zajmujesz i w czym strona ma Ci pomóc. Jeśli masz zdjęcia, logo lub przykłady stron, dołącz je. Resztę ustalimy podczas rozmowy.",
       },
     ],
     related: [
