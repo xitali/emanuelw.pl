@@ -403,7 +403,7 @@ details[open] .detail-plus { transform: rotate(45deg); }
   .project-outcome { grid-template-columns: 1fr; gap: 18px; }
   .hero-proof a { margin-left: 0; display: flex; margin-top: 5px; }
 }
-.project-gallery-image { display: block; width: 100%; height: 100%; cursor: zoom-in; }
+.project-gallery-image { position: relative; display: block; width: 100%; height: 100%; cursor: zoom-in; }
 .project-gallery-zoom { position: absolute; right: 12px; bottom: 12px; display: grid; place-items: center; width: 44px; height: 44px; border: 1px solid var(--p-border); border-radius: 5px; background: #0b0d0fe6; color: var(--p-text); }
 .project-image-viewer { min-height: 0; padding: 16px; overflow-y: auto; }
 .project-image-full { position: relative; height: min(65dvh, 700px); }

@@ -618,7 +618,7 @@ export default function AdminDashboardClient({ messages, visitsCount, projects, 
                   <select id="add-category" name="category" defaultValue="web" className="w-full p-3 rounded-xl bg-[var(--p-surface)]  border border-[var(--p-border)] ">
                     <option value="web">Web</option>
                     <option value="e-commerce">E-commerce</option>
-                    <option value="mobile">Mobile</option>
+                    <option value="mobile">Aplikacje mobilne</option><option value="apps">Aplikacje TV i Windows</option>
                   </select>
                 </div>
                 <div>
@@ -712,7 +712,7 @@ export default function AdminDashboardClient({ messages, visitsCount, projects, 
                   <select id="edit-category" name="category" defaultValue={editingProject.category || "web"} className="w-full p-3 rounded-xl bg-[var(--p-surface)]  border border-[var(--p-border)] ">
                     <option value="web">Web</option>
                     <option value="e-commerce">E-commerce</option>
-                    <option value="mobile">Mobile</option>
+                    <option value="mobile">Aplikacje mobilne</option><option value="apps">Aplikacje TV i Windows</option>
                   </select>
                 </div>
                 <div>
@@ -744,3 +744,4 @@ export default function AdminDashboardClient({ messages, visitsCount, projects, 
     </main>
   );
 }
+

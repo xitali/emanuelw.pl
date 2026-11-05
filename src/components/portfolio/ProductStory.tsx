@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import StageVisuals from "./StageVisuals";
 import { IconArrowDown, IconArrowUpRight, layerIcons } from "./icons";
 import { createSceneState, productLayers } from "./three/layers";
@@ -62,6 +63,9 @@ export default function ProductStory({ testimonial }: { testimonial?: Testimonia
   return <section ref={section} className={`product-story offer-story${reduced ? " is-reduced" : ""}`} aria-label="Od celu do działającej strony">
     <div ref={stage} className="product-stage">
       <div className="product-stage-grid" aria-hidden="true" />
+      <div className="hero-portrait-background" aria-hidden="true">
+        <Image src="/emanuel_wloch.jpg" alt="" fill loading="eager" sizes="(max-width: 1023px) 100vw, 50vw" className="hero-portrait-image" />
+      </div>
       <div className="product-hero-copy">
         <p className="portfolio-kicker"><span className="status-dot" /> STRONY DLA FIRM / JAROSŁAW I CAŁA POLSKA</p>
         <h1>Strona, która jasno<br />pokazuje ofertę<br /><span>i ułatwia kontakt.</span></h1>

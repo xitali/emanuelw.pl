@@ -15,6 +15,10 @@ import {
 import { unstable_cache, revalidatePath } from "next/cache";
 import bcrypt from "bcryptjs";
 import { requireServerEnv } from "@/lib/env";
+import { createHash } from "node:crypto";
+
+// A local demo and the live catalogue must never reuse each other's cached data.
+const projectDatabaseKey = createHash("sha256").update(requireServerEnv("TURSO_DATABASE_URL")).digest("hex").slice(0, 16);
 
 export const turso = createClient({
   url: requireServerEnv("TURSO_DATABASE_URL"),
@@ -98,7 +102,7 @@ export const getProjects = unstable_cache(
       return [];
     }
   },
-  ["projects-list", "solidprint-release-2026-11-02"],
+  ["projects-list", "portfolio-galleries-2026-11-05", projectDatabaseKey],
   { revalidate: 3600, tags: ["projects"] }
 );
 

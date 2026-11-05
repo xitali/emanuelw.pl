@@ -1,0 +1,275 @@
+[
+  {
+    "featured": false,
+    "project_url": "",
+    "repository_url": "",
+    "performance_metrics": [],
+    "success_metrics": [],
+    "user_feedback": [],
+    "is_published": false,
+    "id": "69cb521c-5569-4b8c-9fa6-381431b0893e",
+    "slug": "sklep-internetowy-demo",
+    "title": "Sklep internetowy — demo z panelem zarządzania",
+    "short_description": "Chcesz pokazać katalog i wygodnie nim zarządzać? Zobacz demonstracyjny sklep z wyszukiwaniem, filtrami i panelem produktów. Projekt MVP — płatności są symulowane.",
+    "detailed_description": "Projekt własny pokazujący ścieżkę od przeglądania oferty do zarządzania katalogiem. Możesz wyszukać produkt, zawęzić wyniki i otworzyć szybki podgląd. Administrator ma oddzielny panel produktów, kategorii i zamówień. Zrzuty pochodzą z lokalnie uruchomionej aplikacji na odizolowanej bazie demonstracyjnej; produkty, ceny i zdjęcia zastępcze są przykładowe. To prezentacja interfejsu i zakresu MVP, a nie czynny sklep. Płatności są symulowane; obsługa KSeF i dostaw nie została potwierdzona integracją produkcyjną. Podczas przeglądu wykryto niespójność koszyka gościa, która wymaga poprawy przed wdrożeniem sprzedaży.",
+    "technologies": [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Prisma",
+      "SQLite"
+    ],
+    "frontend_technologies": [
+      "React",
+      "Tailwind CSS",
+      "shadcn/ui",
+      "Zustand"
+    ],
+    "backend_technologies": [
+      "Next.js API",
+      "Prisma",
+      "SQLite"
+    ],
+    "tools_and_services": [
+      "Lokalna baza demonstracyjna"
+    ],
+    "images": [
+      "/projects/sklep-internetowy-demo/katalog.webp",
+      "/projects/sklep-internetowy-demo/panel-produktow.webp"
+    ],
+    "image_alts": [
+      "Katalog sklepu demo: wyszukiwanie, kategorie, filtry i produkty ze zdjęciami zastępczymi",
+      "Panel administratora sklepu na danych demo: lista produktów, ceny i stany magazynowe"
+    ],
+    "category": "e-commerce",
+    "project_type": "e-commerce",
+    "project_status": "in-development",
+    "sort_order": 40,
+    "hosting_platform": "Lokalne środowisko demonstracyjne",
+    "key_features": [
+      "Katalog, wyszukiwanie i filtrowanie produktów",
+      "Szybki podgląd produktu",
+      "Panel zarządzania produktami i kategoriami",
+      "Oddzielne role klienta i administratora"
+    ],
+    "design_style": "Jasny interfejs handlowy z różowym akcentem",
+    "color_palette": [
+      "#ffffff",
+      "#f50046",
+      "#06091b"
+    ],
+    "target_audience": "Firmy planujące własny katalog i sklep internetowy",
+    "is_responsive": 1,
+    "accessibility_features": "Etykiety formularzy i kontrolki komponentów; pełny audyt dostępności nie został wykonany.",
+    "main_challenge": "Jak połączyć rozbudowany katalog z panelem, w którym możesz samodzielnie zmieniać ofertę?",
+    "innovation": "Wspólna aplikacja łączy widok klienta i osobny panel administratora, korzystając z jednej struktury produktów.",
+    "project_result": "Uruchomiony lokalnie prototyp katalogu i panelu produktów. Potwierdzono logowanie do panelu demo i otwieranie podglądu produktu. Przed sprzedażą pozostają poprawa koszyka oraz testy płatności, dostaw i dokumentów.",
+    "technical_metrics": [
+      "05.11.2026: aplikacja uruchomiona na osobnej bazie demo; zapisano rzeczywiste ekrany katalogu i panelu."
+    ]
+  },
+  {
+    "featured": false,
+    "project_url": "",
+    "repository_url": "",
+    "performance_metrics": [],
+    "success_metrics": [],
+    "user_feedback": [],
+    "is_published": false,
+    "id": "0b8029af-ea10-4e54-9db9-942ae2858595",
+    "slug": "coco-aplikacja-tv",
+    "title": "COCO — aplikacja telewizyjna dla Samsung Smart TV",
+    "short_description": "Wygodna obsługa pilotem, lista kanałów i program TV w jednym interfejsie. Zobacz autorską aplikację telewizyjną na neutralnych danych demonstracyjnych.",
+    "detailed_description": "COCO to autorski interfejs telewizyjny rozwijany dla Samsung Smart TV i środowiska Tizen. Pilot prowadzi Cię między kanałami, programem TV i opcjami odtwarzania. Lista kanałów pokazuje bieżącą audycję i następny program, a ekran sterowania objaśnia przyciski pilota. Zrzuty wykonano z uruchomionej aplikacji w trybie demo przy układzie 1920 × 1080, pomniejszonym do prezentacji. Kanały i ramówka są przykładowe; osobisty nagłówek został wyłączony z kadru. Przegląd w przeglądarce potwierdza interfejs i nawigację, ale nie jest testem odtwarzania na fizycznym telewizorze ani potwierdzeniem dostępu do komercyjnych kanałów.",
+    "technologies": [
+      "JavaScript",
+      "HTML",
+      "CSS",
+      "Tizen"
+    ],
+    "frontend_technologies": [
+      "JavaScript",
+      "HTML",
+      "CSS"
+    ],
+    "backend_technologies": [],
+    "tools_and_services": [
+      "Samsung AVPlay — integracja w kodzie",
+      "IndexedDB",
+      "Tryb demonstracyjny"
+    ],
+    "images": [
+      "/projects/coco-aplikacja-tv/kanaly-demo.webp",
+      "/projects/coco-aplikacja-tv/sterowanie.webp"
+    ],
+    "image_alts": [
+      "COCO w trybie demo: lista sześciu przykładowych kanałów oraz bieżący i następny program",
+      "COCO: ekran opisujący sterowanie pilotem Samsung podczas oglądania"
+    ],
+    "category": "apps",
+    "project_type": "tv-app",
+    "project_status": "active",
+    "sort_order": 50,
+    "hosting_platform": "Samsung Smart TV / Tizen; lokalny podgląd przeglądarkowy",
+    "key_features": [
+      "Nawigacja dopasowana do pilota",
+      "Lista kanałów z bieżącą i następną audycją",
+      "Program TV i ulubione",
+      "Oddzielny tryb demonstracyjny",
+      "Instrukcja przycisków w aplikacji"
+    ],
+    "design_style": "Czytelny interfejs telewizyjny z dużymi elementami",
+    "color_palette": [
+      "#11151f",
+      "#25262a",
+      "#e5c87d"
+    ],
+    "target_audience": "Użytkownicy telewizorów Samsung Smart TV",
+    "is_responsive": 0,
+    "accessibility_features": "Duże elementy, widoczny fokus i obsługa klawiatury/pilota. Projekt przeznaczony na ekran TV, nie mobilną stronę.",
+    "main_challenge": "Jak wygodnie obsłużyć rozbudowany interfejs samym pilotem, bez myszy i klawiatury?",
+    "innovation": "Informacje o bieżącej i następnej audycji są dostępne przy wyborze kanału, a mapa pilota pozostaje częścią aplikacji.",
+    "project_result": "Działające lokalne demo listy kanałów, ramówki i mapy sterowania. Materiał prezentuje własny interfejs, bez prywatnej playlisty i konta usługodawcy.",
+    "technical_metrics": [
+      "05.11.2026: uruchomiono tryb demo i sprawdzono przejścia pilotem/klawiaturą. Bez nowego testu na fizycznym TV."
+    ]
+  },
+  {
+    "featured": false,
+    "project_url": "",
+    "repository_url": "",
+    "performance_metrics": [],
+    "success_metrics": [],
+    "user_feedback": [],
+    "is_published": false,
+    "id": "c93939ab-72cc-4d88-ab83-7d2d2a28fb46",
+    "slug": "wardogs-companion",
+    "title": "WARDOGS Companion — panel danych dla Windows",
+    "short_description": "Chcesz czytelnie analizować dane zamiast przeglądać surowe rekordy? Zobacz aplikację Windows z historią, wykresami i zestawieniami na przykładowym profilu.",
+    "detailed_description": "Autorska, nieoficjalna aplikacja Windows porządkująca dane postaci z gry WARDOGS. Panel łączy historię pomiarów z wykresem zmian, dziennym bilansem i zestawieniami ról. Możesz przełączać okresy, analizować dni i eksportować historię do CSV. Dodatkowe widoki obejmują odblokowania, zestawy wyposażenia i dane przedmiotów. Zrzuty wykonano z rzeczywistych widoków aplikacji WPF, uruchomionych w odizolowanym podglądzie na fikcyjnym profilu. Widoczne liczby są wyłącznie danymi demonstracyjnymi. Nie uruchamiano synchronizacji konta ani odczytu prywatnej historii. Projekt nie jest powiązany z BULKHEAD, Team17 ani Valve; nazwy gry i materiały gry należą do ich właścicieli.",
+    "technologies": [
+      "C#",
+      ".NET 10",
+      "WPF",
+      "SQLite"
+    ],
+    "frontend_technologies": [
+      "WPF",
+      "XAML"
+    ],
+    "backend_technologies": [
+      "C#",
+      ".NET 10",
+      "SQLite"
+    ],
+    "tools_and_services": [
+      "Eksport CSV",
+      "Lokalna historia danych"
+    ],
+    "images": [
+      "/projects/wardogs-companion/przeglad-demo.webp",
+      "/projects/wardogs-companion/analiza-demo.webp"
+    ],
+    "image_alts": [
+      "WARDOGS Companion: rzeczywisty panel Windows z wykresem i statystykami fikcyjnego profilu demonstracyjnego",
+      "WARDOGS Companion: analiza siedmiu dni na syntetycznych danych demonstracyjnych"
+    ],
+    "category": "apps",
+    "project_type": "desktop-app",
+    "project_status": "active",
+    "sort_order": 60,
+    "hosting_platform": "Windows — aplikacja lokalna",
+    "key_features": [
+      "Panel bieżących danych i wykres historii",
+      "Analiza zmian dzień po dniu",
+      "Zestawienia postępu ról",
+      "Historia pomiarów i eksport CSV",
+      "Oddzielne widoki wyposażenia i odblokowań"
+    ],
+    "design_style": "Ciemny pulpit danych z miętowym akcentem",
+    "color_palette": [
+      "#1d2631",
+      "#293543",
+      "#8de5ce"
+    ],
+    "target_audience": "Użytkownicy Windows potrzebujący czytelnej analizy danych; projekt demonstracyjny na przykładzie gry",
+    "is_responsive": 0,
+    "accessibility_features": "Nawigacja klawiaturą między głównymi widokami; interfejs desktopowy Full HD.",
+    "main_challenge": "Jak pokazać zmiany w czasie i braki w obserwacjach tak, aby użytkownik rozumiał, skąd bierze się wynik?",
+    "innovation": "Historia i bilans dni są prezentowane wraz z zakresem pomiarów oraz informacją o przerwach w danych.",
+    "project_result": "Uruchomiono rzeczywisty panel WPF oraz analizę dni na osobnej bazie demonstracyjnej. Nie zmieniano ustawień ani historii użytkownika. Nie weryfikowano w tej sesji synchronizacji z serwisem źródłowym.",
+    "technical_metrics": [
+      "05.11.2026: podgląd aplikacji zbudowany bez błędów; zapisano dwa widoki WPF na syntetycznym profilu."
+    ]
+  },
+  {
+    "id": "2fc573cd-754a-47f8-bc7e-eabdbd6f5236",
+    "slug": "solid-print",
+    "title": "Solid Print — platforma pracowni druku 3D",
+    "short_description": "Masz model lub pomysł na wydruk? Platforma prowadzi Cię od wyboru usługi do zapytania o wycenę. Zobacz stronę pracowni 3D w publicznej wersji testowej.",
+    "detailed_description": "Strona pracowni projektowania i druku 3D porządkuje trzy punkty startowe: własny model, pomysł do zaprojektowania i gotowy produkt. Wybierasz odpowiednią ścieżkę i przechodzisz do formularza wyceny z podsumowaniem zapytania. Strona główna pokazuje animowaną symulację druku warstwowego, a osobne podstrony objaśniają usługi i materiały. Zrzuty wykonano z działającej wersji solidprint.emanuelwloch.pl, bez wysyłania zapytania ani uruchamiania zamówienia. Projekt pozostaje wersją testową, rozwijaną przed pełnym uruchomieniem działalności; prezentacja nie potwierdza obsługi płatnych zamówień ani dostarczania e-maili.",
+    "technologies": [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Cloudflare",
+      "Payload CMS"
+    ],
+    "frontend_technologies": [
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Three.js"
+    ],
+    "backend_technologies": [
+      "Next.js",
+      "Payload CMS",
+      "Cloudflare D1"
+    ],
+    "tools_and_services": [
+      "Cloudflare Workers",
+      "Cloudflare R2"
+    ],
+    "images": [
+      "/projects/solid-print/strona-glowna.webp",
+      "/projects/solid-print/wycena.webp"
+    ],
+    "image_alts": [
+      "Aktualna strona testowa Solid Print: oferta projektowania i druku 3D oraz symulacja druku warstwowego",
+      "Solid Print: formularz wyceny z wyborem własnego modelu, pomysłu lub gotowego produktu"
+    ],
+    "project_url": "https://solidprint.emanuelwloch.pl/",
+    "repository_url": "",
+    "category": "web",
+    "project_type": "web-app",
+    "featured": true,
+    "project_status": "in-development",
+    "hosting_platform": "Cloudflare Workers / D1 / R2 — wersja testowa",
+    "key_features": [
+      "Trzy ścieżki rozpoczęcia zapytania",
+      "Formularz wyceny z podsumowaniem",
+      "Animowana symulacja druku warstwowego",
+      "Podstrony usług, materiałów i pracowni",
+      "Zaplecze zarządzania treścią"
+    ],
+    "design_style": "Jasny warsztatowy charakter, siatka techniczna i pomarańczowy akcent",
+    "color_palette": [
+      "#f6f4ef",
+      "#191b1c",
+      "#c4470b"
+    ],
+    "target_audience": "Osoby i firmy potrzebujące projektu lub wydruku 3D",
+    "is_responsive": 1,
+    "accessibility_features": "Etykiety formularzy, klawiaturowa nawigacja i odnośnik do treści. Pełna obsługa produkcyjna wymaga dalszej weryfikacji.",
+    "main_challenge": "Jak pomóc Ci rozpocząć zapytanie o druk 3D, nawet jeśli nie masz jeszcze gotowego modelu ani wiedzy technicznej?",
+    "innovation": "Jedna ścieżka wyceny dopasowuje początek formularza do tego, co już masz: plik, pomysł lub wybrany produkt.",
+    "project_result": "Publicznie dostępna wersja testowa strony i formularza wyceny. Potwierdzono otwieranie obu ekranów; nie wysyłano formularza i nie testowano realizacji zamówienia.",
+    "performance_metrics": [],
+    "success_metrics": [],
+    "user_feedback": [],
+    "technical_metrics": [
+      "05.11.2026: rzeczywiste zrzuty strony głównej i formularza na publicznej domenie testowej."
+    ],
+    "is_published": false
+  }
+]

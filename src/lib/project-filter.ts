@@ -17,11 +17,13 @@ export function projectMatchesCategory(
       (mobileCategory) => value.includes(mobileCategory),
     ),
   );
+  const isApp = projectCategories.some((value) => ["apps", "tv-app", "desktop-app"].includes(value));
 
   if (selectedCategory === "e-commerce") return isEcommerce;
   if (selectedCategory === "mobile") return isMobile;
+  if (selectedCategory === "apps") return isApp;
   if (selectedCategory === "web") {
-    return !isEcommerce && !isMobile;
+    return !isEcommerce && !isMobile && !isApp;
   }
 
   return projectCategories.some((value) => value.includes(selectedCategory));

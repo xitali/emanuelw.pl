@@ -1,4 +1,8 @@
 /* Four separate editorial scenes; timing is shared with the HTML stage controls. */
+.hero-portrait-background { position:absolute;pointer-events:none;left:0;top:85px;width:52%;height:min(780px,88svh);z-index:0;overflow:hidden;mask-image:linear-gradient(to right,transparent,#000 22%,#000 63%,transparent 100%); }
+.hero-portrait-background::after { content:"";position:absolute;inset:0;background:linear-gradient(to bottom,var(--p-bg,#0b0d0f),transparent 22%,transparent 52%,var(--p-bg,#0b0d0f) 95%); }
+.hero-portrait-image { object-fit:cover;object-position:center 28%;opacity:.13;filter:grayscale(1); }
+@media(max-width:1023px) { .hero-portrait-background { top:70px;width:100%;height:600px;max-height:85svh; }.hero-portrait-image { opacity:.09;object-position:center 22%; } }
 .hero-stage-scenes { position:absolute;inset:5% 4% 24%;container-type:inline-size; }
 .hero-stage-scene { position:absolute;inset:0;opacity:0;visibility:hidden;transform:translateY(12px) scale(.975);transition:opacity .4s ease,transform .55s cubic-bezier(.22,1,.36,1),visibility .4s; }
 .hero-stage-scene[data-current=true] { opacity:1;visibility:visible;transform:none; }

@@ -13,6 +13,12 @@ const project: Project = {
 };
 
 describe("filtrowanie projektów", () => {
+  it.each(["tv-app", "desktop-app"])("oddziela %s od realizacji internetowych", (type) => {
+    const app = { ...project, category: "apps", project_type: type };
+    expect(projectMatchesCategory(app, "apps")).toBe(true);
+    expect(projectMatchesCategory(app, "web")).toBe(false);
+    expect(projectMatchesCategory(app, "e-commerce")).toBe(false);
+  });
   it("nie nakłada kategorii web i e-commerce", () => {
     expect(projectMatchesCategory(project, "web")).toBe(false);
     expect(projectMatchesCategory(project, "e-commerce")).toBe(true);

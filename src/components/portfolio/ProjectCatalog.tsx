@@ -7,7 +7,7 @@ import { ProjectCard } from "./ProjectShowcase";
 import { projectMatchesCategory } from "@/lib/project-filter";
 
 const ProjectModal = dynamic(() => import("@/components/ProjectModal"));
-const categories = [["all", "Wszystkie"], ["web", "Strony i aplikacje"], ["e-commerce", "Sklepy"], ["mobile", "Aplikacje mobilne"]];
+const categories = [["all", "Wszystkie"], ["web", "Strony i aplikacje internetowe"], ["e-commerce", "Sklepy"], ["mobile", "Aplikacje mobilne"], ["apps", "Aplikacje TV i Windows"]];
 
 export default function ProjectCatalog({ projects, category }: { projects: Project[]; category: string }) {
   const [selected, setSelected] = useState<Project | null>(null);
