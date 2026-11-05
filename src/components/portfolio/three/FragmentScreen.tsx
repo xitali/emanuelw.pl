@@ -1,85 +1,45 @@
 "use client";
 import { useEffect, useMemo, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
-import { BufferGeometry, Float32BufferAttribute, ExtrudeGeometry, Group, Shape, Mesh, MeshBasicMaterial, MeshPhysicalMaterial } from "three";
-import { createScreenTexture, createPhoneTexture } from "./ScreenTexture";
+import { ExtrudeGeometry, Group, MeshBasicMaterial, Shape } from "three";
+import { createScreenTexture, createPhoneTexture, createModuleTexture } from "./ScreenTexture";
 import type { SceneState } from "./layers";
 import { deliveryPose } from "./delivery-pose";
 
-function createPanels() {
-  const width = 4.5, height = 2.85, columns = 3, rows = 2;
-  return Array.from({ length: columns * rows }, (_, index) => {
-    const col = index % columns, row = Math.floor(index / columns);
-    const left = col * width / columns - width / 2, bottom = row * height / rows - height / 2;
-    const points = [[left, bottom], [left + width / columns, bottom], [left + width / columns, bottom + height / rows], [left, bottom + height / rows]];
-    const x = left + width / columns / 2, y = bottom + height / rows / 2;
-    const shape = new Shape();
-    points.forEach((p, i) => { const px = (p[0] - x) * 0.986, py = (p[1] - y) * 0.986; if (i) shape.lineTo(px, py); else shape.moveTo(px, py); });
-    shape.closePath();
-    const body = new ExtrudeGeometry(shape, { depth: 0.06, bevelEnabled: true, bevelSegments: 2, steps: 1, bevelSize: 0.009, bevelThickness: 0.009 });
-    const face = new BufferGeometry();
-    const vertices = [points[0], points[1], points[2], points[0], points[2], points[3]];
-    face.setAttribute("position", new Float32BufferAttribute(vertices.flatMap(p => [(p[0] - x) * 0.986, (p[1] - y) * 0.986, 0.075]), 3));
-    face.setAttribute("uv", new Float32BufferAttribute(vertices.flatMap(p => [p[0] / width + 0.5, p[1] / height + 0.5]), 2));
-    face.computeVertexNormals();
-    return { x, y, body, face };
-  });
+function frame(width: number,height: number,radius: number,depth: number) {
+  const x=-width/2,y=-height/2,w=width,h=height,r=radius,s=new Shape();
+  s.moveTo(x+r,y);s.lineTo(x+w-r,y);s.quadraticCurveTo(x+w,y,x+w,y+r);s.lineTo(x+w,y+h-r);s.quadraticCurveTo(x+w,y+h,x+w-r,y+h);s.lineTo(x+r,y+h);s.quadraticCurveTo(x,y+h,x,y+h-r);s.lineTo(x,y+r);s.quadraticCurveTo(x,y,x+r,y);
+  return new ExtrudeGeometry(s,{depth,bevelEnabled:true,bevelSegments:3,steps:1,bevelSize:.012,bevelThickness:.012,curveSegments:12});
 }
-
+/** A complete browser stays visible through every stage; no fragmented placeholder tiles. */
 export default function FragmentScreen({ state, reduced }: { state: SceneState; reduced: boolean }) {
-  const groups = useRef<(Group | null)[]>([]);
-  const faces = useRef<(MeshBasicMaterial | null)[]>([]);
-  const phone = useRef<Group>(null);
-  const goal = useRef<Group>(null);
-  const bodies = useRef<(MeshPhysicalMaterial | null)[]>([]);
-  const seams = useRef<Mesh>(null);
-  const panels = useMemo(() => createPanels(), []);
-  const connections = useMemo(() => {
-    const geometry = new BufferGeometry();
-    geometry.setAttribute("position", new Float32BufferAttribute([-1.5,.7,0,0,.7,0, 0,.7,0,1.5,.7,0, -1.5,.7,0,-1.5,-.7,0, 0,.7,0,0,-.7,0, 1.5,.7,0,1.5,-.7,0],3));
-    return geometry;
-  }, []);
-  const texture = useMemo(() => createScreenTexture(), []);
-  const phoneTexture = useMemo(() => createPhoneTexture(), []);
-  useEffect(() => () => { panels.forEach(({ body, face }) => { body.dispose(); face.dispose(); }); texture.dispose(); phoneTexture.dispose(); connections.dispose(); }, [panels, texture, phoneTexture, connections]);
-  useFrame(() => {
-    const { spread, reveal, phone: phoneProgress } = deliveryPose(reduced ? 1 : state.progress);
-    panels.forEach(({ x, y }, index) => {
-      const group = groups.current[index];
-      if (!group) return;
-      const side = x / 1.5;
-      group.position.set(x * (1 + spread * 0.24) - phoneProgress * 0.28, y * (1 + spread * 0.32), spread * (index % 3 === 1 ? 0.55 : -0.18));
-      group.rotation.set(-spread * y * 0.1, spread * side * 0.12, 0);
-      if (bodies.current[index]) bodies.current[index]!.opacity = reveal;
-      const material = faces.current[index];
-      if (material) material.opacity = reveal;
-    });
-    if (goal.current) { goal.current.visible = reveal < 1; goal.current.scale.setScalar(1 - reveal * 0.12); }
-    if (seams.current) seams.current.visible = spread > 0.02;
-    if (phone.current) {
-      phone.current.visible = phoneProgress > 0;
-      phone.current.scale.setScalar(Math.max(0.001, phoneProgress));
-      phone.current.position.set(1.9 + (1 - phoneProgress) * 0.3, -0.58, 0.5);
-      phone.current.rotation.y = -0.13;
-    }
+  const browser=useRef<Group>(null), phone=useRef<Group>(null), modules=useRef<Group>(null);
+  const design=useRef<MeshBasicMaterial>(null), ready=useRef<MeshBasicMaterial>(null);
+  const assets=useMemo(()=>({plan:createScreenTexture("plan"),design:createScreenTexture("design"),ready:createScreenTexture("ready"),phone:createPhoneTexture(),contact:createModuleTexture("Kontakt", "Formularz i wiadomości"), management:createModuleTexture("Twoje treści", "Wygodna edycja oferty")}),[]);
+  const frames=useMemo(()=>({browser:frame(5.58,3.76,.12,.1),phone:frame(1.12,2.23,.13,.11)}),[]);
+  useEffect(()=>()=>{Object.values(assets).forEach(t=>t.dispose());Object.values(frames).forEach(g=>g.dispose());},[assets,frames]);
+  useFrame(()=>{
+    const pose=deliveryPose(reduced?1:state.progress);
+    if(browser.current){browser.current.position.set(-pose.phone*.33,pose.spread*.07,0);browser.current.rotation.set(pose.spread*.025,pose.spread*-.035,0);}
+    if(design.current)design.current.opacity=pose.reveal;
+    if(ready.current)ready.current.opacity=Math.max(0,Math.min(1,(state.progress-.56)/.16));
+    if(modules.current){modules.current.visible=pose.spread>.02;modules.current.position.z=.24+pose.spread*.12;modules.current.scale.setScalar(.94+pose.spread*.06);}
+    if(phone.current){phone.current.visible=pose.phone>.001;phone.current.position.set(2.18+(1-pose.phone)*.26,-.64,.56);phone.current.scale.setScalar(Math.max(.001,pose.phone));phone.current.rotation.y=-.08;}
   });
   return <group>
-    <group ref={goal}>
-      <lineSegments geometry={connections}><lineBasicMaterial color="#acd1e8" transparent opacity={0.6} /></lineSegments>
-      {panels.map(({x,y},i) => <group key={i} position={[x,y,0.01]}>
-        <mesh><planeGeometry args={[1.15,.8]} /><meshBasicMaterial color="#14222c" /></mesh>
-        <mesh><planeGeometry args={[1.15,.8]} /><meshBasicMaterial color="#acd1e8" wireframe transparent opacity={0.45} /></mesh>
-        <mesh position={[-.4,.2,.03]}><circleGeometry args={[.035,12]} /><meshBasicMaterial color="#acd1e8" /></mesh>
-      </group>)}
+    <group ref={browser}>
+      <mesh geometry={frames.browser} position={[0,0,-.1]}><meshPhysicalMaterial color="#617e8e" metalness={.8} roughness={.28} clearcoat={.7}/></mesh>
+      <mesh position={[0,0,.016]}><planeGeometry args={[5.46,3.64]}/><meshBasicMaterial map={assets.plan} transparent alphaTest={.01}/></mesh>
+      <mesh position={[0,0,.022]}><planeGeometry args={[5.46,3.64]}/><meshBasicMaterial ref={design} map={assets.design} transparent opacity={0} depthWrite={false}/></mesh>
+      <mesh position={[0,0,.028]}><planeGeometry args={[5.46,3.64]}/><meshBasicMaterial ref={ready} map={assets.ready} transparent opacity={0} depthWrite={false}/></mesh>
+      <group ref={modules} visible={false}>
+        <mesh position={[-1.65,-1.56,0]}><planeGeometry args={[2.15,.71]}/><meshBasicMaterial map={assets.contact} transparent alphaTest={.01}/></mesh>
+        <mesh position={[1.55,1.56,.025]}><planeGeometry args={[2.15,.71]}/><meshBasicMaterial map={assets.management} transparent alphaTest={.01}/></mesh>
+      </group>
     </group>
-    <mesh ref={seams} position={[0, 0, -0.35]}><planeGeometry args={[5, 3.45, 3, 2]} /><meshBasicMaterial color="#acd1e8" wireframe transparent opacity={0.14} /></mesh>
-    {panels.map(({ x, y, body, face }, index) => <group key={index} ref={group => { groups.current[index] = group; }} position={[x, y, 0]}>
-      <mesh geometry={body}><meshPhysicalMaterial ref={material => { bodies.current[index] = material; }} transparent color="#3d5b6c" metalness={0.8} roughness={0.22} clearcoat={1} iridescence={0.22} /></mesh>
-      <mesh geometry={face}><meshBasicMaterial ref={material => { faces.current[index] = material; }} map={texture} transparent /></mesh>
-    </group>)}
     <group ref={phone} visible={false}>
-      <mesh><boxGeometry args={[0.91, 1.83, 0.12]} /><meshPhysicalMaterial color="#9bbdce" metalness={0.9} roughness={0.2} /></mesh>
-      <mesh position={[0, 0, 0.065]}><planeGeometry args={[0.83, 1.73]} /><meshBasicMaterial map={phoneTexture} /></mesh>
+      <mesh geometry={frames.phone} position={[0,0,-.08]}><meshPhysicalMaterial color="#839eac" metalness={.85} roughness={.23} clearcoat={.8}/></mesh>
+      <mesh position={[0,0,.045]}><planeGeometry args={[1.03,2.06]}/><meshBasicMaterial map={assets.phone} transparent alphaTest={.01}/></mesh>
     </group>
   </group>;
 }

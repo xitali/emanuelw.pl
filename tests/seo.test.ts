@@ -68,9 +68,9 @@ describe("SEO service landing pages", () => {
     const jaroslaw = servicePages.find((page) => page.slug.endsWith("jaroslaw"));
     const rzeszow = servicePages.find((page) => page.slug.endsWith("rzeszow"));
 
-    expect(jaroslaw?.lead).toContain("Jarosławia");
+    expect(jaroslaw?.lead).toContain("Jarosławiu");
     expect(rzeszow?.directAnswer).toContain("Działam z Jarosławia");
-    expect(rzeszow?.directAnswer).toContain("klienta z Rzeszowa");
+    expect(rzeszow?.directAnswer).toContain("Twojej firmy z Rzeszowa");
   });
 });
 

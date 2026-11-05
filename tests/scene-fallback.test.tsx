@@ -9,6 +9,6 @@ afterEach(() => { cleanup(); vi.restoreAllMocks(); });
 it("shows the complete static product when WebGL creation fails", () => {
   vi.spyOn(console, "error").mockImplementation(() => {});
   render(<ExplodedScene state={createSceneState()} active compact={false} reduced={false} />);
-  expect(screen.getByText(/Twoja oferta/)).toBeTruthy();
+  expect(screen.getByText(/Twoja firma/)).toBeTruthy();
   expect(document.querySelector("canvas")).toBeNull();
 });

@@ -76,7 +76,7 @@ export default function ServicesPage() {
                 <h1 className="mt-5 max-w-4xl text-[clamp(3rem,6vw,6rem)] font-medium leading-[0.9] tracking-[-0.055em]">Strony, sklepy i aplikacje webowe</h1>
               </div>
               <p className="max-w-xl text-base leading-relaxed text-[var(--p-muted)] sm:text-lg">
-                Wybierz usługę zgodną z celem projektu. Na każdej stronie znajdziesz konkretny zakres, przebieg współpracy, orientacyjne ceny i odpowiedzi na realne pytania klientów.
+                Czego potrzebujesz: strony, sklepu czy własnej aplikacji? Wybierz poniżej, żeby zobaczyć, co otrzymasz, jak będziemy pracować i od czego zależy cena.
               </p>
             </div>
           </div>
@@ -84,7 +84,7 @@ export default function ServicesPage() {
 
         <section className="px-4 py-20 sm:px-6 lg:px-8 lg:py-24" aria-labelledby="core-services">
           <div className="mx-auto max-w-[1280px]">
-            <h2 id="core-services" className="text-3xl font-semibold tracking-[-0.04em] sm:text-5xl">Główne specjalizacje</h2>
+            <h2 id="core-services" className="text-3xl font-semibold tracking-[-0.04em] sm:text-5xl">Co mogę dla Ciebie zrobić?</h2>
             <div className="mt-10 grid gap-4 md:grid-cols-2">
               {primaryPages.map((page, index) => {
                 const Icon = icons[index] ?? Code2;
@@ -107,7 +107,7 @@ export default function ServicesPage() {
           <div className="mx-auto max-w-[1280px]">
             <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--p-accent)] dark:text-[var(--p-accent)]"><MapPin className="size-3.5" /> Podkarpackie i współpraca zdalna</div>
             <h2 id="local-services" className="mt-4 text-3xl font-semibold tracking-[-0.04em] sm:text-5xl">Oferta lokalna</h2>
-            <p className="mt-5 max-w-3xl text-sm leading-7 text-[var(--p-muted)] dark:text-[var(--p-muted)] sm:text-base">Działam z Jarosławia. Rzeszów jest obsługiwanym rynkiem, a projekty dla klientów z całej Polski realizuję również całkowicie zdalnie.</p>
+            <p className="mt-5 max-w-3xl text-sm leading-7 text-[var(--p-muted)] dark:text-[var(--p-muted)] sm:text-base">Prowadzisz firmę w Jarosławiu, Rzeszowie lub innym miejscu w Polsce? Możemy przejść przez cały projekt zdalnie — od pierwszej rozmowy po uruchomienie Twojej strony.</p>
             <div className="mt-9 grid gap-4 md:grid-cols-2">
               {localPages.map((page) => (
                 <Link key={page.path} href={page.path} className="group flex items-center justify-between gap-5 rounded-[var(--p-radius)] border border-[var(--p-border)] p-6 hover:border-[var(--p-border)] dark:border-[var(--p-border)] dark:hover:border-[var(--p-border)]">

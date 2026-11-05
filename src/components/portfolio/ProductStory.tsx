@@ -10,10 +10,10 @@ import { useMotionPaused } from "@/lib/motion/preference";
 
 const Scene = dynamic(() => import("./three/ExplodedScene"), { ssr: false, loading: () => <StaticProduct /> });
 export const deliveryStages = [
-  { title: "Cel", description: "Ustalamy, co klient ma znaleźć i jaki krok wykonać.", detail: "Oferta, odbiorcy i kierunek" },
-  { title: "Projekt", description: "Układam treści i projektuję czytelną drogę do kontaktu.", detail: "Treść, układ i doświadczenie" },
-  { title: "Realizacja", description: "Łączę projekt, formularze i zarządzanie w działającą stronę.", detail: "Interfejs i potrzebne funkcje" },
-  { title: "Wdrożenie", description: "Sprawdzam widok na telefonie, publikuję i omawiam obsługę.", detail: "Testy, publikacja i przekazanie" },
+  { title: "Cel", description: "Co chcesz osiągnąć i jak ma Ci w tym pomóc strona?", detail: "Twój pomysł i potrzeby" },
+  { title: "Projekt", description: "Zobaczysz układ swojej strony i wspólnie dopracujemy szczegóły.", detail: "Tak będzie wyglądała Twoja strona" },
+  { title: "Realizacja", description: "Sprawdzisz swoją stronę, formularze i panel jeszcze przed publikacją.", detail: "Sprawdź, jak to działa" },
+  { title: "Wdrożenie", description: "Otrzymasz gotową stronę pod swoją domeną i pokażę Ci, jak ją obsługiwać.", detail: "Twoja strona jest gotowa" },
 ];
 export default function ProductStory({ testimonial }: { testimonial?: Testimonial }) {
   const section = useRef<HTMLElement>(null);
@@ -58,13 +58,13 @@ export default function ProductStory({ testimonial }: { testimonial?: Testimonia
       <div className="product-hero-copy">
         <p className="portfolio-kicker"><span className="status-dot" /> STRONY DLA FIRM / JAROSŁAW I CAŁA POLSKA</p>
         <h1>Strona, która jasno<br />pokazuje ofertę<br /><span>i ułatwia kontakt.</span></h1>
-        <p className="product-intro">Projektuję i tworzę strony dla firm.<br />Od ustalenia celu po działający produkt i wdrożenie.<br />Sklep lub aplikację dopasuję do Twojego procesu.</p>
+        <p className="product-intro">Potrzebujesz strony dla swojej firmy?<br />Pomogę Ci pokazać ofertę i ułatwić klientom kontakt.<br />Sklep lub aplikacja? Dopasuję je do Twojej firmy.</p>
         <div className="portfolio-actions"><a className="portfolio-button" href="#kontakt">Omów projekt <IconArrowUpRight size={18} /></a><a className="portfolio-text-link" href="#projekty">Zobacz realizacje <IconArrowUpRight size={16} /></a></div>
-        <p className="hero-scope-note">Jasny zakres przed startem. Bezpośrednia współpraca ze mną.</p>
+        <p className="hero-scope-note">Wiesz, co dostaniesz i za ile. Rozmawiasz bezpośrednio ze mną.</p>
         {testimonial && <figure className="hero-proof"><blockquote>„{testimonial.content.split(/(?<=[.!?])\s/)[0]}”</blockquote><figcaption>{testimonial.client_name}{testimonial.company ? ` · ${testimonial.company}` : ""}<a href="#opinie">Przeczytaj opinie <IconArrowUpRight size={13} /></a></figcaption></figure>}
       </div>
       <div className="product-visual" aria-hidden="true">
-        <div className="product-orbit" /><div className="product-orbit orbit-two" />
+
         <div className="product-canvas">{ready && !reduced ? <Scene state={state} active={active} compact={compact} reduced={reduced} /> : <StaticProduct />}</div>
         <div className="delivery-caption"><span>0{phase + 1} / OD POMYSŁU DO PUBLIKACJI</span><strong>{deliveryStages[phase].title}</strong><small>{deliveryStages[phase].detail}</small></div>
       </div>
@@ -75,7 +75,7 @@ export default function ProductStory({ testimonial }: { testimonial?: Testimonia
 }
 export function TechnologyDetails() {
   return <section id="technologie" className="portfolio-stack" aria-labelledby="stack-heading">
-    <div><p className="portfolio-kicker">WARSZTAT</p><h2 id="stack-heading">Technologia wspiera<br /><span>Twój cel.</span></h2><p>Dobieram narzędzia do potrzeb produktu.<br />Od doświadczenia użytkownika po wdrożenie.</p></div>
+    <div><p className="portfolio-kicker">WARSZTAT</p><h2 id="stack-heading">Technologia wspiera<br /><span>Twój cel.</span></h2><p>Nie musisz wybierać technologii.<br />Dobiorę ją do tego, co ma robić Twoja strona lub aplikacja.</p></div>
     <div className="stack-details">{productLayers.map((layer, i) => { const LayerIcon = layerIcons[layer.id as keyof typeof layerIcons]; return <details key={layer.id} open={i === 0}><summary><span>0{i + 1}</span><LayerIcon size={20} />{layer.label}<span className="detail-plus">+</span></summary><p>{layer.description}</p><div className="portfolio-tags">{layer.technologies.map(tech => <span key={tech}>{tech}</span>)}</div></details>; })}</div>
   </section>;
 }

@@ -36,7 +36,7 @@ const extraModules = [
   {
     id: "cms",
     label: "Panel CMS",
-    description: "Samodzielna edycja treści",
+    description: "Samodzielnie zmieniasz treści",
     price: 300,
   },
   {
@@ -155,18 +155,18 @@ export default function ProfessionalServicesSection({
               id="services-heading"
               className="mt-5 max-w-4xl text-[clamp(2.85rem,5.5vw,5.75rem)] font-medium leading-[0.88] tracking-[-0.055em]"
             >
-              Usługi, które
+              Wybierz, czego
               <span className="block text-[var(--p-muted)] dark:text-[var(--p-muted)]">
-                dowożą rezultat.
+                potrzebujesz.
               </span>
             </h2>
           </div>
 
           <div className="max-w-xl lg:justify-self-end">
             <p className="text-base leading-relaxed text-[var(--p-muted)] dark:text-[var(--p-muted)] sm:text-lg">
-              Łączę projektowanie, frontend i zaplecze w jeden spójny proces.
-              Dostajesz działający produkt, jasny zakres i rozwiązania dobrane
-              do realnego celu.
+              Powiedz mi, co chcesz zrobić. Zaproponuję Ci zakres prac,
+              przygotuję projekt i uruchomię gotowe rozwiązanie.
+              Wycena poniżej pomoże Ci zaplanować budżet.
             </p>
             <Link
               href="/uslugi"
@@ -188,7 +188,7 @@ export default function ProfessionalServicesSection({
           >
             <ServicesArtwork />
             <div className="absolute inset-x-0 top-0 z-10 flex items-center justify-between p-6 font-mono text-[9px] uppercase tracking-[0.18em] text-[var(--p-muted)]">
-              <span>Od pomysłu do produkcji</span>
+              <span>Od Twojego pomysłu do gotowej strony</span>
               <span className="flex items-center gap-2">
                 <span className="size-1.5 rounded-[var(--p-radius)] bg-[var(--p-surface)]" />
                 Dostępny
@@ -196,7 +196,7 @@ export default function ProfessionalServicesSection({
             </div>
             <div className="absolute inset-x-0 bottom-0 z-10 p-6 sm:p-7">
               <p className="max-w-sm text-sm leading-relaxed text-[var(--p-muted)]">
-                Każdy etap ma konkretny cel, wynik i miejsce na Twoją decyzję.
+                Na każdym etapie zobaczysz postępy i zdecydujesz, co wymaga dopracowania.
               </p>
             </div>
           </motion.aside>

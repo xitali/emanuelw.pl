@@ -13,8 +13,8 @@ export const metadata: Metadata = {
     "Poznaj wykonawcę swojej strony. Emanuel Włoch z Jarosławia: bezpośrednia współpraca, projektowanie, tworzenie stron i aplikacji oraz wdrożenie.",
   alternates: { canonical: "/o-mnie" },
   openGraph: {
-    title: "Emanuel Włoch — Full-Stack Developer z Jarosławia",
-    description: "Projektuję i wdrażam strony, sklepy oraz aplikacje webowe od interfejsu po bezpieczny backend.",
+    title: "Emanuel Włoch — Strony i aplikacje dla firm",
+    description: "Pomogę Ci zaprojektować i uruchomić stronę, sklep lub aplikację dopasowaną do Twojej firmy.",
     url: `${SITE_URL}/o-mnie`,
     type: "profile",
     images: [{ url: `${SITE_URL}/emanuel_wloch.jpg`, alt: "Emanuel Włoch" }],
@@ -22,11 +22,11 @@ export const metadata: Metadata = {
 };
 
 const expertise = [
-  "Next.js, React i TypeScript",
-  "backend, API oraz relacyjne bazy danych",
-  "wydajność, dostępność i SEO techniczne",
-  "bezpieczeństwo aplikacji i wdrożeń",
-  "Vercel, automatyzacja i utrzymanie produkcji",
+  "Strony i aplikacje w Next.js, React i TypeScript",
+  "Logowanie, dane i połączenia z Twoimi systemami",
+  "Wygodna obsługa, szybkość i przygotowanie do Google",
+  "Ochrona dostępu do Twojej aplikacji i danych",
+  "Uruchomienie pod Twoją domeną i dalszy rozwój",
 ];
 
 export default function AboutPage() {
@@ -81,8 +81,8 @@ export default function AboutPage() {
                 <div>
                   <p className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--p-accent)]"><MapPin className="size-3.5" /> Jarosław / współpraca zdalna</p>
                   <h1 className="mt-5 text-[clamp(3rem,6vw,6.5rem)] font-medium leading-[0.88] tracking-[-0.06em]">Emanuel Włoch</h1>
-                  <p className="mt-6 text-xl font-medium text-[var(--p-muted)] sm:text-2xl">Full-Stack Developer</p>
-                  <p className="mt-6 max-w-3xl text-base leading-8 text-[var(--p-muted)] sm:text-lg">Projektuję i wdrażam cyfrowe produkty od pierwszej struktury interfejsu po bazę danych, bezpieczeństwo oraz produkcyjne uruchomienie. Rozwijam projekty webowe od 2019 roku i stawiam na rozwiązania, które da się mierzyć, utrzymać i dalej rozwijać.</p>
+                  <p className="mt-6 text-xl font-medium text-[var(--p-muted)] sm:text-2xl">Strony, sklepy i aplikacje dla Twojej firmy</p>
+                  <p className="mt-6 max-w-3xl text-base leading-8 text-[var(--p-muted)] sm:text-lg">Potrzebujesz strony, sklepu lub aplikacji? Pomogę Ci przejść od pomysłu do gotowego rozwiązania. Zajmę się projektem, programowaniem i publikacją. Rozwijam projekty webowe od 2019 roku — ze mną rozmawiasz i ze mną pracujesz.</p>
                   <div className="mt-8 flex flex-wrap gap-3">
                     <Link href="/#kontakt" className="portfolio-button">Omów projekt <ArrowRight className="size-4" /></Link>
                     <a href="https://github.com/xitali" target="_blank" rel="me noopener noreferrer" className="portfolio-button portfolio-button--secondary"><Code2 className="size-4" /> GitHub</a>
@@ -94,7 +94,7 @@ export default function AboutPage() {
 
           <section className="px-4 py-20 sm:px-6 lg:px-8 lg:py-24" aria-labelledby="approach-heading">
             <div className="mx-auto grid max-w-[1280px] gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
-              <div><p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--p-accent)] dark:text-[var(--p-accent)]">Sposób pracy</p><h2 id="approach-heading" className="mt-4 text-4xl font-semibold tracking-[-0.045em] sm:text-5xl">Technologia ma rozwiązywać problem</h2><p className="mt-6 text-base leading-8 text-[var(--p-muted)] dark:text-[var(--p-muted)]">Zaczynam od celu użytkownika i ograniczeń projektu. Dopiero później dobieram architekturę, narzędzia i efekty wizualne. Dzięki temu strona nie jest jedynie efektowną wizytówką — ma jasną rolę biznesową i techniczne podstawy do rozwoju.</p></div>
+              <div><p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--p-accent)] dark:text-[var(--p-accent)]">Sposób pracy</p><h2 id="approach-heading" className="mt-4 text-4xl font-semibold tracking-[-0.045em] sm:text-5xl">Najpierw Twój cel. Potem technologia.</h2><p className="mt-6 text-base leading-8 text-[var(--p-muted)] dark:text-[var(--p-muted)]">Powiedz, co chcesz ułatwić swoim klientom lub zespołowi. Zaproponuję potrzebne funkcje i pokażę Ci, jak może wyglądać rozwiązanie. Nie musisz wybierać narzędzi ani znać języka programowania — wyjaśnię Ci decyzje, które mają wpływ na koszt i codzienną obsługę.</p></div>
               <ul className="grid gap-3 sm:grid-cols-2">
                 {expertise.map((item) => <li key={item} className="flex min-h-28 items-start gap-3 rounded-[var(--p-radius)] border border-[var(--p-border)] bg-[var(--p-surface)] p-5 text-sm leading-6 dark:border-[var(--p-border)] dark:bg-[var(--p-surface)]"><Check className="mt-0.5 size-4 shrink-0 text-[var(--p-accent)] dark:text-[var(--p-accent)]" /> {item}</li>)}
               </ul>
@@ -102,9 +102,9 @@ export default function AboutPage() {
           </section>
 
           <section className="border-y border-[var(--p-border)] bg-[var(--p-surface)] px-4 py-20 dark:border-[var(--p-border)] dark:bg-[var(--p-surface)] sm:px-6 lg:px-8">
-            <div className="mx-auto max-w-[1280px]"><h2 className="text-3xl font-semibold tracking-[-0.04em] sm:text-5xl">Sprawdź ofertę i dowody pracy</h2><div className="mt-9 grid gap-4 md:grid-cols-3">
+            <div className="mx-auto max-w-[1280px]"><h2 className="text-3xl font-semibold tracking-[-0.04em] sm:text-5xl">Sprawdź, co mogę zrobić dla Ciebie</h2><div className="mt-9 grid gap-4 md:grid-cols-3">
               <Link href="/uslugi" className="group rounded-[var(--p-radius)] border border-[var(--p-border)] p-6 dark:border-[var(--p-border)]"><h3 className="font-semibold">Usługi</h3><p className="mt-3 text-sm leading-7 text-[var(--p-muted)] dark:text-[var(--p-muted)]">Pełny zakres stron, sklepów, aplikacji i wsparcia Next.js.</p><span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--p-accent)] dark:text-[var(--p-accent)]">Zobacz ofertę <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" /></span></Link>
-              <Link href="/#projekty" className="group rounded-[var(--p-radius)] border border-[var(--p-border)] p-6 dark:border-[var(--p-border)]"><h3 className="font-semibold">Case studies</h3><p className="mt-3 text-sm leading-7 text-[var(--p-muted)] dark:text-[var(--p-muted)]">Problemy, rozwiązania, technologie i efekty ukończonych projektów.</p><span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--p-accent)] dark:text-[var(--p-accent)]">Zobacz realizacje <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" /></span></Link>
+              <Link href="/#projekty" className="group rounded-[var(--p-radius)] border border-[var(--p-border)] p-6 dark:border-[var(--p-border)]"><h3 className="font-semibold">Realizacje</h3><p className="mt-3 text-sm leading-7 text-[var(--p-muted)] dark:text-[var(--p-muted)]">Problemy, rozwiązania, technologie i efekty ukończonych projektów.</p><span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--p-accent)] dark:text-[var(--p-accent)]">Zobacz realizacje <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" /></span></Link>
               <a href={USEME_URL} target="_blank" rel="me noopener noreferrer" className="group rounded-[var(--p-radius)] border border-[var(--p-border)] p-6 dark:border-[var(--p-border)]"><h3 className="font-semibold">Profil Useme</h3><p className="mt-3 text-sm leading-7 text-[var(--p-muted)] dark:text-[var(--p-muted)]">Zewnętrzny profil wykonawcy potwierdzający specjalizację i lokalizację.</p><span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[var(--p-accent)] dark:text-[var(--p-accent)]">Otwórz profil <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" /></span></a>
             </div></div>
           </section>

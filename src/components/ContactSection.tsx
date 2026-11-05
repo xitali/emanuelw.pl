@@ -62,7 +62,7 @@ export default function ContactSection({ settings }: { settings: PublicSiteSetti
     <div className="portfolio-container">
       <header className="portfolio-section-heading">
         <div><p className="portfolio-kicker">04 / KONTAKT</p><h2 id="contact-heading">Porozmawiajmy<br /><span>o Twojej firmie.</span></h2></div>
-        <p>Opisz ofertę firmy i to, co chcesz poprawić.<br />Nie musisz znać technologii ani mieć gotowej specyfikacji.</p>
+        <p>Co chcesz zrobić dla swojej firmy?<br />Napisz, czego potrzebujesz — pomogę Ci ustalić zakres i kolejne kroki.</p>
       </header>
       <div className="contact-layout">
         <div className="contact-info" data-stagger>
@@ -81,7 +81,7 @@ export default function ContactSection({ settings }: { settings: PublicSiteSetti
             <div className="contact-field"><label htmlFor="contact-email">Adres e-mail <span>*</span></label><input id="contact-email" name="email" type="email" autoComplete="email" required placeholder="jan@firma.pl" /></div>
           </div>
           <div className="contact-field"><label htmlFor="contact-subject">Temat <span>opcjonalnie</span></label><input id="contact-subject" name="subject" value={subject} onChange={e => setSubject(e.target.value)} placeholder="O czym porozmawiamy?" /></div>
-          <div className="contact-field"><label htmlFor="contact-message">Wiadomość <span>*</span></label><textarea id="contact-message" name="message" rows={5} required value={message} onChange={e => setMessage(e.target.value)} placeholder="Opisz swój pomysł, zakres i planowany termin." /></div>
+          <div className="contact-field"><label htmlFor="contact-message">Wiadomość <span>*</span></label><textarea id="contact-message" name="message" rows={5} required value={message} onChange={e => setMessage(e.target.value)} placeholder="Czym się zajmujesz? W czym strona lub aplikacja ma Ci pomóc? Jeśli masz termin, też o nim napisz." /></div>
           <div className="contact-field"><label htmlFor="contact-source">Skąd o mnie wiesz? <span>opcjonalnie</span></label><select id="contact-source" name="source" defaultValue="">{contactSources.map(source => <option key={source} value={source}>{source || "Wybierz, jeśli chcesz"}</option>)}</select></div>
           <div className="contact-honeypot" aria-hidden="true"><label htmlFor="contact-website">Strona internetowa</label><input id="contact-website" name="website" tabIndex={-1} autoComplete="off" /></div>
           <div className="contact-form-footer"><p>Wysyłając wiadomość, potwierdzasz zapoznanie się z <Link href="/polityka-prywatnosci">polityką prywatności</Link>.</p><button type="submit" className="portfolio-button" disabled={loading}>{loading ? "Wysyłanie…" : "Wyślij wiadomość"}<IconSend size={17} /></button></div>

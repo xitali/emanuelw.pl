@@ -12,13 +12,13 @@ export interface ProductLayer {
 }
 
 const definitions = [
-  { id: "design", label: "UI / UX", description: "Design, który prowadzi. Czytelna hierarchia, dostępność i dopracowany ruch.", technologies: ["Tailwind CSS", "Motion", "A11y"], color: "#c8dfed" },
-  { id: "frontend", label: "Frontend", description: "Interfejs, który reaguje. Szybkie, responsywne doświadczenie na każdym ekranie.", technologies: ["React", "Next.js", "TypeScript"], color: "#88bddd" },
-  { id: "auth", label: "Bezpieczeństwo", description: "Dostęp pod kontrolą. Podpisane sesje, hashowanie haseł i ochrona zasobów.", technologies: ["JOSE", "bcrypt"], color: "#8a99a5" },
-  { id: "backend", label: "Backend / API", description: "Logika, na której można polegać. Integracje, walidacja i bezpieczne operacje.", technologies: ["Server Actions", "Route Handlers", "Zod"], color: "#7eacca" },
-  { id: "database", label: "Baza danych", description: "Dane na swoim miejscu. Relacyjny model i powtarzalne migracje SQL.", technologies: ["Turso", "libSQL"], color: "#718d9e" },
-  { id: "cloud", label: "Chmura", description: "Miejsce dla całego produktu. Hosting aplikacji i trwałe przechowywanie mediów.", technologies: ["Vercel", "Vercel Blob"], color: "#83949e" },
-  { id: "deployment", label: "Wdrożenie", description: "Od kodu do wdrożenia. Kontrola typów, testy i automatyzacja publikacji.", technologies: ["GitHub", "Vitest", "CI"], color: "#637682" },
+  { id: "design", label: "UI / UX", description: "Twoi klienci łatwo znajdą ofertę i kontakt. Zobaczysz projekt, zanim zacznę programowanie.", technologies: ["Tailwind CSS", "Motion", "A11y"], color: "#c8dfed" },
+  { id: "frontend", label: "Frontend", description: "Twoja strona dopasuje się do telefonu i komputera. Zadbam o wygodną obsługę.", technologies: ["React", "Next.js", "TypeScript"], color: "#88bddd" },
+  { id: "auth", label: "Bezpieczeństwo", description: "Ty decydujesz, kto może edytować treści i przeglądać dane. Zabezpieczę dostęp do panelu.", technologies: ["JOSE", "bcrypt"], color: "#8a99a5" },
+  { id: "backend", label: "Backend / API", description: "Formularze, rezerwacje i połączenia z innymi systemami dopasuję do zadań Twojej firmy.", technologies: ["Server Actions", "Route Handlers", "Zod"], color: "#7eacca" },
+  { id: "database", label: "Baza danych", description: "Ofertę, zamówienia i wiadomości przechowasz w uporządkowanej bazie. Ustalimy, jakie dane są Ci potrzebne.", technologies: ["Turso", "libSQL"], color: "#718d9e" },
+  { id: "cloud", label: "Chmura", description: "Pomogę Ci wybrać miejsce dla Twojej strony, zdjęć i filmów oraz połączyć je z domeną.", technologies: ["Vercel", "Vercel Blob"], color: "#83949e" },
+  { id: "deployment", label: "Wdrożenie", description: "Przed publikacją sprawdzę działanie strony. Po uruchomieniu pokażę Ci, jak z niej korzystać.", technologies: ["GitHub", "Vitest", "CI"], color: "#637682" },
 ] as const;
 
 // A model adapter can replace each part's geometry without changing the timeline.

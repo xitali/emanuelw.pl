@@ -2,14 +2,14 @@
   "id": "/admin",
   "name": "Emanuel Admin",
   "short_name": "Emanuel Admin",
-  "description": "Prywatny panel wiadomości i zarządzania portfolio Emanuela Włocha.",
+  "description": "Panel realizacji, oferty i wiadomości Emanuela Włocha.",
   "start_url": "/admin?source=pwa",
   "scope": "/",
   "lang": "pl",
   "display": "standalone",
   "orientation": "portrait-primary",
-  "background_color": "#060913",
-  "theme_color": "#060913",
+  "background_color": "#0b0d0f",
+  "theme_color": "#0b0d0f",
   "categories": ["business", "productivity"],
   "icons": [
     {

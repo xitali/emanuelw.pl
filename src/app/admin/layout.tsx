@@ -1,7 +1,8 @@
 import type { Metadata, Viewport } from "next";
+import "./admin.css";
 
 export const viewport: Viewport = {
-  themeColor: "#060913",
+  themeColor: "#0b0d0f",
 };
 
 export const metadata: Metadata = {
@@ -21,5 +22,5 @@ export const metadata: Metadata = {
 export default function AdminLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
-  return children;
+  return <div className="admin-site">{children}</div>;
 }

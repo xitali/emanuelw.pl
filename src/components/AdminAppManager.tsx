@@ -262,17 +262,17 @@ export default function AdminAppManager() {
   }
 
   return (
-    <section className="max-w-7xl mx-auto rounded-3xl border border-cyan-200 dark:border-cyan-500/30 bg-cyan-50/80 dark:bg-cyan-950/20 p-5 sm:p-6 space-y-4">
+    <section className="max-w-7xl mx-auto rounded-[var(--p-radius)] border border-[var(--p-border)]  bg-[#acd1e814]  p-5 sm:p-6 space-y-4">
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
         <div className="flex items-start gap-3">
-          <div className="p-3 rounded-2xl bg-cyan-100 dark:bg-cyan-500/20">
-            <Smartphone className="w-6 h-6 text-cyan-700 dark:text-cyan-300" />
+          <div className="p-3 rounded-2xl bg-[#acd1e814] ">
+            <Smartphone className="w-6 h-6 text-[var(--p-accent)] " />
           </div>
           <div>
-            <h2 className="font-bold text-slate-900 dark:text-white">
+            <h2 className="font-bold text-[var(--p-text)] ">
               Emanuel Admin na Androida
             </h2>
-            <p className="text-sm text-slate-600 dark:text-slate-300">
+            <p className="text-sm text-[var(--p-muted)] ">
               Zainstaluj panel na ekranie telefonu i odbieraj powiadomienia o
               nowych wiadomościach.
             </p>
@@ -284,7 +284,7 @@ export default function AdminAppManager() {
             <button
               type="button"
               onClick={installApp}
-              className="px-4 py-2.5 rounded-xl bg-slate-900 text-white dark:bg-white dark:text-slate-900 text-xs font-semibold flex items-center gap-2"
+              className="px-4 py-2.5 rounded-xl bg-[var(--p-surface)] text-white   text-xs font-semibold flex items-center gap-2"
             >
               <Download className="w-4 h-4" />
               Zainstaluj aplikację
@@ -298,7 +298,7 @@ export default function AdminAppManager() {
                   type="button"
                   onClick={sendTestNotification}
                   disabled={loading}
-                  className="px-4 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 disabled:opacity-50 text-white text-xs font-semibold flex items-center gap-2"
+                  className="px-4 py-2.5 rounded-xl admin-primary disabled:opacity-50 text-white text-xs font-semibold flex items-center gap-2"
                 >
                   <Send className="w-4 h-4" />
                   Wyślij test
@@ -307,7 +307,7 @@ export default function AdminAppManager() {
                   type="button"
                   onClick={disableNotifications}
                   disabled={loading}
-                  className="px-4 py-2.5 rounded-xl border border-rose-300 dark:border-rose-500/40 text-rose-700 dark:text-rose-300 text-xs font-semibold flex items-center gap-2"
+                  className="px-4 py-2.5 rounded-xl border border-rose-300  text-rose-700  text-xs font-semibold flex items-center gap-2"
                 >
                   <BellOff className="w-4 h-4" />
                   Wyłącz
@@ -318,7 +318,7 @@ export default function AdminAppManager() {
                 type="button"
                 onClick={enableNotifications}
                 disabled={loading || !publicVapidKey}
-                className="px-4 py-2.5 rounded-xl bg-cyan-600 hover:bg-cyan-500 disabled:opacity-50 text-white text-xs font-semibold flex items-center gap-2"
+                className="px-4 py-2.5 rounded-xl admin-primary disabled:opacity-50 text-white text-xs font-semibold flex items-center gap-2"
               >
                 <Bell className="w-4 h-4" />
                 Włącz powiadomienia
@@ -328,7 +328,7 @@ export default function AdminAppManager() {
       </div>
 
       {isSupported === false && (
-        <p className="text-sm text-rose-700 dark:text-rose-300">
+        <p className="text-sm text-rose-700 ">
           Ta przeglądarka nie obsługuje powiadomień. Otwórz panel w Chrome na
           Androidzie.
         </p>
@@ -338,7 +338,7 @@ export default function AdminAppManager() {
         <p
           role="status"
           aria-live="polite"
-          className="text-sm text-slate-700 dark:text-slate-200"
+          className="text-sm text-[var(--p-text)] "
         >
           {status}
         </p>

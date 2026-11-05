@@ -1,4 +1,4 @@
-.portfolio-home, .portfolio-site, .portfolio-project-dialog {
+.portfolio-home, .portfolio-site, .portfolio-project-dialog, .admin-site {
   --p-bg: #0b0d0f; --p-surface: #13171a; --p-text: #efefea; --p-muted: #a0a7ab;
   --p-accent: #acd1e8; --p-border: #ffffff1c; --p-radius: 12px;
   --p-space: clamp(24px, 5.3vw, 104px); --p-duration: 350ms;
@@ -480,3 +480,16 @@ details[open] .detail-plus { transform: rotate(45deg); }
  .offer-story .delivery-stages strong { font-size: 15px; }
 }
 @media (min-width:1024px) { .offer-story .hero-proof { display:none; } }
+
+/* Keep the first viewport clear of the stage navigation. */
+@media (min-width:1024px) {
+ .offer-story .product-hero-copy .portfolio-actions { margin-top:24px; }
+ .offer-story .hero-scope-note { margin-top:12px; }
+ .offer-story .delivery-caption { bottom:5%; }
+}
+
+.offer-story .static-product { width:80%;left:9%;top:20%;transform:perspective(1200px) rotateY(-7deg);padding:5px;border-color:#6c8a9b;border-radius:12px;background:#526b7a;box-shadow:0 24px 70px #0005; }
+.offer-story .static-product > div { background:radial-gradient(ellipse at 90% 40%,#27495c,#10171c 75%);padding:clamp(18px,3vw,40px);border-radius:8px; }
+.offer-story .static-product strong { font-size:clamp(25px,3.2vw,49px);margin-block:25px; }
+.offer-story .static-product small { font-size:10px;line-height:1.8;letter-spacing:0; }
+@media(max-width:600px) { .offer-story .static-product { top:8%; } .offer-story .static-product strong { margin-block:18px; } }

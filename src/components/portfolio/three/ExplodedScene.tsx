@@ -16,7 +16,7 @@ function Product({ state, compact, reduced }: { state: SceneState; compact: bool
     if (!root.current) return;
     const float = reduced || compact ? 0 : Math.sin(clock.elapsedTime * 0.65) * 0.045;
     const pose = deliveryPose(state.progress);
-    root.current.rotation.set(-0.12 + pose.spread * 0.1, -0.22 + pose.turn, -0.035 * (1 - pose.phone));
+    root.current.rotation.set(-0.035 + pose.spread * 0.02, -0.10 + pose.turn * 0.25, -0.012 * (1 - pose.phone));
     root.current.position.y = float;
   });
   return <>

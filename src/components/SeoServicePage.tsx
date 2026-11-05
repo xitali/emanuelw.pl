@@ -238,7 +238,7 @@ export default function SeoServicePage({ data }: { data: ServicePageData }) {
                     Co zyskujesz?
                   </h2>
                   <p className="mt-5 text-sm leading-relaxed text-[var(--p-muted)] dark:text-[var(--p-muted)] sm:text-base">
-                    Każdy element projektu ma wspierać konkretny cel użytkownika lub firmy.
+                    Zobacz, co ułatwi Twoim klientom kontakt i Tobie codzienną pracę.
                   </p>
                 </div>
                 <div className="grid gap-px overflow-hidden rounded-[var(--p-radius)] border border-[var(--p-border)] bg-[var(--p-surface)] dark:border-[var(--p-border)] dark:bg-[var(--p-surface)] sm:grid-cols-2">
@@ -276,7 +276,7 @@ export default function SeoServicePage({ data }: { data: ServicePageData }) {
                 </ul>
 
                 <div className="mt-10 rounded-[var(--p-radius)] border border-[var(--p-border)] bg-[var(--p-surface)] p-6 dark:border-[var(--p-border)] dark:bg-[var(--p-surface)]">
-                  <h3 className="text-sm font-semibold">Dla kogo?</h3>
+                  <h3 className="text-sm font-semibold">Czy to rozwiązanie dla Ciebie?</h3>
                   <ul className="mt-4 space-y-2 text-sm text-[var(--p-muted)] dark:text-[var(--p-muted)]">
                     {data.idealFor.map((item) => <li key={item}>• {item}</li>)}
                   </ul>
@@ -285,7 +285,7 @@ export default function SeoServicePage({ data }: { data: ServicePageData }) {
 
               <section aria-labelledby="process-heading">
                 <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--p-accent)] dark:text-[var(--p-accent)]">Przebieg współpracy</p>
-                <h2 id="process-heading" className="mt-4 text-3xl font-semibold tracking-[-0.04em] sm:text-4xl">Od celu do produkcji</h2>
+                <h2 id="process-heading" className="mt-4 text-3xl font-semibold tracking-[-0.04em] sm:text-4xl">Jak będziemy pracować?</h2>
                 <ol className="mt-8 space-y-3">
                   {data.process.map((step, index) => (
                     <li key={step.title} className="grid grid-cols-[2.5rem_1fr] gap-4 rounded-[var(--p-radius)] border border-[var(--p-border)] p-5 dark:border-[var(--p-border)]">
@@ -305,7 +305,7 @@ export default function SeoServicePage({ data }: { data: ServicePageData }) {
             <div className="mx-auto max-w-[1280px]">
               <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
                 <div>
-                  <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--p-accent)] dark:text-[var(--p-accent)]">Dowody pracy</p>
+                  <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--p-accent)] dark:text-[var(--p-accent)]">Zobacz moje realizacje</p>
                   <h2 id="examples-heading" className="mt-4 text-3xl font-semibold tracking-[-0.04em] sm:text-4xl">Powiązane realizacje</h2>
                 </div>
                 <Link href="/#projekty" className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--p-accent)] dark:text-[var(--p-accent)]">Wszystkie projekty <ArrowRight className="size-4" /></Link>
@@ -327,7 +327,7 @@ export default function SeoServicePage({ data }: { data: ServicePageData }) {
               <div>
                 <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--p-accent)] dark:text-[var(--p-accent)]">Konkretne odpowiedzi</p>
                 <h2 id="faq-heading" className="mt-4 text-4xl font-semibold tracking-[-0.045em] sm:text-5xl">Najczęstsze pytania</h2>
-                <p className="mt-5 text-sm leading-relaxed text-[var(--p-muted)] dark:text-[var(--p-muted)]">Odpowiedzi są częścią widocznej treści strony — bez ukrywania informacji wyłącznie w danych strukturalnych.</p>
+                <p className="mt-5 text-sm leading-relaxed text-[var(--p-muted)] dark:text-[var(--p-muted)]">Zastanawiasz się nad ceną, terminem lub obsługą strony? Znajdziesz tu odpowiedzi. Jeśli chcesz dopytać o swój projekt, napisz do mnie.</p>
               </div>
               <div className="divide-y divide-slate-200 overflow-hidden rounded-[var(--p-radius)] border border-[var(--p-border)] dark:divide-white/9 dark:border-[var(--p-border)]">
                 {data.faq.map((item, index) => (
@@ -348,7 +348,7 @@ export default function SeoServicePage({ data }: { data: ServicePageData }) {
             <div className="mx-auto max-w-[1280px] overflow-hidden rounded-[var(--p-radius)] bg-[var(--p-surface)] p-7 text-white sm:p-10 lg:flex lg:items-end lg:justify-between lg:gap-12">
               <div>
                 <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--p-accent)]">Następny krok</p>
-                <h2 className="mt-4 max-w-3xl text-3xl font-semibold tracking-[-0.04em] sm:text-5xl">Opowiedz, jaki rezultat ma dać projekt.</h2>
+                <h2 className="mt-4 max-w-3xl text-3xl font-semibold tracking-[-0.04em] sm:text-5xl">W czym strona lub aplikacja ma Ci pomóc?</h2>
                 <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2 text-xs text-[var(--p-muted)]">
                   {data.related.map((item) => <Link key={item.href} href={item.href} className="hover:text-[var(--p-accent)]">{item.label}</Link>)}
                 </div>

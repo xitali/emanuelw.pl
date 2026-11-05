@@ -5,8 +5,8 @@ import type { SceneState } from "./layers";
 export function SceneCamera({ state, compact }: { state: SceneState; compact: boolean }) {
   useFrame(({ camera, size }) => {
     const distance = (compact ? 9 : 10.1) - state.zoom * 0.6;
-    const widthFit = (4.9 + state.explosion * 2.8) / (2 * Math.tan(Math.PI / 10) * (size.width / size.height));
-    const heightFit = (3.6 + state.explosion * 1.5) / (2 * Math.tan(Math.PI / 10));
+    const widthFit = 6.3 / (2 * Math.tan(Math.PI / 10) * (size.width / size.height));
+    const heightFit = 4.6 / (2 * Math.tan(Math.PI / 10));
     camera.position.set(0, 0, Math.max(distance, widthFit, heightFit) + state.retreat * 6);
     camera.lookAt(0, 0, 0);
   });

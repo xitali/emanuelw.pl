@@ -31,7 +31,8 @@ export default async function AdminPage({ searchParams }: AdminPageProps) {
   ]);
 
   return (
-    <><EmailStatus /><ConversionSummary /><AdminDashboardClient
+    <AdminDashboardClient
+      summary={<div className="admin-status-grid"><EmailStatus /><ConversionSummary /></div>}
       messages={messages}
       visitsCount={visitsCount}
       projects={projects}
@@ -40,6 +41,6 @@ export default async function AdminPage({ searchParams }: AdminPageProps) {
       analytics={analytics}
       initialTab={params.tab === "messages" ? "messages" : "projects"}
       initialMessageId={params.message}
-    /></>
+    />
   );
 }
