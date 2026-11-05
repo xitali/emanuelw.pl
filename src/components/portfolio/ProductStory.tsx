@@ -1,19 +1,17 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import dynamic from "next/dynamic";
+import StageVisuals from "./StageVisuals";
 import { IconArrowDown, IconArrowUpRight, layerIcons } from "./icons";
 import { createSceneState, productLayers } from "./three/layers";
 import { createScrollTimeline } from "./three/ScrollTimeline";
-import StaticProduct from "./three/StaticProduct";
 import type { Testimonial } from "@/types";
 import { useMotionPaused } from "@/lib/motion/preference";
 
-const Scene = dynamic(() => import("./three/ExplodedScene"), { ssr: false, loading: () => <StaticProduct /> });
 export const deliveryStages = [
   { title: "Cel", description: "Co chcesz osiągnąć i jak ma Ci w tym pomóc strona?", detail: "Twój pomysł i potrzeby" },
-  { title: "Projekt", description: "Zobaczysz układ swojej strony i wspólnie dopracujemy szczegóły.", detail: "Tak będzie wyglądała Twoja strona" },
-  { title: "Realizacja", description: "Sprawdzisz swoją stronę, formularze i panel jeszcze przed publikacją.", detail: "Sprawdź, jak to działa" },
-  { title: "Wdrożenie", description: "Otrzymasz gotową stronę pod swoją domeną i pokażę Ci, jak ją obsługiwać.", detail: "Twoja strona jest gotowa" },
+  { title: "Projekt", description: "Razem omówimy wygląd i rozrysujemy Twoją stronę.", detail: "Tak będzie wyglądała Twoja strona" },
+  { title: "Realizacja", description: "Sprawdzisz stronę na komputerze, tablecie i telefonie.", detail: "Sprawdź, jak to działa" },
+  { title: "Wdrożenie", description: "Uruchomię Twoją stronę i pokażę Ci, jak ją obsługiwać.", detail: "Twoja strona jest gotowa" },
 ];
 export default function ProductStory({ testimonial }: { testimonial?: Testimonial }) {
   const section = useRef<HTMLElement>(null);
@@ -37,7 +35,7 @@ export default function ProductStory({ testimonial }: { testimonial?: Testimonia
       Object.assign(state, { progress: reduce ? 1 : 0, explosion: 0, turn: 0, zoom: 0, retreat: 0 });
       setPhase(reduce ? 3 : 0);
       frame = requestAnimationFrame(() => {
-        if (section.current && !reduce) cleanup = createScrollTimeline(section.current, state, mobile.matches, setPhase);
+        if (section.current && !reduce && !mobile.matches) cleanup = createScrollTimeline(section.current, state, false, setPhase);
         state.invalidate();
       });
     };
@@ -52,6 +50,15 @@ export default function ProductStory({ testimonial }: { testimonial?: Testimonia
     document.addEventListener("visibilitychange", visibility);
     return () => { cancelAnimationFrame(frame); cleanup?.(); observer.disconnect(); mobile.removeEventListener("change", setup); motion.removeEventListener("change", setup); document.removeEventListener("visibilitychange", visibility); };
   }, [state, paused]);
+  const selectPhase = (index: number) => {
+    if (compact || reduced) {
+      state.seek((index + 0.5) / 4);
+      setPhase(index);
+    } else if (section.current) {
+      const bounds = section.current.getBoundingClientRect();
+      window.scrollTo({ top: window.scrollY + bounds.top + Math.max(0, bounds.height - innerHeight) * (index + 0.5) / 4, behavior: "smooth" });
+    }
+  };
   return <section ref={section} className={`product-story offer-story${reduced ? " is-reduced" : ""}`} aria-label="Od celu do działającej strony">
     <div ref={stage} className="product-stage">
       <div className="product-stage-grid" aria-hidden="true" />
@@ -63,12 +70,13 @@ export default function ProductStory({ testimonial }: { testimonial?: Testimonia
         <p className="hero-scope-note">Wiesz, co dostaniesz i za ile. Rozmawiasz bezpośrednio ze mną.</p>
         {testimonial && <figure className="hero-proof"><blockquote>„{testimonial.content.split(/(?<=[.!?])\s/)[0]}”</blockquote><figcaption>{testimonial.client_name}{testimonial.company ? ` · ${testimonial.company}` : ""}<a href="#opinie">Przeczytaj opinie <IconArrowUpRight size={13} /></a></figcaption></figure>}
       </div>
-      <div className="product-visual" aria-hidden="true">
+      <div className="product-visual">
 
-        <div className="product-canvas">{ready && !reduced ? <Scene state={state} active={active} compact={compact} reduced={reduced} /> : <StaticProduct />}</div>
+        <StageVisuals phase={phase} state={state} active={active} compact={compact} reduced={reduced} ready={ready} />
         <div className="delivery-caption"><span>0{phase + 1} / OD POMYSŁU DO PUBLIKACJI</span><strong>{deliveryStages[phase].title}</strong><small>{deliveryStages[phase].detail}</small></div>
+        <div className="hero-scene-tabs" aria-label="Wybierz etap">{deliveryStages.map((step,index) => <button key={step.title} type="button" aria-pressed={phase===index} onClick={()=>selectPhase(index)}>{step.title}</button>)}</div>
       </div>
-      <ol className="delivery-stages" aria-label="Etapy powstawania strony">{deliveryStages.map((step, index) => <li key={step.title} className={phase === index ? "is-current" : ""} aria-current={phase === index ? "step" : undefined}><span>0{index + 1}</span><div><strong>{step.title}</strong><p>{step.description}</p></div></li>)}</ol>
+      <ol className="delivery-stages" aria-label="Etapy powstawania strony">{deliveryStages.map((step, index) => <li key={step.title} className={phase === index ? "is-current" : ""} aria-current={phase === index ? "step" : undefined}><button type="button" className="delivery-stage-trigger" aria-label={`Pokaż etap: ${step.title}`} aria-pressed={phase===index} onClick={()=>selectPhase(index)}><span>0{index + 1}</span><div><strong>{step.title}</strong><p>{step.description}</p></div></button></li>)}</ol>
       <div className="product-stage-footer"><a href="#uslugi"><IconArrowDown size={15} /><span>POZNAJ MOJĄ OFERTĘ</span></a><span className="product-footer-note">CEL → PROJEKT → REALIZACJA → WDROŻENIE</span><button className="motion-toggle" aria-pressed={paused} onClick={() => setPaused(!paused)}>{paused ? "Włącz animacje" : "Ogranicz ruch"}</button></div>
     </div>
   </section>;

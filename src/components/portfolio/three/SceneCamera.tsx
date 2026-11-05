@@ -2,12 +2,12 @@
 import { useFrame } from "@react-three/fiber";
 import type { SceneState } from "./layers";
 
-export function SceneCamera({ state, compact }: { state: SceneState; compact: boolean }) {
+export function SceneCamera({ compact }: { state: SceneState; compact: boolean }) {
   useFrame(({ camera, size }) => {
-    const distance = (compact ? 9 : 10.1) - state.zoom * 0.6;
-    const widthFit = 6.3 / (2 * Math.tan(Math.PI / 10) * (size.width / size.height));
-    const heightFit = 4.6 / (2 * Math.tan(Math.PI / 10));
-    camera.position.set(0, 0, Math.max(distance, widthFit, heightFit) + state.retreat * 6);
+    const distance = compact ? 0.1 : 0;
+    const widthFit = 6.4 / (2 * Math.tan(Math.PI / 10) * (size.width / size.height));
+    const heightFit = 4.2 / (2 * Math.tan(Math.PI / 10));
+    camera.position.set(0, 0, Math.max(widthFit, heightFit) + distance);
     camera.lookAt(0, 0, 0);
   });
   return null;

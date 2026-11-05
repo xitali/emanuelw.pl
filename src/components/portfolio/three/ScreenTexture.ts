@@ -63,3 +63,18 @@ export function createPhoneTexture() {
   c.fillStyle="#a0a7ab";c.font="22px Arial";c.fillText("Poznaj moją ofertę",30,743);
   c.fillStyle="#070b0d";c.beginPath();c.roundRect(151,12,118,26,13);c.fill();return finish(canvas);
 }
+
+
+export function createTabletTexture() {
+  const { canvas, ctx:c } = surface(750, 1024);
+  c.beginPath();c.roundRect(0,0,750,1024,32);c.clip();c.fillStyle="#10171c";c.fillRect(0,0,750,1024);
+  c.fillStyle="#acd1e8";c.font="600 30px Arial";c.fillText("Twoja firma",44,74);
+  c.fillStyle="#a0a7ab";c.font="20px Arial";c.fillText("Oferta    Kontakt",500,72);
+  c.fillStyle="#efefea";c.font="500 64px Arial";c.fillText("Twoja firma.",44,217);c.fillText("Dobrze pokazana.",44,296);
+  c.fillStyle="#afc5d2";c.font="27px Arial";c.fillText("Poznaj ofertę i porozmawiajmy.",44,353);
+  const g=c.createLinearGradient(44,400,710,690);g.addColorStop(0,"#284b60");g.addColorStop(1,"#132731");c.fillStyle=g;c.beginPath();c.roundRect(44,400,662,301,18);c.fill();
+  for(let i=0;i<3;i++){const y=462+i*46;c.fillStyle=i===2?"#acd1e8":"#6f97ac66";c.strokeStyle="#88b0c5";c.lineWidth=2;c.beginPath();c.moveTo(220,y+25);c.lineTo(369,y-40);c.lineTo(527,y+25);c.lineTo(378,y+92);c.closePath();c.fill();c.stroke();}
+  c.fillStyle="#acd1e8";c.beginPath();c.roundRect(44,747,300,65,10);c.fill();c.fillStyle="#14232c";c.font="500 26px Arial";c.fillText("Porozmawiajmy  ↗",78,790);
+  ["Oferta", "Realizacje", "Kontakt"].forEach((label,i)=>{const x=44+i*227;c.fillStyle="#1d303c";c.beginPath();c.roundRect(x,864,208,110,12);c.fill();c.fillStyle="#d6e4ed";c.font="25px Arial";c.fillText(label,x+24,924);});
+  return finish(canvas);
+}

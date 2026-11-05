@@ -38,12 +38,13 @@ export interface SceneState {
   zoom: number;
   retreat: number;
   invalidate: () => void;
+  seek: (progress: number) => void;
   connect: (invalidate: () => void) => () => void;
 }
 
 export function createSceneState(): SceneState {
   // Imperative animation store: GSAP owns values, React owns its lifecycle.
-  const state: SceneState = { progress: 0, explosion: 0, turn: 0, zoom: 0, retreat: 0, invalidate: () => {}, connect(invalidate) {
+  const state: SceneState = { progress: 0, explosion: 0, turn: 0, zoom: 0, retreat: 0, invalidate: () => {}, seek(progress) { state.progress = Math.max(0, Math.min(1, progress)); state.invalidate(); }, connect(invalidate) {
     state.invalidate = invalidate;
     invalidate();
     return () => { state.invalidate = () => {}; };
