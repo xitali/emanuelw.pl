@@ -18,7 +18,7 @@ html.motion-paused *, html.motion-paused *::before, html.motion-paused *::after 
 /* —— Stany początkowe animacji (ustawiane PRZED hydracją; zdejmowane przez MotionLayer / failsafe) —— */
 .js-motion .portfolio-home [data-reveal]:not([data-reveal="clip"]):not([data-reveal="line"]),
 .js-motion .portfolio-site [data-reveal]:not([data-reveal="clip"]):not([data-reveal="line"]),
-.js-motion [data-stagger] > * { opacity: 0; transform: translate3d(0, 34px, 0); }
+.js-motion [data-stagger] > * { opacity: 0; }
 .js-motion [data-reveal="clip"] { clip-path: inset(100% 0% 0% 0% round 12px); }
 .js-motion [data-reveal="line"] { transform: scaleX(0); transform-origin: left center; }
 .js-motion .product-hero-copy h1,

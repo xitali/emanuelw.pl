@@ -89,13 +89,13 @@ export default function MotionLayer() {
           } else if (kind === "line") {
             gsap.to(el, { scaleX: 1, duration: 1.4, ease: ease.inOut, scrollTrigger: trigger });
           } else {
-            gsap.to(el, { opacity: 1, y: 0, duration: 1, ease: ease.out, clearProps: "transform", scrollTrigger: trigger });
+            gsap.fromTo(el, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 1, ease: ease.out, clearProps: "transform", scrollTrigger: trigger });
           }
         });
         gsap.utils.toArray<HTMLElement>("[data-stagger]", scope).forEach(group => {
           if (bound.has(group)) return;
           bound.add(group);
-          gsap.to(Array.from(group.children), {
+          gsap.fromTo(Array.from(group.children), { opacity: 0, y: 16 }, {
             opacity: 1, y: 0, duration: 1, ease: ease.out, stagger: 0.11, clearProps: "transform",
             scrollTrigger: { trigger: group, start: "top 86%", once: true },
           });

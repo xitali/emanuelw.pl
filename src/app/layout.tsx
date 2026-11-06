@@ -4,6 +4,7 @@ import "./globals.css";
 import "@/components/portfolio/portfolio.css";
 import "@/components/portfolio/premium.css";
 import "@/components/portfolio/hero-scenes.css";
+import "@/components/portfolio/readability.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 
 const geistSans = Geist({
