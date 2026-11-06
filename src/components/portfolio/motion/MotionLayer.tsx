@@ -137,7 +137,7 @@ export default function MotionLayer() {
             const y = self.scroll();
             nav.classList.toggle("is-scrolled", y > 24);
             const menuOpen = Boolean(nav.querySelector("nav.is-open"));
-            nav.classList.toggle("is-hidden", self.direction === 1 && y > 720 && !menuOpen);
+            nav.classList.toggle("is-hidden", self.direction === 1 && y > 720 && !menuOpen && !root.hasAttribute("data-navigation-scroll"));
           },
         });
       }

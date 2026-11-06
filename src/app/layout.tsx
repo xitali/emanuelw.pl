@@ -6,6 +6,7 @@ import "@/components/portfolio/premium.css";
 import "@/components/portfolio/hero-scenes.css";
 import "@/components/portfolio/readability.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import NavigationScroll from "@/components/NavigationScroll";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -110,6 +111,7 @@ export default function RootLayout({
   return (
     <html
       lang="pl"
+      data-scroll-behavior="smooth"
       suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased scroll-smooth scroll-pt-28`}
     >
@@ -123,6 +125,7 @@ export default function RootLayout({
           enableSystem={false}
           disableTransitionOnChange
         >
+          <NavigationScroll />
           {children}
         </ThemeProvider>
       </body>

@@ -1,3 +1,5 @@
+import { scrollToSection } from "@/lib/navigation-scroll";
+
 export const CONTACT_PREFILL_EVENT = "contact:prefill";
 
 export interface ContactPrefill {
@@ -31,8 +33,7 @@ export function openContactForm(prefill: ContactPrefill) {
     }),
   );
 
-  const contactSection = document.getElementById("kontakt");
-  contactSection?.scrollIntoView({ behavior: "smooth", block: "start" });
+  scrollToSection("kontakt");
 
   window.setTimeout(() => {
     document.getElementById("contact-subject")?.focus({ preventScroll: true });
