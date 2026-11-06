@@ -63,15 +63,15 @@ export default function ProductStory({ testimonial }: { testimonial?: Testimonia
   return <section ref={section} className={`product-story offer-story${reduced ? " is-reduced" : ""}`} aria-label="Od celu do działającej strony">
     <div ref={stage} className="product-stage">
       <div className="product-stage-grid" aria-hidden="true" />
-      <div className="hero-portrait-background" aria-hidden="true">
-        <Image src="/emanuel_wloch.jpg" alt="" fill loading="eager" sizes="(max-width: 1023px) 100vw, 50vw" className="hero-portrait-image" />
-      </div>
       <div className="product-hero-copy">
         <p className="portfolio-kicker"><span className="status-dot" /> STRONY DLA FIRM / JAROSŁAW I CAŁA POLSKA</p>
         <h1>Strona, która jasno<br />pokazuje ofertę<br /><span>i ułatwia kontakt.</span></h1>
         <p className="product-intro">Potrzebujesz strony dla swojej firmy?<br />Pomogę Ci pokazać ofertę i ułatwić klientom kontakt.<br />Sklep lub aplikacja? Dopasuję je do Twojej firmy.</p>
         <div className="portfolio-actions"><a className="portfolio-button" href="#kontakt">Omów projekt <IconArrowUpRight size={18} /></a><a className="portfolio-text-link" href="#projekty">Zobacz realizacje <IconArrowUpRight size={16} /></a></div>
-        <p className="hero-scope-note">Wiesz, co dostaniesz i za ile. Rozmawiasz bezpośrednio ze mną.</p>
+        <div className="hero-person">
+          <Image src="/emanuel_wloch.jpg" alt="Emanuel Włoch" width={48} height={48} sizes="(max-width: 1023px) 40px, 48px" className="hero-person-photo" />
+          <div><strong>Emanuel Włoch</strong><p>Porozmawiasz bezpośrednio ze mną o swoim projekcie.</p></div>
+        </div>
         {testimonial && <figure className="hero-proof"><blockquote>„{testimonial.content.split(/(?<=[.!?])\s/)[0]}”</blockquote><figcaption>{testimonial.client_name}{testimonial.company ? ` · ${testimonial.company}` : ""}<a href="#opinie">Przeczytaj opinie <IconArrowUpRight size={13} /></a></figcaption></figure>}
       </div>
       <div className="product-visual">

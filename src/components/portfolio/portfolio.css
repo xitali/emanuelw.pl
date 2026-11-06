@@ -423,7 +423,6 @@ details[open] .detail-plus { transform: rotate(45deg); }
 .offer-story .product-hero-copy h1 { font-size: clamp(42px, 4.5vw, 82px); line-height: 1.05; letter-spacing: -.06em; }
 .offer-story .product-intro { font-size: clamp(13px, 1.15vw, 17px); line-height: 1.8; }
 .offer-story .product-visual { inset: 9% 0 26% 47%; }
-.hero-scope-note { color: var(--p-muted); font-size: 11px; line-height: 1.7; margin-top: 18px; }
 .offer-story .hero-proof { max-width: 420px; margin-top: 20px; }
 .delivery-caption { position: absolute; left: 14%; bottom: 1%; display: grid; gap: 7px; }
 .delivery-caption > span { font: 9px var(--font-geist-mono), monospace; letter-spacing: .1em; color: var(--p-muted); }
@@ -484,7 +483,6 @@ details[open] .detail-plus { transform: rotate(45deg); }
 /* Keep the first viewport clear of the stage navigation. */
 @media (min-width:1024px) {
  .offer-story .product-hero-copy .portfolio-actions { margin-top:24px; }
- .offer-story .hero-scope-note { margin-top:12px; }
  .offer-story .delivery-caption { bottom:5%; }
 }
 
