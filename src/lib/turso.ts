@@ -102,7 +102,7 @@ export const getProjects = unstable_cache(
       return [];
     }
   },
-  ["projects-list", "portfolio-galleries-published-2026-11-05", projectDatabaseKey],
+  ["projects-list", "premium-copy-v2-2026-11-07", projectDatabaseKey],
   { revalidate: 3600, tags: ["projects"] }
 );
 
@@ -163,7 +163,7 @@ export const getServices = unstable_cache(
       return [];
     }
   },
-  ["services-list"],
+  ["services-list", "premium-copy-v2-2026-11-07", projectDatabaseKey],
   { revalidate: 3600 }
 );
 

@@ -33,7 +33,8 @@ export function openContactForm(prefill: ContactPrefill) {
     }),
   );
 
-  scrollToSection("kontakt");
+  // Reach the form before its delayed focus can interrupt a long smooth scroll.
+  scrollToSection("kontakt", false);
 
   window.setTimeout(() => {
     document.getElementById("contact-subject")?.focus({ preventScroll: true });

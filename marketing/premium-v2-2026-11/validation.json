@@ -1,0 +1,24 @@
+{
+  "landscape": {
+    "ok": true,
+    "contrastChecked": 36,
+    "errors": 0,
+    "warnings": 0,
+    "width": 1920,
+    "height": 1080,
+    "seconds": 25,
+    "frames": 750,
+    "audio": "AAC, mean -27.2 dB, peak -9.2 dB; technically checked, human listening not verified"
+  },
+  "vertical": {
+    "ok": true,
+    "contrastChecked": 36,
+    "errors": 0,
+    "warnings": 0,
+    "width": 1080,
+    "height": 1920,
+    "seconds": 25,
+    "frames": 750,
+    "audio": "AAC, mean -27.2 dB, peak -9.2 dB; technically checked, human listening not verified"
+  }
+}

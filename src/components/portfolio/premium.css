@@ -26,7 +26,8 @@ html.motion-paused *, html.motion-paused *::before, html.motion-paused *::after 
 .js-motion .portfolio-about h2,
 .js-motion .portfolio-stack h2 { visibility: hidden; }
 .js-motion .product-hero-copy > :not(h1), .js-motion .product-visual { opacity: 0; }
-.split-line { padding-block: .09em; margin-block: -.09em; } /* maska nie ucina ogonków g, y, p, ą, ę */
+.split-line { padding-block: .1em .14em; margin-block: -.1em -.14em; }
+:is(h1,h2) :is(div[style*="overflow"],[class*="-mask"]) { overflow-clip-margin: .2em; } /* maska nie ucina ogonków g, y, p, ą, ę */
 
 /* —— Pasek postępu —— */
 .scroll-progress { position: fixed; inset: 0 0 auto; height: 2px; z-index: 70; pointer-events: none; }
@@ -100,11 +101,6 @@ html.motion-paused *, html.motion-paused *::before, html.motion-paused *::after 
 .service-path-card:hover, .testimonial-card:hover { transform: translateY(-6px); border-color: #acd1e844; }
 .service-path-card > .ew-icon-badge { margin-bottom: 22px; }
 .service-path-card h3 { margin-top: 12px; }
-.showcase-card { transform-style: preserve-3d; }
-.project-media { border-color: #ffffff1f; box-shadow: 0 30px 80px -40px #000, inset 0 1px 0 #ffffff14; transition: border-color .5s, box-shadow .6s var(--ease-out); background: radial-gradient(ellipse at 50% 0%, #26323a, #12171a 75%); will-change: transform; }
-.project-media:hover { border-color: #acd1e855; box-shadow: 0 40px 100px -40px #000, 0 0 0 1px #acd1e822, 0 0 80px -30px #acd1e888; }
-.project-media img { transition: transform 1.1s var(--ease-out); }
-.project-media:hover img { transform: scale(1.035); }
 .project-media-open { transition: transform .5s var(--ease-out), background .4s; }
 .project-media-trigger:hover .project-media-open { transform: rotate(90deg) scale(1.06); }
 .showcase-caption h3 a { background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; transition: background-size .7s var(--ease-out); }
@@ -194,4 +190,114 @@ html.motion-paused *, html.motion-paused *::before, html.motion-paused *::after 
   .portfolio-button::after { display: none; }
   [data-spotlight]::before, [data-spotlight]::after { display: none; }
   .portfolio-nav.is-hidden { transform: none; }
+}
+
+/* ==========================================================================
+   v2 — poprawki po przeglądzie (kolizje, typografia, projekty)
+   ========================================================================== */
+
+/* —— Typografia: Bricolage Grotesque (nagłówki) + Instrument Serif (akcent) + Geist (tekst) —— */
+.portfolio-home, .portfolio-site, .portfolio-project-dialog {
+  --font-head: var(--font-display), var(--font-geist-sans), system-ui, sans-serif;
+  --font-accent: var(--font-serif), "Iowan Old Style", Georgia, serif;
+}
+.portfolio-home :is(h1, h2),
+.portfolio-subpage :is(h1, h2, h3),
+.portfolio-status h1, .portfolio-catalog h1, .project-dialog-heading h2 {
+  font-family: var(--font-head);
+  font-optical-sizing: auto;
+  font-weight: 560;
+  letter-spacing: -.042em;
+  line-height: 1.1;
+  text-wrap: balance;
+}
+.product-hero-copy h1 { line-height: 1.04; font-weight: 600; letter-spacing: -.05em; }
+.portfolio-subpage h1 { font-weight: 600; }
+.showcase-caption h3, .service-path-card h3, .project-dialog-section h3, .portfolio-home #uslugi h3, .portfolio-home .service-more h3 {
+  font-family: var(--font-head); font-weight: 560; letter-spacing: -.03em;
+}
+.portfolio-wordmark { font-family: var(--font-head); font-weight: 650; letter-spacing: -.05em; }
+.portfolio-wordmark > span { font-family: var(--font-geist-mono), monospace; }
+/* Druga linia nagłówka — kursywa serif: kontrast wagi i rytmu, nie kolorów */
+.portfolio-home h2 > span, .product-hero-copy h1 > span {
+  font-family: var(--font-accent); font-style: italic; font-weight: 400; letter-spacing: -.015em; font-size: 1.1em; padding-bottom: .14em; margin-bottom: -.14em; /* gradient-clip nie ucina ogonków */
+}
+/* ProfessionalServicesSection używa `display:block` w span — zachowaj akcent także tam */
+.portfolio-home h2 > span.block { display: block; }
+.portfolio-home p, .portfolio-home li { text-wrap: pretty; }
+
+/* —— Hero: tekst nigdy nie wchodzi na obszar wizualizacji 3D —— */
+.product-hero-copy { max-width: min(46%, 660px); }
+.product-hero-copy h1 { text-wrap: balance; }
+.product-intro { max-width: 46ch; }
+@media (max-width: 1023px) { .product-hero-copy { max-width: none; } .product-intro { max-width: 54ch; } }
+
+/* —— Czytelność opisów —— */
+.showcase-caption p:not(.portfolio-kicker) { font-size: 16px; line-height: 1.75; color: var(--p-muted); max-width: 62ch; }
+.service-path-card > p:not(.portfolio-kicker) { font-size: 16px; line-height: 1.75; color: var(--p-muted); }
+.service-steps strong, .service-steps span { font-size: 16px; }
+.about-copy p, .portfolio-about p { text-wrap: pretty; }
+
+/* —— Karty projektów: spokojny, jeden ruch zamiast dwóch (podgląd wideo ma już własną dynamikę) —— */
+.project-media {
+  border-color: #ffffff1f;
+  background: radial-gradient(ellipse at 50% 0%, #26323a, #12171a 78%);
+  box-shadow: 0 34px 80px -44px #000, inset 0 1px 0 #ffffff14;
+  transition: border-color .5s, box-shadow .7s var(--ease-out), transform .9s var(--ease-out);
+}
+.project-media img, .project-media video { transition: transform 1.4s var(--ease-out), filter .8s; filter: saturate(1.05) contrast(1.02); }
+.showcase-card:hover .project-media { transform: translateY(-5px); border-color: #acd1e855; box-shadow: 0 44px 100px -44px #000, 0 0 0 1px #acd1e822, 0 0 90px -34px #acd1e899; }
+.showcase-card:hover .project-media :is(img, video) { transform: scale(1.025); filter: saturate(1.1) contrast(1.04); }
+/* delikatny przesuw światła po najechaniu — pseudo-element przycisku, więc nie koliduje ze spotlightem karty */
+.project-media-trigger::before { content: ""; position: absolute; inset: 0; z-index: 2; pointer-events: none; transform: translateX(-130%) skewX(-16deg); background: linear-gradient(90deg, transparent, #ffffff16, transparent); transition: transform 1.3s var(--ease-out); }
+.project-media-trigger:hover::before { transform: translateX(130%) skewX(-16deg); }
+.project-media-control, .project-media-open { z-index: 3; backdrop-filter: blur(10px); border-radius: 12px; }
+.showcase-caption { align-items: flex-end; }
+.showcase-caption .portfolio-kicker { margin-bottom: 4px; }
+.showcase-card .portfolio-tags { margin-top: 16px; }
+
+/* —— Portret: ujednolicony, stalowy odcień zamiast czystej szarości —— */
+.about-portrait { position: relative; }
+.about-portrait::after { content: ""; position: absolute; inset: 0; pointer-events: none; mix-blend-mode: soft-light; background: linear-gradient(160deg, #acd1e855, transparent 60%), linear-gradient(0deg, #0b0d0f66, transparent 45%); }
+
+/* —— Spójność kolorów: tło, ramki i tekst pomocniczy z jednej palety —— */
+html, body { background: #0b0d0f; }
+.portfolio-home, .portfolio-site { --p-muted: #a0a7ab; }
+.portfolio-home h2 > span, .product-hero-copy h1 > span { -webkit-text-fill-color: transparent; }
+.contact-form { background: linear-gradient(165deg, #ffffff0a, transparent 35%), #11161a; }
+.tech-marquee li { color: #9aa5ab; }
+
+/* —— Małe ekrany —— */
+@media (max-width: 760px) {
+  .portfolio-home :is(h1, h2) { letter-spacing: -.035em; }
+  .portfolio-home h2 > span, .product-hero-copy h1 > span { font-size: 1.06em; }
+  .showcase-caption { align-items: flex-start; }
+  .showcase-card:hover .project-media { transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .project-media, .project-media :is(img, video) { transition: none !important; transform: none !important; }
+  .project-media-trigger::before { display: none; }
+}
+
+/* —— Karta wyróżniona: podgląd w naturalnym rozmiarze obok opisu (źródło 960 px, bez rozciągania) —— */
+.showcase-info { display: block; min-width: 0; }
+.showcase-info > .project-release-label { margin-bottom: 10px; }
+.service-price-note { margin-top: 32px; }
+.service-steps { margin-top: 58px; }
+@media (min-width: 1024px) {
+  .showcase-featured { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(320px, 1fr); column-gap: clamp(36px, 4.5vw, 84px); align-items: start; }
+  .showcase-featured > .project-media, .showcase-featured > .showcase-type-visual { max-width: 1000px; }
+  .showcase-featured .showcase-caption { margin-top: 0; flex-direction: column; gap: 18px; }
+  .showcase-featured .showcase-caption h3 { font-size: clamp(30px, 3vw, 46px); }
+  .showcase-featured .showcase-arrow { align-self: flex-start; }
+  .showcase-featured .project-outcome { margin-top: 22px; }
+}
+
+.showcase-info > .portfolio-text-link { margin-top: 20px; margin-right: 20px; }
+
+/* Accent survives SplitText wrapping on desktop as well as static/mobile headings. */
+:is(.portfolio-home h2, .product-hero-copy h1) span:not(.split-line) {
+ font-family: var(--font-accent);font-style:italic;font-weight:400;letter-spacing:-.015em;
+ padding-bottom:.14em;margin-bottom:-.14em;
+ background:linear-gradient(110deg,#acd1e8,#e1eaf0);background-clip:text;-webkit-text-fill-color:transparent;
 }

@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Bricolage_Grotesque, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import "@/components/portfolio/portfolio.css";
 import "@/components/portfolio/premium.css";
@@ -10,13 +10,16 @@ import NavigationScroll from "@/components/NavigationScroll";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
-  subsets: ["latin"],
+  subsets: ["latin", "latin-ext"],
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
-  subsets: ["latin"],
+  subsets: ["latin", "latin-ext"],
 });
+
+const displayFont = Bricolage_Grotesque({ variable: "--font-display", subsets: ["latin", "latin-ext"], display: "swap" });
+const serifFont = Instrument_Serif({ variable: "--font-serif", weight: "400", style: "italic", subsets: ["latin", "latin-ext"], display: "swap" });
 
 export const viewport: Viewport = {
   themeColor: "#0b0d0f",
@@ -113,12 +116,12 @@ export default function RootLayout({
       lang="pl"
       data-scroll-behavior="smooth"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased scroll-smooth scroll-pt-28`}
+      className={`${geistSans.variable} ${geistMono.variable} ${displayFont.variable} ${serifFont.variable} h-full antialiased scroll-smooth scroll-pt-28`}
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: motionBootstrap }} />
       </head>
-      <body className="min-h-full flex flex-col bg-slate-50 text-slate-900 dark:bg-[#060913] dark:text-slate-100 transition-colors duration-300">
+      <body className="min-h-full flex flex-col bg-slate-50 text-slate-900 dark:bg-[#0b0d0f] dark:text-slate-100 transition-colors duration-300">
         <ThemeProvider
           attribute="class"
           defaultTheme="light"

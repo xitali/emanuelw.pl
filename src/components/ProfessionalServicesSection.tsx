@@ -223,7 +223,7 @@ export default function ProfessionalServicesSection({
                 >
                   <div
                     aria-hidden="true"
-                    className="absolute -right-16 -top-20 size-44 rounded-[var(--p-radius)] bg-gradient-to-br from-cyan-300/10 to-violet-500/10 blur-3xl transition-transform duration-700 group-hover:scale-125"
+                    className="absolute -right-16 -top-20 size-44 rounded-[var(--p-radius)] bg-gradient-to-br from-[#acd1e81a] to-[#7fb4d61a] blur-3xl transition-transform duration-700 group-hover:scale-125"
                   />
 
                   <div className="relative grid gap-6 sm:grid-cols-[3.25rem_1fr] xl:grid-cols-[3.25rem_1fr_auto] xl:items-start">
@@ -320,7 +320,7 @@ export default function ProfessionalServicesSection({
                       type="button"
                       aria-pressed={projectType === type.id}
                       onClick={() => setProjectType(type.id)}
-                      className={`min-h-12 rounded-xl border px-3 text-left text-xs font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 ${
+                      className={`min-h-12 rounded-xl border px-3 text-left text-xs font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#acd1e8] ${
                         projectType === type.id
                           ? "border-slate-950 bg-slate-950 text-white dark:border-white dark:bg-white dark:text-black"
                           : "border-slate-200 bg-slate-50 text-slate-600 hover:border-slate-400 dark:border-white/10 dark:bg-white/[0.025] dark:text-white/52 dark:hover:border-white/25"
@@ -344,7 +344,7 @@ export default function ProfessionalServicesSection({
                         key={module.id}
                         className={`relative cursor-pointer rounded-xl border p-4 transition-colors ${
                           selected
-                            ? "border-cyan-400/70 bg-cyan-50 dark:border-cyan-300/30 dark:bg-cyan-300/[0.07]"
+                            ? "border-[#acd1e880] bg-[#acd1e814] dark:border-[#acd1e84d] dark:bg-[#acd1e812]"
                             : "border-slate-200 bg-slate-50 dark:border-white/10 dark:bg-white/[0.025]"
                         }`}
                       >
@@ -366,7 +366,7 @@ export default function ProfessionalServicesSection({
                           <span
                             className={`grid size-5 shrink-0 place-items-center rounded-md border ${
                               selected
-                                ? "border-cyan-500 bg-cyan-500 text-white"
+                                ? "border-[#acd1e8] bg-[#acd1e8] text-[#0b0d0f]"
                                 : "border-slate-300 dark:border-white/20"
                             }`}
                           >
@@ -383,7 +383,7 @@ export default function ProfessionalServicesSection({
             <div className="relative flex flex-col justify-between overflow-hidden border-t border-[var(--p-border)] bg-[var(--p-surface)] p-7 text-white sm:p-9 lg:border-l lg:border-t-0 lg:p-10">
               <div
                 aria-hidden="true"
-                className="absolute -right-24 -top-24 size-72 rounded-[var(--p-radius)] bg-gradient-to-br from-cyan-400/20 to-violet-500/18 blur-[90px]"
+                className="absolute -right-24 -top-24 size-72 rounded-[var(--p-radius)] bg-gradient-to-br from-[#acd1e833] to-[#7fb4d62e] blur-[90px]"
               />
               <div className="relative">
                 <div className="font-mono text-[9px] uppercase tracking-[0.19em] text-[var(--p-accent)]">

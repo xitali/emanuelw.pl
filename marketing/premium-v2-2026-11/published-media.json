@@ -1,0 +1,10 @@
+{
+  "landscape": {
+    "src": "https://w7rwfh0eq4bzvpfx.public.blob.vercel-storage.com/emanuelwloch-premium-v2-20261107-landscape.mp4",
+    "poster": "https://w7rwfh0eq4bzvpfx.public.blob.vercel-storage.com/emanuelwloch-premium-v2-20261107-landscape.jpg"
+  },
+  "vertical": {
+    "src": "https://w7rwfh0eq4bzvpfx.public.blob.vercel-storage.com/emanuelwloch-premium-v2-20261107-vertical.mp4",
+    "poster": "https://w7rwfh0eq4bzvpfx.public.blob.vercel-storage.com/emanuelwloch-premium-v2-20261107-vertical.jpg"
+  }
+}

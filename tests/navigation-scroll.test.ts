@@ -1,5 +1,6 @@
 // @vitest-environment jsdom
 import { afterEach, beforeEach, expect, it, vi } from "vitest";
+import { openContactForm, CONTACT_PREFILL_EVENT } from "../src/lib/contact-prefill";
 import { createNavigationScroll, scrollToSection } from "../src/lib/navigation-scroll";
 
 let controller: ReturnType<typeof createNavigationScroll> | undefined;
@@ -120,4 +121,19 @@ it("keeps the pre-click position when the router scrolls during a filter update"
   });
   link.click(); settle();
   expect(y).toBe(252);
+});
+
+it("reaches the contact form immediately before focusing its prefilled subject", () => {
+  document.body.insertAdjacentHTML("beforeend", '<input id="contact-subject" />');
+  const payload = { subject: "Strona firmowa", message: "Mój cel" };
+  const receive = vi.fn();
+  window.addEventListener(CONTACT_PREFILL_EVENT, receive, { once: true });
+  const input = document.getElementById("contact-subject")!;
+  const focus = vi.spyOn(input, "focus");
+  openContactForm(payload);
+  expect(window.scrollTo).toHaveBeenCalledWith({ top: 1698, left: 0, behavior: "instant" });
+  expect(y).toBe(1698);
+  expect((receive.mock.calls[0][0] as CustomEvent).detail).toEqual(payload);
+  vi.advanceTimersByTime(500);
+  expect(focus).toHaveBeenCalledWith({ preventScroll: true });
 });

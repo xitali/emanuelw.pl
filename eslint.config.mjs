@@ -10,6 +10,7 @@ const eslintConfig = defineConfig([
     // Default ignores of eslint-config-next:
     ".next/**",
     ".debug/**",
+    "brag-output*/**",
     "out/**",
     "build/**",
     "next-env.d.ts",

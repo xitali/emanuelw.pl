@@ -18,7 +18,7 @@ export default function PortfolioNav({ home = true }: { home?: boolean }) {
   }, [open]);
   return <header className="portfolio-nav" ref={header}>
     <a className="portfolio-skip" href="#main-content">Przejdź do treści</a>
-    <Link className="portfolio-wordmark" href="/" aria-label="Emanuel Włoch — strona główna"><BrandMark size={30} /><span className="wordmark-text">ew<span> / </span><small>Emanuel Włoch</small></span></Link>
+    <Link className="portfolio-wordmark" href="/" aria-label="Emanuel Włoch — strona główna"><BrandMark size={30} />ew<span> / </span><small>Emanuel Włoch</small></Link>
     <nav id="portfolio-menu" aria-label="Główna nawigacja" className={open ? "is-open" : ""}>
       {links.map(([label, href]) => <a key={href} href={href === "#projekty" ? "/realizacje" : home ? href : `/${href}`} onClick={() => setOpen(false)}>{label}</a>)}
       <a className="portfolio-button portfolio-button--secondary nav-contact" href={home ? "#kontakt" : "/#kontakt"} onClick={() => setOpen(false)}>Omów projekt <IconArrowUpRight size={15} /></a>

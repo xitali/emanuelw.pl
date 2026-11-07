@@ -52,3 +52,6 @@ next-env.d.ts
 /EmanuelAdmin-*.apk
 
 /.debug/
+
+# Generated local advertisement renders, caches and editable delivery bundles
+/brag-output-*/
