@@ -34,7 +34,7 @@ function GoalSketch() {
         <path d="m583 435 12 12 23-26" stroke="#375c74" strokeWidth="3" strokeLinecap="round"/>
       </svg>
     </div>
-    <div className="goal-sticky"><span>TWÓJ PLAN</span><strong>Masz pomysł?<br/>Porozmawiajmy.</strong></div>
+    <div className="goal-sticky"><span>TWÓJ PLAN</span><strong>Masz pomysł?<br />{" "}Porozmawiajmy.</strong></div>
     <svg className="goal-pencil" viewBox="0 0 30 290" fill="none"><path d="M5 25h20v225L15 281 5 250z" fill="#a8c9dc"/><path d="M5 25h7v224H5z" fill="#d6e5eb"/><path d="M12 25h6v224h-6z" fill="#65869a"/><path d="m5 249 10 32 10-32" fill="#dbc4a6"/><path d="m12 273 3 8 3-8" fill="#26323a"/><rect x="5" y="6" width="20" height="20" rx="4" fill="#405462"/></svg>
   </div>;
 }
@@ -55,7 +55,7 @@ function DesignWorkshop() {
 }
 function Publication() {
   return <div className="launch-composition">
-    <div className="launch-domain"><div className="launch-address"><svg viewBox="0 0 24 24" fill="none"><rect x="5" y="10" width="14" height="11" rx="3" stroke="currentColor" strokeWidth="1.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="currentColor" strokeWidth="1.5"/></svg><span>twoja-firma.pl</span><i/></div><div className="launch-success"><span><Check/></span><p>PUBLIKACJA I PRZEKAZANIE</p><strong>Twoja strona.<br/><em>Już online.</em></strong><small>Pod Twoją domeną. Dostępna dla klientów.</small></div>
+    <div className="launch-domain"><div className="launch-address"><svg viewBox="0 0 24 24" fill="none"><rect x="5" y="10" width="14" height="11" rx="3" stroke="currentColor" strokeWidth="1.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="currentColor" strokeWidth="1.5"/></svg><span>twoja-firma.pl</span><i/></div><div className="launch-success"><span><Check/></span><p>PUBLIKACJA I PRZEKAZANIE</p><strong>Twoja strona.<br />{" "}<em>Już online.</em></strong><small>Pod Twoją domeną. Dostępna dla klientów.</small></div>
       <div className="launch-pipeline"><span>&lt;/&gt;</span><i><b/></i><svg viewBox="0 0 32 32" fill="none"><path d="M9 25h16a6 6 0 0 0 .5-12 10 10 0 0 0-19-1A6.5 6.5 0 0 0 9 25Z" stroke="currentColor" strokeWidth="1.4"/></svg><i><b/></i><svg viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="12" stroke="currentColor" strokeWidth="1.4"/><ellipse cx="16" cy="16" rx="5" ry="12" stroke="currentColor" strokeWidth="1.2"/><path d="M4 16h24m-22-6h20M6 22h20" stroke="currentColor" strokeWidth="1.2"/></svg></div>
     </div>
     <div className="launch-checklist">{['Twoja domena i HTTPS','Sprawdzony kontakt','Dostęp i instrukcja obsługi'].map((label,i)=><div key={label} style={{'--check-order':i} as CSSProperties}><span><Check/></span>{label}</div>)}</div>

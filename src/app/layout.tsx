@@ -1,3 +1,4 @@
+import { SOCIAL_IMAGE_URL } from "@/lib/seo";
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Bricolage_Grotesque, Instrument_Serif } from "next/font/google";
 import "./globals.css";
@@ -61,8 +62,8 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "https://emanuelwloch.pl/og-image.jpg",
-        secureUrl: "https://emanuelwloch.pl/og-image.jpg",
+        url: SOCIAL_IMAGE_URL,
+        secureUrl: SOCIAL_IMAGE_URL,
         width: 1200,
         height: 630,
         type: "image/jpeg",
@@ -75,7 +76,7 @@ export const metadata: Metadata = {
     title: "Emanuel Włoch – Strony internetowe i aplikacje",
     description:
       "Szybkie strony internetowe, sklepy i aplikacje webowe dla firm z Jarosławia, Podkarpacia i całej Polski.",
-    images: ["https://emanuelwloch.pl/og-image.jpg"],
+    images: [SOCIAL_IMAGE_URL],
   },
   robots: {
     index: true,

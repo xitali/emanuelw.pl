@@ -65,8 +65,8 @@ export default function ProductStory({ testimonial }: { testimonial?: Testimonia
       <div className="product-stage-grid" aria-hidden="true" />
       <div className="product-hero-copy">
         <p className="portfolio-kicker"><span className="status-dot" /> STRONY DLA FIRM / JAROSŁAW I CAŁA POLSKA</p>
-        <h1>Strona, która jasno<br />pokazuje ofertę<br /><span>i ułatwia kontakt.</span></h1>
-        <p className="product-intro">Potrzebujesz strony dla swojej firmy?<br />Pomogę Ci pokazać ofertę i ułatwić klientom kontakt.<br />Sklep lub aplikacja? Dopasuję je do Twojej firmy.</p>
+        <h1>Strona, która jasno<br />{" "}pokazuje ofertę<br />{" "}<span>i ułatwia kontakt.</span></h1>
+        <p className="product-intro">Potrzebujesz strony dla swojej firmy?<br />{" "}Pomogę Ci pokazać ofertę i ułatwić klientom kontakt.<br />{" "}Sklep lub aplikacja? Dopasuję je do Twojej firmy.</p>
         <div className="portfolio-actions"><a className="portfolio-button" href="#kontakt">Omów projekt <IconArrowUpRight size={18} /></a><a className="portfolio-text-link" href="#projekty">Zobacz realizacje <IconArrowUpRight size={16} /></a></div>
         <div className="hero-person">
           <Image src="/emanuel_wloch.jpg" alt="Emanuel Włoch" width={48} height={48} sizes="(max-width: 1023px) 40px, 48px" className="hero-person-photo" />
@@ -87,7 +87,7 @@ export default function ProductStory({ testimonial }: { testimonial?: Testimonia
 }
 export function TechnologyDetails() {
   return <section id="technologie" className="portfolio-stack" aria-labelledby="stack-heading">
-    <div><p className="portfolio-kicker">WARSZTAT</p><h2 id="stack-heading">Technologia wspiera<br /><span>Twój cel.</span></h2><p>Nie musisz wybierać technologii.<br />Dobiorę ją do tego, co ma robić Twoja strona lub aplikacja.</p></div>
+    <div><p className="portfolio-kicker">WARSZTAT</p><h2 id="stack-heading">Technologia wspiera<br />{" "}<span>Twój cel.</span></h2><p>Nie musisz wybierać technologii.<br />{" "}Dobiorę ją do tego, co ma robić Twoja strona lub aplikacja.</p></div>
     <div className="stack-details">{productLayers.map((layer, i) => { const LayerIcon = layerIcons[layer.id as keyof typeof layerIcons]; return <details key={layer.id} open={i === 0}><summary><span>0{i + 1}</span><LayerIcon size={20} />{layer.label}<span className="detail-plus">+</span></summary><p>{layer.description}</p><div className="portfolio-tags">{layer.technologies.map(tech => <span key={tech}>{tech}</span>)}</div></details>; })}</div>
   </section>;
 }

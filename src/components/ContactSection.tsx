@@ -61,15 +61,15 @@ export default function ContactSection({ settings }: { settings: PublicSiteSetti
   return <section id="kontakt" className="portfolio-contact" aria-labelledby="contact-heading">
     <div className="portfolio-container">
       <header className="portfolio-section-heading">
-        <div><p className="portfolio-kicker">04 / KONTAKT</p><h2 id="contact-heading">Porozmawiajmy<br /><span>o Twojej firmie.</span></h2></div>
-        <p>Co chcesz zrobić dla swojej firmy?<br />Napisz, czego potrzebujesz — pomogę Ci ustalić zakres i kolejne kroki.</p>
+        <div><p className="portfolio-kicker">04 / KONTAKT</p><h2 id="contact-heading">Porozmawiajmy<br />{" "}<span>o Twojej firmie.</span></h2></div>
+        <p>Co chcesz zrobić dla swojej firmy?<br />{" "}Napisz, czego potrzebujesz — pomogę Ci ustalić zakres i kolejne kroki.</p>
       </header>
       <div className="contact-layout">
         <div className="contact-info" data-stagger>
           <p className="portfolio-kicker">BEZPOŚREDNIO</p>
           <a className="contact-email" href={`mailto:${email}`}><IconMail size={26} />{email}<ArrowUpRight size={22} /></a>
           <a className="contact-phone" href={`tel:${phone.replace(/\s+/g, "")}`}><IconPhone size={20} />{phone}<ArrowUpRight size={16} /></a>
-          <div className="contact-location"><p className="portfolio-kicker">LOKALIZACJA</p><p className="contact-line"><IconPin size={22} /><span>Jarosław, Podkarpackie<br /><span>Współpraca zdalna w całej Polsce</span></span></p></div>
+          <div className="contact-location"><p className="portfolio-kicker">LOKALIZACJA</p><p className="contact-line"><IconPin size={22} /><span>Jarosław, Podkarpackie<br />{" "}<span>Współpraca zdalna w całej Polsce</span></span></p></div>
           <nav className="contact-socials" aria-label="Profile społecznościowe">{socials.map(([label, url, Glyph]) => <a key={label} href={url} target="_blank" rel="noopener noreferrer"><Glyph />{label}<ArrowUpRight size={14} /></a>)}</nav>
         </div>
         <form onSubmit={handleSubmit} className="contact-form" data-reveal data-spotlight aria-label="Napisz wiadomość" aria-busy={loading}>

@@ -155,7 +155,7 @@ export default function ProfessionalServicesSection({
               id="services-heading"
               className="mt-5 max-w-4xl text-[clamp(2.85rem,5.5vw,5.75rem)] font-medium leading-[0.88] tracking-[-0.055em]"
             >
-              Wybierz, czego
+              Wybierz, czego{" "}
               <span className="block text-[var(--p-muted)] dark:text-[var(--p-muted)]">
                 potrzebujesz.
               </span>

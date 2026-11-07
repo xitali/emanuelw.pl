@@ -30,6 +30,7 @@ const nextConfig: NextConfig = {
         destination: "https://kamera-brama.tailcc6301.ts.net/",
         permanent: false,
       },
+      { source: "/opengraph-image.jpg", destination: "/og/strony-i-aplikacje-9dac8276.jpg", permanent: true },
     ];
   },
   experimental: {

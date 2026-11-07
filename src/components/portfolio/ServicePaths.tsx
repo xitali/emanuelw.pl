@@ -14,7 +14,7 @@ const paths = [
 
 export default function ServicePaths({ services }: { services: Service[] }) {
   return <section id="uslugi" className="service-paths portfolio-container" aria-labelledby="paths-heading">
-    <header className="portfolio-section-heading"><div><p className="portfolio-kicker">OFERTA DOPASOWANA DO CELU</p><h2 id="paths-heading">Pokaż ofertę.<br /><span>Ułatw kolejny krok.</span></h2></div><p>Powiedz, czego potrzebujesz.<br />Pomogę Ci wybrać odpowiednie rozwiązanie.</p></header>
+    <header className="portfolio-section-heading"><div><p className="portfolio-kicker">OFERTA DOPASOWANA DO CELU</p><h2 id="paths-heading">Pokaż ofertę.<br />{" "}<span>Ułatw kolejny krok.</span></h2></div><p>Powiedz, czego potrzebujesz.<br />{" "}Pomogę Ci wybrać odpowiednie rozwiązanie.</p></header>
     <div className="service-path-grid" data-stagger>{paths.map((path, i) => <article key={path.href} className={`service-path-card${i === 0 ? " service-path-card--primary" : ""}`} data-spotlight>
       <span className="ew-icon-badge"><path.Icon /></span><p className="portfolio-kicker">0{i + 1} / {path.title}</p><h3>{path.goal}</h3><p>{path.description}</p><p className="service-path-scope">{path.scope}</p>
       <button className="portfolio-button" onClick={() => openContactForm({ subject: path.title, message: `Interesuje mnie: ${path.title.toLowerCase()}.\nCel projektu: \nPlanowany termin: `, badge: "Wybrana usługa została wpisana do formularza." })}>Omów projekt <ArrowUpRight size={17} /></button>

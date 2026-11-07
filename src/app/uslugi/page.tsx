@@ -1,3 +1,4 @@
+import { createPageMetadata } from "@/lib/seo";
 import PublicPageShell from "@/components/portfolio/PublicPageShell";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -5,19 +6,11 @@ import { ArrowRight, Code2, Globe2, MapPin, ShoppingCart } from "lucide-react";
 import { serializeJsonLd, SITE_URL } from "@/lib/seo";
 import { servicePages } from "@/lib/service-pages";
 
-export const metadata: Metadata = {
-  title: "Usługi web development — strony, sklepy i aplikacje",
-  description:
-    "Strony internetowe, sklepy, aplikacje webowe i rozwój projektów Next.js. Poznaj zakres, proces, orientacyjne ceny oraz odpowiedzi na pytania.",
-  alternates: { canonical: "/uslugi" },
-  openGraph: {
-    title: "Usługi web development — Emanuel Włoch",
-    description:
-      "Projektowanie i wdrażanie stron, sklepów oraz aplikacji webowych od interfejsu po produkcję.",
-    url: `${SITE_URL}/uslugi`,
-    type: "website",
-  },
-};
+export const metadata: Metadata = createPageMetadata({
+  title: "Strony, sklepy i aplikacje — oferta dla Twojej firmy",
+  description: "Wybierz rozwiązanie dla swojej firmy: strona internetowa, sklep lub aplikacja. Poznaj zakres, proces współpracy i orientacyjne ceny netto.",
+  path: "/uslugi",
+});
 
 const primaryPages = servicePages.filter(
   (page) => !page.slug.endsWith("jaroslaw") && !page.slug.endsWith("rzeszow"),

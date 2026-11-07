@@ -102,8 +102,8 @@ export const getProjects = unstable_cache(
       return [];
     }
   },
-  ["projects-list", "premium-copy-v2-2026-11-07", projectDatabaseKey],
-  { revalidate: 3600, tags: ["projects"] }
+  ["projects-list", "content-review-v3-2026-11-07", projectDatabaseKey],
+  { revalidate: 60, tags: ["projects"] }
 );
 
 export async function getAdminProjects(): Promise<Project[]> {
@@ -163,8 +163,8 @@ export const getServices = unstable_cache(
       return [];
     }
   },
-  ["services-list", "premium-copy-v2-2026-11-07", projectDatabaseKey],
-  { revalidate: 3600 }
+  ["services-list", "content-review-v3-2026-11-07", projectDatabaseKey],
+  { revalidate: 60, tags: ["services"] }
 );
 
 const PUBLIC_SETTING_KEYS = [

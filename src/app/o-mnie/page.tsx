@@ -1,3 +1,4 @@
+import { createPageMetadata } from "@/lib/seo";
 import PublicPageShell from "@/components/portfolio/PublicPageShell";
 import type { Metadata } from "next";
 import Image from "next/image";
@@ -7,19 +8,11 @@ import { serializeJsonLd, SITE_URL } from "@/lib/seo";
 
 const USEME_URL = "https://useme.com/pl/roles/contractor/emanuel-wloch%2C525723/";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "O mnie — Emanuel Włoch, strony i aplikacje dla firm",
-  description:
-    "Poznaj wykonawcę swojej strony. Emanuel Włoch z Jarosławia: bezpośrednia współpraca, projektowanie, tworzenie stron i aplikacji oraz wdrożenie.",
-  alternates: { canonical: "/o-mnie" },
-  openGraph: {
-    title: "Emanuel Włoch — Strony i aplikacje dla firm",
-    description: "Pomogę Ci zaprojektować i uruchomić stronę, sklep lub aplikację dopasowaną do Twojej firmy.",
-    url: `${SITE_URL}/o-mnie`,
-    type: "profile",
-    images: [{ url: `${SITE_URL}/emanuel_wloch.jpg`, alt: "Emanuel Włoch" }],
-  },
-};
+  description: "Poznaj wykonawcę swojej strony. Emanuel Włoch z Jarosławia: bezpośrednia współpraca od pomysłu po wdrożenie.",
+  path: "/o-mnie", image: "/emanuel_wloch.jpg", type: "profile",
+});
 
 const expertise = [
   "Strony i aplikacje w Next.js, React i TypeScript",

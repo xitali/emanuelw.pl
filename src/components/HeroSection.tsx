@@ -135,7 +135,7 @@ export default function HeroSection({
 
             {/* Paragraph description */}
             <p className="text-lg sm:text-xl text-slate-600 dark:text-slate-300 font-normal leading-relaxed max-w-2xl">
-              Cześć, jestem <strong className="text-slate-900 dark:text-white font-semibold">Emanuel Włoch</strong>. Zamieniam skomplikowane pomysły biznesowe w nowoczesne, niezawodne i błyskawiczne systemy internetowe.
+              Cześć, jestem <strong className="text-slate-900 dark:text-white font-semibold">Emanuel Włoch</strong>. Pomogę Ci przejść od pomysłu na stronę lub aplikację do gotowego rozwiązania dla Twojej firmy.
             </p>
 
             {/* CTAs */}

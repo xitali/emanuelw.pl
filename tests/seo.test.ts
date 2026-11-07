@@ -1,5 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
+  createPageMetadata,
+  SOCIAL_IMAGE_URL,
   getProjectIdFromSegment,
   getProjectPath,
   serializeJsonLd,
@@ -87,5 +89,21 @@ describe("AEO guide pages", () => {
       expect(guide.sections.length).toBeGreaterThanOrEqual(4);
       expect(guide.faq.length).toBeGreaterThanOrEqual(6);
     }
+  });
+});
+
+describe("complete page sharing metadata", () => {
+  it("gives the catalogue and services their own URL, copy and both sharing images", () => {
+    const catalogue = createPageMetadata({ path: "/realizacje", title: "Realizacje", description: "Wykonane strony i aplikacje" });
+    const services = createPageMetadata({ path: "/uslugi", title: "Usługi", description: "Oferta dla Twojej firmy" });
+    expect(catalogue.openGraph).toMatchObject({ url: "https://emanuelwloch.pl/realizacje", title: "Realizacje", description: "Wykonane strony i aplikacje", images: [{ url: SOCIAL_IMAGE_URL }] });
+    expect(services.openGraph).toMatchObject({ url: "https://emanuelwloch.pl/uslugi", title: "Usługi", images: [{ url: SOCIAL_IMAGE_URL }] });
+    expect(services.twitter).toMatchObject({ title: "Usługi", description: "Oferta dla Twojej firmy", images: [SOCIAL_IMAGE_URL] });
+    expect(catalogue.twitter).toMatchObject({ title: "Realizacje", images: [SOCIAL_IMAGE_URL] });
+  });
+  it("uses the selected portrait for both previews on the author page", () => {
+    const meta = createPageMetadata({ path: "/o-mnie", title: "O mnie", description: "Poznaj wykonawcę", image: "/emanuel_wloch.jpg", type: "profile" });
+    expect(meta.openGraph).toMatchObject({ type: "profile", images: [{ url: "https://emanuelwloch.pl/emanuel_wloch.jpg" }] });
+    expect(meta.twitter).toMatchObject({ images: ["https://emanuelwloch.pl/emanuel_wloch.jpg"] });
   });
 });

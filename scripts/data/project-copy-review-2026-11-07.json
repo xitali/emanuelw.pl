@@ -1,0 +1,107 @@
+[
+  {
+    "id": "2c00a565-5ac0-4735-a0e5-47f1a4d806c7",
+    "changes": {
+      "project_type": "web",
+      "detailed_description": "Strona informacyjna fundacji: opis działalności charytatywnej, materiały z akcji, galeria oraz dane kontaktowe. Realizacja porządkuje informacje dla osób, które chcą poznać fundację i możliwości wsparcia.",
+      "main_challenge": "Uporządkować informacje o działalności fundacji, jej akcjach i możliwościach kontaktu.",
+      "project_result": "Strona zbierająca informacje o fundacji, materiały z akcji, galerię i kontakt.",
+      "key_features": [
+        "Informacje o działalności fundacji",
+        "Prezentacja akcji charytatywnych",
+        "Galeria materiałów",
+        "Dane kontaktowe"
+      ],
+      "performance_metrics": [],
+      "technical_metrics": []
+    }
+  },
+  {
+    "id": "1dea78de-4c25-4b7c-8519-48212fe42b9a",
+    "changes": {
+      "detailed_description": "Wersja testowa strony ofertowej firmy budowlanej BCC. Prezentowany zakres obejmuje układ usług, zdjęcia realizacji oraz opis współpracy. Materiał przedstawia projekt strony, a nie potwierdzony system obsługi inwestycji.",
+      "main_challenge": "Pokazać usługi budowlane i realizacje w przejrzystej strukturze.",
+      "project_result": "Przygotowany podgląd strony z ofertą i realizacjami. Wersja testowa wymaga dalszej weryfikacji przed publikacją.",
+      "key_features": [
+        "Prezentacja usług budowlanych",
+        "Układ galerii realizacji",
+        "Opis procesu współpracy",
+        "Wersja testowa"
+      ],
+      "performance_metrics": [],
+      "technical_metrics": []
+    }
+  },
+  {
+    "id": "3bc5ed9c-c7c8-4532-adec-326f78389f0e",
+    "changes": {
+      "project_type": "web",
+      "short_description": "Testowa strona firmy wynajmującej dmuchańce: oferta, zdjęcia atrakcji i kontakt.",
+      "detailed_description": "Prezentowany zakres obejmuje stronę oferty wynajmu dmuchańców, galerię atrakcji oraz sekcję kontaktową. To wersja testowa. Działanie panelu administracyjnego i zarządzania wydarzeniami nie zostało potwierdzone w tej prezentacji.",
+      "main_challenge": "Czytelnie pokazać dostępne atrakcje i wskazać osobie zainteresowanej wynajmem drogę do kontaktu.",
+      "project_result": "Prezentacja oferty i galerii w wersji testowej. Obsługa wydarzeń i panel administracyjny wymagają osobnej weryfikacji.",
+      "key_features": [
+        "Prezentacja oferty wynajmu",
+        "Galeria atrakcji",
+        "Sekcja kontaktowa",
+        "Wersja testowa"
+      ],
+      "performance_metrics": [],
+      "success_metrics": [],
+      "technical_metrics": []
+    }
+  },
+  {
+    "id": "5187fe58-43e9-46a8-aba5-7016acfbc55a",
+    "changes": {
+      "title": "Strona ofertowa i lekki CMS — Emanuel Włoch",
+      "short_description": "Strona przedstawiająca usługi i realizacje, z formularzem kontaktowym oraz lekkim panelem zarządzania treścią.",
+      "detailed_description": "Strona ofertowa w Next.js i React: usługi, realizacje i opinie pomagają Ci ocenić zakres współpracy, a formularz pozwala rozpocząć rozmowę. Panel administratora służy do edycji realizacji i cen usług oraz obsługi wiadomości.",
+      "main_challenge": "Połączyć czytelną ofertę, dowody wykonanych prac i kontakt z samodzielną edycją treści.",
+      "project_result": "Działająca strona ofertowa z katalogiem realizacji, formularzem kontaktowym oraz panelem CMS. Zmiany kodu przechodzą automatyczne testy i build przed wdrożeniem.",
+      "key_features": [
+        "Oferta i trzy ścieżki usług",
+        "Realizacje z galeriami i opisami",
+        "Formularz z wyborem usługi",
+        "Panel zarządzania projektami i cenami",
+        "Obsługa wiadomości w panelu",
+        "Automatyczne testy i wdrożenie"
+      ],
+      "innovation": "Wspólne zarządzanie treścią strony ofertowej i katalogu realizacji.",
+      "success_metrics": [],
+      "technical_metrics": []
+    }
+  },
+  {
+    "id": "5fa80c09-f256-4dc9-a94e-6a08ae809345",
+    "changes": {
+      "project_result": "Strona prezentuje portfolio tatuaży, ofertę studia i dane kontaktowe. Klientka w opublikowanej opinii wyróżnia wygodne przeglądanie galerii oraz formularz kontaktowy.",
+      "success_metrics": []
+    }
+  },
+  {
+    "id": "fe49066a-9990-453d-b368-8f72df1e414a",
+    "changes": {
+      "project_result": "Strona z ofertą restauracji i menu aktualizowanym przez bazę danych. Opis dotyczy wykonanej realizacji archiwalnej.",
+      "performance_metrics": [],
+      "success_metrics": []
+    }
+  },
+  {
+    "id": "ecca3780-0d01-489a-a240-a19e632c3a65",
+    "changes": {
+      "short_description": "Projekt aplikacji wypożyczalni motocykli z katalogiem, ścieżką rezerwacji i zapleczem do zarządzania treścią.",
+      "detailed_description": "Projekt obejmuje prezentację motocykli, ścieżkę rezerwacji, FAQ i kontakt. W zakresie opisano również panel zarządzania oraz integrację z bazą danych. Pełny proces rezerwacji i działanie panelu wymagają potwierdzenia w środowisku tego projektu.",
+      "project_result": "Przygotowany interfejs wypożyczalni i ścieżka rezerwacji. Ta prezentacja nie potwierdza obsługi rzeczywistych rezerwacji ani wszystkich funkcji panelu.",
+      "technical_metrics": [],
+      "performance_metrics": []
+    }
+  },
+  {
+    "id": "09e837ed-2206-49b7-9b81-21c6222a18f5",
+    "changes": {
+      "technical_metrics": [],
+      "innovation": "Połączenie prezentacji floty, oferty transferów i kontaktu na stronie firmowej."
+    }
+  }
+]

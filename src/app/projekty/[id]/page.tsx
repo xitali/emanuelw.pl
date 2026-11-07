@@ -14,6 +14,7 @@ import {
   serializeJsonLd,
   SITE_URL,
   toAbsoluteUrl,
+  SOCIAL_IMAGE_URL,
 } from "@/lib/seo";
 
 interface ProjectPageProps {
@@ -36,7 +37,7 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
   if (!project) return {};
 
   const path = getProjectPath(project);
-  const image = toAbsoluteUrl(project.images[0]);
+  const image = toAbsoluteUrl(project.preview_poster || project.images[0]) || SOCIAL_IMAGE_URL;
   const description = compactDescription(project.short_description);
 
   return {

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import type { Project } from "@/types";
 
 export const SITE_URL = "https://emanuelwloch.pl";
@@ -43,4 +44,23 @@ export function toAbsoluteUrl(value?: string) {
   } catch {
     return undefined;
   }
+}
+
+// Content-addressed image avoids stale previews held by social networks.
+export const SOCIAL_IMAGE_PATH = "/og/strony-i-aplikacje-9dac8276.jpg";
+export const SOCIAL_IMAGE_URL = `${SITE_URL}${SOCIAL_IMAGE_PATH}`;
+
+export function createPageMetadata({ title, description, path, image = SOCIAL_IMAGE_URL, type = "website" }: {
+  title: string; description: string; path: string; image?: string; type?: "website" | "profile" | "article";
+}): Metadata {
+  const imageUrl = toAbsoluteUrl(image)!;
+  return {
+    title, description, alternates: { canonical: path },
+    openGraph: {
+      title, description, url: new URL(path, SITE_URL).href,
+      siteName: "Emanuel Włoch — strony i aplikacje dla firm", locale: "pl_PL", type,
+      images: [{ url: imageUrl, alt: title, ...(imageUrl === SOCIAL_IMAGE_URL ? { width: 1200, height: 630, type: "image/jpeg" } : {}) }],
+    },
+    twitter: { card: "summary_large_image", title, description, images: [imageUrl] },
+  };
 }

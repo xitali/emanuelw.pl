@@ -13,7 +13,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import type { ServicePageData } from "@/lib/service-pages";
-import { serializeJsonLd, SITE_URL } from "@/lib/seo";
+import { serializeJsonLd, SITE_URL, SOCIAL_IMAGE_URL } from "@/lib/seo";
 
 const featuredCaseStudies = [
   {
@@ -29,7 +29,7 @@ const featuredCaseStudies = [
   {
     href: "/projekty/dmuchance-afryka-strona-wynajmu-dmuchancow-3bc5ed9c-c7c8-4532-adec-326f78389f0e",
     title: "Dmuchańce Afryka",
-    description: "Aplikacja z panelem, galerią i zarządzaniem wydarzeniami.",
+    description: "Wersja testowa strony z ofertą wynajmu i galerią.",
   },
 ] as const;
 
@@ -51,7 +51,7 @@ export function createServiceMetadata(data: ServicePageData): Metadata {
       type: "website",
       images: [
         {
-          url: `${SITE_URL}/og-image.jpg`,
+          url: SOCIAL_IMAGE_URL,
           width: 1200,
           height: 630,
           alt: `${data.shortName} — Emanuel Włoch`,
@@ -62,7 +62,7 @@ export function createServiceMetadata(data: ServicePageData): Metadata {
       card: "summary_large_image",
       title: `${data.metaTitle} | Emanuel Włoch`,
       description: data.metaDescription,
-      images: [`${SITE_URL}/og-image.jpg`],
+      images: [SOCIAL_IMAGE_URL],
     },
   };
 }

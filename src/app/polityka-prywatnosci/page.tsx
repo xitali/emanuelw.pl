@@ -1,13 +1,13 @@
+import { createPageMetadata } from "@/lib/seo";
 import PublicPageShell from "@/components/portfolio/PublicPageShell";
 import type { Metadata } from "next";
 import Link from "next/link";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Polityka prywatności",
-  description:
-    "Informacje o przetwarzaniu danych przesyłanych przez formularz kontaktowy.",
-  alternates: { canonical: "/polityka-prywatnosci" },
-};
+  description: "Informacje o przetwarzaniu danych przesyłanych przez formularz kontaktowy.",
+  path: "/polityka-prywatnosci",
+});
 
 export default function PrivacyPolicyPage() {
   return (

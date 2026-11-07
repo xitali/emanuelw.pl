@@ -1,6 +1,10 @@
 import ConversionTracker from "@/components/ConversionTracker";
 import type { Metadata } from "next";
-export const metadata: Metadata = { alternates: { canonical: "/" } };
+import { createPageMetadata } from "@/lib/seo";
+export const metadata: Metadata = {
+  ...createPageMetadata({ path: "/", title: "Emanuel Włoch — strony internetowe i aplikacje dla firm", description: "Potrzebujesz strony, sklepu lub aplikacji dla swojej firmy? Porozmawiaj z Emanuelem Włochem o projekcie — od ustalenia celu po wdrożenie." }),
+  title: { absolute: "Emanuel Włoch — strony internetowe i aplikacje dla firm" },
+};
 import {
   getProjects,
   getServices,
@@ -21,7 +25,7 @@ import MotionLayer from "@/components/portfolio/motion/MotionLayer";
 import DeliveryProcess from "@/components/portfolio/DeliveryProcess";
 
 // High performance revalidation tag caching
-export const revalidate = 3600;
+export const revalidate = 60;
 
 export default async function HomePage() {
   // Parallel cached data fetching from Turso DB (< 15ms response)

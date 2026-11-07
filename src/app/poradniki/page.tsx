@@ -1,3 +1,4 @@
+import { createPageMetadata } from "@/lib/seo";
 import PublicPageShell from "@/components/portfolio/PublicPageShell";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -5,11 +6,11 @@ import { ArrowRight, BookOpen } from "lucide-react";
 import { guidePages } from "@/lib/guide-pages";
 import { serializeJsonLd, SITE_URL } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = createPageMetadata({
   title: "Poradniki o stronach i aplikacjach webowych",
-  description: "Konkretne odpowiedzi o kosztach, terminach, technologiach, SEO i podejmowaniu decyzji przed budową strony lub aplikacji.",
-  alternates: { canonical: "/poradniki" },
-};
+  description: "Konkretne odpowiedzi o kosztach, terminach, technologiach i przygotowaniu strony lub aplikacji dla Twojej firmy.",
+  path: "/poradniki",
+});
 
 export default function GuidesPage() {
   const structuredData = {

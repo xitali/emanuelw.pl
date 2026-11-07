@@ -28,7 +28,7 @@ export default function ProjectShowcase({ initialProjects }: { initialProjects: 
   const [selected, setSelected] = useState<Project | null>(null);
   const highlights = selectProjectHighlights(initialProjects);
   return <section id="projekty" className="portfolio-projects portfolio-container" aria-labelledby="projects-heading">
-    <header className="portfolio-section-heading"><div><p className="portfolio-kicker">01 / WYBRANE REALIZACJE</p><h2 id="projects-heading">Zobacz, co powstało.<br /><span>Oceń jakość wykonania.</span></h2></div><p>Zobacz strony, które przygotowałem.<br />Sprawdź, co mogłoby sprawdzić się również u Ciebie.</p></header>
+    <header className="portfolio-section-heading"><div><p className="portfolio-kicker">01 / WYBRANE REALIZACJE</p><h2 id="projects-heading">Zobacz, co powstało.<br />{" "}<span>Oceń jakość wykonania.</span></h2></div><p>Zobacz strony, które przygotowałem.<br />{" "}Sprawdź, co mogłoby sprawdzić się również u Ciebie.</p></header>
     <div className="showcase-grid">{highlights.map((project, index) => <ProjectCard key={project.id} project={project} index={index} highlighted onOpen={() => setSelected(project)} />)}</div>
     <Link href="/realizacje" data-reveal className="portfolio-button portfolio-button--secondary project-archive">Wszystkie realizacje ({initialProjects.length}) <ArrowUpRight size={17} /></Link>
     {!initialProjects.length && <p className="portfolio-empty">Realizacje są chwilowo niedostępne. <a href="#kontakt">Napisz do mnie.</a></p>}

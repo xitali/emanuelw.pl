@@ -157,6 +157,8 @@ export async function updateServicePriceAction(id: string, priceFrom: number) {
   await requireAdmin();
   const data = servicePriceSchema.parse({ id, price: priceFrom });
   await updateServicePrice(data.id, data.price);
+  updateTag("services");
+  revalidatePath("/uslugi");
   revalidatePath("/admin");
   revalidatePath("/");
   return { success: true };
